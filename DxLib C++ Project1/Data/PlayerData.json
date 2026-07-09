@@ -1,0 +1,20 @@
+{
+  "Player": {
+    "maxHp": 100,
+    "attackPower": 20,
+    "speed": 0.3,
+    "dashMultiplier": 2.5,
+    "startLevel": 1,
+    "startNextLevelExp": 30,
+    "attackRadius": 10.0,
+    "bodyRadius": 5.0,
+    "levelUpAttackPower": 10,
+    "nextLevelExpMultiplier": 1.3,
+    "invincibleTime": 1.0,
+    "hideTime": 2.0,
+    "levelUpTextActiveTime": 1.0,
+    "scale": 0.13,
+    "modelPath": "Model/Player/Player.mv1",
+    "texturePath": "Model/Player/knight_texture.png"
+  }
+}

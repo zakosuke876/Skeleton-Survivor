@@ -1,0 +1,24 @@
+{
+  "recoveryItems": [
+    {
+      "type": "RECOVERY_SMALL",
+      "recoveryValue": 10,
+      "graphPath": "Textures/Items/Recovery_Small.png"
+    },
+    {
+      "type": "RECOVERY_MEDIUM",
+      "recoveryValue": 20,
+      "graphPath": "Textures/Items/Recovery_Medium.png"
+    },
+    {
+      "type": "RECOVERY_LARGE",
+      "recoveryValue": 30,
+      "graphPath": "Textures/Items/Recovery_Large.png"
+    }
+  ],
+
+  "expItem": {
+    "expValue": 10,
+    "graphPath": "Textures/Items/Exp_Item.png"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "ItemDropConfig": {
+    "dropRate": 30,
+    "dropOffsetY": 10.0,
+    "expItemRandomOffset": 20.0,
+    "itemTypeRate": {
+      "small": 60,
+      "medium": 30,
+      "large": 10
+    }
+  }
+}

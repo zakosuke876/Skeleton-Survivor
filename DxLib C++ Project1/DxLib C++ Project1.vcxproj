@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{5ea290f8-df00-41be-9b15-1dea2d1ff697}</ProjectGuid>
+    <RootNamespace>DxLib_C___Project1</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Skeleton Survivor</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E "$(ProjectDir)Data" "$(OutDir)Data\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E "$(ProjectDir)Data" "$(OutDir)Data\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E "$(ProjectDir)Data" "$(OutDir)Data\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>"C:\Users\yatoh\Downloads\DxLib_VC3_24f (1)\DxLib_VC\プロジェクトに追加すべきファイル_VC用"</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E "$(ProjectDir)Data" "$(OutDir)Data\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyDataLoader.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="ExpItem.cpp" />
+    <ClCompile Include="FontManager.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemDataLoader.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PauseScene.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerDataLoader.cpp" />
+    <ClCompile Include="RankingManager.cpp" />
+    <ClCompile Include="RecoveryItem.cpp" />
+    <ClCompile Include="Result.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="Skeleton_Normal.cpp" />
+    <ClCompile Include="Skeleton_Warrior.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyDataLoader.h" />
+    <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="EnemySpawnConfig.h" />
+    <ClInclude Include="EnemyStatusTypes.h" />
+    <ClInclude Include="EnemyType.h" />
+    <ClInclude Include="ExpItem.h" />
+    <ClInclude Include="FontManager.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="Ground.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemDataLoader.h" />
+    <ClInclude Include="ItemDropConfig.h" />
+    <ClInclude Include="ItemManager.h" />
+    <ClInclude Include="ItemStatusTypes.h" />
+    <ClInclude Include="PauseScene.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerDataLoader.h" />
+    <ClInclude Include="RankingManager.h" />
+    <ClInclude Include="RecoveryItem.h" />
+    <ClInclude Include="Result.h" />
+    <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="Skeleton_Normal.h" />
+    <ClInclude Include="Skeleton_Warrior.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="TitleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\EnemyData.json" />
+    <None Include="Data\ItemDropConfig.json" />
+    <None Include="Data\ItemsData.json" />
+    <None Include="Data\PlayerData.json" />
+    <None Include="Data\SpawnConfig.json" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
