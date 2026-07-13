@@ -7,6 +7,7 @@
 #include "Skeleton_Warrior.h"
 #include "EnemyNormalDataLoader.h"
 #include "EnemyWarriorDataLoader.h"
+#include "SpawnDataLoader.h"
 #include "GameConfig.h"
 #include <algorithm>
 #include <cmath>
@@ -27,7 +28,13 @@ EnemyManager::EnemyManager() {
 	// JSONからSkeleton_Warriorのデータ読み込みを指示
 	if (!EnemyWarriorDataLoader::Load(warriorStatus))
 	{
-		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
+		printfDx("ノーマルスケルトンのデータ読み込みに失敗しました\n");
+	}
+
+	// JSONから敵のスポーン情報のデータ読み込みを指示
+	if (!SpawnDataLoader::Load(spawnConfig))
+	{
+		printfDx("スポーンデータの読み込みに失敗しました\n");
 	}
 
 	// モデルを読み込む
@@ -37,6 +44,15 @@ EnemyManager::EnemyManager() {
 	// テクスチャを読み込む
 	skeletonNormalTexHandle = LoadGraph(normalStatus.enemyStatus.texturePath.c_str());
 	skeletonWarriorTexHandle = LoadGraph(warriorStatus.enemyStatus.texturePath.c_str());
+
+	// スポーン関連のデータを読み込む
+	spawnInterval = spawnConfig.spawnInterval;
+
+	maxEnemy = spawnConfig.maxEnemy;
+
+	growInterval = spawnConfig.growInterval;
+
+	growRatePerInterval = spawnConfig.growRatePerInterval;
 }
 
 EnemyManager::~EnemyManager() {

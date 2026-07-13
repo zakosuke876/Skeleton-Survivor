@@ -36,35 +36,35 @@ bool PlayerDataLoader::LoadData(const char* jsonPath, PlayerStatus& outData) {
 		// ì«Ç›çûÇÒÇæílÇç\ë¢ëÃÇ÷ê›íË
 		outData.maxHp = data.at("maxHp").get<int>();
 
-		outData.attackPower = j["Player"].at("attackPower").get<int>();
+		outData.attackPower = data.at("attackPower").get<int>();
 
-		outData.speed = j["Player"].at("speed").get<float>();
+		outData.speed = data.at("speed").get<float>();
 
-		outData.dashMultiplier = j["Player"].at("dashMultiplier").get<float>();
+		outData.dashMultiplier = data.at("dashMultiplier").get<float>();
 
-		outData.startLevel = j["Player"].at("startLevel").get<int>();
+		outData.startLevel = data.at("startLevel").get<int>();
 
-		outData.startNextLevelExp = j["Player"].at("startNextLevelExp").get<int>();
+		outData.startNextLevelExp = data.at("startNextLevelExp").get<int>();
 
-		outData.attackRadius = j["Player"].at("attackRadius").get<float>();
+		outData.attackRadius = data.at("attackRadius").get<float>();
 
-		outData.bodyRadius = j["Player"].at("bodyRadius").get<float>();
+		outData.bodyRadius = data.at("bodyRadius").get<float>();
 
-		outData.levelUpAttackPower = j["Player"].at("levelUpAttackPower").get<int>();
+		outData.levelUpAttackPower = data.at("levelUpAttackPower").get<int>();
 
-		outData.nextLevelExpMultiplier = j["Player"].at("nextLevelExpMultiplier").get<float>();
+		outData.nextLevelExpMultiplier = data.at("nextLevelExpMultiplier").get<float>();
 
-		outData.invincibleTime = j["Player"].at("invincibleTime").get<float>();
+		outData.invincibleTime = data.at("invincibleTime").get<float>();
 
-		outData.hideTime = j["Player"].at("hideTime").get<float>();
+		outData.hideTime = data.at("hideTime").get<float>();
 
-		outData.levelUpTextActiveTime = j["Player"].at("levelUpTextActiveTime").get<float>();
+		outData.levelUpTextActiveTime = data.at("levelUpTextActiveTime").get<float>();
 
-		outData.scale = j["Player"].at("scale").get<float>();
+		outData.scale = data.at("scale").get<float>();
 
-		outData.modelPath = j["Player"].at("modelPath").get<std::string>();
+		outData.modelPath = data.at("modelPath").get<std::string>();
 
-		outData.texturePath = j["Player"].at("texturePath").get<std::string>();
+		outData.texturePath = data.at("texturePath").get<std::string>();
 	}
 	catch (const json::exception& e)
 	{

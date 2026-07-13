@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "EnemySpawnConfig.h"
 #include <random>
 #include <vector>
 
@@ -45,6 +46,9 @@ private:
 
 	// ウォーリアースケルトンのステータス
 	SkeletonWarriorStatus  warriorStatus;
+
+	// スポーン関係のデータ
+	EnemySpawnConfig spawnConfig;
 	
 	// JSONから読み込む値
 	// 敵のスポーン間隔(秒)
@@ -58,7 +62,6 @@ private:
 
 	// 1回の強化で上昇する倍率
 	float growRatePerInterval = -1.0f;
-
 
 	// 時間経過ごとに敵を強化する
 	float playTimer = 0.0f;

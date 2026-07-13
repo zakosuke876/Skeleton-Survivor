@@ -180,6 +180,7 @@
     <ClCompile Include="Skeleton_Normal.cpp" />
     <ClCompile Include="Skeleton_Warrior.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SpawnDataLoader.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +215,7 @@
     <ClInclude Include="Skeleton_Normal.h" />
     <ClInclude Include="Skeleton_Warrior.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SpawnDataLoader.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>

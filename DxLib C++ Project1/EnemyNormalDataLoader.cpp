@@ -56,7 +56,7 @@ bool EnemyNormalDataLoader::LoadData(const char* jsonPath, SkeletonNormalStatus&
 
 		outData.enemyStatus.bodyRadius = data.at("bodyRadius").get<float>();
 
-		outData.enemyStatus.score = data.at("score").get<float>();
+		outData.enemyStatus.score = data.at("score").get<int>();
 
 		outData.enemyStatus.scale = data.at("scale").get<float>();
 
