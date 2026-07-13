@@ -202,6 +202,7 @@
     <ClInclude Include="ItemDropConfig.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="ItemStatusTypes.h" />
+    <ClInclude Include="JsonPath.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerDataLoader.h" />

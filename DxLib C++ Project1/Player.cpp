@@ -31,9 +31,7 @@ Player::Player() {
 		printfDx("プレイヤーデータの読み込みに失敗しました\n");
 	}*/
 
-	PlayerDataLoader loader;
-
-	if (!loader.Load(playerDataTable))
+	if (!PlayerDataLoader::Load((playerDataTable)))
 	{
 		printfDx("プレイヤーデータの読み込みに失敗しました\n");
 	}

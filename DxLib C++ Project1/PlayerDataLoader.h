@@ -4,7 +4,7 @@
 class PlayerDataLoader {
 public:
 
-	bool Load(PlayerStatus& outData);
+	static bool Load(PlayerStatus& outData);
 
 
 
@@ -14,7 +14,7 @@ public:
 
 private:
 
-	bool LoadData(const char* jsonPath, PlayerStatus& outData);
+	static bool LoadData(const char* jsonPath, PlayerStatus& outData);
 
 	//bool LoadData(const char* jsonPath);
 

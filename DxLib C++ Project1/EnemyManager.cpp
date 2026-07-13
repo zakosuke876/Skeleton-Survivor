@@ -18,40 +18,13 @@ EnemyManager::EnemyManager() {
 	std::random_device rd;
 	rng = std::mt19937(rd());
 
-	// JSONから敵のスポーン関係の情報を取得
-	/*EnemySpawnConfig spawnConfig;
-	if (!EnemyDataLoader::LoadSpawnConfig("Data/SpawnConfig.json", spawnConfig))
-	{
-		printfDx("SpawnConfigのデータ読み込みに失敗しました\n");
-	}*/
-
-	/*spawnInterval = spawnConfig.spawnInterval;
-
-	maxEnemy = spawnConfig.maxEnemy;
-
-	growInterval = spawnConfig.growInterval;
-
-	growRatePerInterval = spawnConfig.growRatePerInterval;*/
-
-	/*// JSONからSkeleton_Normalのモデル・テクスチャパスを取得
-	if (!EnemyDataLoader::LoadEnemyData("Data/SkeletonNormalData.json", "Skeleton_Normal", normalStatus))
-	{
-		printfDx("Skeleton_Normalのデータ読み込みに失敗しました\n");
-	}
-
-	// JSONからSkeleton_Warriorのモデル・テクスチャパスを取得
-	if (!EnemyDataLoader::LoadEnemyData("Data/SkeletonWarriorData.json", "Skeleton_Warrior", warriorStatus))
-	{
-		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
-	}*/
-
-	// JSONからSkeleton_Normalのモデル・テクスチャパスを取得
+	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyNormalDataLoader::Load(normalStatus))
 	{
 		printfDx("Skeleton_Normalのデータ読み込みに失敗しました\n");
 	}
 
-	// JSONからSkeleton_Warriorのモデル・テクスチャパスを取得
+	// JSONからSkeleton_Warriorのデータ読み込みを指示
 	if (!EnemyWarriorDataLoader::Load(warriorStatus))
 	{
 		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
