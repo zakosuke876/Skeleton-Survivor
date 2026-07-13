@@ -39,6 +39,12 @@ private:
 	// 敵管理
 	std::vector<std::unique_ptr<Enemy>> enemies;
 	float spawnTimer = 0.0f;
+
+	// ノーマルスケルトンのステータス
+	SkeletonNormalStatus normalStatus;
+
+	// ウォーリアースケルトンのステータス
+	SkeletonWarriorStatus  warriorStatus;
 	
 	// JSONから読み込む値
 	// 敵のスポーン間隔(秒)

@@ -160,6 +160,8 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyDataLoader.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="EnemyNormalDataLoader.cpp" />
+    <ClCompile Include="EnemyWarriorDataLoader.cpp" />
     <ClCompile Include="ExpItem.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -185,9 +187,11 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyDataLoader.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="EnemyNormalDataLoader.h" />
     <ClInclude Include="EnemySpawnConfig.h" />
     <ClInclude Include="EnemyStatusTypes.h" />
     <ClInclude Include="EnemyType.h" />
+    <ClInclude Include="EnemyWarriorDataLoader.h" />
     <ClInclude Include="ExpItem.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />
@@ -201,6 +205,7 @@
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerDataLoader.h" />
+    <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="RankingManager.h" />
     <ClInclude Include="RecoveryItem.h" />
     <ClInclude Include="Result.h" />
@@ -211,7 +216,8 @@
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\EnemyData.json" />
+    <None Include="Data\SkeletonNormalData.json" />
+    <None Include="Data\SkeletonWarriorData.json" />
     <None Include="Data\ItemDropConfig.json" />
     <None Include="Data\ItemsData.json" />
     <None Include="Data\PlayerData.json" />

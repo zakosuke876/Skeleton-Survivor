@@ -84,6 +84,12 @@
     <ClCompile Include="EnemyDataLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyNormalDataLoader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWarriorDataLoader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -170,12 +176,22 @@
     <ClInclude Include="ItemStatusTypes.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerStatus.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyNormalDataLoader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWarriorDataLoader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\ItemsData.json" />
     <None Include="Data\PlayerData.json" />
-    <None Include="Data\EnemyData.json" />
+    <None Include="Data\SkeletonNormalData.json" />
     <None Include="Data\SpawnConfig.json" />
     <None Include="Data\ItemDropConfig.json" />
+    <None Include="Data\SkeletonWarriorData.json" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "Skeleton_Normal.h"
 #include "Player.h"
-#include "EnemyDataLoader.h"
+#include "EnemyNormalDataLoader.h"
 #include "GameConfig.h"
 #include "DxLib.h"
 
@@ -25,19 +25,13 @@ const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 };
 
 
-Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, float growRate) {
+Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonNormalStatus& noramalData, float growRate) {
 
 	x = startX;
 	y = startY;
 	z = startZ;
 
-	// JSONから共通ステータスを読み込む
-	EnemyStatus data;
-
-	if (!EnemyDataLoader::LoadEnemyData("Data/EnemyData.json", "Skeleton_Normal", data))
-	{
-		printfDx("Skeleton_Normalのデータ読み込みに失敗しました\n");
-	}
+	const EnemyStatus& data = noramalData.enemyStatus;
 
 	// JSONファイルから読み込んだデータを代入
 	// 基底クラスのDrawUI()でHPゲージ描画に使用
@@ -84,7 +78,7 @@ Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int s
 	state = ENEMY_SPAWN;
 
 	// モデルを拡大
-	float scale = data.scale;
+	scale = data.scale;
 	MV1SetScale(modelHandle, VGet(scale, scale, scale));
 
 	// スポーン座標を設定

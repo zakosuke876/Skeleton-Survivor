@@ -1,5 +1,6 @@
 #pragma once
 #include "EnemyType.h"
+#include "EnemyStatusTypes.h"
 #include "DxLib.h"
 #include <random>
 #include <string>
@@ -52,7 +53,7 @@ struct EnemyAttackHitBox {
 	bool isAttackActive;  // 当たり判定が有効か
 };
 
-// JSONから読み込んだ敵の共通ステータスを格納する構造体
+/*// JSONから読み込んだ敵の共通ステータスを格納する構造体
 // 読み込んだ値をEnemy派生クラスのメンバ変数へコピーして使用
 struct EnemyStatus {
 	int baseHp;              // 基礎HP(growRateで倍率をかける前の値)
@@ -70,7 +71,7 @@ struct EnemyStatus {
 	float scale;             // モデルの拡大倍率
 	std::string modelPath;   // モデルファイルのパス
 	std::string texturePath; // テクスチャファイルのパス
-};
+};*/
 
 // 敵の基底クラス
 // アニメーション切り替え・リソース管理を実装
@@ -172,9 +173,6 @@ protected:
 	// ----------------------------------------
 
 	// 攻撃クールタイム(秒)
-	//static constexpr float ATTACK_COOL_TIME = 1.0f;
-
-	// 攻撃クールタイム(秒)
 	float attackCoolTime = -1.0f;
 
 	// 無敵時間(秒)
@@ -182,12 +180,6 @@ protected:
 
 	// 死亡後に消えるまでの時間(秒)
 	float hideTime = -1.0f;
-
-	// 無敵時間(秒)
-	//static constexpr float INVINCIBLE_TIME = 2.0f;
-
-	// 死亡後に消えるまでの時間(秒)
-	//static constexpr float HIDE_TIME = 2.0f;
 
 	// ----------------------------------------
 	// 描画用定数
@@ -215,11 +207,9 @@ protected:
 
 	// 攻撃判定の半径
 	float attackRadius = -1.0f;
-	//float SKELETON_ATTACK_RADIUS = 10.0f;
 
 	// 体の半径
 	float bodyRadius = -1.0f;
-	//float ENEMY_BODY_RADIUS = 0.0f;;
 
 	// ----------------------------------------
 	// 無敵時間
@@ -262,12 +252,13 @@ protected:
 	// ----------------------------------------
 
 	int modelHandle = -1;
+	float scale = -1;
 
 	// ----------------------------------------
 	// アニメーション
 	// ----------------------------------------
 
-    // アタッチするアニメーションのインデックス	int attachIndex = -1;
+    // アタッチするアニメーションのインデックス
 	float animTime = 0.0f;
 
 	// アニメーションの再生時間
@@ -288,4 +279,7 @@ protected:
 
 	// 乱数エンジン
 	std::mt19937 rng;
+
+
+	// JSONから読み込んだEnemyのステータス設定値を保持する
 };

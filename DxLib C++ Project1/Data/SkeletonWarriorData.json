@@ -1,22 +1,4 @@
 {
-  "Skeleton_Normal": {
-    "baseHp": 30,
-    "baseAttack": 10,
-    "speed": 0.2,
-    "dashSpeed": 0.4,
-    "attackCoolTime": 1.0,
-    "invincibleTime": 2.0,
-    "hideTime": 2.0,
-    "chaseRangeRadius": 120.0,
-    "attackRangeRadius": 30.0,
-    "attackRadius": 10.0,
-    "bodyRadius": 8.0,
-    "score": 100,
-    "scale": 0.15,
-    "modelPath": "Model/Enemy/Skeleton_Normal.mv1",
-    "texturePath": "Model/Enemy/Skeleton_texture.png"
-  },
-
   "Skeleton_Warrior": {
     "baseHp": 50,
     "baseAttack": 20,

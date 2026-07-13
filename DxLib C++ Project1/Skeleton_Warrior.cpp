@@ -1,7 +1,6 @@
 #include "Skeleton_Warrior.h"
 #include "Player.h"
-#include "EnemyDataLoader.h"
-#include "EnemyStatusTypes.h"
+#include "EnemyWarriorDataLoader.h"
 #include "GameConfig.h"
 #include "DxLib.h"
 
@@ -22,19 +21,19 @@ const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
 	{4, 0.3f, false},   // 復活アニメーション
 };
 
-Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, float growRate) {
+Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate) {
 
 	x = startX;
 	y = startY;
 	z = startZ;
 
-	// JSONから共通ステータスを読み込む
-	EnemyStatus data;
-
-	if (!EnemyDataLoader::LoadEnemyData("Data/EnemyData.json", "Skeleton_Warrior", data))
+	// JSONから固有ステータスを読み込む
+	/*if (!EnemyWarriorDataLoader::Load(warriorData))
 	{
 		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
-	}
+	}*/
+
+	const EnemyStatus& data = warriorData.enemyStatus;
 
 	// JSONファイルから読み込んだデータを代入
 	// 基底クラスのDrawUI()でHPゲージ描画に使用
@@ -66,12 +65,11 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 
 
 	// JSONからウォーリアー固有ステータスを読み込む
-	SkeletonWarriorStatus warriorData;
-
-	if (!EnemyDataLoader::LoadSkeletonWarriorData("Data/EnemyData.json", warriorData))
+	
+	/*if (!EnemyDataLoader::LoadSkeletonWarriorData("Data/EnemyData.json", warriorDataTable))
 	{
 		printfDx("Skeleton_Warriorの固有データ読み込みに失敗しました\n");
-	}
+	}*/
 
 	// JSONファイルから読み込んだ固有データを代入
 	reviveChancePercent = warriorData.reviveChancePercent;
@@ -104,7 +102,7 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 	state = ENEMY_SPAWN;
 
 	// モデルを拡大
-	float scale = data.scale;
+	scale = data.scale;
 	MV1SetScale(modelHandle, VGet(scale, scale, scale));
 
 	// スポーン座標を設定
@@ -423,10 +421,10 @@ void Skeleton_Warrior::UpdateDeath(float deltaTime) {
 			SwitchAnimation(SKELETON_W_REVIVE);
 
 			// JSONで指定した倍率のHPで復活させる
-			hp = static_cast<int>(maxHp * reviveHpMultiplier);
+			//hp = static_cast<int>(maxHp * reviveHpMultiplier);
 
 			// JSONで指定した倍率のHPで復活させる
-			//hp = maxHp * 3 / 2;
+			hp = maxHp * 3 / 2;
 
 			// HPゲージの最大値を設定 
 			maxHp = hp;

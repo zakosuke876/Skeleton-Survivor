@@ -25,10 +25,24 @@ const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 
 Player::Player() {
 
-	if (!PlayerDataLoader::LoadPlayerData("Data/PlayerData.json", playerDataTable))
+
+	/*if (!PlayerDataLoader::PlayerDataLoad("Data/PlayerData.json", playerDataTable))
 	{
-		printfDx("プレイヤーステータスデータの読み込みに失敗しました\n");
+		printfDx("プレイヤーデータの読み込みに失敗しました\n");
+	}*/
+
+	PlayerDataLoader loader;
+
+	if (!loader.Load(playerDataTable))
+	{
+		printfDx("プレイヤーデータの読み込みに失敗しました\n");
 	}
+
+	/*if (!loader.Load())
+	{
+		printfDx("プレイヤーデータの読み込みに失敗しました\n");
+	}*/
+	//playerDataTable = loader.GetLoadData();
 
 	// プレイヤーモデルを読み込む
 	modelHandle = MV1LoadModel(playerDataTable.modelPath.c_str());

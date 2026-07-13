@@ -23,7 +23,7 @@ class SoundManager;
 class Skeleton_Warrior : public Enemy {
 public:
 
-	Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, float growRate);
+	Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate);
 	~Skeleton_Warrior() override = default;
 	void Update(Player& player, float deltaTime) override;
 	bool TakeDamage(int value, SoundManager& soundManager) override;
@@ -64,4 +64,7 @@ private:
 
 	// 復活するかどうか
 	bool willRevive = false;
+
+	// JSONから読み込んだウォーリアー固有のステータス設定値を保持する
+	SkeletonWarriorStatus warriorDataTable;
 };

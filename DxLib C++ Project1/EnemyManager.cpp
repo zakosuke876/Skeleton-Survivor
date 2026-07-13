@@ -5,7 +5,8 @@
 #include "Player.h"
 #include "Skeleton_Normal.h"
 #include "Skeleton_Warrior.h"
-#include "EnemyDataLoader.h"
+#include "EnemyNormalDataLoader.h"
+#include "EnemyWarriorDataLoader.h"
 #include "GameConfig.h"
 #include <algorithm>
 #include <cmath>
@@ -18,42 +19,51 @@ EnemyManager::EnemyManager() {
 	rng = std::mt19937(rd());
 
 	// JSONから敵のスポーン関係の情報を取得
-	EnemySpawnConfig spawnConfig;
+	/*EnemySpawnConfig spawnConfig;
 	if (!EnemyDataLoader::LoadSpawnConfig("Data/SpawnConfig.json", spawnConfig))
 	{
 		printfDx("SpawnConfigのデータ読み込みに失敗しました\n");
-	}
+	}*/
 
-	spawnInterval = spawnConfig.spawnInterval;
+	/*spawnInterval = spawnConfig.spawnInterval;
 
 	maxEnemy = spawnConfig.maxEnemy;
 
 	growInterval = spawnConfig.growInterval;
 
-	growRatePerInterval = spawnConfig.growRatePerInterval;
+	growRatePerInterval = spawnConfig.growRatePerInterval;*/
 
-	// JSONからSkeleton_Normalのモデル・テクスチャパスを取得
-	EnemyStatus normalData;
-
-	if (!EnemyDataLoader::LoadEnemyData("Data/EnemyData.json", "Skeleton_Normal", normalData))
+	/*// JSONからSkeleton_Normalのモデル・テクスチャパスを取得
+	if (!EnemyDataLoader::LoadEnemyData("Data/SkeletonNormalData.json", "Skeleton_Normal", normalStatus))
 	{
 		printfDx("Skeleton_Normalのデータ読み込みに失敗しました\n");
 	}
 
 	// JSONからSkeleton_Warriorのモデル・テクスチャパスを取得
-	EnemyStatus warriorData;
-	if (!EnemyDataLoader::LoadEnemyData("Data/EnemyData.json", "Skeleton_Warrior", warriorData))
+	if (!EnemyDataLoader::LoadEnemyData("Data/SkeletonWarriorData.json", "Skeleton_Warrior", warriorStatus))
+	{
+		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
+	}*/
+
+	// JSONからSkeleton_Normalのモデル・テクスチャパスを取得
+	if (!EnemyNormalDataLoader::Load(normalStatus))
+	{
+		printfDx("Skeleton_Normalのデータ読み込みに失敗しました\n");
+	}
+
+	// JSONからSkeleton_Warriorのモデル・テクスチャパスを取得
+	if (!EnemyWarriorDataLoader::Load(warriorStatus))
 	{
 		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
 	}
 
 	// モデルを読み込む
-	skeletonNormalModelHandle = MV1LoadModel(normalData.modelPath.c_str());
-	skeletonWarriorModelHandle = MV1LoadModel(warriorData.modelPath.c_str());
+	skeletonNormalModelHandle = MV1LoadModel(normalStatus.enemyStatus.modelPath.c_str());
+	skeletonWarriorModelHandle = MV1LoadModel(warriorStatus.enemyStatus.modelPath.c_str());
 
 	// テクスチャを読み込む
-	skeletonNormalTexHandle = LoadGraph(normalData.texturePath.c_str());
-	skeletonWarriorTexHandle = LoadGraph(warriorData.texturePath.c_str());
+	skeletonNormalTexHandle = LoadGraph(normalStatus.enemyStatus.texturePath.c_str());
+	skeletonWarriorTexHandle = LoadGraph(warriorStatus.enemyStatus.texturePath.c_str());
 }
 
 EnemyManager::~EnemyManager() {
@@ -100,13 +110,13 @@ void EnemyManager::Spawn() {
 		case ENEMY_NORMAL:
 
 			// 敵を生成
-			enemies.emplace_back(std::make_unique<Skeleton_Normal>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Normal>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, normalStatus, enemyGrowRate));
 
 			break;
 
 		case ENEMY_WARRIOR:
 
-			enemies.emplace_back(std::make_unique<Skeleton_Warrior>(x, 0.0f, z, skeletonWarriorModelHandle, skeletonWarriorTexHandle, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Warrior>(x, 0.0f, z, skeletonWarriorModelHandle, skeletonWarriorTexHandle, warriorStatus, enemyGrowRate));
 
 			break;
 	}
