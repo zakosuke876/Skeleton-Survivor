@@ -1,5 +1,7 @@
 #pragma once
 
 namespace JsonPath {
-	static constexpr char* PLAYER_DATA = 
+	constexpr const char* PLAYER_DATA = "Data/PlayerData.json";
+
+
 }

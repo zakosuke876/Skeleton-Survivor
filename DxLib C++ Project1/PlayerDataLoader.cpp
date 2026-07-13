@@ -1,4 +1,5 @@
 #include "PlayerDataLoader.h"
+#include "JsonPath.h"
 #include <fstream>
 #include "DxLib.h"
 
@@ -7,7 +8,8 @@ using json = nlohmann::json;
 
 bool PlayerDataLoader::Load(PlayerStatus& outData) {
 
-	return LoadData("Data/PlayerData.json", outData);
+	//return LoadData("Data/PlayerData.json", outData);
+	return LoadData(JsonPath::PLAYER_DATA, outData);
 }
 
 bool PlayerDataLoader::LoadData(const char* jsonPath, PlayerStatus& outData) {
