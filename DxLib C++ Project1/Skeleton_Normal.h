@@ -29,8 +29,6 @@ public:
 private:
 
 	void UpdateSpawn() override;
-	void UpdatePatrol(const Player& player) override;
-	void UpdateChase(const Player& player) override;
 	void UpdateAttack(Player& player, float deltaTime);
 	void UpdateDamage() override;
 	void UpdateDeath(float deltaTime) override;

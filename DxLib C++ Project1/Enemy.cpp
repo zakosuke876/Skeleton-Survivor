@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Player.h"
+#include "GameConfig.h"
 #include "SoundManager.h"
 
 Enemy::Enemy() {
@@ -57,6 +58,89 @@ void Enemy::Update(Player& player, float deltaTime) {
 			isInvincible = false;
 		}
 	}
+}
+
+void Enemy::UpdatePatrol(const Player& player) {
+
+	if (!hasTargetPosition)
+	{
+		// 目的地X,Z座標の範囲設定
+		std::uniform_real_distribution<float> distanceX(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
+		std::uniform_real_distribution<float> distanceZ(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
+
+		targetX = distanceX(rng);
+		targetZ = distanceZ(rng);
+
+		// 目的地到着まで再計算しない
+		hasTargetPosition = true;
+	}
+
+	// 差分を求める
+	float dx = targetX - x;
+	float dz = targetZ - z;
+
+	// 距離を求める
+	float distance = sqrt(dx * dx + dz * dz);
+
+	// 正規化
+	float dirX = dx / distance;
+	float dirZ = dz / distance;
+
+	// 目的地の方向に向ける(180度補正でモデルの向きを調整)
+	angleY = atan2f(dx, dz) + DX_PI_F;
+	MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
+
+	// 移動
+	x += dirX * speed;
+	z += dirZ * speed;
+
+	if (distance <= 5.0f)
+	{
+		// 目的地を再計算
+		hasTargetPosition = false;
+	}
+
+	// プレイヤーが追跡範囲内に入ったか
+	if (IsPlayerInChaseRange(player))
+	{
+		state = ENEMY_CHASE;
+		SwitchAnimation(ENEMY_ANIM_DASH);
+	}
+
+	MV1SetPosition(modelHandle, VGet(x, y, z));
+}
+
+void Enemy::UpdateChase(const Player& player) {
+
+	// プレイヤーが追跡範囲外に出たか
+	if (!IsPlayerInChaseRange(player))
+	{
+		state = ENEMY_PATROL;
+		SwitchAnimation(ENEMY_ANIM_WALK);
+	}
+
+	// プレイヤーが攻撃範囲内に入ったか
+	if (IsPlayerInAttackRange(player))
+	{
+		state = ENEMY_ATTACK;
+		SwitchAnimation(ENEMY_ANIM_ATTACK);
+	}
+
+	float dx = player.GetPosition().x - x;
+	float dz = player.GetPosition().z - z;
+
+	float distance = sqrt(dx * dx + dz * dz);
+
+	float diX = dx / distance;
+	float diZ = dz / distance;
+
+	angleY = atan2f(dx, dz) + DX_PI_F;
+	MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
+
+	x += diX * dashSpeed;
+	z += diZ * dashSpeed;
+
+	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
 void Enemy::UpdateAnim() {

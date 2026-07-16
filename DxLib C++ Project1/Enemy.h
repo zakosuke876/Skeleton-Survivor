@@ -91,6 +91,8 @@ public:
 
 	VECTOR GetPos() const { return VGet(x, y, z); }
 
+
+
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す
 	EnemyAttackHitBox GetHitBox() const { return hitBox; }
 
@@ -106,6 +108,9 @@ public:
 	virtual EnemyType GetEnemyType() const = 0;
 
 protected:
+
+	virtual void UpdatePatrol(const Player& player);
+	virtual void UpdateChase(const Player& player);
 
 	// ----------------------------------------
 	// アニメーション・状態管理
@@ -127,8 +132,6 @@ protected:
 	// ----------------------------------------
 
 	virtual void UpdateSpawn() = 0;
-	virtual void UpdatePatrol(const Player& player) = 0;
-	virtual void UpdateChase(const Player& player) = 0;
 	virtual void UpdateAttack(Player& player, float DeltaTime) = 0;
 	virtual void UpdateDamage() = 0;
 	virtual void UpdateDeath(float deltaTime) = 0;
