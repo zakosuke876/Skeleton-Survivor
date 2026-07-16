@@ -175,12 +175,14 @@
     <ClCompile Include="PlayerDataLoader.cpp" />
     <ClCompile Include="RankingManager.cpp" />
     <ClCompile Include="RecoveryItem.cpp" />
+    <ClCompile Include="RecoveryItemDataLoader.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Skeleton_Normal.cpp" />
     <ClCompile Include="Skeleton_Warrior.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpawnDataLoader.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,12 +212,14 @@
     <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="RankingManager.h" />
     <ClInclude Include="RecoveryItem.h" />
+    <ClInclude Include="RecoveryItemDataLoader.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Skeleton_Normal.h" />
     <ClInclude Include="Skeleton_Warrior.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpawnDataLoader.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
