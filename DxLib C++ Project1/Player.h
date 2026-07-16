@@ -263,13 +263,13 @@ private:
 	// ----------------------------------------
 
 	 // アタッチするアニメーションのハンドル
-	int attachIndex;
+	int attachIndex = -1;
 
 	// 現在の再生時間
-	float animTime;
+	float animTime = 0.0f;
 
 	// アニメーション総再生時間
-	float totalTime;
+	float totalTime = 0.0f;
 
 	// 現在のアニメーション番号を保持
 	int currentAnim = -1;

@@ -63,14 +63,6 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 
 	score = data.score;
 
-
-	// JSONからウォーリアー固有ステータスを読み込む
-	
-	/*if (!EnemyDataLoader::LoadSkeletonWarriorData("Data/EnemyData.json", warriorDataTable))
-	{
-		printfDx("Skeleton_Warriorの固有データ読み込みに失敗しました\n");
-	}*/
-
 	// JSONファイルから読み込んだ固有データを代入
 	reviveChancePercent = warriorData.reviveChancePercent;
 

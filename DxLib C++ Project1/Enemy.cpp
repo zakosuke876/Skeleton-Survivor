@@ -75,24 +75,8 @@ void Enemy::UpdatePatrol(const Player& player) {
 		hasTargetPosition = true;
 	}
 
-	// 差分を求める
-	float dx = targetX - x;
-	float dz = targetZ - z;
-
-	// 距離を求める
-	float distance = sqrt(dx * dx + dz * dz);
-
-	// 正規化
-	float dirX = dx / distance;
-	float dirZ = dz / distance;
-
-	// 目的地の方向に向ける(180度補正でモデルの向きを調整)
-	angleY = atan2f(dx, dz) + DX_PI_F;
-	MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
-
-	// 移動
-	x += dirX * speed;
-	z += dirZ * speed;
+	// 到着判定に使うため、移動前の目的地までの距離を受け取る
+	float distance = MoveToward(targetX, targetZ, speed);
 
 	if (distance <= 5.0f)
 	{
@@ -126,21 +110,31 @@ void Enemy::UpdateChase(const Player& player) {
 		SwitchAnimation(ENEMY_ANIM_ATTACK);
 	}
 
-	float dx = player.GetPosition().x - x;
-	float dz = player.GetPosition().z - z;
+	MoveToward(player.GetPosition().x, player.GetPosition().z, dashSpeed);
+
+	MV1SetPosition(modelHandle, VGet(x, y, z));
+}
+
+float Enemy::MoveToward(float targetX, float targetZ, float speed) {
+
+	float dx = targetX - x;
+	float dz = targetZ - z;
 
 	float distance = sqrt(dx * dx + dz * dz);
 
-	float diX = dx / distance;
-	float diZ = dz / distance;
+	if (distance > 0.0f)
+	{
+		float dirX = dx / distance;
+		float dirZ = dz / distance;
 
-	angleY = atan2f(dx, dz) + DX_PI_F;
-	MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
+		angleY = atan2f(dx, dz) + DX_PI_F;
+		MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
 
-	x += diX * dashSpeed;
-	z += diZ * dashSpeed;
+		x += dirX * speed;
+		z += dirZ * speed;
+	}
 
-	MV1SetPosition(modelHandle, VGet(x, y, z));
+	return distance;
 }
 
 void Enemy::UpdateAnim() {

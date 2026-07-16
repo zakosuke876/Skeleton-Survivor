@@ -53,26 +53,6 @@ struct EnemyAttackHitBox {
 	bool isAttackActive;  // 当たり判定が有効か
 };
 
-/*// JSONから読み込んだ敵の共通ステータスを格納する構造体
-// 読み込んだ値をEnemy派生クラスのメンバ変数へコピーして使用
-struct EnemyStatus {
-	int baseHp;              // 基礎HP(growRateで倍率をかける前の値)
-	int baseAttack;          // 基礎攻撃力(growRateで倍率をかける前の値)
-	float speed;             // 歩くスピード
-	float dashSpeed;         // 走るスピード
-	float attackCoolTime;    // 攻撃クールタイム(秒)
-	float invincibleTime;    // 無敵時間(秒)
-	float hideTime;          // 死亡後に消えるまでの時間(秒)
-	float chaseRangeRadius;  // チェイス状態へ遷移する距離
-	float attackRangeRadius; // 攻撃状態へ遷移する距離
-	float attackRadius;      // 攻撃判定の半径
-	float bodyRadius;        // 体の当たり判定半径
-	int score;               // 倒した時に加算されるスコア
-	float scale;             // モデルの拡大倍率
-	std::string modelPath;   // モデルファイルのパス
-	std::string texturePath; // テクスチャファイルのパス
-};*/
-
 // 敵の基底クラス
 // アニメーション切り替え・リソース管理を実装
 class Enemy {
@@ -90,7 +70,6 @@ public:
 	// ----------------------------------------
 
 	VECTOR GetPos() const { return VGet(x, y, z); }
-
 
 
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す
@@ -111,6 +90,8 @@ protected:
 
 	virtual void UpdatePatrol(const Player& player);
 	virtual void UpdateChase(const Player& player);
+
+	float MoveToward(float targetX, float targetZ, float speed);
 
 	// ----------------------------------------
 	// アニメーション・状態管理
@@ -282,7 +263,4 @@ protected:
 
 	// 乱数エンジン
 	std::mt19937 rng;
-
-
-	// JSONから読み込んだEnemyのステータス設定値を保持する
 };
