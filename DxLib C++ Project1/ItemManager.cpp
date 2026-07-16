@@ -3,16 +3,25 @@
 #include "ExpItem.h"
 #include "Player.h"
 #include "ItemDataLoader.h"
+#include "JsonPath.h"
 #include "DxLib.h"
+
+#include "RecoveryItemDataLoader.h"
 
 ItemManager::ItemManager() {
 
 	std::random_device rd;
 	rng = std::mt19937(rd());
 
+	
+	/*if (!ItemDataLoader::LoadDropConfig("Data/ItemDropConfig.json", dropConfig))
+	{
+		printfDx("アイテムドロップデータの読み込みに失敗しました\n");
+	}*/
+
 	// JSONファイルを読み込み、アイテムドロップ関係のデータを取得する
 	ItemDropConfig dropConfig;
-	if (!ItemDataLoader::LoadDropConfig("Data/ItemDropConfig.json", dropConfig))
+	if (!ItemDataLoader::Load(dropConfig))
 	{
 		printfDx("アイテムドロップデータの読み込みに失敗しました\n");
 	}
@@ -26,13 +35,18 @@ ItemManager::ItemManager() {
 	itemTypeRate = dropConfig.itemTypeRate;
 
 	// JSONファイルを読み込み、回復アイテムデータを配列へ格納する
-	if (!ItemDataLoader::LoadRecoveryItemData("Data/ItemsData.json", recoveryItemDataTable))
+	/*if (!RecoveryItemDataLoader::Load(recoveryItemDataTable))
+	{
+		printfDx("回復アイテムデータの読み込みに失敗しました\n");
+	}*/
+
+	if (!ItemDataLoader::LoadRecoveryItemData(JsonPath::RECOVERY_ITEM_DATA, recoveryItemDataTable))
 	{
 		printfDx("回復アイテムデータの読み込みに失敗しました\n");
 	}
 
 	// 経験値アイテムデータを読み込む
-	if (!ItemDataLoader::LoadExpItemData("Data/ItemsData.json", expItemDataTable))
+	if (!ItemDataLoader::LoadExpItemData(JsonPath::EXP_ITEM_DATA, expItemDataTable))
 	{
 		printfDx("経験値アイテムデータの読み込みに失敗しました\n");
 	}
