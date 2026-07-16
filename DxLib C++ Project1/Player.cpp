@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Sword.h"
 #include "Ground.h"
 #include "GameConfig.h"
 #include "FontManager.h"
@@ -18,29 +19,17 @@ const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 	{15, 0.3f, true},
 	{11, 0.4f, true},
 	{7,  0.3f, false},
-	{1,  0.3f, false},
+	{2,  0.3f, false},
 	{5,  0.3f, false},
 	{6,  0.3f, false},
 };
 
 Player::Player() {
 
-
-	/*if (!PlayerDataLoader::PlayerDataLoad("Data/PlayerData.json", playerDataTable))
-	{
-		printfDx("プレイヤーデータの読み込みに失敗しました\n");
-	}*/
-
 	if (!PlayerDataLoader::Load((playerDataTable)))
 	{
 		printfDx("プレイヤーデータの読み込みに失敗しました\n");
 	}
-
-	/*if (!loader.Load())
-	{
-		printfDx("プレイヤーデータの読み込みに失敗しました\n");
-	}*/
-	//playerDataTable = loader.GetLoadData();
 
 	// プレイヤーモデルを読み込む
 	modelHandle = MV1LoadModel(playerDataTable.modelPath.c_str());
@@ -58,6 +47,8 @@ Player::Player() {
 
 	// 初期値設定
 	Reset();
+	
+	sword.SetUpBone(modelHandle);
 }
 
 void Player::Reset() {
@@ -227,6 +218,8 @@ void Player::Update(float deltaTime) {
 
 	// 向きのセット
 	MV1SetRotationXYZ(modelHandle, VGet(0.0f, angleY, 0.0f));
+
+	sword.Update(modelHandle);
 }
 
 void Player::TakeDamage(int value, SoundManager& soundManager) {
@@ -306,6 +299,8 @@ void Player::Draw() const {
 
 	// モデルを描画
 	MV1DrawModel(modelHandle);
+
+	sword.Draw();
 }
 
 void Player::DrawUI(const FontManager& fontManager) const {
@@ -423,20 +418,14 @@ void Player::UpdateAttack() {
 
 	if (currentAnim == PLAYER_ANIM_ATTACK)
 	{
-		// アニメーション再生時間の割合で攻撃判定を拡大縮小する
-		float t = animTime / totalTime;
-
-		// サイン波に変換
-		float wave = sinf(t * DX_PI_F);
-
-		// 最大で15伸びる
-		float stepOffset = wave * 15.0f;
+		// 当たり判定が発生するのは10fから18fまで
+		bool isAttackHitActive = (animTime >= ATTACK_HIT_START_FRAME && animTime <= ATTACK_HIT_END_FRAME);
 
 		// 構造体変数に代入
-		attackHitBox.x = x + -sinf(angleY) * stepOffset;
-		attackHitBox.z = z + -cosf(angleY) * stepOffset;
+		attackHitBox.x = sword.GetPos().x;
+		attackHitBox.z = sword.GetPos().z;
 		attackHitBox.radius = attackRadius;
-		attackHitBox.isAttackActive = true;
+		attackHitBox.isAttackActive = isAttackHitActive;
 	}
 
 	// 攻撃アニメーション終了後は待機状態へ遷移

@@ -3,6 +3,7 @@
 #include "PlayerStatus.h"
 #include <vector>
 #include <string>
+#include "Sword.h"
 
 // アニメーションの種類
 enum PlayerAnimation {
@@ -85,6 +86,9 @@ public:
 
 	// 体の当たり判定半径
 	float GetBodyRadius() const { return bodyRadius; }
+
+
+	int GetHandFrame() const { return handFrameIndex; }
 
 private:
 
@@ -273,6 +277,11 @@ private:
 	// 遷移先のアニメーション番号
 	int targetAnim = -1;
 
+	// 攻撃判定の有効フレーム
+	static constexpr float ATTACK_HIT_START_FRAME = 10.0f;
+
+	static constexpr float ATTACK_HIT_END_FRAME   = 18.0f;
+
 	// ----------------------------------------
 	// UI描画用定数
 	// ----------------------------------------
@@ -303,4 +312,24 @@ private:
 
 	// JSONから読み込んだプレイヤーのステータス設定値を保持する
 	PlayerStatus playerDataTable;
+
+	// ----------------------------------------
+	// 武器のモデルハンドル
+	// ----------------------------------------
+
+	int swordHandle = -1;
+	int swordTexHandle = -1;
+	int handFrameIndex = -1;
+
+	static constexpr float SWORD_SCALE = 0.01f;
+
+	VECTOR debugSwordTip = VGet(0, 0, 0);
+
+	// Player.h(デバッグ用)
+	static constexpr int TRAIL_MAX = 60;
+	VECTOR swordTrail[TRAIL_MAX]{};
+	int trailIndex = 0;
+
+
+	Sword sword;
 };
