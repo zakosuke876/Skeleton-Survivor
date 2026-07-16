@@ -14,6 +14,8 @@ public:
 
 	static bool LoadDropConfig(const char* jsonPath, ItemDropConfig& outData);
 
+	static bool Load(ItemDropConfig& outData);
+
 private:
 
 	// Json’†‚Ì•¶Žš—ñ‚Æenum‚ð‘Î‰ž•t‚¯‚é
