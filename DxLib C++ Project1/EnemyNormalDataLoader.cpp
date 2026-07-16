@@ -1,5 +1,6 @@
 #include "EnemyNormalDataLoader.h"
 #include "EnemyStatusTypes.h"
+#include "JsonPath.h"
 #include <fstream>
 #include "DxLib.h"
 
@@ -8,7 +9,7 @@ using json = nlohmann::json;
 
 bool EnemyNormalDataLoader::Load(SkeletonNormalStatus& outData) {
 
-	return LoadData("Data/SkeletonNormalData.json", outData);
+	return LoadData(JsonPath::SKELETON_NORMAL_DATA, outData);
 }
 
 bool EnemyNormalDataLoader::LoadData(const char* jsonPath, SkeletonNormalStatus& outData) {

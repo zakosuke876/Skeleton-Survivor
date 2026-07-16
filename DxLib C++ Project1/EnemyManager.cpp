@@ -22,13 +22,13 @@ EnemyManager::EnemyManager() {
 	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyNormalDataLoader::Load(normalStatus))
 	{
-		printfDx("Skeleton_Normalのデータ読み込みに失敗しました\n");
+		printfDx("ノーマルスケルトンのデータ読み込みに失敗しました\n");
 	}
 
 	// JSONからSkeleton_Warriorのデータ読み込みを指示
 	if (!EnemyWarriorDataLoader::Load(warriorStatus))
 	{
-		printfDx("ノーマルスケルトンのデータ読み込みに失敗しました\n");
+		printfDx("ウォーリアースケルトンのデータ読み込みに失敗しました\n");
 	}
 
 	// JSONから敵のスポーン情報のデータ読み込みを指示

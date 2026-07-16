@@ -1,5 +1,6 @@
 #include "EnemyWarriorDataLoader.h"
 #include "EnemyStatusTypes.h"
+#include "JsonPath.h"
 #include <fstream>
 #include "DxLib.h"
 
@@ -8,7 +9,7 @@ using json = nlohmann::json;
 
 bool EnemyWarriorDataLoader::Load(SkeletonWarriorStatus& outData) {
 
-	return LoadData("Data/SkeletonWarriorData.json", outData);
+	return LoadData(JsonPath::SKELETON_WARRIOR_DATA, outData);
 }
 
 bool EnemyWarriorDataLoader::LoadData(const char* jsonPath, SkeletonWarriorStatus& outData) {
@@ -56,7 +57,7 @@ bool EnemyWarriorDataLoader::LoadData(const char* jsonPath, SkeletonWarriorStatu
 
 		outData.enemyStatus.bodyRadius = data.at("bodyRadius").get<float>();
 
-		outData.enemyStatus.score = data.at("score").get<float>();
+		outData.enemyStatus.score = data.at("score").get<int>();
 
 		outData.enemyStatus.scale = data.at("scale").get<float>();
 
