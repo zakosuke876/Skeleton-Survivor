@@ -14,10 +14,13 @@
 #include "DxLib.h"
 #include <random>
 
+#include "TitleSceneWrapper.h"
+#include <memory>
+
 // シーンの種類
-enum SceneType {
-	SCENE_TITLE, // タイトルシーン
-	SCENE_GAME,  // ゲームシーン
+enum AppScene {
+	APP_TITLE, // タイトルシーン
+	APP_GAME,  // ゲームシーン
 };
 
 // ゲームの状態
@@ -52,6 +55,10 @@ private:
 	PauseScene pauseScene;
 	RankingManager rankingManager;
 
+
+	std::unique_ptr<TitleSceneWrapper> titleWrapper;
+
+
 	// 前フレームからの時刻(ミリ秒)
 	int prevTime = 0;
 
@@ -59,7 +66,7 @@ private:
 	float deltaTime = 0;
 
 	// 現在のシーン
-	SceneType currentScene;
+	AppScene currentScene;
 
 	// 現在のゲーム状態
 	GameState state = GAME_PLAYING;

@@ -16,7 +16,11 @@ Game::Game() {
     soundManager.PlayBgm(BGM_TITLE);
 
     // 起動時にタイトルシーンに設定
-    currentScene = SCENE_TITLE;
+    currentScene = APP_TITLE;
+
+
+
+    titleWrapper = std::make_unique<TitleSceneWrapper>(fontManager, rankingManager, result, soundManager);
 }
 
 void Game::Run() {
@@ -41,32 +45,23 @@ void Game::Update() {
 
     switch (currentScene)
     {
-        case SCENE_TITLE:
+        case APP_TITLE: {
 
-            titleScene.Update();
+            SceneType next = titleWrapper->Update(deltaTime);
 
-            // タイトル画面でゲーム開始が選択された場合
-            if (titleScene.GetisStart())
+            if (next == SceneType::Game)
             {
-                // ゲームを初期化
+                titleWrapper->OnExit();
                 GameReset();
-
-                // タイトルBGMを停止
-                soundManager.StopBgm(BGM_TITLE);
-
-                // プレイBGMを再生
                 soundManager.PlayBgm(BGM_PLAY);
-
-                // ゲームシーンに遷移
-                currentScene = SCENE_GAME;
-
-                // プレイ状態へ遷移
+                currentScene = APP_GAME;
                 state = GAME_PLAYING;
             }
 
             break;
+        }
 
-        case SCENE_GAME:
+        case APP_GAME:
 
             switch (state)
             {
@@ -130,7 +125,7 @@ void Game::Update() {
 
                         soundManager.PlayBgm(BGM_TITLE);
 
-                        currentScene = SCENE_TITLE;
+                        currentScene = APP_TITLE;
                     }
 
                     break;
@@ -150,7 +145,7 @@ void Game::Update() {
 
                         soundManager.PlayBgm(BGM_TITLE);
 
-                        currentScene = SCENE_TITLE;
+                        currentScene = APP_TITLE;
                     }
 
                     break;
@@ -170,13 +165,14 @@ void Game::Draw() {
 
     switch (currentScene)
     {
-        case SCENE_TITLE:
+        case APP_TITLE:
 
-            titleScene.Draw(fontManager, result, rankingManager);
+            //titleScene.Draw(fontManager, result, rankingManager);
+            titleWrapper->Draw();
 
             break;
 
-        case SCENE_GAME:
+        case APP_GAME:
 
             switch (state)
             {

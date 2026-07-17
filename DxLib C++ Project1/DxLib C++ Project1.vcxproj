@@ -222,6 +222,7 @@
     <ClInclude Include="SpawnDataLoader.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TitleSceneWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SkeletonNormalData.json" />
