@@ -214,6 +214,7 @@
     <ClInclude Include="RecoveryItem.h" />
     <ClInclude Include="RecoveryItemDataLoader.h" />
     <ClInclude Include="Result.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Skeleton_Normal.h" />
     <ClInclude Include="Skeleton_Warrior.h" />
