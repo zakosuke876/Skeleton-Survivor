@@ -15,6 +15,7 @@
 #include <random>
 
 #include "TitleSceneWrapper.h"
+#include "GameScene.h"
 #include <memory>
 
 // シーンの種類
@@ -24,11 +25,11 @@ enum AppScene {
 };
 
 // ゲームの状態
-enum GameState {
+/*enum GameState {
 	GAME_PLAYING, // プレイ中
 	GAME_PAUSE,   // ポーズ中
 	GAME_OVER,    // ゲームオーバー
-};
+};*/
 
 class Game {
 public:
@@ -58,6 +59,8 @@ private:
 
 	std::unique_ptr<TitleSceneWrapper> titleWrapper;
 
+	std::unique_ptr<GameScene> gameScene;
+
 
 	// 前フレームからの時刻(ミリ秒)
 	int prevTime = 0;
@@ -67,7 +70,4 @@ private:
 
 	// 現在のシーン
 	AppScene currentScene;
-
-	// 現在のゲーム状態
-	GameState state = GAME_PLAYING;
 };

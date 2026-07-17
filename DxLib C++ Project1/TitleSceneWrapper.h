@@ -22,6 +22,7 @@ public:
     }
 
     SceneType Update(float /*deltaTime*/) override {
+
         titleScene.Update();
 
         // ŠJŽn‚ª‰Ÿ‚³‚ê‚½‚çGame‚Ö‘JˆÚ
@@ -32,6 +33,7 @@ public:
     }
 
     void Draw() override {
+
         titleScene.Draw(fontManager, result, rankingManager);
     }
 
