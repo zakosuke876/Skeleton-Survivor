@@ -13,23 +13,15 @@
 #include "RankingManager.h"
 #include "DxLib.h"
 #include <random>
-
-#include "TitleSceneWrapper.h"
 #include "GameScene.h"
 #include <memory>
+
 
 // シーンの種類
 enum AppScene {
 	APP_TITLE, // タイトルシーン
 	APP_GAME,  // ゲームシーン
 };
-
-// ゲームの状態
-/*enum GameState {
-	GAME_PLAYING, // プレイ中
-	GAME_PAUSE,   // ポーズ中
-	GAME_OVER,    // ゲームオーバー
-};*/
 
 class Game {
 public:
@@ -52,14 +44,11 @@ private:
 	FontManager fontManager;
 	SoundManager soundManager;
 	Result result;
-	TitleScene titleScene;
 	PauseScene pauseScene;
 	RankingManager rankingManager;
 
-
-	std::unique_ptr<TitleSceneWrapper> titleWrapper;
-
 	std::unique_ptr<GameScene> gameScene;
+	std::unique_ptr<TitleScene> titleScene;
 
 
 	// 前フレームからの時刻(ミリ秒)

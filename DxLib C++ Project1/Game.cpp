@@ -18,7 +18,7 @@ Game::Game() {
     // 起動時にタイトルシーンに設定
     currentScene = APP_TITLE;
 
-    titleWrapper = std::make_unique<TitleSceneWrapper>(fontManager, rankingManager, result, soundManager);
+    titleScene = std::make_unique<TitleScene>(fontManager, rankingManager, soundManager, result);
 
     gameScene = std::make_unique<GameScene>(player, scoreManager, itemManager, soundManager, fontManager, ground,
         pauseScene, result, enemyManager, rankingManager, camera);
@@ -26,7 +26,7 @@ Game::Game() {
 
 void Game::Run() {
 
-    while (ProcessMessage() == 0 && !titleWrapper->WantsQuit())
+    while (ProcessMessage() == 0 && !titleScene->GetisQuit())
     {
         // 現在時刻取得()
         int nowTime = GetNowCount();
@@ -48,11 +48,11 @@ void Game::Update() {
     {
         case APP_TITLE: {
 
-            SceneType next = titleWrapper->Update(deltaTime);
+            SceneType next = titleScene->Update(deltaTime);
 
             if (next == SceneType::Game)
             {
-                titleWrapper->OnExit();
+                titleScene->OnExit();
                 GameReset();
                 gameScene->OnEnter();
                 currentScene = APP_GAME;
@@ -68,7 +68,7 @@ void Game::Update() {
             if (next == SceneType::Title)
             {
                 gameScene->OnExit();
-                titleWrapper->OnEnter();
+                titleScene->OnEnter();
                 currentScene = APP_TITLE;
             }
 
@@ -90,7 +90,7 @@ void Game::Draw() {
     {
         case APP_TITLE:
 
-            titleWrapper->Draw();
+            titleScene->Draw();
 
             break;
 
@@ -116,6 +116,6 @@ void Game::GameReset() {
     itemManager.Reset();
     scoreManager.Reset();
     rankingManager.Reset();
-    titleScene.Reset();
+    titleScene->Reset();
     pauseScene.Reset();
 }

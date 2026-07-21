@@ -48,6 +48,9 @@ SceneType GameScene::Update(float deltaTime) {
             itemManager.Update();
             camera.UpdateCamera(player.GetPosition());
 
+
+            magicEffect.Update(deltaTime);
+
             // 当たり判定チェック
             enemyManager.CheckPlayerAttackHit(player, scoreManager, itemManager, soundManager);
             enemyManager.CheckEnemyAttackHit(player, soundManager);
@@ -133,6 +136,7 @@ void GameScene::Draw() {
         player.Draw();
         enemyManager.Draw();
         itemManager.Draw();
+        magicEffect.Draw();
 
         // Zバッファ切り替え
         SetUseZBuffer3D(FALSE);

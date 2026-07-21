@@ -170,6 +170,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemDataLoader.cpp" />
     <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="MagicEffect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="ItemStatusTypes.h" />
     <ClInclude Include="JsonPath.h" />
+    <ClInclude Include="MagicEffect.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerDataLoader.h" />
@@ -224,7 +226,6 @@
     <ClInclude Include="SpawnDataLoader.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="TitleScene.h" />
-    <ClInclude Include="TitleSceneWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SkeletonNormalData.json" />

@@ -12,6 +12,8 @@
 #include "Result.h"
 #include "Scene.h"
 
+#include "MagicEffect.h"
+
 // ƒQ[ƒ€“à‚Ìó‘Ô
 enum GameState {
 	GAME_PLAYING,
@@ -50,4 +52,6 @@ private:
 	PauseScene& pauseScene;
 	Result& result;
 	RankingManager& rankingManager;
+
+	MagicEffect magicEffect;
 };
