@@ -13,12 +13,6 @@ ItemManager::ItemManager() {
 	std::random_device rd;
 	rng = std::mt19937(rd());
 
-	
-	/*if (!ItemDataLoader::LoadDropConfig("Data/ItemDropConfig.json", dropConfig))
-	{
-		printfDx("アイテムドロップデータの読み込みに失敗しました\n");
-	}*/
-
 	// JSONファイルを読み込み、アイテムドロップ関係のデータを取得する
 	ItemDropConfig dropConfig;
 	if (!ItemDataLoader::Load(dropConfig))
@@ -33,12 +27,6 @@ ItemManager::ItemManager() {
 	expItemRandomOffset = dropConfig.expItemRandomOffset;
 
 	itemTypeRate = dropConfig.itemTypeRate;
-
-	// JSONファイルを読み込み、回復アイテムデータを配列へ格納する
-	/*if (!RecoveryItemDataLoader::Load(recoveryItemDataTable))
-	{
-		printfDx("回復アイテムデータの読み込みに失敗しました\n");
-	}*/
 
 	if (!ItemDataLoader::LoadRecoveryItemData(JsonPath::RECOVERY_ITEM_DATA, recoveryItemDataTable))
 	{

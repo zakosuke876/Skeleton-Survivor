@@ -49,7 +49,7 @@ SceneType GameScene::Update(float deltaTime) {
             camera.UpdateCamera(player.GetPosition());
 
 
-            magicEffect.Update(deltaTime);
+            magicEffect.Update(player, deltaTime);
 
             // 当たり判定チェック
             enemyManager.CheckPlayerAttackHit(player, scoreManager, itemManager, soundManager);

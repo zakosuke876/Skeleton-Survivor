@@ -65,6 +65,8 @@ bool EnemyWarriorDataLoader::LoadData(const char* jsonPath, SkeletonWarriorStatu
 
 		outData.enemyStatus.texturePath = data.at("texturePath").get<std::string>();
 
+
+
 		// ウォーリアー固有ステータス
 		outData.reviveChancePercent = data.at("reviveChancePercent").get<int>();
 

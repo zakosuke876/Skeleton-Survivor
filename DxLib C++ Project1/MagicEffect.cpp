@@ -1,6 +1,10 @@
 #include "MagicEffect.h"
 #include "DxLib.h"
 
+
+#include "Player.h"
+
+
 MagicEffect::MagicEffect() {
 
 	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", EFFECT_ALL, EFFECT_DIV_X, EFFECT_DIV_Y, EFFECT_WIDTH, EFFECT_HEIGHT, grHandles);
@@ -14,7 +18,7 @@ MagicEffect::~MagicEffect() {
 	}
 }
 
-void MagicEffect::Update(float deltaTime) {
+void MagicEffect::Update(const Player& player, float deltaTime) {
 
 	frameTimer += deltaTime;
 
@@ -37,12 +41,28 @@ void MagicEffect::Update(float deltaTime) {
 			}
 		}
 	}
+
+	float dx = player.GetPosition().x - x;
+	float dz = player.GetPosition().z - z;
+
+	float distance = sqrt(dx * dx + dz * dz);
+
+	if (distance > 0.0f)
+	{
+		float dirX = dx / distance;
+		float dirZ = dz / distance;
+
+		x += dirX * speed;
+		z += dirZ * speed;
+	}
 }
 
 void MagicEffect::Draw() const {
 
 	DrawBillboard3D(VGet(x, y, z), 0.5f, 0.5f, EFFECT_SCALE, 0.0f,
 		grHandles[currentFrame], TRUE);
+
+	DrawFormatString(100, 500, GetColor(255, 0, 0), "À•W : X %f Z %f", x, z);
 
 
 	// “–‚½‚è”»’èŠm”F

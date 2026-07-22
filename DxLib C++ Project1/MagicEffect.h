@@ -1,19 +1,34 @@
 #pragma once
 
+class Player;
+
 class MagicEffect {
 public:
 
 	MagicEffect();
 	~MagicEffect();
 
-	void Update(float deltaTime);
+
+
+
+	void Update(const Player& player, float deltaTime);
+
+
+
+
 	void Draw() const;
+
+
 
 private:
 
 	float x = 0.0f;
 	float y = 20.0f;
 	float z = 0.0f;
+
+	float speed = 0.3f;
+
+
 
 	static constexpr int EFFECT_ALL = 11;
 	static constexpr int EFFECT_DIV_X = 11;

@@ -53,7 +53,7 @@ Player::Player() {
 
 void Player::Reset() {
 
-	x = 0.0f;
+	x = 200.0f;
 	y = 0.0f;
 	z = 0.0f;
 	angleY = 0.0f;
