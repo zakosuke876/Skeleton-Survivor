@@ -46,7 +46,7 @@ private:
 	void PlayEffect();
 
 	// 再生中のエフェクトを管理する
-	//std::vector<Effect> effects;
+	//std::vector<> effects;
 
 	// シートごとの分割済み画像ハンドル
 	//std::vector<int> sheetHandles[ToInt(SheetType::SHEET_TYPE_MAX)];

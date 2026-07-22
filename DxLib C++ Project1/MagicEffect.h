@@ -1,12 +1,12 @@
 #pragma once
+#include "DxLib.h"
 
 class Player;
 
 class MagicEffect {
 public:
 
-	MagicEffect();
-	~MagicEffect();
+	MagicEffect(float startX, float startY, float startZ, const int* handles);
 
 
 
@@ -18,17 +18,12 @@ public:
 
 	void Draw() const;
 
+	bool IsActive() const { return isActive; }
 
 
-private:
-
-	float x = 0.0f;
-	float y = 20.0f;
-	float z = 0.0f;
-
-	float speed = 0.3f;
-
-
+	VECTOR GetPos() const { return VGet(x, y, z); }
+	float GetRadius() const { return MAGIC_RADIUS; }
+	void SetActive(bool active) { isActive = active; }
 
 	static constexpr int EFFECT_ALL = 11;
 	static constexpr int EFFECT_DIV_X = 11;
@@ -36,7 +31,18 @@ private:
 	static constexpr int EFFECT_WIDTH = 48;
 	static constexpr int EFFECT_HEIGHT = 48;
 
-	int grHandles[EFFECT_ALL] = {};
+private:
+
+	float x = 0.0f;
+	float y = 20.0f;
+	float z = 0.0f;
+
+	float MAGIC_RADIUS = 20.0f;
+
+	float speed = 0.3f;
+	bool isActive = false;
+
+	const int* grHandles = nullptr;
 
 	static constexpr int BOLT_START = 0;
 	static constexpr int BOLT_END   = 3;

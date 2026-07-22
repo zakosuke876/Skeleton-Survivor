@@ -1,18 +1,20 @@
 #pragma once
-#include "Player.h"
-#include "Camera.h"
-#include "ScoreManager.h"
-#include "ItemManager.h"
-#include "FontManager.h"
-#include "SoundManager.h"
-#include "RankingManager.h"
-#include "EnemyManager.h"
-#include "Ground.h"
-#include "PauseScene.h"
-#include "Result.h"
 #include "Scene.h"
+#include "MagicEffectManager.h"
 
-#include "MagicEffect.h"
+class Player;
+class ScoreManager;
+class ItemManager;
+class SoundManager;
+class FontManager;
+class Ground;
+class Camera;
+class PauseScene;
+class Result;
+class EnemyManager;
+class RankingManager;
+class MagicEffectManager;
+
 
 // ƒQ[ƒ€“à‚Ìó‘Ô
 enum GameState {
@@ -42,7 +44,6 @@ private:
 	GameState state = GAME_PLAYING;
 
 	Player& player;
-	EnemyManager& enemyManager;
 	ScoreManager& scoreManager;
 	ItemManager& itemManager;
 	SoundManager& soundManager;
@@ -51,7 +52,7 @@ private:
 	Camera& camera;
 	PauseScene& pauseScene;
 	Result& result;
+	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
-
-	MagicEffect magicEffect;
+	MagicEffectManager magicEffectManager;
 };

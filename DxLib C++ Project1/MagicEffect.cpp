@@ -1,21 +1,19 @@
 #include "MagicEffect.h"
-#include "DxLib.h"
 
 
+#include "GameConfig.h"
 #include "Player.h"
 
 
-MagicEffect::MagicEffect() {
+MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* handles) {
 
-	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", EFFECT_ALL, EFFECT_DIV_X, EFFECT_DIV_Y, EFFECT_WIDTH, EFFECT_HEIGHT, grHandles);
-}
+	isActive = true;
 
-MagicEffect::~MagicEffect() {
+	grHandles = handles;
 
-	for (int i = 0; i < EFFECT_ALL; i++)
-	{
-		DeleteGraph(grHandles[i]);
-	}
+	x = startX;
+	y = startY;
+	z = startZ;
 }
 
 void MagicEffect::Update(const Player& player, float deltaTime) {
@@ -55,19 +53,18 @@ void MagicEffect::Update(const Player& player, float deltaTime) {
 		x += dirX * speed;
 		z += dirZ * speed;
 	}
+
+	if (x < GameConfig::FIELD_MIN_X || x > GameConfig::FIELD_MAX_X ||
+		z < GameConfig::FIELD_MIN_Z || z > GameConfig::FIELD_MAX_Z)
+	{
+		isActive = false;
+	}
 }
 
 void MagicEffect::Draw() const {
 
+	if (!isActive) return;
+
 	DrawBillboard3D(VGet(x, y, z), 0.5f, 0.5f, EFFECT_SCALE, 0.0f,
 		grHandles[currentFrame], TRUE);
-
-	DrawFormatString(100, 500, GetColor(255, 0, 0), "ç¿ïW : X %f Z %f", x, z);
-
-
-	// ìñÇΩÇËîªíËämîF
-	/*SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
-	DrawSphere3D(VGet(x, y, z), 8.0f, 16,
-		GetColor(255, 0, 0), GetColor(255, 255, 255), FALSE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);*/
 }

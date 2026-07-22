@@ -1,4 +1,15 @@
 #include "GameScene.h"
+#include "Player.h"
+#include "ScoreManager.h"
+#include "ItemManager.h"
+#include "SoundManager.h"
+#include "FontManager.h"
+#include "Ground.h"
+#include "PauseScene.h"
+#include "Result.h"
+#include "EnemyManager.h"
+#include "RankingManager.h"
+#include "Camera.h"
 #include "DxLib.h"
 
 GameScene::GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
@@ -47,13 +58,12 @@ SceneType GameScene::Update(float deltaTime) {
             scoreManager.Update(deltaTime);
             itemManager.Update();
             camera.UpdateCamera(player.GetPosition());
-
-
-            magicEffect.Update(player, deltaTime);
+            magicEffectManager.Update(player, deltaTime);
 
             // 当たり判定チェック
             enemyManager.CheckPlayerAttackHit(player, scoreManager, itemManager, soundManager);
             enemyManager.CheckEnemyAttackHit(player, soundManager);
+            magicEffectManager.CheckPlayerHit(player, soundManager);
             itemManager.CheckPlayerCollision(player, soundManager);
 
 
@@ -136,7 +146,10 @@ void GameScene::Draw() {
         player.Draw();
         enemyManager.Draw();
         itemManager.Draw();
-        magicEffect.Draw();
+        //magicEffect.Draw();
+
+
+        magicEffectManager.Draw();
 
         // Zバッファ切り替え
         SetUseZBuffer3D(FALSE);
