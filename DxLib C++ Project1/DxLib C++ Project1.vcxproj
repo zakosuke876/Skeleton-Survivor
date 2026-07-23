@@ -182,6 +182,7 @@
     <ClCompile Include="RecoveryItemDataLoader.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="Skeleton_Mage.cpp" />
     <ClCompile Include="Skeleton_Normal.cpp" />
     <ClCompile Include="Skeleton_Warrior.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Result.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="Skeleton_Mage.h" />
     <ClInclude Include="Skeleton_Normal.h" />
     <ClInclude Include="Skeleton_Warrior.h" />
     <ClInclude Include="SoundManager.h" />
