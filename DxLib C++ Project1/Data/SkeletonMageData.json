@@ -8,7 +8,7 @@
     "invincibleTime": 2.0,
     "hideTime": 2.0,
     "chaseRangeRadius": 200.0,
-    "attackRangeRadius": 200.0,
+    "attackRangeRadius": 150.0,
     "attackRadius": 10.0,
     "bodyRadius": 8.0,
     "score": 300,

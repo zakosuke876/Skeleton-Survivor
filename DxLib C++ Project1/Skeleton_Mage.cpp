@@ -10,7 +10,7 @@ const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[] = {
 	// Skeleton_Mage専用のアニメーションテーブル
 	// EnemyAnimationのenum順と一致させる
 	{6, 0.3f, false},   // ENEMY_ANIM_SPAWN
-	{3, 0.3f, true},   // ENEMY_ANIM_IDLE
+	{3, 0.3f, true},    // ENEMY_ANIM_IDLE
 	{7, 0.5f, true},    // ENEMY_ANIM_WALK
 	{5, 0.3f, true},    // ENEMY_ANIM_DASH
 	{2, 0.3f, false},   // ENEMY_ANIM_DAMAGE
@@ -79,8 +79,6 @@ Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skele
 
 	// スポーン座標を設定
 	MV1SetPosition(modelHandle, VGet(x, y, z));
-
-	printfDx("マージ");
 }
 
 void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
@@ -124,13 +122,6 @@ void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& 
 		UpdateDeath(deltaTime);
 
 		break;
-
-	/*case SKELETON_N_VICTORY:
-
-		// 勝利アニメーションを再生
-		SwitchAnimation(SKELETON_N_ANIM_VICTORY_POSE);
-
-		break;*/
 
 	default:
 

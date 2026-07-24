@@ -8,13 +8,7 @@ public:
 
 	MagicEffect(float startX, float startY, float startZ, const int* handles);
 
-
-
-
 	void Update(const Player& player, float deltaTime);
-
-
-
 
 	void Draw() const;
 

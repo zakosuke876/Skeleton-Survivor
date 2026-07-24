@@ -32,7 +32,7 @@ public:
 private:
 
 	void UpdateSpawn() override;
-	void UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
+	void UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
 	void UpdateDamage() override;
 	void UpdateDeath(float deltaTime) override;
 	void DrawModel() const override;

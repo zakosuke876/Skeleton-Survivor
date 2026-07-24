@@ -35,7 +35,7 @@ void MagicEffect::Update(const Player& player, float deltaTime) {
 			}
 			else
 			{
-
+				isLoop = false;
 			}
 		}
 	}

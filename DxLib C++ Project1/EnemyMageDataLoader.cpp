@@ -9,6 +9,7 @@ using json = nlohmann::json;
 
 bool EnemyMageDataLoader::Load(SkeletonMageStatus& outData) {
 
+	// JsonPath・構造体を渡す
 	return LoadData(JsonPath::SKELETON_MAGE_DATA, outData);
 }
 
@@ -29,7 +30,7 @@ bool EnemyMageDataLoader::LoadData(const char* jsonPath, SkeletonMageStatus& out
 	{
 		file >> j;
 
-		// "Skeleton_Normal"キーが存在しない場合は処理しない
+		// "Skeleton_Mage"キーが存在しない場合は処理しない
 		if (!j.contains("Skeleton_Mage")) return false;
 
 		const json& data = j["Skeleton_Mage"];

@@ -73,8 +73,10 @@ EnemyManager::~EnemyManager() {
 	// リソース開放
 	MV1DeleteModel(skeletonNormalModelHandle);
 	MV1DeleteModel(skeletonWarriorModelHandle);
+	MV1DeleteModel(skeletonMageModelHandle);
 	DeleteGraph(skeletonNormalTexHandle);
 	DeleteGraph(skeletonWarriorTexHandle);
+	DeleteGraph(skeletonMageTexHandle);
 }
 
 void EnemyManager::Reset() {
@@ -125,6 +127,8 @@ void EnemyManager::Spawn() {
 		case ENEMY_MAGE:
 
 			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, enemyGrowRate));
+
+			break;
 	}
 }
 
