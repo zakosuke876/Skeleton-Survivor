@@ -4,9 +4,8 @@
 #include <algorithm>
 
 MagicEffectManager::MagicEffectManager() {
-	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
 
-	magicTimer = 0.0f;
+	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
 }
 
 MagicEffectManager::~MagicEffectManager() {
@@ -20,6 +19,11 @@ MagicEffectManager::~MagicEffectManager() {
 }
 
 void MagicEffectManager::PlayMagic(float startX, float startY, float startZ) {
+
+	// ãŒÀ‚É’B‚µ‚Ä‚¢‚éê‡‚Í¶¬‚µ‚È‚¢
+	if (effects.size() >= MAX_EFFECT) return;
+
+	printfDx("”­ŽË");
 
 	effects.emplace_back(startX, startY, startZ, grHandles);
 }
@@ -52,16 +56,7 @@ void MagicEffectManager::Update(const Player& player, float deltaTime) {
 		e.Update(player, deltaTime);
 	}
 
-	if (effects.size() < MAX_EFFECT)
-	{
-		magicTimer += deltaTime;
-	}
 
-	if (effects.size() < MAX_EFFECT && magicTimer >= MAGIC_INTERVAL)
-	{
-		PlayMagic(0.0f, 20.0f, 100.0f);
-		magicTimer = 0.0f;
-	}
 
 	effects.erase(
 		std::remove_if(effects.begin(), effects.end(),

@@ -3,6 +3,9 @@
 #include "GameConfig.h"
 #include "SoundManager.h"
 
+
+#include "MagicEffectManager.h"
+
 Enemy::Enemy() {
 
 	// ランダム生成用
@@ -39,7 +42,7 @@ void Enemy::SwitchAnimation(int animationNum) {
 	currentAnim = animationNum;
 }
 
-void Enemy::Update(Player& player, float deltaTime) {
+void Enemy::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
 	// アニメーション再生タイマーを進める
 	UpdateAnim();

@@ -9,6 +9,8 @@
 class Player;
 class SoundManager;
 
+class MagicEffectManager;
+
 // 共通アニメーションの番号
 // 各敵のアニメーションはこの順番に合わせて定義する
 enum EnemyAnimation {
@@ -61,7 +63,7 @@ public:
 	Enemy();
 	virtual ~Enemy();
 
-	virtual void Update(Player& player, float deltaTime);
+	virtual void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
 	void Draw() const;
 	void DrawUI() const;
 
@@ -113,7 +115,7 @@ protected:
 	// ----------------------------------------
 
 	virtual void UpdateSpawn() = 0;
-	virtual void UpdateAttack(Player& player, float DeltaTime) = 0;
+	virtual void UpdateAttack(Player& player, float DeltaTime, MagicEffectManager& magicEffectManager) = 0;
 	virtual void UpdateDamage() = 0;
 	virtual void UpdateDeath(float deltaTime) = 0;
 	virtual void DrawModel() const = 0;

@@ -28,10 +28,4 @@ private:
 
 	// 魔法の最大同時出現数
 	static constexpr int MAX_EFFECT = 5;
-
-	// 生成タイマー
-	float magicTimer = -1.0f;
-
-	// 生成間隔(秒)
-	static constexpr float MAGIC_INTERVAL = 2.0f;
 };

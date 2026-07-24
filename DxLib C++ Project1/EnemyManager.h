@@ -10,6 +10,8 @@ class ScoreManager;
 class ItemManager;
 class SoundManager;
 
+class MagicEffectManager;
+
 
 class EnemyManager {
 public:
@@ -17,7 +19,7 @@ public:
 	EnemyManager();
 	~EnemyManager();
 	void Reset(); // ゲームリセット処理
-	void Update(Player& player, float deltaTime);
+	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
 	void Draw() const;
 	void DrawUI() const;
 	void CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, SoundManager& soundManager);

@@ -247,5 +247,6 @@
     <None Include="Data\SpawnConfig.json" />
     <None Include="Data\ItemDropConfig.json" />
     <None Include="Data\SkeletonWarriorData.json" />
+    <None Include="Data\SkeletonMageData.json" />
   </ItemGroup>
 </Project>

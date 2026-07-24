@@ -4,6 +4,9 @@
 #include "GameConfig.h"
 #include "DxLib.h"
 
+
+#include "MagicEffectManager.h"
+
 const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
 
 	// Skeleton_Warrior専用のアニメーションテーブル
@@ -26,12 +29,6 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 	x = startX;
 	y = startY;
 	z = startZ;
-
-	// JSONから固有ステータスを読み込む
-	/*if (!EnemyWarriorDataLoader::Load(warriorData))
-	{
-		printfDx("Skeleton_Warriorのデータ読み込みに失敗しました\n");
-	}*/
 
 	const EnemyStatus& data = warriorData.enemyStatus;
 
@@ -101,9 +98,9 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
-void Skeleton_Warrior::Update(Player& player, float deltaTime) {
+void Skeleton_Warrior::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
-	Enemy::Update(player, deltaTime);
+	Enemy::Update(player, deltaTime, magicEffectManager);
 
 	// 死亡中・復活中は無敵タイマーが切れないようにする
 	if (state == ENEMY_DEATH || state == SKELETON_W_RESURRECTION)
@@ -134,7 +131,7 @@ void Skeleton_Warrior::Update(Player& player, float deltaTime) {
 
 		case ENEMY_ATTACK:
 
-			UpdateAttack(player, deltaTime);
+			UpdateAttack(player, deltaTime, magicEffectManager);
 
 			break;
 
@@ -185,7 +182,7 @@ void Skeleton_Warrior::UpdateSpawn() {
 	}
 }
 
-void Skeleton_Warrior::UpdateAttack(Player& player, float deltaTime) {
+void Skeleton_Warrior::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
 	// 攻撃判定を無効
 	hitBox.isAttackActive = false;

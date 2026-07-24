@@ -234,6 +234,7 @@
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\SkeletonMageData.json" />
     <None Include="Data\SkeletonNormalData.json" />
     <None Include="Data\SkeletonWarriorData.json" />
     <None Include="Data\ItemDropConfig.json" />

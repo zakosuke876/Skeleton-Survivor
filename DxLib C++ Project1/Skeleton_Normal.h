@@ -17,19 +17,22 @@ enum Skeleton_NormalState {
 extern const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[];
 
 
+// ëOï˚êÈåæ
+class MagicEffectManager;
+
 
 class Skeleton_Normal : public Enemy {
 public:
 
 	Skeleton_Normal(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonNormalStatus& normalData, float growRate);
 	~Skeleton_Normal() override = default;
-	void Update(Player& player, float deltaTime) override;
+	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
 	EnemyType GetEnemyType() const override { return enemyType; }
 
 private:
 
 	void UpdateSpawn() override;
-	void UpdateAttack(Player& player, float deltaTime);
+	void UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
 	void UpdateDamage() override;
 	void UpdateDeath(float deltaTime) override;
 	void DrawModel() const override;

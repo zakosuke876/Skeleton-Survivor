@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Skeleton_Normal.h"
 #include "Skeleton_Warrior.h"
+#include "Skeleton_Mage.h"
 #include "EnemyNormalDataLoader.h"
 #include "EnemyWarriorDataLoader.h"
 #include "SpawnDataLoader.h"
@@ -12,6 +13,9 @@
 #include <algorithm>
 #include <cmath>
 #include "DxLib.h"
+
+
+#include "MagicEffectManager.h"
 
 EnemyManager::EnemyManager() {
 
@@ -108,10 +112,14 @@ void EnemyManager::Spawn() {
 			enemies.emplace_back(std::make_unique<Skeleton_Warrior>(x, 0.0f, z, skeletonWarriorModelHandle, skeletonWarriorTexHandle, warriorStatus, enemyGrowRate));
 
 			break;
+
+		case ENEMY_MAGE:
+
+			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, normalStatus, enemyGrowRate));
 	}
 }
 
-void EnemyManager::Update(Player& player, float deltaTime) {
+void EnemyManager::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManger) {
 
 	// 削除前の敵の数を保持
 	size_t enemyPrevCount = enemies.size();
@@ -139,7 +147,7 @@ void EnemyManager::Update(Player& player, float deltaTime) {
 	// 敵の更新
 	for (auto& e : enemies)
 	{
-		e->Update(player, deltaTime);
+		e->Update(player, deltaTime, magicEffectManger);
 	}
 
 	// 非アクティブな敵の削除

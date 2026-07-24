@@ -1,0 +1,19 @@
+{
+  "Skeleton_Mage": {
+    "baseHp": 40,
+    "baseAttack": 30,
+    "speed": 0.2,
+    "dashSpeed": 0.5,
+    "attackCoolTime": 3.0,
+    "invincibleTime": 2.0,
+    "hideTime": 2.0,
+    "chaseRangeRadius": 200.0,
+    "attackRangeRadius": 200.0,
+    "attackRadius": 10.0,
+    "bodyRadius": 8.0,
+    "score": 300,
+    "scale": 0.15,
+    "modelPath": "Model/Enemy/Skeleton_Mage.mv1",
+    "texturePath": "Model/Enemy/Skeleton_texture.png"
+  }
+}

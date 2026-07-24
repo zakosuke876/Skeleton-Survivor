@@ -4,6 +4,8 @@
 #include "GameConfig.h"
 #include "DxLib.h"
 
+#include "MagicEffectManager.h"
+
 
 const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 
@@ -83,11 +85,13 @@ Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int s
 
 	// スポーン座標を設定
 	MV1SetPosition(modelHandle, VGet(x, y, z));
+
+	printfDx("ノーマ");
 }
 
-void Skeleton_Normal::Update(Player& player, float deltaTime) {
+void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
-	Enemy::Update(player, deltaTime);
+	Enemy::Update(player, deltaTime, magicEffectManager);
 
 	switch (state)
 	{
@@ -111,7 +115,7 @@ void Skeleton_Normal::Update(Player& player, float deltaTime) {
 
 		case ENEMY_ATTACK:
 
-			UpdateAttack(player, deltaTime);
+			UpdateAttack(player, deltaTime, magicEffectManager);
 
 			break;
 
@@ -159,7 +163,7 @@ void Skeleton_Normal::UpdateSpawn() {
 	}
 }
 
-void Skeleton_Normal::UpdateAttack(Player& player, float deltaTime) {
+void Skeleton_Normal::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
 	// 攻撃判定を無効
 	hitBox.isAttackActive = false;

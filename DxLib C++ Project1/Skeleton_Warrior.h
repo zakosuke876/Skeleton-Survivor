@@ -20,19 +20,22 @@ extern const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[];
 // 前方宣言
 class SoundManager;
 
+class MagicEffectManager;
+
+
 class Skeleton_Warrior : public Enemy {
 public:
 
 	Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate);
 	~Skeleton_Warrior() override = default;
-	void Update(Player& player, float deltaTime) override;
+	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
 	bool TakeDamage(int value, SoundManager& soundManager) override;
 	EnemyType GetEnemyType() const override { return enemyType; }
 
 private:
 
 	void UpdateSpawn() override;
-	void UpdateAttack(Player& player, float deltaTime);
+	void UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
 	void UpdateDamage() override;
 	void UpdateDeath(float deltaTime) override;
 	void UpdateRevive();
@@ -62,7 +65,4 @@ private:
 
 	// 復活するかどうか
 	bool willRevive = false;
-
-	// JSONから読み込んだウォーリアー固有のステータス設定値を保持する
-	SkeletonWarriorStatus warriorDataTable;
 };
