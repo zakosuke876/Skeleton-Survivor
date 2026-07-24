@@ -2,7 +2,7 @@
   "Skeleton_Mage": {
     "baseHp": 40,
     "baseAttack": 30,
-    "speed": 0.2,
+    "speed": 0.5,
     "dashSpeed": 0.5,
     "attackCoolTime": 3.0,
     "invincibleTime": 2.0,

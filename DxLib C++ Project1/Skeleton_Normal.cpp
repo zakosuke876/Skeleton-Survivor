@@ -9,7 +9,7 @@
 
 const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 
-	// SKELETON_NORMAL専用のアニメーションテーブル
+	// Skeleton_Normal専用のアニメーションテーブル
 	// EnemyAnimationのenum順と一致させる
 	{7, 0.3f, false},   // ENEMY_ANIM_SPAWN
 	{5, 0.3f, true},   // ENEMY_ANIM_IDLE
@@ -22,7 +22,6 @@ const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 	{3, 0.3f, false},   // ENEMY_ANIM_DEATHPOSE
 
 	// スケルトンノーマル独自のアニメーション
-	
 	{8, 0.2f, true},    // 勝利アニメーション
 };
 

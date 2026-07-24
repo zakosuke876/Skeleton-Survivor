@@ -1,5 +1,7 @@
 #pragma once
-#include "EnemyStatusTypes.h"
+
+// ‘O•ûéŒ¾
+struct SkeletonNormalStatus;
 
 class EnemyNormalDataLoader {
 public:

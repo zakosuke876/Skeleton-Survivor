@@ -48,6 +48,9 @@ private:
 	// ウォーリアースケルトンのステータス
 	SkeletonWarriorStatus  warriorStatus;
 
+	// メイジスケルトンのステータス
+	SkeletonMageStatus mageStatus;
+
 	// スポーン関係のデータ
 	EnemySpawnConfig spawnConfig;
 	
@@ -79,11 +82,17 @@ private:
 	// Skeleton_Warriorの複製元モデル
 	int skeletonWarriorModelHandle = -1;
 
+	// Skeleton_Mageの複製元モデル
+	int skeletonMageModelHandle = -1;
+
 	// Skeleton_Normal用テクスチャ
 	int skeletonNormalTexHandle = -1;
 
 	// Skeleton_Warrior用テクスチャ
 	int skeletonWarriorTexHandle = -1;
+
+	// Skeleton_Mage用テクスチャ
+	int skeletonMageTexHandle = -1;
 
 	// ランダムエンジン
 	std::mt19937 rng;

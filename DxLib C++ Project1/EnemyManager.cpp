@@ -8,6 +8,7 @@
 #include "Skeleton_Mage.h"
 #include "EnemyNormalDataLoader.h"
 #include "EnemyWarriorDataLoader.h"
+#include "EnemyMageDataLoader.h"
 #include "SpawnDataLoader.h"
 #include "GameConfig.h"
 #include <algorithm>
@@ -35,6 +36,12 @@ EnemyManager::EnemyManager() {
 		printfDx("ウォーリアースケルトンのデータ読み込みに失敗しました\n");
 	}
 
+	// JSONからSkeleton_Mageのデータ読み込みを指示
+	if (!EnemyMageDataLoader::Load(mageStatus))
+	{
+		printfDx("メイジスケルトンのデータ読み込みに失敗しました\n");
+	}
+
 	// JSONから敵のスポーン情報のデータ読み込みを指示
 	if (!SpawnDataLoader::Load(spawnConfig))
 	{
@@ -42,12 +49,14 @@ EnemyManager::EnemyManager() {
 	}
 
 	// モデルを読み込む
-	skeletonNormalModelHandle = MV1LoadModel(normalStatus.enemyStatus.modelPath.c_str());
+	skeletonNormalModelHandle  = MV1LoadModel(normalStatus.enemyStatus.modelPath.c_str());
 	skeletonWarriorModelHandle = MV1LoadModel(warriorStatus.enemyStatus.modelPath.c_str());
+	skeletonMageModelHandle = MV1LoadModel(mageStatus.enemyStatus.modelPath.c_str());
 
 	// テクスチャを読み込む
 	skeletonNormalTexHandle = LoadGraph(normalStatus.enemyStatus.texturePath.c_str());
 	skeletonWarriorTexHandle = LoadGraph(warriorStatus.enemyStatus.texturePath.c_str());
+	skeletonMageTexHandle = LoadGraph(mageStatus.enemyStatus.texturePath.c_str());
 
 	// スポーン関連のデータを読み込む
 	spawnInterval = spawnConfig.spawnInterval;
@@ -115,7 +124,7 @@ void EnemyManager::Spawn() {
 
 		case ENEMY_MAGE:
 
-			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, normalStatus, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, enemyGrowRate));
 	}
 }
 

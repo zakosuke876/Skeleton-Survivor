@@ -38,3 +38,8 @@ struct SkeletonWarriorStatus {
 	float reviveHpMultiplier;  // 復活した際のHp倍率
 	int reviveScoreMultiplier; // 復活した際のスコア倍率
 };
+
+// メイジスケルトンのステータス構造体
+struct SkeletonMageStatus {
+	EnemyStatus enemyStatus;
+};

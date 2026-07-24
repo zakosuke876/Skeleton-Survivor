@@ -1,15 +1,12 @@
 #pragma once
-#include "EnemyStatusTypes.h"
+
+// ‘O•ûéŒ¾
+struct SkeletonWarriorStatus;
 
 class EnemyWarriorDataLoader {
 public:
 
 	static bool Load(SkeletonWarriorStatus& outData);
-
-	static bool Load(SkeletonNormalStatus& outData);
-
-
-	//static bool Load(const char* enemyKey);
 
 private:
 

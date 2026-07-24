@@ -14,4 +14,6 @@ namespace JsonPath {
 	constexpr const char* RECOVERY_ITEM_DATA = "Data/ItemsData.json";
 
 	constexpr const char* EXP_ITEM_DATA = "Data/ItemsData.json";
+
+	constexpr const char* SKELETON_MAGE_DATA = "Data/SkeletonMageData.json";
 }

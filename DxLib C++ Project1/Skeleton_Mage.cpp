@@ -1,39 +1,33 @@
 #include "Skeleton_Mage.h"
 #include "Player.h"
-#include "EnemyNormalDataLoader.h"
 #include "GameConfig.h"
 #include "DxLib.h"
-
 #include "MagicEffectManager.h"
 
 
 const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[] = {
 
-	// SKELETON_NORMAL専用のアニメーションテーブル
+	// Skeleton_Mage専用のアニメーションテーブル
 	// EnemyAnimationのenum順と一致させる
-	{7, 0.3f, false},   // ENEMY_ANIM_SPAWN
-	{5, 0.3f, true},   // ENEMY_ANIM_IDLE
-	{9, 0.3f, true},    // ENEMY_ANIM_WALK
-	{6, 0.3f, true},    // ENEMY_ANIM_DASH
-	{4, 0.3f, false},   // ENEMY_ANIM_DAMAGE
-	{0, 0.2f, false},   // ENEMY_ANIM_ATTACK
-	{1, 0.3f, false},   // ENEMY_ANIM_ATTACKCOOL
-	{2, 0.25f, false},  // ENEMY_ANIM_DEATH
-	{3, 0.3f, false},   // ENEMY_ANIM_DEATHPOSE
-
-	// スケルトンノーマル独自のアニメーション
-
-	//{8, 0.2f, true},    // 勝利アニメーション
+	{6, 0.3f, false},   // ENEMY_ANIM_SPAWN
+	{3, 0.3f, true},   // ENEMY_ANIM_IDLE
+	{7, 0.5f, true},    // ENEMY_ANIM_WALK
+	{5, 0.3f, true},    // ENEMY_ANIM_DASH
+	{2, 0.3f, false},   // ENEMY_ANIM_DAMAGE
+	{4, 0.2f, false},   // ENEMY_ANIM_ATTACK
+	{3, 0.3f, false},   // ENEMY_ANIM_ATTACKCOOL
+	{0, 0.25f, false},  // ENEMY_ANIM_DEATH
+	{1, 0.3f, false},   // ENEMY_ANIM_DEATHPOSE
 };
 
 
-Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonNormalStatus& noramalData, float growRate) {
+Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData, float growRate) {
 
 	x = startX;
 	y = startY;
 	z = startZ;
 
-	const EnemyStatus& data = noramalData.enemyStatus;
+	const EnemyStatus& data = mageData.enemyStatus;
 
 	// JSONファイルから読み込んだデータを代入
 	// 基底クラスのDrawUI()でHPゲージ描画に使用
@@ -67,7 +61,7 @@ Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skele
 	enemyType = ENEMY_MAGE;
 
 	// 元モデルから複製
-	modelHandle = MV1DuplicateModel(skeletonNModel);
+	modelHandle = MV1DuplicateModel(skeletonMModel);
 
 	// テクスチャを適用
 	MV1SetTextureGraphHandle(modelHandle, 0, TexHandle, FALSE);
@@ -185,9 +179,9 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 	}
 	else if (currentAnim == ENEMY_ANIM_ATTACKCOOL)
 	{
+		// プレイヤーの方向を向かせる
 		float dx = player.GetPosition().x - x;
 		float dz = player.GetPosition().z - z;
-
 		angleY = atan2f(dx, dz) + DX_PI_F;
 		MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
 

@@ -10,6 +10,7 @@
 const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
 
 	// Skeleton_Warrior専用のアニメーションテーブル
+	// EnemyAnimationのenum順と一致させる
 	{8, 0.5f, false},   // ENEMY_ANIM_SPAWN
 	{6, 0.3f, true},    // ENEMY_ANIM_IDLE
 	{11, 0.3f, true},   // ENEMY_ANIM_WALK
@@ -68,7 +69,6 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 	reviveHpMultiplier = warriorData.reviveHpMultiplier;
 
 	reviveScoreMultiplier = warriorData.reviveScoreMultiplier;
-
 
 	// 種類を設定
 	enemyType = ENEMY_WARRIOR;

@@ -160,6 +160,7 @@
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyDataLoader.cpp" />
+    <ClCompile Include="EnemyMageDataLoader.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyNormalDataLoader.cpp" />
     <ClCompile Include="EnemyWarriorDataLoader.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyDataLoader.h" />
+    <ClInclude Include="EnemyMageDataLoader.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemyNormalDataLoader.h" />
     <ClInclude Include="EnemySpawnConfig.h" />
