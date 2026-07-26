@@ -330,6 +330,6 @@ private:
 	VECTOR swordTrail[TRAIL_MAX]{};
 	int trailIndex = 0;
 
-
+	// Œ•
 	Sword sword;
 };

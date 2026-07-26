@@ -27,6 +27,7 @@ void GameScene::OnEnter() {
     // ƒQ[ƒ€ƒV[ƒ“‚É“ü‚Á‚½uŠÔ‚Ìˆ—
     state = GAME_PLAYING;
 	soundManager.PlayBgm(BGM_PLAY);
+    magicEffectManager.Reset();
 }
 
 void GameScene::OnExit() {

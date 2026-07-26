@@ -55,7 +55,6 @@ private:
 	// 復活した際のスコア倍率
 	int reviveScoreMultiplier = -1;
 
-
 	// この敵が復活するかどうかの判定に使う乱数範囲
 	static constexpr int REVIVE_CHANCE_MIN = 1;
 	static constexpr int REVIVE_CHANCE_MAX = 100;

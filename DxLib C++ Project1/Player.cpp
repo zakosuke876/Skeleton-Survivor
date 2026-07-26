@@ -219,6 +219,7 @@ void Player::Update(float deltaTime) {
 	// 向きのセット
 	MV1SetRotationXYZ(modelHandle, VGet(0.0f, angleY, 0.0f));
 
+	// 武器を手のボーンに追従
 	sword.Update(modelHandle);
 }
 

@@ -21,7 +21,7 @@ const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[] = {
 };
 
 
-Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData, float growRate) {
+Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate) {
 
 	x = startX;
 	y = startY;
@@ -79,6 +79,9 @@ Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skele
 
 	// スポーン座標を設定
 	MV1SetPosition(modelHandle, VGet(x, y, z));
+
+	// 武器のセット
+	staff.SetUp(staffModel, staffTexHandle, "handslot.r");
 }
 
 void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
@@ -128,12 +131,8 @@ void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& 
 		break;
 	}
 
-	// プレイヤーが死亡した場合
-	/*if (player.IsDead())
-	{
-		// 勝利アニメーション再生
-		state = SKELETON_N_VICTORY;
-	}*/
+	// 武器を手のボーンに追従
+	staff.Update(modelHandle);
 }
 
 void Skeleton_Mage::UpdateSpawn() {
@@ -239,4 +238,6 @@ void Skeleton_Mage::UpdateDeath(float deltaTime) {
 void Skeleton_Mage::DrawModel() const {
 
 	MV1DrawModel(modelHandle);
+
+	staff.Draw();
 }

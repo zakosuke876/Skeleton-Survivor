@@ -164,6 +164,7 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyNormalDataLoader.cpp" />
     <ClCompile Include="EnemyWarriorDataLoader.cpp" />
+    <ClCompile Include="EnemyWeapon.cpp" />
     <ClCompile Include="ExpItem.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="EnemyStatusTypes.h" />
     <ClInclude Include="EnemyType.h" />
     <ClInclude Include="EnemyWarriorDataLoader.h" />
+    <ClInclude Include="EnemyWeapon.h" />
     <ClInclude Include="ExpItem.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />

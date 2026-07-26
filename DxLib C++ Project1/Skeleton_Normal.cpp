@@ -84,8 +84,6 @@ Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int s
 
 	// スポーン座標を設定
 	MV1SetPosition(modelHandle, VGet(x, y, z));
-
-	printfDx("ノーマ");
 }
 
 void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {

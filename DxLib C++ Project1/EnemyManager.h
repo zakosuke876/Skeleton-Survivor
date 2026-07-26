@@ -94,6 +94,12 @@ private:
 	// Skeleton_Mage用テクスチャ
 	int skeletonMageTexHandle = -1;
 
+	// 杖のモデル
+	int staffModelHandle = -1;
+
+	// 杖のテクスチャ
+	int staffTexHandle = -1;
+
 	// ランダムエンジン
 	std::mt19937 rng;
 };

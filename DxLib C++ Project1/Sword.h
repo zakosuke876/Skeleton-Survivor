@@ -6,7 +6,6 @@ public:
 
 	Sword();
 	~Sword();
-	//void Reset(); // ゲームリセット処理
 
 	void SetUpBone(int playerModelHandle);
 	void Update(int playerModelHandle);

@@ -25,8 +25,8 @@ void Sword::Update(int playerModelHandle) {
 	MATRIX handMatrix = MV1GetFrameLocalWorldMatrix(playerModelHandle, handFrameIndex);
 	MATRIX offset = MGetScale(VGet(SWORD_SCALE, SWORD_SCALE, SWORD_SCALE));
 	MATRIX swordMatrix = MMult(offset, handMatrix);
-	MV1SetMatrix(swordHandle, swordMatrix);
 
+	MV1SetMatrix(swordHandle, swordMatrix);
 	swordPos = VTransform(VGet(0, SWORD_TIP_OFFSET, 0), swordMatrix);
 }
 

@@ -66,6 +66,10 @@ EnemyManager::EnemyManager() {
 	growInterval = spawnConfig.growInterval;
 
 	growRatePerInterval = spawnConfig.growRatePerInterval;
+
+	// ïêäÌÇÃì«Ç›çûÇ›
+	staffModelHandle = MV1LoadModel("Model/Staff/Mage_Staff.mv1");
+	staffTexHandle   = LoadGraph("Model/Staff/skeleton_texture.png");
 }
 
 EnemyManager::~EnemyManager() {
@@ -74,9 +78,12 @@ EnemyManager::~EnemyManager() {
 	MV1DeleteModel(skeletonNormalModelHandle);
 	MV1DeleteModel(skeletonWarriorModelHandle);
 	MV1DeleteModel(skeletonMageModelHandle);
+	MV1DeleteModel(staffModelHandle);
+
 	DeleteGraph(skeletonNormalTexHandle);
 	DeleteGraph(skeletonWarriorTexHandle);
 	DeleteGraph(skeletonMageTexHandle);
+	DeleteGraph(staffTexHandle);
 }
 
 void EnemyManager::Reset() {
@@ -126,7 +133,7 @@ void EnemyManager::Spawn() {
 
 		case ENEMY_MAGE:
 
-			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, staffModelHandle, staffTexHandle, enemyGrowRate));
 
 			break;
 	}
