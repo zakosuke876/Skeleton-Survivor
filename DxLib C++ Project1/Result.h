@@ -22,8 +22,9 @@ private:
 	const char* GetRank(int score) const;
 
 	// 画像ハンドル
-	int skeletonIcon = -1;
 	int skeletonNIcon = -1;
+	int skeletonWIcon = -1;
+	int skeletonMIcon = -1;
 
 	// フォントハンドル
 	int headerFont = -1;
@@ -44,17 +45,21 @@ private:
 	static constexpr int RESULT_PANEL_BOTTOM = 600;
 
 	// 敵キャラ
-	static constexpr int RESULT_ENEMY_IMAGE_LEFT = 250;
+	static constexpr int RESULT_ENEMY_IMAGE_LEFT = 100;
 	static constexpr int RESULT_ENEMY_IMAGE_TOP = 200;
-	static constexpr int RESULT_ENEMY_IMAGE_RIGHT = 400;
+	static constexpr int RESULT_ENEMY_IMAGE_RIGHT = 250;
 	static constexpr int RESULT_ENEMY_IMAGE_BOTTOM = 350;
 
 	// 2体目のずらし幅
-	static constexpr int RESULT_ENEMY_IMAGE_OFFSET = 200;
+	static constexpr int RESULT_ENEMY_IMAGE_OFFSET_WARRIOR = 200;
+
+	// 3体目のずらし幅
+	static constexpr int RESULT_ENEMY_IMAGE_OFFSET_MAGE = 400;
 
 	// 敵ごとの情報を表示する座標
-	static constexpr int RESULT_TEXT_NORMAL_X = 250 + 30;
-	static constexpr int RESULT_TEXT_WARRIOR_X = 450 + 30;
+	static constexpr int RESULT_TEXT_NORMAL_X = 100 + 20;
+	static constexpr int RESULT_TEXT_WARRIOR_X = 300 + 20;
+	static constexpr int RESULT_TEXT_MAGE_X = 500 + 20;
 
 	// 倒した数、倒して得たスコア
 	static constexpr int RESULT_TEXT_KILL_Y = 350 + 10;

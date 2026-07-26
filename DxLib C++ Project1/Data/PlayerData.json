@@ -1,6 +1,6 @@
 {
   "Player": {
-    "maxHp": 100,
+    "maxHp": 1,
     "attackPower": 20,
     "speed": 1.3,
     "dashMultiplier": 2.5,

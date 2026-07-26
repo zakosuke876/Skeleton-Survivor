@@ -13,8 +13,9 @@ Result::Result() {
     textFont = CreateFontToHandle("Dungeon Mode", 30, 3);
 
     // 敵画像読み込み
-    skeletonIcon = LoadGraph("UI/Enemy/Skeleton_W_Icon - コピー.png");
+    skeletonWIcon = LoadGraph("UI/Enemy/Skeleton_W_Icon - コピー.png");
     skeletonNIcon = LoadGraph("UI/Enemy/Skeleton_N_Icon - コピー.png");
+    skeletonMIcon = LoadGraph("UI/Enemy/Skeleton_M_Icon.png");
 }
 
 Result::~Result() {
@@ -24,8 +25,9 @@ Result::~Result() {
     DeleteFontToHandle(enemyInfoFont);
     DeleteFontToHandle(textFont);
 
-    DeleteGraph(skeletonIcon);
+    DeleteGraph(skeletonWIcon);
     DeleteGraph(skeletonNIcon);
+    DeleteGraph(skeletonMIcon);
 }
 
 void Result::DrawPanel() const {
@@ -48,13 +50,17 @@ void Result::DrawEnemyInfo(EnemyManager& enemyManager, ScoreManager& scoreManage
 
     // 敵の画像を表示
     DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT, RESULT_ENEMY_IMAGE_BOTTOM, skeletonNIcon, TRUE);
-    DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT + RESULT_ENEMY_IMAGE_OFFSET, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT + RESULT_ENEMY_IMAGE_OFFSET, RESULT_ENEMY_IMAGE_BOTTOM, skeletonIcon, TRUE);
+    DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT + RESULT_ENEMY_IMAGE_OFFSET_WARRIOR, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT + RESULT_ENEMY_IMAGE_OFFSET_WARRIOR, RESULT_ENEMY_IMAGE_BOTTOM, skeletonWIcon, TRUE);
+    DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT + RESULT_ENEMY_IMAGE_OFFSET_MAGE, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT + RESULT_ENEMY_IMAGE_OFFSET_MAGE, RESULT_ENEMY_IMAGE_BOTTOM, skeletonMIcon, TRUE);
 
     // 今回のプレイで倒した敵の数・スコアを表示
     DrawFormatStringToHandle(RESULT_TEXT_NORMAL_X, RESULT_TEXT_KILL_Y, GetColor(255, 255, 255), enemyInfoFont, "KILLS  %d", enemyManager.GetKillCount(ENEMY_NORMAL));
     DrawFormatStringToHandle(RESULT_TEXT_WARRIOR_X, RESULT_TEXT_KILL_Y, GetColor(255, 255, 255), enemyInfoFont, "KILLS  %d", enemyManager.GetKillCount(ENEMY_WARRIOR));
+    DrawFormatStringToHandle(RESULT_TEXT_MAGE_X, RESULT_TEXT_KILL_Y, GetColor(255, 255, 255), enemyInfoFont, "KILLS  %d", enemyManager.GetKillCount(ENEMY_MAGE));
+
     DrawFormatStringToHandle(RESULT_TEXT_NORMAL_X, RESULT_TEXT_SCORE_Y, GetColor(255, 255, 255), enemyInfoFont, "SCORE  %d", scoreManager.GetScoreByEnemyType(ENEMY_NORMAL));
     DrawFormatStringToHandle(RESULT_TEXT_WARRIOR_X, RESULT_TEXT_SCORE_Y, GetColor(255, 255, 255), enemyInfoFont, "SCORE  %d", scoreManager.GetScoreByEnemyType(ENEMY_WARRIOR));
+    DrawFormatStringToHandle(RESULT_TEXT_MAGE_X, RESULT_TEXT_SCORE_Y, GetColor(255, 255, 255), enemyInfoFont, "SCORE  %d", scoreManager.GetScoreByEnemyType(ENEMY_MAGE));
 }
 
 void Result::DrawPlayResult(ScoreManager& scoreManager) const {
