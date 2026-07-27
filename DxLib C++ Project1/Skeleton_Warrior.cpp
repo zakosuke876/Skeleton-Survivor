@@ -164,7 +164,8 @@ void Skeleton_Warrior::Update(Player& player, float deltaTime, MagicEffectManage
 			break;
 	}
 
-	if (!player.IsActive())
+	// ƒvƒŒƒCƒ„[‚ª€–S‚µ‚½ê‡
+	if (player.IsDead())
 	{
 		state = SKELETON_W_VICTORY;
 	}

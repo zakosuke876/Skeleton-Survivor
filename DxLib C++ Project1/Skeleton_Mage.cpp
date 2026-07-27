@@ -126,9 +126,22 @@ void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& 
 
 		break;
 
+	case SKELETON_M_VICTORY:
+
+		SwitchAnimation(ENEMY_ANIM_IDLE);
+
+		break;
+
 	default:
 
 		break;
+	}
+
+
+	// プレイヤーが死亡した場合
+	if (player.IsDead())
+	{
+		state = SKELETON_M_VICTORY;
 	}
 
 	// 武器を手のボーンに追従
@@ -155,19 +168,20 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 	// 攻撃中
 	if (currentAnim == ENEMY_ANIM_ATTACK)
 	{
+		// 攻撃可能状態でかつアニメーションが特定タイミングまで再生された場合魔法発射
 		if (!hasFired && animTime >= totalTime * FIRE_TIMING)
 		{
 			magicEffectManager.PlayMagic(x, y + FIRE_OFFSET, z);
 			hasFired = true;
 		}
 
-		// 攻撃終了したらクール開始
+		// 攻撃アニメーションが終了したらクール開始
 		if (animTime >= totalTime)
 		{
 			SwitchAnimation(ENEMY_ANIM_ATTACKCOOL);
 		}
 	}
-	else if (currentAnim == ENEMY_ANIM_ATTACKCOOL)
+	else if (currentAnim == ENEMY_ANIM_ATTACKCOOL) // クールタイム中の処理
 	{
 		// プレイヤーの方向を向かせる
 		float dx = player.GetPosition().x - x;
