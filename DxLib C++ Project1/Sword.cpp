@@ -33,6 +33,4 @@ void Sword::Update(int playerModelHandle) {
 void Sword::Draw() const {
 
 	MV1DrawModel(swordHandle);
-
-	DrawSphere3D(swordPos, 1.0f, 80, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
 }
