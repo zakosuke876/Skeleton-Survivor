@@ -12,7 +12,7 @@ const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 	// Skeleton_Normal専用のアニメーションテーブル
 	// EnemyAnimationのenum順と一致させる
 	{7, 0.3f, false},   // ENEMY_ANIM_SPAWN
-	{5, 0.3f, true},   // ENEMY_ANIM_IDLE
+	{5, 0.3f, true},    // ENEMY_ANIM_IDLE
 	{9, 0.3f, true},    // ENEMY_ANIM_WALK
 	{6, 0.3f, true},    // ENEMY_ANIM_DASH
 	{4, 0.3f, false},   // ENEMY_ANIM_DAMAGE
@@ -143,7 +143,7 @@ void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager
 	// プレイヤーが死亡した場合
 	if (player.IsDead())
 	{
-		// 勝利アニメーション再生
+		// 勝利アニメーション再生(煽り)
 		state = SKELETON_N_VICTORY;
 	}
 }
