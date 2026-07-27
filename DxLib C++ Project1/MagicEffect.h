@@ -115,5 +115,5 @@ private:
 	float lifeTimer = -1.0f;
 
 	// ê∂ë∂éûä‘(ïb)
-	static constexpr float LIFE_TIME = 5.0f;
+	static constexpr float LIFE_TIME = 2.0f;
 };
