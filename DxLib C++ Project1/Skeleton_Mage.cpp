@@ -168,6 +168,12 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 	// 攻撃中
 	if (currentAnim == ENEMY_ANIM_ATTACK)
 	{
+		// プレイヤーの方向を向かせる
+		float dx = player.GetPosition().x - x;
+		float dz = player.GetPosition().z - z;
+		angleY = atan2f(dx, dz) + DX_PI_F;
+		MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
+
 		// 攻撃可能状態でかつアニメーションが特定タイミングまで再生された場合魔法発射
 		if (!hasFired && animTime >= totalTime * FIRE_TIMING)
 		{
