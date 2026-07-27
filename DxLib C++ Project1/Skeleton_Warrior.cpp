@@ -328,9 +328,6 @@ void Skeleton_Warrior::UpdateDeath(float deltaTime) {
 			SwitchAnimation(SKELETON_W_REVIVE);
 
 			// JSONで指定した倍率のHPで復活させる
-			//hp = static_cast<int>(maxHp * reviveHpMultiplier);
-
-			// JSONで指定した倍率のHPで復活させる
 			hp = maxHp * 3 / 2;
 
 			// HPゲージの最大値を設定 

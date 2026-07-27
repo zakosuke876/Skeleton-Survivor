@@ -1,6 +1,4 @@
 #include "MagicEffect.h"
-
-
 #include "GameConfig.h"
 #include "Player.h"
 
