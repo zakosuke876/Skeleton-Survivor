@@ -3,6 +3,12 @@
 #include "EnemyWeapon.h"
 
 
+// SKELETON_MAGE独自のステート,ENEMY_STATE_MAXからの続き番号
+enum Skeleton_MageState {
+
+	SKELETON_M_VICTORY = ENEMY_STATE_MAX       // 勝利状態
+};
+
 // アニメーションテーブルはSkeleton_Mage.cppで定義;
 extern const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[];
 
