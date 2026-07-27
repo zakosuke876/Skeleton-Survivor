@@ -7,6 +7,8 @@ MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* ha
 
 	isActive = true;
 
+	lifeTimer = 0.0f;
+
 	// ‰æ‘œƒnƒ“ƒhƒ‹”z—ñ‚ğİ’è
 	grHandles = handles;
 
