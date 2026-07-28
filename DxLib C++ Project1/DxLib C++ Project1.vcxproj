@@ -157,7 +157,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyDataLoader.cpp" />
     <ClCompile Include="EnemyMageDataLoader.cpp" />
@@ -215,7 +214,6 @@
     <ClInclude Include="ItemDataLoader.h" />
     <ClInclude Include="ItemDropConfig.h" />
     <ClInclude Include="ItemManager.h" />
-    <ClInclude Include="ItemStatusTypes.h" />
     <ClInclude Include="JsonPath.h" />
     <ClInclude Include="MagicEffect.h" />
     <ClInclude Include="MagicEffectManager.h" />
