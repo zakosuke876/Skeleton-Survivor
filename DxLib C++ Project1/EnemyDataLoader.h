@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "Enemy.h"
 #include "EnemyStatusTypes.h"
 #include "EnemySpawnConfig.h"
@@ -15,4 +15,4 @@ public:
 
 private:
 
-};
+};*/

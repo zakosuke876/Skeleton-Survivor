@@ -1,4 +1,4 @@
-#include "EnemyDataLoader.h"
+/*#include "EnemyDataLoader.h"
 #include <fstream>
 
 #include "include/json.hpp"
@@ -133,4 +133,4 @@ bool EnemyDataLoader::LoadSpawnConfig(const char* jsonPath, EnemySpawnConfig& ou
 	}
 
 	return true;
-}
+}*/
