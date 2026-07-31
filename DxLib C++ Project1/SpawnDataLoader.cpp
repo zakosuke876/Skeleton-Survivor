@@ -1,8 +1,6 @@
 #include "SpawnDataLoader.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
-#include <fstream>
-#include "DxLib.h"
 
 #include "include/json.hpp"
 using json = nlohmann::json;
@@ -25,5 +23,5 @@ bool SpawnDataLoader::LoadData(const char* jsonPath, EnemySpawnConfig& outData) 
 		outData.growRatePerInterval = data.at("growRatePerInterval").get<float>();
 
 		return true;
-		});
+	});
 }
