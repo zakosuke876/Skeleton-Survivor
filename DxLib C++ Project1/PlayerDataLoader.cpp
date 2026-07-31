@@ -1,7 +1,6 @@
 #include "PlayerDataLoader.h"
 #include "JsonPath.h"
-#include <fstream>
-#include "DxLib.h"
+#include "JsonLoader.h"
 
 #include "include/json.hpp"
 using json = nlohmann::json;
@@ -13,25 +12,7 @@ bool PlayerDataLoader::Load(PlayerStatus& outData) {
 
 bool PlayerDataLoader::LoadData(const char* jsonPath, PlayerStatus& outData) {
 
-	std::ifstream file(jsonPath);
-
-	// ファイルが開けなかった場合失敗
-	if (!file.is_open())
-	{
-		printfDx("ファイルが開けません: %s\n", jsonPath);
-		return false;
-	}
-
-	json j;
-
-	try
-	{
-		file >> j;
-
-		// "Player"キーが存在しない場合は処理しない
-		if (!j.contains("Player")) return false;
-
-		const json& data = j["Player"];
+	return JsonLoader::Load(jsonPath, "Player", [&](const json& data) {
 
 		// 読み込んだ値を構造体へ設定
 		outData.maxHp = data.at("maxHp").get<int>();
@@ -65,12 +46,8 @@ bool PlayerDataLoader::LoadData(const char* jsonPath, PlayerStatus& outData) {
 		outData.modelPath = data.at("modelPath").get<std::string>();
 
 		outData.texturePath = data.at("texturePath").get<std::string>();
-	}
-	catch (const json::exception& e)
-	{
-		printfDx("JSON読み込みエラー: %s\n", e.what());
-		return false;
-	}
 
-	return true;
+		return true;
+
+	});
 }
