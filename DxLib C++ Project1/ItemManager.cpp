@@ -35,6 +35,11 @@ ItemManager::ItemManager() {
 		printfDx("回復アイテムデータの読み込みに失敗しました\n");
 	}
 
+	if (!RecoveryItemDataLoader::Load(recoveryItemDataTable))
+	{
+		printfDx("回復アイテムデータの読み込みに失敗しました\n");
+	}
+
 	// 経験値アイテムデータを読み込む
 	if (!ExpItemDataLoader::Load(expItemDataTable))
 	{

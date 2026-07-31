@@ -24,27 +24,10 @@ bool RecoveryItemDataLoader::Load(std::array<RecoveryItemData, ToInt(RecoveryIte
 
 bool RecoveryItemDataLoader::LoadData(const char* jsonPath, std::array<RecoveryItemData, ToInt(RecoveryItemType::ITEM_TYPE_MAX)>& outTable) {
 
-	std::ifstream file(jsonPath);
-
-	// ファイルが開けなかった場合失敗
-	if (!file.is_open())
-	{
-		printfDx("ファイルが開けません: %s\n", jsonPath);
-		return false;
-	}
-
-	json j;
-
-	try
-	{
-		// JSONファイルの内容を読み込む
-		file >> j;
-
-		// "recoveryItems"キーが存在しない場合は処理しない
-		if (!j.contains("recoveryItems")) return false;
+	return JsonLoader::Load(jsonPath, "recoveryItems", [&](const json& items) {
 
 		// recoveryItems配列を1件ずつ取り出す
-		for (const json& item : j["recoveryItems"])
+		for (const json& item : items)
 		{
 			// JSONからtype文字列を取得(enumへ変換)
 			RecoveryItemType type = StringToRecoveryType(item.at("type").get<std::string>());
@@ -62,12 +45,7 @@ bool RecoveryItemDataLoader::LoadData(const char* jsonPath, std::array<RecoveryI
 			// enum番号を使って配列へ保存
 			outTable[ToInt(type)] = data;
 		}
-	}
-	catch (const json::exception& e)
-	{
-		printfDx("JSON読み込みエラー: %s\n", e.what());
-		return false;
-	}
 
-	return true;
+		return true;
+	});
 }
