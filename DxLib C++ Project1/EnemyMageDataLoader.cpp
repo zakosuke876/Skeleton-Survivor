@@ -1,8 +1,7 @@
 #include "EnemyMageDataLoader.h"
 #include "EnemyStatusTypes.h"
 #include "JsonPath.h"
-#include <fstream>
-#include "DxLib.h"
+#include "JsonLoader.h"
 
 #include "include/json.hpp"
 using json = nlohmann::json;
@@ -15,25 +14,7 @@ bool EnemyMageDataLoader::Load(SkeletonMageStatus& outData) {
 
 bool EnemyMageDataLoader::LoadData(const char* jsonPath, SkeletonMageStatus& outData) {
 
-	std::ifstream file(jsonPath);
-
-	// ファイルが開けなかった場合失敗
-	if (!file.is_open())
-	{
-		printfDx("ファイルが開けません: %s\n", jsonPath);
-		return false;
-	}
-
-	json j;
-
-	try
-	{
-		file >> j;
-
-		// "Skeleton_Mage"キーが存在しない場合は処理しない
-		if (!j.contains("Skeleton_Mage")) return false;
-
-		const json& data = j["Skeleton_Mage"];
+	return JsonLoader::Load(jsonPath, "Skeleton_Mage", [&](const json& data) {
 
 		// 読み込んだ値を構造体へ設定
 		outData.enemyStatus.baseHp = data.at("baseHp").get<int>();
@@ -65,12 +46,7 @@ bool EnemyMageDataLoader::LoadData(const char* jsonPath, SkeletonMageStatus& out
 		outData.enemyStatus.modelPath = data.at("modelPath").get<std::string>();
 
 		outData.enemyStatus.texturePath = data.at("texturePath").get<std::string>();
-	}
-	catch (const json::exception& e)
-	{
-		printfDx("JSON読み込みエラー: %s\n", e.what());
-		return false;
-	}
 
-	return true;
+		return true;
+	});
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-
+// ‘O•ûéŒ¾
 struct SkeletonMageStatus;
 
 class EnemyMageDataLoader {
