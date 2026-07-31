@@ -1,5 +1,6 @@
 #include "RecoveryItemDataLoader.h"
 #include "JsonPath.h"
+#include "JsonLoader.h"
 #include <fstream>
 #include "DxLib.h"
 
@@ -8,9 +9,9 @@ using json = nlohmann::json;
 
 RecoveryItemType RecoveryItemDataLoader::StringToRecoveryType(const std::string& str) {
 
-	if (str == "RECOVERY_SMALL") return RecoveryItemType::RECOVERY_SMALL;
+	if (str == "RECOVERY_SMALL")  return RecoveryItemType::RECOVERY_SMALL;
 	if (str == "RECOVERY_MEDIUM") return RecoveryItemType::RECOVERY_MEDIUM;
-	if (str == "RECOVERY_LARGE") return RecoveryItemType::RECOVERY_LARGE;
+	if (str == "RECOVERY_LARGE")  return RecoveryItemType::RECOVERY_LARGE;
 
 	// ëzíËäOÇÃï∂éöóÒÇÃèÍçá
 	return RecoveryItemType::ITEM_TYPE_MAX;

@@ -8,6 +8,8 @@
 
 #include "RecoveryItemDataLoader.h"
 
+#include "ExpItemDataLoader.h"
+
 ItemManager::ItemManager() {
 
 	std::random_device rd;
@@ -34,7 +36,7 @@ ItemManager::ItemManager() {
 	}
 
 	// 経験値アイテムデータを読み込む
-	if (!ItemDataLoader::LoadExpItemData(JsonPath::EXP_ITEM_DATA, expItemDataTable))
+	if (!ExpItemDataLoader::Load(expItemDataTable))
 	{
 		printfDx("経験値アイテムデータの読み込みに失敗しました\n");
 	}
