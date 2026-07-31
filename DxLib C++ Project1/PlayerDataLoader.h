@@ -1,5 +1,7 @@
 #pragma once
-#include "PlayerStatus.h"
+
+// 前方宣言
+struct PlayerStatus;
 
 class PlayerDataLoader {
 public:
@@ -8,7 +10,5 @@ public:
 
 private:
 
-	// JSONファイルのパス
 	static bool LoadData(const char* jsonPath, PlayerStatus& outData);
-
 };

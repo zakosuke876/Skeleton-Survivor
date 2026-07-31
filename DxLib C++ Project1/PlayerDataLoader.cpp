@@ -1,4 +1,5 @@
 #include "PlayerDataLoader.h"
+#include "PlayerStatus.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
 
