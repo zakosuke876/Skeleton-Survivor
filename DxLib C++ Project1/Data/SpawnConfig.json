@@ -1,6 +1,6 @@
 {
   "SpawnConfig": {
-    "spawnInterval": 3.0,
+    "spawnInterval": 5.0,
     "maxEnemy": 15,
     "growInterval": 30.0,
     "growRatePerInterval": 0.4
