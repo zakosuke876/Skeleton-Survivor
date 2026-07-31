@@ -161,7 +161,7 @@ void EnemyManager::Update(Player& player, float deltaTime, MagicEffectManager& m
 	// ゲームプレイ時間を計測
 	playTimer += deltaTime;
 
-	// ENEMY_GROW_INTERVALごとに敵が強くなる。(ステータスがenemyGrowRate倍ずつ強化)
+	// growIntervalごとに敵が強くなる。(ステータスがenemyGrowRate倍ずつ強化)
 	enemyGrowRate = 1.0f + floor(playTimer / growInterval) * growRatePerInterval;
 
 	// 敵の更新

@@ -9,7 +9,6 @@ class Player;
 class ScoreManager;
 class ItemManager;
 class SoundManager;
-
 class MagicEffectManager;
 
 
