@@ -2,7 +2,7 @@
 #include "SoundManager.h"
 #include "ExpItem.h"
 #include "Player.h"
-#include "ItemDataLoader.h"
+#include "ItemDropConfigLoader.h"
 #include "JsonPath.h"
 #include "DxLib.h"
 
@@ -17,7 +17,7 @@ ItemManager::ItemManager() {
 
 	// JSONファイルを読み込み、アイテムドロップ関係のデータを取得する
 	ItemDropConfig dropConfig;
-	if (!ItemDataLoader::Load(dropConfig))
+	if (!ItemDropConfigLoader::Load(dropConfig))
 	{
 		printfDx("アイテムドロップデータの読み込みに失敗しました\n");
 	}

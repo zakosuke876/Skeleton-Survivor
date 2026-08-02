@@ -171,6 +171,7 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemDataLoader.cpp" />
+    <ClCompile Include="ItemDropConfigLoader.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="JsonLoader.cpp" />
     <ClCompile Include="MagicEffect.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemDataLoader.h" />
     <ClInclude Include="ItemDropConfig.h" />
+    <ClInclude Include="ItemDropConfigLoader.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="JsonLoader.h" />
     <ClInclude Include="JsonPath.h" />
