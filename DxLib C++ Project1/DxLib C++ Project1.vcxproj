@@ -170,7 +170,6 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="ItemDataLoader.cpp" />
     <ClCompile Include="ItemDropConfigLoader.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="JsonLoader.cpp" />
@@ -212,7 +211,6 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="ItemDataLoader.h" />
     <ClInclude Include="ItemDropConfig.h" />
     <ClInclude Include="ItemDropConfigLoader.h" />
     <ClInclude Include="ItemManager.h" />

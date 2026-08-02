@@ -39,7 +39,7 @@ bool ItemDropConfigLoader::LoadData(const char* jsonPath, ItemDropConfig& outDat
 			printfDx("itemTypeRate‚Ì‡Œv‚ª100%%‚É‚È‚Á‚Ä‚¢‚Ü‚¹‚ñ(‡Œv:%d)\n", total);
 			return false;
 		}
-	});
 
-	return true;
+		return true;
+	});
 }
