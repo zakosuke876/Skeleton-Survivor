@@ -30,11 +30,6 @@ ItemManager::ItemManager() {
 
 	itemTypeRate = dropConfig.itemTypeRate;
 
-	if (!ItemDataLoader::LoadRecoveryItemData(JsonPath::RECOVERY_ITEM_DATA, recoveryItemDataTable))
-	{
-		printfDx("回復アイテムデータの読み込みに失敗しました\n");
-	}
-
 	if (!RecoveryItemDataLoader::Load(recoveryItemDataTable))
 	{
 		printfDx("回復アイテムデータの読み込みに失敗しました\n");
