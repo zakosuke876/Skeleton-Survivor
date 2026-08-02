@@ -6,7 +6,7 @@ class Player;
 class MagicEffect {
 public:
 
-	MagicEffect(float startX, float startY, float startZ, const int* handles);
+	MagicEffect(float startX, float startY, float startZ, const int* handles, int damage);
 
 	void Update(const Player& player, float deltaTime);
 
@@ -20,6 +20,9 @@ public:
 
 	// 半径を取得する(当たり判定用)
 	float GetRadius() const { return MAGIC_RADIUS; }
+
+	// プレイヤーに与えるダメージを取得する
+	int GetDamage() const { return damage; }
 
 	// プレイヤーと触れた際にフラグを書き換え無効化する
 	void SetActive(bool active) { isActive = active; }
@@ -66,6 +69,13 @@ private:
 
 	// 魔法の移動速度
 	float speed = 0.4f;
+
+	// ----------------------------------------
+	// 攻撃力
+	// ----------------------------------------
+
+	// 魔法が与えるダメージ
+	int damage = 0;
 
 	// ----------------------------------------
 	// フラグ

@@ -21,7 +21,7 @@ public:
 	void CheckPlayerHit(Player& player, SoundManager& soundManager);
 
 	// w’èÀ•W‚É–‚–@‚ğ¶¬‚·‚é
-	void PlayMagic(float startX, float startY, float startZ);
+	void PlayMagic(float startX, float startY, float startZ, int damage);
 
 private:
 

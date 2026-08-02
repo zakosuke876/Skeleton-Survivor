@@ -25,13 +25,13 @@ void MagicEffectManager::Reset() {
 	effects.clear();
 }
 
-void MagicEffectManager::PlayMagic(float startX, float startY, float startZ) {
+void MagicEffectManager::PlayMagic(float startX, float startY, float startZ, int damage) {
 
 	// 上限に達している場合は生成しない
 	if (effects.size() >= MAX_EFFECT) return;
 
 	// 指定座標に魔法を生成
-	effects.emplace_back(startX, startY, startZ, grHandles);
+	effects.emplace_back(startX, startY, startZ, grHandles, damage);
 }
 
 void MagicEffectManager::CheckPlayerHit(Player& player, SoundManager& soundManager) {
@@ -57,7 +57,7 @@ void MagicEffectManager::CheckPlayerHit(Player& player, SoundManager& soundManag
 			e.SetActive(false);
 
 			// プレイヤーにダメージを与える
-			player.TakeDamage(20, soundManager);
+			player.TakeDamage(e.GetDamage(), soundManager);
 		}
 	}
 }

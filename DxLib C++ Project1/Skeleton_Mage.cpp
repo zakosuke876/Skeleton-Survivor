@@ -177,7 +177,7 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 		// 攻撃可能状態でかつアニメーションが特定タイミングまで再生された場合魔法発射
 		if (!hasFired && animTime >= totalTime * FIRE_TIMING)
 		{
-			magicEffectManager.PlayMagic(x, y + FIRE_OFFSET, z);
+			magicEffectManager.PlayMagic(x, y + FIRE_OFFSET, z, attackPower);
 			hasFired = true;
 		}
 

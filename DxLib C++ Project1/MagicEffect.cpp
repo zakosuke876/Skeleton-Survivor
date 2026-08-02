@@ -3,7 +3,7 @@
 #include "Player.h"
 
 
-MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* handles) {
+MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* handles, int damage) {
 
 	isActive = true;
 
@@ -15,6 +15,8 @@ MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* ha
 	x = startX;
 	y = startY;
 	z = startZ;
+
+	this->damage = damage;
 }
 
 void MagicEffect::Update(const Player& player, float deltaTime) {
