@@ -9,11 +9,11 @@
 #include "SoundManager.h"
 #include "Result.h"
 #include "TitleScene.h"
+#include "GameScene.h"
 #include "PauseScene.h"
 #include "RankingManager.h"
 #include "DxLib.h"
 #include <random>
-#include "GameScene.h"
 #include <memory>
 
 
