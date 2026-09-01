@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include "Item.h"
 #include <string>
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class Player;
 class SoundManager;
 
 struct ExpItemData {
-	int expValue; // “¾‚ç‚ê‚éŒoŒ±’l—Ê
-	std::string graphPath; // ‰æ‘œƒtƒ@ƒCƒ‹‚ÌƒpƒX
+	int expValue; // å¾—ã‚‰ã‚Œã‚‹çµŒé¨“å€¤é‡
+	std::string graphPath; // ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 };
 
 class ExpItem : public Item {
@@ -21,6 +21,6 @@ public:
 
 private:
 
-	// “¾‚ç‚ê‚éŒoŒ±’l
+	// å¾—ã‚‰ã‚Œã‚‹çµŒé¨“å€¤
 	int addExpValue = -1;
 };

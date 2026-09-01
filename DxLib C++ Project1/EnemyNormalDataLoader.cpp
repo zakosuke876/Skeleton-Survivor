@@ -1,4 +1,4 @@
-#include "EnemyNormalDataLoader.h"
+﻿#include "EnemyNormalDataLoader.h"
 #include "EnemyStatusTypes.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
@@ -15,7 +15,7 @@ bool EnemyNormalDataLoader::LoadData(const char* jsonPath, SkeletonNormalStatus&
 
 	return JsonLoader::Load(jsonPath, "Skeleton_Normal", [&](const json& data) {
 
-		// �ǂݍ��񂾒l���\���̂֐ݒ�
+		// 読み込んだ値を構造体へ設定
 		outData.enemyStatus.baseHp = data.at("baseHp").get<int>();
 
 		outData.enemyStatus.baseAttack = data.at("baseAttack").get<int>();

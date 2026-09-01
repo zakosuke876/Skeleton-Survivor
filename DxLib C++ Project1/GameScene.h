@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Scene.h"
 #include "MagicEffectManager.h"
 
@@ -16,7 +16,7 @@ class RankingManager;
 class MagicEffectManager;
 
 
-// ƒQ[ƒ€“à‚Ìó‘Ô
+// ã‚²ãƒ¼ãƒ å†…ã®çŠ¶æ…‹
 enum GameState {
 	GAME_PLAYING,
 	GAME_PAUSE,
@@ -40,7 +40,7 @@ public:
 
 private:
 
-	// Œ»İ‚ÌƒQ[ƒ€ó‘Ô
+	// ç¾åœ¨ã®ã‚²ãƒ¼ãƒ çŠ¶æ…‹
 	GameState state = GAME_PLAYING;
 
 	Player& player;

@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include "include/json.hpp"
 #include <functional>
 
 namespace JsonLoader {
 
-	// path‚ğŠJ‚¢‚Äƒp[ƒX‚µAj[key]‚ğæ‚èo‚µ‚Äfill(j[key])‚ğÀs‚·‚é
+	// pathã‚’é–‹ã„ã¦ãƒ‘ãƒ¼ã‚¹ã—ã€j[key]ã‚’å–ã‚Šå‡ºã—ã¦fill(j[key])ã‚’å®Ÿè¡Œã™ã‚‹
 	bool Load(const char* path, const char* key, const std::function<bool(const nlohmann::json&)>& fill);
 }

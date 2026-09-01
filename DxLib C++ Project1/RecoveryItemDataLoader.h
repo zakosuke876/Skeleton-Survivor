@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "RecoveryItem.h"
 #include <array>
 #include <string>
@@ -12,6 +12,6 @@ private:
 
 	static bool LoadData(const char* jsonPath, std::array<RecoveryItemData, ToInt(RecoveryItemType::ITEM_TYPE_MAX)>& outTable);
 
-	// Json’†‚Ì•¶š—ñ‚Æenum‚ğ‘Î‰•t‚¯‚é
+	// Jsonä¸­ã®æ–‡å­—åˆ—ã¨enumã‚’å¯¾å¿œä»˜ã‘ã‚‹
 	static RecoveryItemType StringToRecoveryType(const std::string& str);
 };

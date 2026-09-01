@@ -1,4 +1,4 @@
-#include "Skeleton_Normal.h"
+ï»¿#include "Skeleton_Normal.h"
 #include "Player.h"
 #include "EnemyNormalDataLoader.h"
 #include "GameConfig.h"
@@ -9,8 +9,8 @@
 
 const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 
-	// Skeleton_Normalê—p‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
-	// EnemyAnimation‚Ìenum‡‚Æˆê’v‚³‚¹‚é
+	// Skeleton_Normalå°‚ç”¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+	// EnemyAnimationã®enumé †ã¨ä¸€è‡´ã•ã›ã‚‹
 	{7, 0.3f, false},   // ENEMY_ANIM_SPAWN
 	{5, 0.3f, true},    // ENEMY_ANIM_IDLE
 	{9, 0.3f, true},    // ENEMY_ANIM_WALK
@@ -21,8 +21,8 @@ const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 	{2, 0.25f, false},  // ENEMY_ANIM_DEATH
 	{3, 0.3f, false},   // ENEMY_ANIM_DEATHPOSE
 
-	// ƒXƒPƒ‹ƒgƒ“ƒm[ƒ}ƒ‹“Æ©‚ÌƒAƒjƒ[ƒVƒ‡ƒ“
-	{8, 0.2f, true},    // Ÿ—˜ƒAƒjƒ[ƒVƒ‡ƒ“
+	// ã‚¹ã‚±ãƒ«ãƒˆãƒ³ãƒãƒ¼ãƒãƒ«ç‹¬è‡ªã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+	{8, 0.2f, true},    // å‹åˆ©ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 };
 
 
@@ -34,8 +34,8 @@ Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int s
 
 	const EnemyStatus& data = noramalData.enemyStatus;
 
-	// JSONƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğ‘ã“ü
-	// Šî’êƒNƒ‰ƒX‚ÌDrawUI()‚ÅHPƒQ[ƒW•`‰æ‚Ég—p
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’ä»£å…¥
+	// åŸºåº•ã‚¯ãƒ©ã‚¹ã®DrawUI()ã§HPã‚²ãƒ¼ã‚¸æç”»ã«ä½¿ç”¨
 	maxHp = static_cast<int>(data.baseHp * growRate);
 
 	hp = maxHp;
@@ -62,27 +62,27 @@ Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int s
 
 	score = data.score;
 
-	// í—Ş‚ğİ’è
+	// ç¨®é¡ã‚’è¨­å®š
 	enemyType = ENEMY_NORMAL;
 
-	// Œ³ƒ‚ƒfƒ‹‚©‚ç•¡»
+	// å…ƒãƒ¢ãƒ‡ãƒ«ã‹ã‚‰è¤‡è£½
 	modelHandle = MV1DuplicateModel(skeletonNModel);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğ“K—p
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’é©ç”¨
 	MV1SetTextureGraphHandle(modelHandle, 0, TexHandle, FALSE);
 
-	// ©•ªê—p‚Ìƒe[ƒuƒ‹‚ğƒZƒbƒg
+	// è‡ªåˆ†å°‚ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	animTable = SKELETON_NORMAL_ANIM_TABLE;
 
-	// Å‰‚ÍƒXƒ|[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+	// æœ€åˆã¯ã‚¹ãƒãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
 	SwitchAnimation(ENEMY_SPAWN);
 	state = ENEMY_SPAWN;
 
-	// ƒ‚ƒfƒ‹‚ğŠg‘å
+	// ãƒ¢ãƒ‡ãƒ«ã‚’æ‹¡å¤§
 	scale = data.scale;
 	MV1SetScale(modelHandle, VGet(scale, scale, scale));
 
-	// ƒXƒ|[ƒ“À•W‚ğİ’è
+	// ã‚¹ãƒãƒ¼ãƒ³åº§æ¨™ã‚’è¨­å®š
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
@@ -130,7 +130,7 @@ void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager
 
 		case SKELETON_N_VICTORY:
 
-			// Ÿ—˜ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+			// å‹åˆ©ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
 			SwitchAnimation(SKELETON_N_ANIM_VICTORY_POSE);
 
 			break;
@@ -140,10 +140,10 @@ void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager
 			break;
 	}
 
-	// ƒvƒŒƒCƒ„[‚ª€–S‚µ‚½ê‡
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­»äº¡ã—ãŸå ´åˆ
 	if (player.IsDead())
 	{
-		// Ÿ—˜ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶(ø‚è)
+		// å‹åˆ©ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ(ç…½ã‚Š)
 		state = SKELETON_N_VICTORY;
 	}
 }
@@ -152,7 +152,7 @@ void Skeleton_Normal::UpdateSpawn() {
 
 	SwitchAnimation(ENEMY_ANIM_SPAWN);
 
-	// ‘Ä¶ŠÔ‚ğ’´‚¦‚½ê‡
+	// ç·å†ç”Ÿæ™‚é–“ã‚’è¶…ãˆãŸå ´åˆ
 	if (animTime >= totalTime)
 	{
 		state = ENEMY_PATROL;
@@ -162,31 +162,31 @@ void Skeleton_Normal::UpdateSpawn() {
 
 void Skeleton_Normal::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
-	// UŒ‚’†
+	// æ”»æ’ƒä¸­
 	if (currentAnim == ENEMY_ANIM_ATTACK)
 	{
-		// ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶ŠÔ‚ÌŠ„‡‚ÅUŒ‚”»’è‚ğŠg‘åk¬‚·‚é
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿæ™‚é–“ã®å‰²åˆã§æ”»æ’ƒåˆ¤å®šã‚’æ‹¡å¤§ç¸®å°ã™ã‚‹
 		float t = animTime / totalTime;
 
-		// ƒTƒCƒ“”g‚É•ÏŠ·
+		// ã‚µã‚¤ãƒ³æ³¢ã«å¤‰æ›
 		float wave = sinf(t * DX_PI_F);
 
-		// Å‘å‚Å15L‚Ñ‚é
+		// æœ€å¤§ã§15ä¼¸ã³ã‚‹
 		float stepOffset = wave * 15.0f;
 
-		// \‘¢‘Ì‚É‘ã“ü
+		// æ§‹é€ ä½“ã«ä»£å…¥
 		hitBox.isAttackActive = true;
 		hitBox.x = x - sinf(angleY) * stepOffset;
 		hitBox.z = z - cosf(angleY) * stepOffset;
 		hitBox.radius = attackRadius;
 
-		// UŒ‚I—¹‚µ‚½‚çƒN[ƒ‹ŠJn
+		// æ”»æ’ƒçµ‚äº†ã—ãŸã‚‰ã‚¯ãƒ¼ãƒ«é–‹å§‹
 		if (animTime >= totalTime)
 		{
-			// UŒ‚”»’è‚ğ–³Œø
+			// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 			hitBox.isAttackActive = false;
 
 			SwitchAnimation(ENEMY_ANIM_ATTACKCOOL);
@@ -205,14 +205,14 @@ void Skeleton_Normal::UpdateAttack(Player& player, float deltaTime, MagicEffectM
 		{
 			isAttackCoolTimer = 0.0f;
 
-			// ƒvƒŒƒCƒ„[‚ªUŒ‚”ÍˆÍ“à‚É‚¢‚éê‡
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ”»æ’ƒç¯„å›²å†…ã«ã„ã‚‹å ´åˆ
 			if (IsPlayerInAttackRange(player))
 			{
 				SwitchAnimation(ENEMY_ANIM_ATTACK);
 				state = ENEMY_ATTACK;
 				animTime = 0.0f;
 			}
-			else // UŒ‚”ÍˆÍŠO‚É‚¢‚éê‡
+			else // æ”»æ’ƒç¯„å›²å¤–ã«ã„ã‚‹å ´åˆ
 			{
 				SwitchAnimation(ENEMY_ANIM_DASH);
 				state = ENEMY_CHASE;
@@ -223,7 +223,7 @@ void Skeleton_Normal::UpdateAttack(Player& player, float deltaTime, MagicEffectM
 
 void Skeleton_Normal::UpdateDamage() {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
 	SwitchAnimation(ENEMY_ANIM_DAMAGE);
@@ -236,10 +236,10 @@ void Skeleton_Normal::UpdateDamage() {
 
 void Skeleton_Normal::UpdateDeath(float deltaTime) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
-	// €–SƒAƒjƒ[ƒVƒ‡ƒ“Œã‚É“|‚ê‚éƒAƒjƒ[ƒVƒ‡ƒ“‚É‘JˆÚ
+	// æ­»äº¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¾Œã«å€’ã‚Œã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«é·ç§»
 	if (animTime >= totalTime)
 	{
 		SwitchAnimation(ENEMY_ANIM_DEATHPOSE);
@@ -247,7 +247,7 @@ void Skeleton_Normal::UpdateDeath(float deltaTime) {
 
 	deathTimer += deltaTime;
 
-	// ˆê’èŠÔŒo‰ßŒã‚É”ñƒAƒNƒeƒBƒu‰»
+	// ä¸€å®šæ™‚é–“çµŒéå¾Œã«éã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
 	if (deathTimer >= hideTime)
 	{
 		isActive = false;

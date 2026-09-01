@@ -1,4 +1,4 @@
-#include "RecoveryItem.h"
+ï»¿#include "RecoveryItem.h"
 #include "Player.h"
 #include "SoundManager.h"
 #include "DxLib.h"
@@ -9,7 +9,7 @@ RecoveryItem::RecoveryItem(float posX, float posY, float posZ, int recoveryValue
 	y = posY;
 	z = posZ;
 
-	// ‰æ‘œƒnƒ“ƒhƒ‹‚ğİ’è
+	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®š
 	grHandle = texHandle;
 
 	recoveryPower = recoveryValue;
@@ -22,9 +22,9 @@ void RecoveryItem::DrawModel() const {
 
 void RecoveryItem::OnPickUp(Player& player, const SoundManager& soundManager) {
 
-	// HP‚ğ‰ñ•œ‚³‚¹‚é
+	// HPã‚’å›å¾©ã•ã›ã‚‹
 	player.Recovery(recoveryPower);
 
-	// Œø‰Ê‰¹Ä¶‚ğˆË—Š(ˆø”‚Åƒ^ƒCƒv‚ğ“n‚·)
+	// åŠ¹æœéŸ³å†ç”Ÿã‚’ä¾é ¼(å¼•æ•°ã§ã‚¿ã‚¤ãƒ—ã‚’æ¸¡ã™)
 	soundManager.PlaySe(RECOVERY);
 }

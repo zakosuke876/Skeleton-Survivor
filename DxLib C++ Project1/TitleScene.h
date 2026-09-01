@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "GameConfig.h"
 #include "FontManager.h"
 #include "RankingManager.h"
@@ -8,7 +8,7 @@
 #include "DxLib.h"
 #include <algorithm>
 
-// ƒ{ƒ^ƒ“‘I‘ğ‚ÌŠÇ—
+// ãƒœã‚¿ãƒ³é¸æŠã®ç®¡ç†
 enum ButtonIndex {
 	PLAY,
 	MANUAL,
@@ -16,7 +16,7 @@ enum ButtonIndex {
 	QUIT,
 };
 
-// ƒ^ƒCƒgƒ‹ó‘Ô‚ÌŠÇ—
+// ã‚¿ã‚¤ãƒˆãƒ«çŠ¶æ…‹ã®ç®¡ç†
 enum TitleState {
 	TITLE,
 	MANUAL_MENU,
@@ -28,7 +28,7 @@ public:
 
 	TitleScene(FontManager& fontManager, RankingManager& rankingManager, SoundManager& soundManager, Result& result);
 	~TitleScene();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 
 	void OnEnter() override;
 	void OnExit()  override;
@@ -59,26 +59,26 @@ private:
 	void RankingUI(const FontManager& fontManager, const RankingManager& rankingManager) const;
 	void UpdateRanking();
 
-	// ƒ^ƒCƒgƒ‹‚É•\¦‚·‚é“G‚Ì‰æ‘œƒnƒ“ƒhƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«ã«è¡¨ç¤ºã™ã‚‹æ•µã®ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int skeletonNGrHandle = -1;
 	int skeletonWGrHandle = -1;
 
-	// ƒ^ƒCƒgƒ‹ƒ{ƒ^ƒ“•`‰æÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒœã‚¿ãƒ³æç”»åº§æ¨™
 	static constexpr int TITLE_BUTTON_START_X = 530;
 	static constexpr int TITLE_BUTTON_START_Y = 300;
 	static constexpr int TITLE_BUTTON_START_WIDTH = 250;
 	static constexpr int TITLE_BUTTON_START_HEIGHT = 70;
 
-	// Šeƒ{ƒ^ƒ““¯m‚ÌŠÔŠuEŒ„ŠÔ
+	// å„ãƒœã‚¿ãƒ³åŒå£«ã®é–“éš”ãƒ»éš™é–“
 	static constexpr int TITLE_BUTTON_SPACING_Y = 100;
 
-	// ”z’u‚·‚éƒ{ƒ^ƒ“‚Ì”
+	// é…ç½®ã™ã‚‹ãƒœã‚¿ãƒ³ã®æ•°
 	static constexpr int TITLE_BUTTON_MAX = 4;
 
-	// ƒ{ƒ^ƒ“‚É•\¦‚·‚é•¶š—ñ
-	static constexpr const char* titleButtonTexts[TITLE_BUTTON_MAX] = { "ƒQ[ƒ€ŠJn", "‘€ìà–¾", "ƒ‰ƒ“ƒLƒ“ƒO", "ƒQ[ƒ€I—¹" };
+	// ãƒœã‚¿ãƒ³ã«è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
+	static constexpr const char* titleButtonTexts[TITLE_BUTTON_MAX] = { "ã‚²ãƒ¼ãƒ é–‹å§‹", "æ“ä½œèª¬æ˜", "ãƒ©ãƒ³ã‚­ãƒ³ã‚°", "ã‚²ãƒ¼ãƒ çµ‚äº†" };
 
-	// ƒ}ƒjƒ…ƒAƒ‹ƒ{ƒ^ƒ“•`‰æÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãƒœã‚¿ãƒ³æç”»åº§æ¨™
 	static constexpr int MANUAL_BUTTON_START_X = 70;
 	static constexpr int MANUAL_BUTTON_START_Y = 650;
 
@@ -88,61 +88,61 @@ private:
 
 	static constexpr int BUTTON_TEXT_FONT_SIZE = 16;
 
-	// ‚Ç‚Ìƒ{ƒ^ƒ“‚ğ‘I‚ñ‚Å‚¢‚é‚©•Û‚·‚é
+	// ã©ã®ãƒœã‚¿ãƒ³ã‚’é¸ã‚“ã§ã„ã‚‹ã‹ä¿æŒã™ã‚‹
 	int currentButtonIndex = 0;
 
 	TitleState titleState = TITLE;
 
-	// ƒ^ƒCƒgƒ‹ƒƒS‚ÌƒeƒLƒXƒgÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã®ãƒ†ã‚­ã‚¹ãƒˆåº§æ¨™
 	static constexpr int TITLE_LOGO_TEXT_X = 400;
 	static constexpr int TITLE_LOGO_TEXT_Y = 50;
 
-	// ƒ^ƒCƒgƒ‹‰æ–ÊƒLƒƒƒ‰ƒNƒ^[(¶)‚ÌÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼(å·¦)ã®åº§æ¨™
 	static constexpr int TITLE_SKELETON_W_X = 0;
 	static constexpr int TITLE_SKELETON_W_Y = 50;
 
-	// ƒ^ƒCƒgƒ‹‰æ–ÊƒLƒƒƒ‰ƒNƒ^[(‰E)‚ÌÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼(å³)ã®åº§æ¨™
 	static constexpr int TITLE_SKELETON_N_X = 850;
 	static constexpr int TITLE_SKELETON_N_Y = 100;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ‘œ‚ÌÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»åƒã®åº§æ¨™
 	static constexpr int MANUAL_IMAGE_X = 0;
 	static constexpr int MANUAL_IMAGE_Y = 0;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–Êƒy[ƒW‘—‚èƒeƒLƒXƒg‚ÌYÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢ãƒšãƒ¼ã‚¸é€ã‚Šãƒ†ã‚­ã‚¹ãƒˆã®Yåº§æ¨™
 	static constexpr int MANUAL_NAV_TEXT_Y = 700;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–Ê[Ÿ‚Ìƒy[ƒW]ƒeƒLƒXƒg‚ÌXÀ•W 
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢[æ¬¡ã®ãƒšãƒ¼ã‚¸]ãƒ†ã‚­ã‚¹ãƒˆã®Xåº§æ¨™ 
 	static constexpr int MANUAL_NEXT_PAGE_TEXT_X = 700;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–Ê[‘O‚Ìƒy[ƒW]ƒeƒLƒXƒg‚ÌXÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢[å‰ã®ãƒšãƒ¼ã‚¸]ãƒ†ã‚­ã‚¹ãƒˆã®Xåº§æ¨™
 	static constexpr int MANUAL_PREV_PAGE_TEXT_X = 430;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–ÊFu•Â‚¶‚évƒeƒLƒXƒg‚ÌÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢ï¼šã€Œé–‰ã˜ã‚‹ã€ãƒ†ã‚­ã‚¹ãƒˆã®åº§æ¨™
 	static constexpr int MANUAL_CLOSE_TEXT_X = 580;
 	static constexpr int MANUAL_CLOSE_TEXT_Y = 700;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO‰æ–ÊFu•Â‚¶‚évƒeƒLƒXƒg‚ÌÀ•W
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ï¼šã€Œé–‰ã˜ã‚‹ã€ãƒ†ã‚­ã‚¹ãƒˆã®åº§æ¨™
 	static constexpr int RANKING_CLOSE_TEXT_X = 600;
 	static constexpr int RANKING_CLOSE_TEXT_Y = 680;
 
-	// ƒL[‚Ì“ü—Íó‘Ôƒ`ƒFƒbƒN
+	// ã‚­ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	char prevKey[256]{};
 	char currentKey[256]{};
 
-	// ƒ^ƒCƒgƒ‹ƒ{ƒ^ƒ“‚Ì‘I‘ğŠÇ—
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒœã‚¿ãƒ³ã®é¸æŠç®¡ç†
 	int manualGrHandle = -1;
 
-	// ‘€ìà–¾‚Ìƒy[ƒW”
+	// æ“ä½œèª¬æ˜ã®ãƒšãƒ¼ã‚¸æ•°
 	static constexpr int MANUAL_PAGE_MAX = 2;
 
-	// ‰æ‘œ‚ğ•Û‚·‚é”z—ñ
+	// ç”»åƒã‚’ä¿æŒã™ã‚‹é…åˆ—
 	int manualGrHandles[MANUAL_PAGE_MAX]{ -1, -1 };
 
-	// ‘€ìà–¾ƒpƒlƒ‹‚Ìƒy[ƒWŠÇ—
+	// æ“ä½œèª¬æ˜ãƒ‘ãƒãƒ«ã®ãƒšãƒ¼ã‚¸ç®¡ç†
 	int manualPanelIndex = -1;
 
-	// ƒQ[ƒ€‚ğI—¹‚³‚¹‚é‚©‚Ç‚¤‚©
+	// ã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ã‚‹ã‹ã©ã†ã‹
 	bool isQuit = false;
 };
 
@@ -156,12 +156,12 @@ private:
 
 /*#pragma once
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class FontManager;
 class RankingManager;
 class Result;
 
-// ƒ{ƒ^ƒ“‘I‘ğ‚ÌŠÇ—
+// ãƒœã‚¿ãƒ³é¸æŠã®ç®¡ç†
 enum ButtonIndex{
 	PLAY,
 	MANUAL,
@@ -180,7 +180,7 @@ public:
 
 	TitleScene();
 	~TitleScene();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 	void Update();
 	void Draw(const FontManager& fontManager, Result& result, const RankingManager& rankingManager) const;
 
@@ -203,26 +203,26 @@ private:
 	void RankingUI(const FontManager& fontManager, const RankingManager& rankingManager) const;
 	void UpdateRanking();
 
-	// ƒ^ƒCƒgƒ‹‚É•\¦‚·‚é“G‚Ì‰æ‘œƒnƒ“ƒhƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«ã«è¡¨ç¤ºã™ã‚‹æ•µã®ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int skeletonNGrHandle = -1;
 	int skeletonWGrHandle = -1;
 
-	// ƒ^ƒCƒgƒ‹ƒ{ƒ^ƒ“•`‰æÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒœã‚¿ãƒ³æç”»åº§æ¨™
 	static constexpr int TITLE_BUTTON_START_X = 530;
 	static constexpr int TITLE_BUTTON_START_Y = 300;
 	static constexpr int TITLE_BUTTON_START_WIDTH = 250;
 	static constexpr int TITLE_BUTTON_START_HEIGHT = 70;
 
-	// Šeƒ{ƒ^ƒ““¯m‚ÌŠÔŠuEŒ„ŠÔ
+	// å„ãƒœã‚¿ãƒ³åŒå£«ã®é–“éš”ãƒ»éš™é–“
 	static constexpr int TITLE_BUTTON_SPACING_Y = 100;
 
-	// ”z’u‚·‚éƒ{ƒ^ƒ“‚Ì”
+	// é…ç½®ã™ã‚‹ãƒœã‚¿ãƒ³ã®æ•°
 	static constexpr int TITLE_BUTTON_MAX = 4;
 
-	// ƒ{ƒ^ƒ“‚É•\¦‚·‚é•¶š—ñ
-	static constexpr const char* titleButtonTexts[TITLE_BUTTON_MAX] = { "ƒQ[ƒ€ŠJn", "‘€ìà–¾", "ƒ‰ƒ“ƒLƒ“ƒO", "ƒQ[ƒ€I—¹" };
+	// ãƒœã‚¿ãƒ³ã«è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
+	static constexpr const char* titleButtonTexts[TITLE_BUTTON_MAX] = { "ã‚²ãƒ¼ãƒ é–‹å§‹", "æ“ä½œèª¬æ˜", "ãƒ©ãƒ³ã‚­ãƒ³ã‚°", "ã‚²ãƒ¼ãƒ çµ‚äº†" };
 
-	// ƒ}ƒjƒ…ƒAƒ‹ƒ{ƒ^ƒ“•`‰æÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãƒœã‚¿ãƒ³æç”»åº§æ¨™
 	static constexpr int MANUAL_BUTTON_START_X = 70;
 	static constexpr int MANUAL_BUTTON_START_Y = 650;
 
@@ -232,63 +232,63 @@ private:
 
 	static constexpr int BUTTON_TEXT_FONT_SIZE = 16;
 	
-	// ‚Ç‚Ìƒ{ƒ^ƒ“‚ğ‘I‚ñ‚Å‚¢‚é‚©•Û‚·‚é
+	// ã©ã®ãƒœã‚¿ãƒ³ã‚’é¸ã‚“ã§ã„ã‚‹ã‹ä¿æŒã™ã‚‹
 	int currentButtonIndex = 0;
 
 	TitleState titleState = TITLE;
 
-	// ƒ^ƒCƒgƒ‹ƒƒS‚ÌƒeƒLƒXƒgÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã®ãƒ†ã‚­ã‚¹ãƒˆåº§æ¨™
 	static constexpr int TITLE_LOGO_TEXT_X = 400;
 	static constexpr int TITLE_LOGO_TEXT_Y = 50;
 
-	// ƒ^ƒCƒgƒ‹‰æ–ÊƒLƒƒƒ‰ƒNƒ^[(¶)‚ÌÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼(å·¦)ã®åº§æ¨™
 	static constexpr int TITLE_SKELETON_W_X = 0;
 	static constexpr int TITLE_SKELETON_W_Y = 50;
 
-	// ƒ^ƒCƒgƒ‹‰æ–ÊƒLƒƒƒ‰ƒNƒ^[(‰E)‚ÌÀ•W
+	// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼(å³)ã®åº§æ¨™
 	static constexpr int TITLE_SKELETON_N_X = 850;
 	static constexpr int TITLE_SKELETON_N_Y = 100;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ‘œ‚ÌÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»åƒã®åº§æ¨™
 	static constexpr int MANUAL_IMAGE_X = 0;
 	static constexpr int MANUAL_IMAGE_Y = 0;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–Êƒy[ƒW‘—‚èƒeƒLƒXƒg‚ÌYÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢ãƒšãƒ¼ã‚¸é€ã‚Šãƒ†ã‚­ã‚¹ãƒˆã®Yåº§æ¨™
 	static constexpr int MANUAL_NAV_TEXT_Y = 700;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–Ê[Ÿ‚Ìƒy[ƒW]ƒeƒLƒXƒg‚ÌXÀ•W 
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢[æ¬¡ã®ãƒšãƒ¼ã‚¸]ãƒ†ã‚­ã‚¹ãƒˆã®Xåº§æ¨™ 
 	static constexpr int MANUAL_NEXT_PAGE_TEXT_X = 700;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–Ê[‘O‚Ìƒy[ƒW]ƒeƒLƒXƒg‚ÌXÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢[å‰ã®ãƒšãƒ¼ã‚¸]ãƒ†ã‚­ã‚¹ãƒˆã®Xåº§æ¨™
 	static constexpr int MANUAL_PREV_PAGE_TEXT_X = 430;
 
-	// ƒ}ƒjƒ…ƒAƒ‹‰æ–ÊFu•Â‚¶‚évƒeƒLƒXƒg‚ÌÀ•W
+	// ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ç”»é¢ï¼šã€Œé–‰ã˜ã‚‹ã€ãƒ†ã‚­ã‚¹ãƒˆã®åº§æ¨™
 	static constexpr int MANUAL_CLOSE_TEXT_X = 580;
 	static constexpr int MANUAL_CLOSE_TEXT_Y = 700;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO‰æ–ÊFu•Â‚¶‚évƒeƒLƒXƒg‚ÌÀ•W
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ï¼šã€Œé–‰ã˜ã‚‹ã€ãƒ†ã‚­ã‚¹ãƒˆã®åº§æ¨™
 	static constexpr int RANKING_CLOSE_TEXT_X = 600;
 	static constexpr int RANKING_CLOSE_TEXT_Y = 680;
 
-	// ƒL[‚Ì“ü—Íó‘Ôƒ`ƒFƒbƒN
+	// ã‚­ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	char prevKey[256]{};
 	char currentKey[256]{};
 
-	// ƒ^ƒCƒgƒ‹ƒ{ƒ^ƒ“‚Ì‘I‘ğŠÇ—
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒœã‚¿ãƒ³ã®é¸æŠç®¡ç†
 	int manualGrHandle = -1;
 
-	// ‘€ìà–¾‚Ìƒy[ƒW”
+	// æ“ä½œèª¬æ˜ã®ãƒšãƒ¼ã‚¸æ•°
 	static constexpr int MANUAL_PAGE_MAX = 2;
 
-	// ‰æ‘œ‚ğ•Û‚·‚é”z—ñ
+	// ç”»åƒã‚’ä¿æŒã™ã‚‹é…åˆ—
 	int manualGrHandles[MANUAL_PAGE_MAX]{ -1, -1 };
 
-	// ‘€ìà–¾ƒpƒlƒ‹‚Ìƒy[ƒWŠÇ—
+	// æ“ä½œèª¬æ˜ãƒ‘ãƒãƒ«ã®ãƒšãƒ¼ã‚¸ç®¡ç†
 	int manualPanelIndex = -1;
 
-	// ƒQ[ƒ€‚ğƒXƒ^[ƒg‚³‚¹‚é‚©‚Ç‚¤‚©
+	// ã‚²ãƒ¼ãƒ ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã•ã›ã‚‹ã‹ã©ã†ã‹
 	bool isStart = false;
 
-	// ƒQ[ƒ€‚ğI—¹‚³‚¹‚é‚©‚Ç‚¤‚©
+	// ã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ã‚‹ã‹ã©ã†ã‹
 	bool isQuit = false;
 };*/

@@ -1,4 +1,4 @@
-#include "PauseScene.h"
+ï»¿#include "PauseScene.h"
 #include "FontManager.h"
 #include "DxLib.h"
 
@@ -14,10 +14,10 @@ void PauseScene::Reset() {
 
 void PauseScene::Update() {
 
-	// ‘OƒtƒŒ[ƒ€‚Ìó‘Ô‚ğƒRƒs[
+	// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®çŠ¶æ…‹ã‚’ã‚³ãƒ”ãƒ¼
 	memcpy(prevKey, currentKey, sizeof(currentKey));
 
-	// ¡ƒtƒŒ[ƒ€‚Ìó‘Ô‚Åã‘‚«
+	// ä»Šãƒ•ãƒ¬ãƒ¼ãƒ ã®çŠ¶æ…‹ã§ä¸Šæ›¸ã
 	GetHitKeyStateAll(currentKey);
 
 	if (currentKey[KEY_INPUT_P] && !prevKey[KEY_INPUT_P])
@@ -30,19 +30,19 @@ void PauseScene::Draw(const FontManager& fontManager) const {
 
 	if (!isPause) return;
 
-	// Pauseƒpƒlƒ‹ƒwƒbƒ_[
+	// Pauseãƒ‘ãƒãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼
 	DrawBox(PAUSE_HEADER_BOX_LEFT, PAUSE_HEADER_BOX_TOP, PAUSE_HEADER_BOX_RIGHT, PAUSE_HEADER_BOX_BOTTOM, GetColor(30, 30, 30), TRUE);
-	DrawBox(PAUSE_HEADER_BOX_LEFT, PAUSE_HEADER_BOX_TOP, PAUSE_HEADER_BOX_RIGHT, PAUSE_HEADER_BOX_BOTTOM, GetColor(0, 0, 255), FALSE); // ˜gü
-	DrawStringToHandle(PAUSE_HEADER_TEXT_X, PAUSE_HEADER_TEXT_Y, "ƒ|[ƒY’†c", GetColor(255, 0, 0), fontManager.GetPauseFont());
+	DrawBox(PAUSE_HEADER_BOX_LEFT, PAUSE_HEADER_BOX_TOP, PAUSE_HEADER_BOX_RIGHT, PAUSE_HEADER_BOX_BOTTOM, GetColor(0, 0, 255), FALSE); // æ ç·š
+	DrawStringToHandle(PAUSE_HEADER_TEXT_X, PAUSE_HEADER_TEXT_Y, "ãƒãƒ¼ã‚ºä¸­â€¦", GetColor(255, 0, 0), fontManager.GetPauseFont());
 
-	// î•ñƒpƒlƒ‹(”¼“§–¾)
+	// æƒ…å ±ãƒ‘ãƒãƒ«(åŠé€æ˜)
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
 	DrawBox(PAUSE_INFO_BOX_LEFT, PAUSE_INFO_BOX_TOP, PAUSE_INFO_BOX_RIGHT, PAUSE_INFO_BOX_BOTTOM, GetColor(30, 30, 30), TRUE);
 
-	DrawStringToHandle(480, PAUSE_CLOSE_TEXT_Y, "PƒL[ : ƒQ[ƒ€‚É–ß‚é", GetColor(255, 0, 0), fontManager.GetPauseFont());
-	DrawStringToHandle(480, PAUSE_TITLE_BACK_TEXT_Y, "RƒL[ : ƒ^ƒCƒgƒ‹‚É–ß‚é", GetColor(255, 0, 0), fontManager.GetPauseFont());
+	DrawStringToHandle(480, PAUSE_CLOSE_TEXT_Y, "Pã‚­ãƒ¼ : ã‚²ãƒ¼ãƒ ã«æˆ»ã‚‹", GetColor(255, 0, 0), fontManager.GetPauseFont());
+	DrawStringToHandle(480, PAUSE_TITLE_BACK_TEXT_Y, "Rã‚­ãƒ¼ : ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹", GetColor(255, 0, 0), fontManager.GetPauseFont());
 
-	// ƒuƒŒƒ“ƒh‰ğœ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰è§£é™¤
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	DrawBox(PAUSE_INFO_BOX_LEFT, PAUSE_INFO_BOX_TOP, PAUSE_INFO_BOX_RIGHT, PAUSE_INFO_BOX_BOTTOM, GetColor(0, 0, 255), FALSE); // î•ñƒpƒlƒ‹‚Ì˜gü
+	DrawBox(PAUSE_INFO_BOX_LEFT, PAUSE_INFO_BOX_TOP, PAUSE_INFO_BOX_RIGHT, PAUSE_INFO_BOX_BOTTOM, GetColor(0, 0, 255), FALSE); // æƒ…å ±ãƒ‘ãƒãƒ«ã®æ ç·š
 }

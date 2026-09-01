@@ -1,17 +1,17 @@
-#include "MagicEffectManager.h"
+ï»¿#include "MagicEffectManager.h"
 #include "Player.h"
 #include "DxLib.h"
 #include <algorithm>
 
 MagicEffectManager::MagicEffectManager() {
 
-	// ƒXƒvƒ‰ƒCƒgƒV[ƒg‚ğ•ªŠ„‚µ‚Ä“Ç‚İ‚Ş
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ãƒ¼ãƒˆã‚’åˆ†å‰²ã—ã¦èª­ã¿è¾¼ã‚€
 	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
 }
 
 MagicEffectManager::~MagicEffectManager() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	for (int i = 0; i < MagicEffect::EFFECT_ALL; i++)
 	{
 		DeleteGraph(grHandles[i]);
@@ -27,10 +27,10 @@ void MagicEffectManager::Reset() {
 
 void MagicEffectManager::PlayMagic(float startX, float startY, float startZ, int damage) {
 
-	// ãŒÀ‚É’B‚µ‚Ä‚¢‚éê‡‚Í¶¬‚µ‚È‚¢
+	// ä¸Šé™ã«é”ã—ã¦ã„ã‚‹å ´åˆã¯ç”Ÿæˆã—ãªã„
 	if (effects.size() >= MAX_EFFECT) return;
 
-	// w’èÀ•W‚É–‚–@‚ğ¶¬
+	// æŒ‡å®šåº§æ¨™ã«é­”æ³•ã‚’ç”Ÿæˆ
 	effects.emplace_back(startX, startY, startZ, grHandles, damage);
 }
 
@@ -38,25 +38,25 @@ void MagicEffectManager::CheckPlayerHit(Player& player, SoundManager& soundManag
 
 	for (auto& e : effects)
 	{
-		// ”ñƒAƒNƒeƒBƒu‚È–‚–@‚Íˆ—‚µ‚È‚¢
+		// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªé­”æ³•ã¯å‡¦ç†ã—ãªã„
 		if (!e.IsActive()) continue;
 
-		// –‚–@‚ÆƒvƒŒƒCƒ„[‚Ì·•ª‚ğ‹‚ß‚é
+		// é­”æ³•ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å·®åˆ†ã‚’æ±‚ã‚ã‚‹
 		float dx = player.GetPosition().x - e.GetPos().x;
 		float dz = player.GetPosition().z - e.GetPos().z;
 
-		// ‹——£‚Ì2æ‚ğ‹‚ß‚é
+		// è·é›¢ã®2ä¹—ã‚’æ±‚ã‚ã‚‹
 		float distanceSq = dx * dx + dz * dz;
 
-		// ‰~‚Ç‚¤‚µ‚Ì“–‚½‚è”»’èŒvZ‚Ì‚½‚ß‚É”¼Œa‚Ì‡Œv‚ğ‹‚ß‚é
+		// å††ã©ã†ã—ã®å½“ãŸã‚Šåˆ¤å®šè¨ˆç®—ã®ãŸã‚ã«åŠå¾„ã®åˆè¨ˆã‚’æ±‚ã‚ã‚‹
 		float totalRadius = player.GetBodyRadius() + e.GetRadius();
 
 		if (distanceSq < totalRadius * totalRadius)
 		{
-			// “–‚½‚Á‚½–‚–@‚ğ–³Œø‰»
+			// å½“ãŸã£ãŸé­”æ³•ã‚’ç„¡åŠ¹åŒ–
 			e.SetActive(false);
 
-			// ƒvƒŒƒCƒ„[‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹
 			player.TakeDamage(e.GetDamage(), soundManager);
 		}
 	}
@@ -64,13 +64,13 @@ void MagicEffectManager::CheckPlayerHit(Player& player, SoundManager& soundManag
 
 void MagicEffectManager::Update(const Player& player, float deltaTime) {
 
-	// –‚–@‚ÌXV
+	// é­”æ³•ã®æ›´æ–°
 	for (auto& e : effects)
 	{
 		e.Update(player, deltaTime);
 	}
 
-	// ”ñƒAƒNƒeƒBƒu‚È–‚–@‚Ìíœ
+	// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªé­”æ³•ã®å‰Šé™¤
 	effects.erase(
 		std::remove_if(effects.begin(), effects.end(),
 			[](const MagicEffect& e) { return !e.IsActive(); }),

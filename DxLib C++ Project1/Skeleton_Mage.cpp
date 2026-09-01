@@ -1,4 +1,4 @@
-#include "Skeleton_Mage.h"
+ï»¿#include "Skeleton_Mage.h"
 #include "Player.h"
 #include "GameConfig.h"
 #include "DxLib.h"
@@ -7,8 +7,8 @@
 
 const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[] = {
 
-	// Skeleton_Mageê—p‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
-	// EnemyAnimation‚Ìenum‡‚Æˆê’v‚³‚¹‚é
+	// Skeleton_Mageå°‚ç”¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+	// EnemyAnimationã®enumé †ã¨ä¸€è‡´ã•ã›ã‚‹
 	{6, 0.3f, false},   // ENEMY_ANIM_SPAWN
 	{3, 0.3f, true},    // ENEMY_ANIM_IDLE
 	{7, 0.5f, true},    // ENEMY_ANIM_WALK
@@ -29,8 +29,8 @@ Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skele
 
 	const EnemyStatus& data = mageData.enemyStatus;
 
-	// JSONƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğ‘ã“ü
-	// Šî’êƒNƒ‰ƒX‚ÌDrawUI()‚ÅHPƒQ[ƒW•`‰æ‚Ég—p
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’ä»£å…¥
+	// åŸºåº•ã‚¯ãƒ©ã‚¹ã®DrawUI()ã§HPã‚²ãƒ¼ã‚¸æç”»ã«ä½¿ç”¨
 	maxHp = static_cast<int>(data.baseHp * growRate);
 
 	hp = maxHp;
@@ -57,30 +57,30 @@ Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skele
 
 	score = data.score;
 
-	// í—Ş‚ğİ’è
+	// ç¨®é¡ã‚’è¨­å®š
 	enemyType = ENEMY_MAGE;
 
-	// Œ³ƒ‚ƒfƒ‹‚©‚ç•¡»
+	// å…ƒãƒ¢ãƒ‡ãƒ«ã‹ã‚‰è¤‡è£½
 	modelHandle = MV1DuplicateModel(skeletonMModel);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğ“K—p
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’é©ç”¨
 	MV1SetTextureGraphHandle(modelHandle, 0, TexHandle, FALSE);
 
-	// ©•ªê—p‚Ìƒe[ƒuƒ‹‚ğƒZƒbƒg
+	// è‡ªåˆ†å°‚ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	animTable = SKELETON_MAGE_ANIM_TABLE;
 
-	// Å‰‚ÍƒXƒ|[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+	// æœ€åˆã¯ã‚¹ãƒãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
 	SwitchAnimation(ENEMY_SPAWN);
 	state = ENEMY_SPAWN;
 
-	// ƒ‚ƒfƒ‹‚ğŠg‘å
+	// ãƒ¢ãƒ‡ãƒ«ã‚’æ‹¡å¤§
 	scale = data.scale;
 	MV1SetScale(modelHandle, VGet(scale, scale, scale));
 
-	// ƒXƒ|[ƒ“À•W‚ğİ’è
+	// ã‚¹ãƒãƒ¼ãƒ³åº§æ¨™ã‚’è¨­å®š
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 
-	// •Ší‚ÌƒZƒbƒg
+	// æ­¦å™¨ã®ã‚»ãƒƒãƒˆ
 	staff.SetUp(staffModel, staffTexHandle, "handslot.r");
 }
 
@@ -138,13 +138,13 @@ void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& 
 	}
 
 
-	// ƒvƒŒƒCƒ„[‚ª€–S‚µ‚½ê‡
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­»äº¡ã—ãŸå ´åˆ
 	if (player.IsDead())
 	{
 		state = SKELETON_M_VICTORY;
 	}
 
-	// •Ší‚ğè‚Ìƒ{[ƒ“‚É’Ç]
+	// æ­¦å™¨ã‚’æ‰‹ã®ãƒœãƒ¼ãƒ³ã«è¿½å¾“
 	staff.Update(modelHandle);
 }
 
@@ -152,7 +152,7 @@ void Skeleton_Mage::UpdateSpawn() {
 
 	SwitchAnimation(ENEMY_ANIM_SPAWN);
 
-	// ‘Ä¶ŠÔ‚ğ’´‚¦‚½ê‡
+	// ç·å†ç”Ÿæ™‚é–“ã‚’è¶…ãˆãŸå ´åˆ
 	if (animTime >= totalTime)
 	{
 		state = ENEMY_PATROL;
@@ -162,34 +162,34 @@ void Skeleton_Mage::UpdateSpawn() {
 
 void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
-	// UŒ‚’†
+	// æ”»æ’ƒä¸­
 	if (currentAnim == ENEMY_ANIM_ATTACK)
 	{
-		// ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğŒü‚©‚¹‚é
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å‘ã‹ã›ã‚‹
 		float dx = player.GetPosition().x - x;
 		float dz = player.GetPosition().z - z;
 		angleY = atan2f(dx, dz) + DX_PI_F;
 		MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
 
-		// UŒ‚‰Â”\ó‘Ô‚Å‚©‚ÂƒAƒjƒ[ƒVƒ‡ƒ“‚ª“Á’èƒ^ƒCƒ~ƒ“ƒO‚Ü‚ÅÄ¶‚³‚ê‚½ê‡–‚–@”­Ë
+		// æ”»æ’ƒå¯èƒ½çŠ¶æ…‹ã§ã‹ã¤ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒç‰¹å®šã‚¿ã‚¤ãƒŸãƒ³ã‚°ã¾ã§å†ç”Ÿã•ã‚ŒãŸå ´åˆé­”æ³•ç™ºå°„
 		if (!hasFired && animTime >= totalTime * FIRE_TIMING)
 		{
 			magicEffectManager.PlayMagic(x, y + FIRE_OFFSET, z, attackPower);
 			hasFired = true;
 		}
 
-		// UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“‚ªI—¹‚µ‚½‚çƒN[ƒ‹ŠJn
+		// æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒçµ‚äº†ã—ãŸã‚‰ã‚¯ãƒ¼ãƒ«é–‹å§‹
 		if (animTime >= totalTime)
 		{
 			SwitchAnimation(ENEMY_ANIM_ATTACKCOOL);
 		}
 	}
-	else if (currentAnim == ENEMY_ANIM_ATTACKCOOL) // ƒN[ƒ‹ƒ^ƒCƒ€’†‚Ìˆ—
+	else if (currentAnim == ENEMY_ANIM_ATTACKCOOL) // ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ä¸­ã®å‡¦ç†
 	{
-		// ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğŒü‚©‚¹‚é
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å‘ã‹ã›ã‚‹
 		float dx = player.GetPosition().x - x;
 		float dz = player.GetPosition().z - z;
 		angleY = atan2f(dx, dz) + DX_PI_F;
@@ -201,7 +201,7 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 		{
 			isAttackCoolTimer = 0.0f;
 
-			// ƒvƒŒƒCƒ„[‚ªUŒ‚”ÍˆÍ“à‚É‚¢‚éê‡
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ”»æ’ƒç¯„å›²å†…ã«ã„ã‚‹å ´åˆ
 			if (IsPlayerInAttackRange(player))
 			{
 				SwitchAnimation(ENEMY_ANIM_ATTACK);
@@ -210,7 +210,7 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 
 				hasFired = false;
 			}
-			else // UŒ‚”ÍˆÍŠO‚É‚¢‚éê‡
+			else // æ”»æ’ƒç¯„å›²å¤–ã«ã„ã‚‹å ´åˆ
 			{
 				SwitchAnimation(ENEMY_ANIM_DASH);
 				state = ENEMY_CHASE;
@@ -222,7 +222,7 @@ void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectMan
 
 void Skeleton_Mage::UpdateDamage() {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
 	hasFired = false;
@@ -237,10 +237,10 @@ void Skeleton_Mage::UpdateDamage() {
 
 void Skeleton_Mage::UpdateDeath(float deltaTime) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
-	// €–SƒAƒjƒ[ƒVƒ‡ƒ“Œã‚É“|‚ê‚éƒAƒjƒ[ƒVƒ‡ƒ“‚É‘JˆÚ
+	// æ­»äº¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¾Œã«å€’ã‚Œã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«é·ç§»
 	if (animTime >= totalTime)
 	{
 		SwitchAnimation(ENEMY_ANIM_DEATHPOSE);
@@ -248,7 +248,7 @@ void Skeleton_Mage::UpdateDeath(float deltaTime) {
 
 	deathTimer += deltaTime;
 
-	// ˆê’èŠÔŒo‰ßŒã‚É”ñƒAƒNƒeƒBƒu‰»
+	// ä¸€å®šæ™‚é–“çµŒéå¾Œã«éã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
 	if (deathTimer >= hideTime)
 	{
 		isActive = false;

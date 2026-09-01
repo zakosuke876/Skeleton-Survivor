@@ -1,4 +1,4 @@
-#include "Sword.h"
+ï»¿#include "Sword.h"
 #include "Player.h"
 
 Sword::Sword() {
@@ -10,7 +10,7 @@ Sword::Sword() {
 
 Sword::~Sword() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	MV1DeleteModel(swordHandle);
 	DeleteGraph(swordTexHandle);
 }

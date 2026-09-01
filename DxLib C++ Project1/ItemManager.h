@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "RecoveryItem.h"
 #include "ExpItem.h"
 #include "ItemDropConfig.h"
@@ -6,7 +6,7 @@
 #include <vector>
 #include <array>
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class Player;
 class SoundManager;
 
@@ -15,7 +15,7 @@ public:
 
 	ItemManager();
 	~ItemManager();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 	void Update();
 	void Draw() const;
 	void ItemDrop(float posX, float posY, float posZ, RecoveryItemType itemType);
@@ -27,42 +27,42 @@ public:
 
 private:
 
-	// ƒAƒCƒeƒ€ŠÇ—
+	// ã‚¢ã‚¤ãƒ†ãƒ ç®¡ç†
 	std::vector<std::unique_ptr<Item>> items;
 
-	// JSON‚©‚ç“Ç‚İ‚ñ‚¾‰ñ•œƒAƒCƒeƒ€‚Ìƒf[ƒ^•Û
+	// JSONã‹ã‚‰èª­ã¿è¾¼ã‚“ã å›å¾©ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ä¿æŒ
 	std::array<RecoveryItemData, ToInt(RecoveryItemType::ITEM_TYPE_MAX)> recoveryItemDataTable;
 
-	// JSON‚©‚ç“Ç‚İ‚ñ‚¾ŒoŒ±’lƒAƒCƒeƒ€‚Ìƒf[ƒ^•Û
+	// JSONã‹ã‚‰èª­ã¿è¾¼ã‚“ã çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ä¿æŒ
 	ExpItemData expItemDataTable;
 
-	// ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğŠÇ—
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’ç®¡ç†
 	int RecoveryTexHandles[ToInt(RecoveryItemType::ITEM_TYPE_MAX)] = {};
 
-	// ŒoŒ±’lƒAƒCƒeƒ€ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹
+	// çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«
 	int expTexHandle = -1;
 
-	// ƒAƒCƒeƒ€ƒhƒƒbƒv‚Ì”»’è‚Ég‚¤—””ÍˆÍ
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‰ãƒ­ãƒƒãƒ—ã®åˆ¤å®šã«ä½¿ã†ä¹±æ•°ç¯„å›²
 	static constexpr int ITEM_DROP_CHANCE_MIN = 1;
 	static constexpr int ITEM_DROP_CHANCE_MAX = 100;
 
-	// JSON‚©‚ç“Ç‚İ‚Ş’l
-	// ƒAƒCƒeƒ€ƒhƒƒbƒv—¦(%)
+	// JSONã‹ã‚‰èª­ã¿è¾¼ã‚€å€¤
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‰ãƒ­ãƒƒãƒ—ç‡(%)
 	int dropRate = -1;
 
-	// ƒAƒCƒeƒ€‚Ì¶¬À•W‚ğ‚¸‚ç‚·
+	// ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆåº§æ¨™ã‚’ãšã‚‰ã™
 	float dropOffsetY = -1.0f;
 
-	// ŒoŒ±’lƒAƒCƒeƒ€‚Ì¶¬À•W‚ğ‚¸‚ç‚·”ÍˆÍ
+	// çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆåº§æ¨™ã‚’ãšã‚‰ã™ç¯„å›²
 	float expItemRandomOffset = -1.0f;
 
-	// ƒAƒCƒeƒ€í—Ş‚²‚Æ‚ÌƒhƒƒbƒvŠm—¦(JSON‚©‚ç“Ç‚İ‚Ş)
+	// ã‚¢ã‚¤ãƒ†ãƒ ç¨®é¡ã”ã¨ã®ãƒ‰ãƒ­ãƒƒãƒ—ç¢ºç‡(JSONã‹ã‚‰èª­ã¿è¾¼ã‚€)
 	ItemTypeRate itemTypeRate;
 
-	// ƒAƒCƒeƒ€‚Ìí—Ş”»’è‚Ég‚¤—””ÍˆÍ
+	// ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡åˆ¤å®šã«ä½¿ã†ä¹±æ•°ç¯„å›²
 	static constexpr int ITEM_TYPE_RANGE_MIN = 0;
 	static constexpr int ITEM_TYPE_RANGE_MAX = 100;
 
-	// ƒ‰ƒ“ƒ_ƒ€ƒGƒ“ƒWƒ“
+	// ãƒ©ãƒ³ãƒ€ãƒ ã‚¨ãƒ³ã‚¸ãƒ³
 	std::mt19937 rng;
 };

@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class FontManager;
 
 class PauseScene {
 public:
 
 	PauseScene();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 	void Update();
 	void Draw(const FontManager& fontManager) const;
 
@@ -15,38 +15,38 @@ public:
 
 private:
 
-	// ƒ|[ƒYó‘Ô‚©‚Ç‚¤‚©
+	// ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã©ã†ã‹
 	bool isPause = false;
 
-	// ƒ{ƒ^ƒ“‚Ì”
+	// ãƒœã‚¿ãƒ³ã®æ•°
 	static constexpr int MAX_BUTTON = 2;
 
-	// ƒL[‚Ì“ü—Íó‘Ôƒ`ƒFƒbƒN
+	// ã‚­ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	char prevKey[256]{};
 	char currentKey[256]{};
 
-	// ƒpƒlƒ‹[ƒ|[ƒY’†c]•\¦‚ÌÀ•W
+	// ãƒ‘ãƒãƒ«[ãƒãƒ¼ã‚ºä¸­â€¦]è¡¨ç¤ºã®åº§æ¨™
 	static constexpr int PAUSE_HEADER_BOX_LEFT  = 500;
 	static constexpr int PAUSE_HEADER_BOX_TOP   = 150;
 	static constexpr int PAUSE_HEADER_BOX_RIGHT = 750;
 	static constexpr int PAUSE_HEADER_BOX_BOTTOM = 200;
 
-	// ƒwƒbƒ_[ƒeƒLƒXƒg‚ÌÀ•W
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ã‚­ã‚¹ãƒˆã®åº§æ¨™
 	static constexpr int PAUSE_HEADER_TEXT_X = 560;
 	static constexpr int PAUSE_HEADER_TEXT_Y = 160;
 
-	// î•ñƒpƒlƒ‹‚ÌÀ•W
+	// æƒ…å ±ãƒ‘ãƒãƒ«ã®åº§æ¨™
 	static constexpr int PAUSE_INFO_BOX_LEFT = 350;
 	static constexpr int PAUSE_INFO_BOX_TOP = 200;
 	static constexpr int PAUSE_INFO_BOX_RIGHT = 900;
 	static constexpr int PAUSE_INFO_BOX_BOTTOM = 600;
 
-	// î•ñƒpƒlƒ‹“àƒeƒLƒXƒg‚ÌXÀ•W
+	// æƒ…å ±ãƒ‘ãƒãƒ«å†…ãƒ†ã‚­ã‚¹ãƒˆã®Xåº§æ¨™
 	static constexpr int PAUSE_INFO_TEXT_X = 480;
 
-	// uƒQ[ƒ€‚É–ß‚évƒeƒLƒXƒg‚ÌYÀ•W
+	// ã€Œã‚²ãƒ¼ãƒ ã«æˆ»ã‚‹ã€ãƒ†ã‚­ã‚¹ãƒˆã®Yåº§æ¨™
 	static constexpr int PAUSE_CLOSE_TEXT_Y = 300;
 
-	// uƒ^ƒCƒgƒ‹‚É–ß‚évƒeƒLƒXƒg‚ÌYÀ•W
+	// ã€Œã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ã€ãƒ†ã‚­ã‚¹ãƒˆã®Yåº§æ¨™
 	static constexpr int PAUSE_TITLE_BACK_TEXT_Y = 450;
 };

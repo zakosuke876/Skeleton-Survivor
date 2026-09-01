@@ -1,4 +1,4 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include "Sword.h"
 #include "Ground.h"
 #include "GameConfig.h"
@@ -11,7 +11,7 @@
 
 const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“”Ô†, ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶ƒXƒs[ƒh, ƒ‹[ƒvİ’è
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·, ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰, ãƒ«ãƒ¼ãƒ—è¨­å®š
 
 	{12, 0.15f, false},
 	{13, 0.2f, false},
@@ -28,24 +28,24 @@ Player::Player() {
 
 	if (!PlayerDataLoader::Load((playerDataTable)))
 	{
-		printfDx("ƒvƒŒƒCƒ„[ƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// ƒvƒŒƒCƒ„[ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	modelHandle = MV1LoadModel(playerDataTable.modelPath.c_str());
 
-	//ƒeƒNƒXƒ`ƒƒ”½‰f
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£åæ˜ 
 	playerTexHandle = LoadGraph(playerDataTable.texturePath.c_str());
 	MV1SetTextureGraphHandle(modelHandle, 0, playerTexHandle, FALSE);
 
-	// ƒ‚ƒfƒ‹‚ğŠg‘å
+	// ãƒ¢ãƒ‡ãƒ«ã‚’æ‹¡å¤§
 	scale = playerDataTable.scale;
 	MV1SetScale(modelHandle, VGet(scale, scale, scale));
 
-	// ‰ŠúÀ•W‚ÉƒZƒbƒg
+	// åˆæœŸåº§æ¨™ã«ã‚»ãƒƒãƒˆ
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 
-	// ‰Šú’lİ’è
+	// åˆæœŸå€¤è¨­å®š
 	Reset();
 	
 	sword.SetUpBone(modelHandle);
@@ -58,7 +58,7 @@ void Player::Reset() {
 	z = 0.0f;
 	angleY = 0.0f;
 
-	// JSONƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğ‘ã“ü
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’ä»£å…¥
 	hp = playerDataTable.maxHp;
 
 	maxHp = playerDataTable.maxHp;
@@ -97,12 +97,12 @@ void Player::Reset() {
 	isActive = true;
 	isDead = false;
 
-	// Å‰‚ÍƒXƒ|[ƒ“ó‘Ô
+	// æœ€åˆã¯ã‚¹ãƒãƒ¼ãƒ³çŠ¶æ…‹
 	state = PLAYER_SPAWN;
 
 	int anim = rand() % 2;
 
-	// 2í—Ş‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚©‚çƒ‰ƒ“ƒ_ƒ€‚É‘I‚Ô
+	// 2ç¨®é¡ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«é¸ã¶
 	if (anim == 0)
 	{
 		AnimSwitch(PLAYER_ANIM_SPAWN_AIR);
@@ -115,7 +115,7 @@ void Player::Reset() {
 
 void Player::Update(float deltaTime) {
 
-	// €–S‚µ‚½ê‡ˆ—‚µ‚È‚¢
+	// æ­»äº¡ã—ãŸå ´åˆå‡¦ç†ã—ãªã„
 	if (!isActive) return;
 
 	switch (state)
@@ -163,12 +163,12 @@ void Player::Update(float deltaTime) {
 		break;
 	}
 
-	// –³“GŠÔŒv‘ª
+	// ç„¡æ•µæ™‚é–“è¨ˆæ¸¬
 	if (isInvincible)
 	{
 		invincibleTimer += deltaTime;
 
-		// –³“GŠÔI—¹‚Éƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg
+		// ç„¡æ•µæ™‚é–“çµ‚äº†æ™‚ã«ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆ
 		if (invincibleTimer >= invincibleTime)
 		{
 			isInvincible = false;
@@ -176,26 +176,26 @@ void Player::Update(float deltaTime) {
 		}
 	}
 
-	// Ä¶ŠÔ‚ği‚ß‚é
+	// å†ç”Ÿæ™‚é–“ã‚’é€²ã‚ã‚‹
 	animTime += PLAYER_ANIM_TABLE[currentAnim].animSpeed;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‘Ä¶ŠÔ‚ğ’´‚¦‚½ê‡
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç·å†ç”Ÿæ™‚é–“ã‚’è¶…ãˆãŸå ´åˆ
 	if (animTime >= totalTime)
 	{
-		// ƒ‹[ƒvİ’è‚ªTrue‚Ìê‡
+		// ãƒ«ãƒ¼ãƒ—è¨­å®šãŒTrueã®å ´åˆ
 		if (PLAYER_ANIM_TABLE[currentAnim].loop)
 		{
-			// ƒ^ƒCƒ}[ƒŠƒZƒbƒg‚µ‚Äƒ‹[ƒv
+			// ã‚¿ã‚¤ãƒãƒ¼ãƒªã‚»ãƒƒãƒˆã—ã¦ãƒ«ãƒ¼ãƒ—
 			animTime = 0.0f;
 		}
 		else
 		{
-			// Ä¶‚ğ’â~
+			// å†ç”Ÿã‚’åœæ­¢
 			animTime = totalTime;
 		}
 	}
 
-	// ƒŒƒxƒ‹ƒAƒbƒv’†‚Ìê‡‚Ì‚İˆ—‚·‚é
+	// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ä¸­ã®å ´åˆã®ã¿å‡¦ç†ã™ã‚‹
 	if (isLevelUpTextActive)
 	{
 		levelupTextActiveTimer += deltaTime;
@@ -207,50 +207,50 @@ void Player::Update(float deltaTime) {
 		}
 	}
 
-	// ˆÚ“®”ÍˆÍ‚ğ§ŒÀ
+	// ç§»å‹•ç¯„å›²ã‚’åˆ¶é™
 	ClampPosition();
 
-	// ‚ğƒZƒbƒg
+	// æ™‚åˆ»ã‚’ã‚»ãƒƒãƒˆ
 	MV1SetAttachAnimTime(modelHandle, attachIndex, animTime);
 
-	// ƒLƒƒƒ‰‚ÌˆÚ“®
+	// ã‚­ãƒ£ãƒ©ã®ç§»å‹•
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 
-	// Œü‚«‚ÌƒZƒbƒg
+	// å‘ãã®ã‚»ãƒƒãƒˆ
 	MV1SetRotationXYZ(modelHandle, VGet(0.0f, angleY, 0.0f));
 
-	// •Ší‚ğè‚Ìƒ{[ƒ“‚É’Ç]
+	// æ­¦å™¨ã‚’æ‰‹ã®ãƒœãƒ¼ãƒ³ã«è¿½å¾“
 	sword.Update(modelHandle);
 }
 
 void Player::TakeDamage(int value, SoundManager& soundManager) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	attackHitBox.isAttackActive = false;
 
-	// –³“G’†‚È‚çˆ—‚µ‚È‚¢
+	// ç„¡æ•µä¸­ãªã‚‰å‡¦ç†ã—ãªã„
 	if (isInvincible) return;
 
-	// €–S‚µ‚Ä‚¢‚é‚È‚çˆ—‚µ‚È‚¢
+	// æ­»äº¡ã—ã¦ã„ã‚‹ãªã‚‰å‡¦ç†ã—ãªã„
 	if (isDead) return;
 
-	// Œø‰Ê‰¹Ä¶‚ğˆË—Š(ˆø”‚Åƒ^ƒCƒv‚ğ“n‚·)
+	// åŠ¹æœéŸ³å†ç”Ÿã‚’ä¾é ¼(å¼•æ•°ã§ã‚¿ã‚¤ãƒ—ã‚’æ¸¡ã™)
 	soundManager.PlaySe(ATTACK_HIT);
 
-	// ”í’eƒAƒjƒ[ƒVƒ‡ƒ“İ’è
+	// è¢«å¼¾ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
 	AnimSwitch(PLAYER_ANIM_DAMAGE);
 
-	// –³“GŠÔŠJn
+	// ç„¡æ•µæ™‚é–“é–‹å§‹
 	isInvincible = true;
 
 	state = PLAYER_DAMAGE;
 
 	hp -= value;
 
-	// HP‚Ì’l‚ğ§ŒÀ
+	// HPã®å€¤ã‚’åˆ¶é™
 	hp = std::clamp(hp, 0, maxHp);
 
-	// €–S”»’è
+	// æ­»äº¡åˆ¤å®š
 	if (hp <= 0)
 	{
 		Die();
@@ -261,7 +261,7 @@ void Player::Recovery(int value) {
 
 	hp += value;
 
-	// HP‚ğ”ÍˆÍ“à‚Ì’l‚É‚·‚é(0`maxHp)
+	// HPã‚’ç¯„å›²å†…ã®å€¤ã«ã™ã‚‹(0ï½maxHp)
 	hp = std::clamp(hp, 0, maxHp);
 }
 
@@ -269,10 +269,10 @@ void Player::AddExp(int value, const SoundManager& soundManager) {
 
 	exp += value;
 
-	// •Û‚µ‚Ä‚¢‚éŒoŒ±’l—Ê‚ªƒŒƒxƒ‹ƒAƒbƒv‚É•K—v‚È—Ê‚ğã‰ñ‚Á‚Ä‚¢‚éŠÔƒ‹[ƒv‚³‚¹‚é
+	// ä¿æŒã—ã¦ã„ã‚‹çµŒé¨“å€¤é‡ãŒãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã«å¿…è¦ãªé‡ã‚’ä¸Šå›ã£ã¦ã„ã‚‹é–“ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹
 	while (exp >= nextLevelExp)
 	{
-		// —]‚Á‚½ŒoŒ±’l‚ğŸ‚ÌƒŒƒxƒ‹‚Éˆø‚«Œp‚®
+		// ä½™ã£ãŸçµŒé¨“å€¤ã‚’æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã«å¼•ãç¶™ã
 		exp -= nextLevelExp;
 		LevelUp(soundManager);
 	}
@@ -280,15 +280,15 @@ void Player::AddExp(int value, const SoundManager& soundManager) {
 
 void Player::LevelUp(const SoundManager& soundManager) {
 
-	// Œø‰Ê‰¹Ä¶‚ğˆË—Š(ˆø”‚Åƒ^ƒCƒv‚ğ“n‚·)
+	// åŠ¹æœéŸ³å†ç”Ÿã‚’ä¾é ¼(å¼•æ•°ã§ã‚¿ã‚¤ãƒ—ã‚’æ¸¡ã™)
 	soundManager.PlaySe(LEVELUP);
 
 	level += 1;
 
-	// ƒŒƒxƒ‹‚ªã‚ª‚é‚½‚Ñ‚ÉUŒ‚—Íã¸
+	// ãƒ¬ãƒ™ãƒ«ãŒä¸ŠãŒã‚‹ãŸã³ã«æ”»æ’ƒåŠ›ä¸Šæ˜‡
 	attackPower += levelUpAttackPower;
 
-	// Ÿ‚ÌƒŒƒxƒ‹ƒAƒbƒv‚É‚©‚©‚éŒoŒ±’l—Ê‚ğ1.3”{‚É‚·‚é
+	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã«ã‹ã‹ã‚‹çµŒé¨“å€¤é‡ã‚’1.3å€ã«ã™ã‚‹
 	nextLevelExp = static_cast<int>(nextLevelExp * nextLevelExpMultiplier);
 	isLevelUpTextActive = true;
 	levelupTextActiveTimer = 0.0f;
@@ -298,7 +298,7 @@ void Player::Draw() const {
 
 	if (!isActive) return;
 
-	// ƒ‚ƒfƒ‹‚ğ•`‰æ
+	// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»
 	MV1DrawModel(modelHandle);
 
 	sword.Draw();
@@ -312,45 +312,45 @@ void Player::DrawUI(const FontManager& fontManager) const {
 
 	DrawExpGauge(fontManager);
 
-	// ƒŒƒxƒ‹ƒAƒbƒv’†‚Ì‚İƒeƒLƒXƒg‚ğ•\¦‚·‚é
+	// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ä¸­ã®ã¿ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
 	if (!isLevelUpTextActive) return;
 
-	// ƒŒƒxƒ‹ƒAƒbƒvƒeƒLƒXƒg‚Ì•\¦§Œä
+	// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆã®è¡¨ç¤ºåˆ¶å¾¡
 	VECTOR posTex = VGet(x, y, z);
 	posTex.x -= 30.0f;
 	posTex.y += 40.0f;
 
-	// ƒ[ƒ‹ƒhÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 	VECTOR screenPosTex = ConvWorldPosToScreenPos(posTex);
 
 	DrawStringToHandle(screenPosTex.x, screenPosTex.y, "LEVEL UP!!", GetColor(255, 0, 0), fontManager.GetPlayerUIFont());
 }
 
-// ƒXƒ|[ƒ“ó‘Ô
+// ã‚¹ãƒãƒ¼ãƒ³çŠ¶æ…‹
 void Player::UpdateSpawn() {
 
-	// ƒXƒ|[ƒ“Š®—¹Œã‚Í‘Ò‹@ó‘Ô‚Ö‘JˆÚ
+	// ã‚¹ãƒãƒ¼ãƒ³å®Œäº†å¾Œã¯å¾…æ©ŸçŠ¶æ…‹ã¸é·ç§»
 	if (animTime >= totalTime)
 	{
 		state = PLAYER_IDLE;
 	}
 }
 
-// ‘Ò‹@ó‘Ô
+// å¾…æ©ŸçŠ¶æ…‹
 void Player::UpdateIdle() {
 
-	// “ü—Í‚ª–³‚¢ê‡‘Ò‹@ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
+	// å…¥åŠ›ãŒç„¡ã„å ´åˆå¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
 	AnimSwitch(PLAYER_ANIM_IDLE);
 
-	// UŒ‚‚ªÅ—Dæ
-	// UŒ‚“ü—Í‚ª‚ ‚ê‚ÎUŒ‚ó‘Ô‚Ö
+	// æ”»æ’ƒãŒæœ€å„ªå…ˆ
+	// æ”»æ’ƒå…¥åŠ›ãŒã‚ã‚Œã°æ”»æ’ƒçŠ¶æ…‹ã¸
 	if (IsAttackInput())
 	{
 		state = PLAYER_ATTACK;
 	}
-	else if (IsMoveInput()) // ˆÚ“®“ü—Í‚ª‚ ‚Á‚½ê‡
+	else if (IsMoveInput()) // ç§»å‹•å…¥åŠ›ãŒã‚ã£ãŸå ´åˆ
 	{
-		// ˆÚ“®“ü—Í’†‚©‚Âƒ_ƒbƒVƒ…“ü—Í’†‚È‚çƒ_ƒbƒVƒ…ó‘Ô‚Ö
+		// ç§»å‹•å…¥åŠ›ä¸­ã‹ã¤ãƒ€ãƒƒã‚·ãƒ¥å…¥åŠ›ä¸­ãªã‚‰ãƒ€ãƒƒã‚·ãƒ¥çŠ¶æ…‹ã¸
 		if (IsDashInput())
 		{
 			state = PLAYER_DASH;
@@ -368,19 +368,19 @@ void Player::UpdateWalk() {
 
 	Move(speed);
 
-	// ˆÚ“®“ü—Í‚ª‚È‚­‚È‚Á‚½ê‡
+	// ç§»å‹•å…¥åŠ›ãŒãªããªã£ãŸå ´åˆ
 	if (!IsMoveInput())
 	{
 		state = PLAYER_IDLE;
 	}
 
-	// ƒ_ƒbƒVƒ…“ü—Í‚ª‚ ‚Á‚½ê‡
+	// ãƒ€ãƒƒã‚·ãƒ¥å…¥åŠ›ãŒã‚ã£ãŸå ´åˆ
 	if (IsDashInput())
 	{
 		state = PLAYER_DASH;
 	}
 
-	// UŒ‚“ü—Í‚ª‚ ‚Á‚½ê‡
+	// æ”»æ’ƒå…¥åŠ›ãŒã‚ã£ãŸå ´åˆ
 	if (IsAttackInput())
 	{
 		state = PLAYER_ATTACK;
@@ -391,7 +391,7 @@ void Player::UpdateDash() {
 
 	AnimSwitch(PLAYER_ANIM_DASH);
 
-	// ƒ_ƒbƒVƒ…‚ÍƒXƒs[ƒh2.5”{
+	// ãƒ€ãƒƒã‚·ãƒ¥æ™‚ã¯ã‚¹ãƒ”ãƒ¼ãƒ‰2.5å€
 	Move(speed * dashMultiplier);
 
 	if (!IsMoveInput())
@@ -412,27 +412,27 @@ void Player::UpdateDash() {
 
 void Player::UpdateAttack() {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	attackHitBox.isAttackActive = false;
 
 	AnimSwitch(PLAYER_ANIM_ATTACK);
 
 	if (currentAnim == PLAYER_ANIM_ATTACK)
 	{
-		// “–‚½‚è”»’è‚ª”­¶‚·‚é‚Ì‚Í10f‚©‚ç18f‚Ü‚Å
+		// å½“ãŸã‚Šåˆ¤å®šãŒç™ºç”Ÿã™ã‚‹ã®ã¯10fã‹ã‚‰18fã¾ã§
 		bool isAttackHitActive = (animTime >= ATTACK_HIT_START_FRAME && animTime <= ATTACK_HIT_END_FRAME);
 
-		// \‘¢‘Ì•Ï”‚É‘ã“ü
+		// æ§‹é€ ä½“å¤‰æ•°ã«ä»£å…¥
 		attackHitBox.x = sword.GetPos().x;
 		attackHitBox.z = sword.GetPos().z;
 		attackHitBox.radius = attackRadius;
 		attackHitBox.isAttackActive = isAttackHitActive;
 	}
 
-	// UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“I—¹Œã‚Í‘Ò‹@ó‘Ô‚Ö‘JˆÚ
+	// æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã¯å¾…æ©ŸçŠ¶æ…‹ã¸é·ç§»
 	if (animTime >= totalTime)
 	{
-		// UŒ‚”»’è‚ğ–³Œø
+		// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 		attackHitBox.isAttackActive = false;
 		state = PLAYER_IDLE;
 	}
@@ -440,12 +440,12 @@ void Player::UpdateAttack() {
 
 void Player::UpdateDamage() {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	attackHitBox.isAttackActive = false;
 
 	AnimSwitch(PLAYER_ANIM_DAMAGE);
 
-	// ƒ_ƒ[ƒWƒAƒjƒ[ƒVƒ‡ƒ“I—¹Œã‚Í‘Ò‹@ó‘Ô‚Ö‘JˆÚ
+	// ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã¯å¾…æ©ŸçŠ¶æ…‹ã¸é·ç§»
 	if (animTime >= totalTime)
 	{
 		state = PLAYER_IDLE;
@@ -454,7 +454,7 @@ void Player::UpdateDamage() {
 
 void Player::UpdateDeath(float deltaTime) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	attackHitBox.isAttackActive = false;
 
 	if (animTime >= totalTime)
@@ -466,7 +466,7 @@ void Player::UpdateDeath(float deltaTime) {
 
 	if (deathTimer >= hideTime)
 	{
-		// ƒvƒŒƒCƒ„[‚ğ–³Œø‰»
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç„¡åŠ¹åŒ–
 		deathTimer = 0.0f;
 		isActive = false;
 	}
@@ -477,7 +477,7 @@ void Player::Move(float moveSpeed) {
 	float moveX = 0.0f;
 	float moveZ = 0.0f;
 
-	// ƒL[“ü—Í
+	// ã‚­ãƒ¼å…¥åŠ›
 	if (CheckHitKey(KEY_INPUT_W)) moveZ += 1.0f;
 	if (CheckHitKey(KEY_INPUT_S)) moveZ -= 1.0f;
 	if (CheckHitKey(KEY_INPUT_A)) moveX -= 1.0f;
@@ -485,17 +485,17 @@ void Player::Move(float moveSpeed) {
 
 	float length = sqrtf(moveX * moveX + moveZ * moveZ);
 
-	// 0œZ‘Îô
+	// 0é™¤ç®—å¯¾ç­–
 	if (length > 0.0f)
 	{
-		// ³‹K‰»
+		// æ­£è¦åŒ–
 		moveX /= length;
 		moveZ /= length;
 
 		x += moveX * moveSpeed;
 		z += moveZ * moveSpeed;
 
-		// ˆÚ“®•ûŒü‚ÉŒü‚¯‚é
+		// ç§»å‹•æ–¹å‘ã«å‘ã‘ã‚‹
 		float angle = atan2f(moveX, moveZ) + DX_PI_F;
 
 		angleY = angle;
@@ -504,7 +504,7 @@ void Player::Move(float moveSpeed) {
 
 void Player::ClampPosition() {
 
-	// ˆÚ“®”ÍˆÍ‚Ì§ŒÀ
+	// ç§»å‹•ç¯„å›²ã®åˆ¶é™
 	if (x < Ground::GetMinXPos()) x = Ground::GetMinXPos();
 	if (x > Ground::GetMaxXPos())  x = Ground::GetMaxXPos();
 	if (z < Ground::GetMinZPos()) z = Ground::GetMinZPos();
@@ -532,11 +532,11 @@ bool Player::IsAttackInput() {
 
 void Player::DrawHpGauge(const FontManager& fontManager) const {
 
-	// Œ»İHP‚ÌŠ„‡(0.0`1.0)
+	// ç¾åœ¨HPã®å‰²åˆ(0.0ï½1.0)
 	const float hpRate = static_cast<float>(hp) / maxHp;
 	int color = GetColor(0, 255, 0);
 
-	// HP‚ª”¼•ªˆÈ‰º‚ÅƒQ[ƒW‚ğ‰©F‚É‚·‚é
+	// HPãŒåŠåˆ†ä»¥ä¸‹ã§ã‚²ãƒ¼ã‚¸ã‚’é»„è‰²ã«ã™ã‚‹
 	if (hpRate <= HP_GAUGE_YELLOW_VALUE)
 	{
 		color = GetColor(255, 255, 0);
@@ -547,61 +547,61 @@ void Player::DrawHpGauge(const FontManager& fontManager) const {
 	int gaugeRight = PLAYER_HPGAUGE_X + HP_GAUGE_WIDTH;
 	int gaugeBottom = PLAYER_HPGAUGE_Y + PLAYER_HPGAUGE_BOTTOM;
 
-	// HPƒQ[ƒW
-	// HPƒQ[ƒW”wŒi(Ô•\¦)
+	// HPã‚²ãƒ¼ã‚¸
+	// HPã‚²ãƒ¼ã‚¸èƒŒæ™¯(èµ¤è¡¨ç¤º)
 	DrawBox(gaugeLeft, gaugeTop, gaugeRight, gaugeBottom, GetColor(255, 0, 0), TRUE);
 
-	// Œ»İHP(—Î•\¦Eƒ_ƒ[ƒW‚ğó‚¯‚é‚Æ”wŒi‚ÌÔ‚ªŒ©‚¦‚é‚æ‚¤‚É‚È‚é)
+	// ç¾åœ¨HP(ç·‘è¡¨ç¤ºãƒ»ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹ã¨èƒŒæ™¯ã®èµ¤ãŒè¦‹ãˆã‚‹ã‚ˆã†ã«ãªã‚‹)
 	DrawBox(gaugeLeft, gaugeTop, gaugeLeft + static_cast<int>(HP_GAUGE_WIDTH * hpRate), gaugeBottom, color, TRUE);
 
-	// HPƒQ[ƒW‚Ì˜g(”’•\¦)
+	// HPã‚²ãƒ¼ã‚¸ã®æ (ç™½è¡¨ç¤º)
 	DrawLineBox(gaugeLeft, gaugeTop, gaugeRight, gaugeBottom, GetColor(255, 255, 255));
 
-	// HPƒeƒLƒXƒg‚Ì•\¦
+	// HPãƒ†ã‚­ã‚¹ãƒˆã®è¡¨ç¤º
 	DrawFormatStringToHandle(40, gaugeTop, GetColor(255, 0, 0), fontManager.GetPlayerUIFont(), "HP");
 }
 
 void Player::DrawExpGauge(const FontManager& fontManager) const {
 
-	// ŒoŒ±’lƒQ[ƒW
+	// çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸
 	const float expRate = static_cast<float>(exp) / nextLevelExp;
 	int expGaugeLeft = PLAYER_HPGAUGE_X;
 
-	// HPƒQ[ƒW‚Ì‰º‚É”z’u
+	// HPã‚²ãƒ¼ã‚¸ã®ä¸‹ã«é…ç½®
 	int expGaugeTop = PLAYER_HPGAUGE_Y + EXP_GAUGE_OFFSET_Y;
 	int expGaugeRight = PLAYER_HPGAUGE_X + HP_GAUGE_WIDTH;
 	int expGaugeBottom = expGaugeTop + PLAYER_HPGAUGE_BOTTOM;
 
-	// ”wŒi(•)
+	// èƒŒæ™¯(é»’)
 	DrawBox(expGaugeLeft, expGaugeTop, expGaugeRight, expGaugeBottom, GetColor(0, 0, 0), TRUE);
-	// Œ»İŒoŒ±’l(Â)
+	// ç¾åœ¨çµŒé¨“å€¤(é’)
 	DrawBox(expGaugeLeft, expGaugeTop, expGaugeLeft + static_cast<int>(HP_GAUGE_WIDTH * expRate), expGaugeBottom, GetColor(0, 100, 255), TRUE);
-	// ˜gü(”’)
+	// æ ç·š(ç™½)
 	DrawLineBox(expGaugeLeft, expGaugeTop, expGaugeRight, expGaugeBottom, GetColor(255, 255, 255));
 
-	// Œ»İ‚ÌLV‚ğ•\¦
+	// ç¾åœ¨ã®LVã‚’è¡¨ç¤º
 	DrawFormatStringToHandle(LV_TEXT_X, expGaugeTop + LV_TEXT_OFFSET_Y, GetColor(255, 0, 0), fontManager.GetPlayerUIFont(), "Lv:%d", level);
 }
 
 
 void Player::AnimSwitch(int animNum) {
 
-	// ˆá‚¤ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚çØ‚è‘Ö‚¦‚é
+	// é•ã†ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãªã‚‰åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if (currentAnim != animNum)
 	{
-		// Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğíœ
+		// ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤
 		MV1DetachAnim(modelHandle, attachIndex);
 
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚¢ã‚¿ãƒƒãƒ
 		attachIndex = MV1AttachAnim(modelHandle, PLAYER_ANIM_TABLE[animNum].animIndex);
 
-		// ‘Ä¶ŠÔ‚ğæ“¾
+		// ç·å†ç”Ÿæ™‚é–“ã‚’å–å¾—
 		totalTime = MV1GetAttachAnimTotalTime(modelHandle, attachIndex);
 
-		// Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“”Ô†‚ğ•Û
+		// ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·ã‚’ä¿æŒ
 		currentAnim = animNum;
 
-		// Ä¶ƒ^ƒCƒ}[ƒŠƒZƒbƒg
+		// å†ç”Ÿã‚¿ã‚¤ãƒãƒ¼ãƒªã‚»ãƒƒãƒˆ
 		animTime = 0.0f;
 	}
 }

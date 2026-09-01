@@ -1,4 +1,4 @@
-#include "RankingManager.h"
+ï»¿#include "RankingManager.h"
 #include "ScoreManager.h"
 #include "FontManager.h"
 #include "Dxlib.h"
@@ -18,29 +18,29 @@ void RankingManager::Reset() {
 
 void RankingManager::SortRanking() {
 
-	// ƒ‰ƒ“ƒLƒ“ƒOƒ\[ƒg(~‡)
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚½ãƒ¼ãƒˆ(é™é †)
 	std::stable_sort(ranking.begin(), ranking.end(), std::greater<int>());
 }
 
 void RankingManager::AddScore(const ScoreManager& scoreManager) {
 
-	// ¡‰ñ‚ÌƒXƒRƒA‚ğ•Û‘¶
+	// ä»Šå›ã®ã‚¹ã‚³ã‚¢ã‚’ä¿å­˜
 	int score = scoreManager.GetScore();
 
-	// ƒXƒRƒA‚ğƒ‰ƒ“ƒLƒ“ƒO‚É’Ç‰Á
-	// “¯’l‚Íæ‚É“o˜^‚³‚ê‚½ƒXƒRƒA‚ªãˆÊ‚É‚È‚é
+	// ã‚¹ã‚³ã‚¢ã‚’ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã«è¿½åŠ 
+	// åŒå€¤ã¯å…ˆã«ç™»éŒ²ã•ã‚ŒãŸã‚¹ã‚³ã‚¢ãŒä¸Šä½ã«ãªã‚‹
 	ranking.emplace_back(score);
 
 	SortRanking();
 
-	// Œ”‚ªãŒÀ‚ğ’´‚¦‚½ê‡
+	// ä»¶æ•°ãŒä¸Šé™ã‚’è¶…ãˆãŸå ´åˆ
 	if (ranking.size() > MAX_RANKING)
 	{
-		// ãˆÊ5Œ‚É‚·‚é
+		// ä¸Šä½5ä»¶ã«ã™ã‚‹
 		ranking.resize(MAX_RANKING);
 	}
 
-	// ‡ˆÊ‚ğ’²‚×‚é
+	// é †ä½ã‚’èª¿ã¹ã‚‹
 	for (size_t i = 0; i < MAX_RANKING; i++)
 	{
 		if (score == ranking[i])
@@ -53,12 +53,12 @@ void RankingManager::AddScore(const ScoreManager& scoreManager) {
 
 void RankingManager::Update(float deltaTime) {
 
-	// ‹L˜^XV‚ª‚³‚ê‚È‚©‚Á‚½ê‡‚Í“_–Åˆ—‚ğs‚í‚È‚¢
+	// è¨˜éŒ²æ›´æ–°ãŒã•ã‚Œãªã‹ã£ãŸå ´åˆã¯ç‚¹æ»…å‡¦ç†ã‚’è¡Œã‚ãªã„
 	if (newRank == -1) return;
 
 	blinkTimer += deltaTime;
 
-	// “_–ÅŠÔŠu‚ğ’´‚¦‚½ê‡
+	// ç‚¹æ»…é–“éš”ã‚’è¶…ãˆãŸå ´åˆ
 	if (blinkTimer >= BLINK_INTERVAL)
 	{
 		isBlinkVisible = !isBlinkVisible;
@@ -73,21 +73,21 @@ void RankingManager::DrawRanking(const FontManager& fontManager) const {
 	{
 		if (static_cast<int>(i) + 1 == newRank && isBlinkVisible) continue;
 
-		// ƒ‰ƒ“ƒLƒ“ƒOƒXƒRƒA‚ğ•\¦
-		DrawFormatStringToHandle(RANKING_X, RANKING_Y + i * RANKING_LINE_HEIGHT, GetColor(255, 0, 0), fontManager.GetRankingFont(), "%dˆÊ:%d", i + 1, ranking[i]);
+		// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤º
+		DrawFormatStringToHandle(RANKING_X, RANKING_Y + i * RANKING_LINE_HEIGHT, GetColor(255, 0, 0), fontManager.GetRankingFont(), "%dä½:%d", i + 1, ranking[i]);
 	}
 }
 
 void RankingManager::DrawTitleRanking(const FontManager& fontManager) const {
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦ƒpƒlƒ‹
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºãƒ‘ãƒãƒ«
 	DrawBox(TITLE_RANKING_BOX_LEFT, TITLE_RANKING_BOX_TOP, TITLE_RANKING_BOX_RIGHT, TITLE_RANKING_BOX_BOTTOM, GetColor(30, 30, 30), TRUE);
 	DrawStringToHandle(TITLE_RANKING_TEXT_X, TITLE_RANKING_TEXT_Y, "RANKING", GetColor(255, 0, 0), fontManager.GetRankingFont());
 
 	for (size_t i = 0; i < ranking.size(); i++)
 	{
 
-		// ƒ‰ƒ“ƒLƒ“ƒOƒXƒRƒA‚ğ•\¦
-		DrawFormatStringToHandle(TITLE_RANKING_X, TITLE_RANKING_Y + i * TITLE_RANKING_LINE_HEIGHT, GetColor(255, 0, 0), fontManager.GetRankingFont(), "%dˆÊ:%d", i + 1, ranking[i]);
+		// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤º
+		DrawFormatStringToHandle(TITLE_RANKING_X, TITLE_RANKING_Y + i * TITLE_RANKING_LINE_HEIGHT, GetColor(255, 0, 0), fontManager.GetRankingFont(), "%dä½:%d", i + 1, ranking[i]);
 	}
 }

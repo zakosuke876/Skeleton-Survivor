@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 
 class Sword {
@@ -21,7 +21,7 @@ private:
 
 	static constexpr float SWORD_SCALE = 0.01f;
 
-	// Œ•‚Ì•¿‚©‚çnæ‚Ü‚Å‚Ì‹——£
+	// å‰£ã®æŸ„ã‹ã‚‰åˆƒå…ˆã¾ã§ã®è·é›¢
 	static constexpr float SWORD_TIP_OFFSET = 180.0f;
 
 	VECTOR swordPos = VGet(0, 0, 0);

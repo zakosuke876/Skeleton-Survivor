@@ -1,4 +1,4 @@
-#include "Skeleton_Warrior.h"
+ï»¿#include "Skeleton_Warrior.h"
 #include "Player.h"
 #include "EnemyWarriorDataLoader.h"
 #include "GameConfig.h"
@@ -9,8 +9,8 @@
 
 const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
 
-	// Skeleton_Warriorê—p‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
-	// EnemyAnimation‚Ìenum‡‚Æˆê’v‚³‚¹‚é
+	// Skeleton_Warriorå°‚ç”¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+	// EnemyAnimationã®enumé †ã¨ä¸€è‡´ã•ã›ã‚‹
 	{8, 0.5f, false},   // ENEMY_ANIM_SPAWN
 	{6, 0.3f, true},    // ENEMY_ANIM_IDLE
 	{11, 0.3f, true},   // ENEMY_ANIM_WALK
@@ -21,8 +21,8 @@ const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
 	{2, 0.25f, false},  // ENEMY_ANIM_DEATH
 	{3, 0.3f, false},   // ENEMY_ANIM_DEATHPOSE
 
-	// ƒXƒPƒ‹ƒgƒ“ƒEƒH[ƒŠƒA[“Æ©‚ÌƒAƒjƒ[ƒVƒ‡ƒ“
-	{4, 0.3f, false},   // •œŠˆƒAƒjƒ[ƒVƒ‡ƒ“
+	// ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã‚¦ã‚©ãƒ¼ãƒªã‚¢ãƒ¼ç‹¬è‡ªã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+	{4, 0.3f, false},   // å¾©æ´»ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 };
 
 Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate) {
@@ -33,8 +33,8 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 
 	const EnemyStatus& data = warriorData.enemyStatus;
 
-	// JSONƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğ‘ã“ü
-	// Šî’êƒNƒ‰ƒX‚ÌDrawUI()‚ÅHPƒQ[ƒW•`‰æ‚Ég—p
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’ä»£å…¥
+	// åŸºåº•ã‚¯ãƒ©ã‚¹ã®DrawUI()ã§HPã‚²ãƒ¼ã‚¸æç”»ã«ä½¿ç”¨
 	maxHp = static_cast<int>(data.baseHp * growRate);
 
 	hp = maxHp;
@@ -61,7 +61,7 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 
 	score = data.score;
 
-	// JSONƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ŒÅ—Lƒf[ƒ^‚ğ‘ã“ü
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã å›ºæœ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä»£å…¥
 	reviveChancePercent = warriorData.reviveChancePercent;
 
 	reviveWaitTime = warriorData.reviveWaitTime;
@@ -70,31 +70,31 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 
 	reviveScoreMultiplier = warriorData.reviveScoreMultiplier;
 
-	// í—Ş‚ğİ’è
+	// ç¨®é¡ã‚’è¨­å®š
 	enemyType = ENEMY_WARRIOR;
 
 	isRevived = false;
 
 	willRevive = false;
 
-	// Œ³ƒ‚ƒfƒ‹‚©‚ç•¡»
+	// å…ƒãƒ¢ãƒ‡ãƒ«ã‹ã‚‰è¤‡è£½
 	modelHandle = MV1DuplicateModel(skeletonWModel);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğ“K—p
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’é©ç”¨
 	MV1SetTextureGraphHandle(modelHandle, 0, TexHandle, FALSE);
 
-	// ©•ªê—p‚Ìƒe[ƒuƒ‹‚ğƒZƒbƒg
+	// è‡ªåˆ†å°‚ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	animTable = SKELETON_WARRIOR_ANIM_TABLE;
 
-	// Å‰‚ÍƒXƒ|[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+	// æœ€åˆã¯ã‚¹ãƒãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
 	SwitchAnimation(ENEMY_SPAWN);
 	state = ENEMY_SPAWN;
 
-	// ƒ‚ƒfƒ‹‚ğŠg‘å
+	// ãƒ¢ãƒ‡ãƒ«ã‚’æ‹¡å¤§
 	scale = data.scale;
 	MV1SetScale(modelHandle, VGet(scale, scale, scale));
 
-	// ƒXƒ|[ƒ“À•W‚ğİ’è
+	// ã‚¹ãƒãƒ¼ãƒ³åº§æ¨™ã‚’è¨­å®š
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
@@ -102,7 +102,7 @@ void Skeleton_Warrior::Update(Player& player, float deltaTime, MagicEffectManage
 
 	Enemy::Update(player, deltaTime, magicEffectManager);
 
-	// €–S’†E•œŠˆ’†‚Í–³“Gƒ^ƒCƒ}[‚ªØ‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+	// æ­»äº¡ä¸­ãƒ»å¾©æ´»ä¸­ã¯ç„¡æ•µã‚¿ã‚¤ãƒãƒ¼ãŒåˆ‡ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 	if (state == ENEMY_DEATH || state == SKELETON_W_RESURRECTION)
 	{
 		isInvincible = true;
@@ -164,7 +164,7 @@ void Skeleton_Warrior::Update(Player& player, float deltaTime, MagicEffectManage
 			break;
 	}
 
-	// ƒvƒŒƒCƒ„[‚ª€–S‚µ‚½ê‡
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­»äº¡ã—ãŸå ´åˆ
 	if (player.IsDead())
 	{
 		state = SKELETON_W_VICTORY;
@@ -175,7 +175,7 @@ void Skeleton_Warrior::UpdateSpawn() {
 
 	SwitchAnimation(ENEMY_ANIM_SPAWN);
 
-	// ‘Ä¶ŠÔ‚ğ’´‚¦‚½ê‡
+	// ç·å†ç”Ÿæ™‚é–“ã‚’è¶…ãˆãŸå ´åˆ
 	if (animTime >= totalTime)
 	{
 		state = ENEMY_PATROL;
@@ -185,30 +185,30 @@ void Skeleton_Warrior::UpdateSpawn() {
 
 void Skeleton_Warrior::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
 	if (currentAnim == ENEMY_ANIM_ATTACK)
 	{
-		// ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶ŠÔ‚ÌŠ„‡‚ÅUŒ‚”»’è‚ğŠg‘åk¬‚·‚é
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿæ™‚é–“ã®å‰²åˆã§æ”»æ’ƒåˆ¤å®šã‚’æ‹¡å¤§ç¸®å°ã™ã‚‹
 		float t = animTime / totalTime;
 
-		// ƒTƒCƒ“”g‚É•ÏŠ·
+		// ã‚µã‚¤ãƒ³æ³¢ã«å¤‰æ›
 		float wave = sinf(t * DX_PI_F);
 
-		// Å‘å‚Å15L‚Ñ‚é
+		// æœ€å¤§ã§15ä¼¸ã³ã‚‹
 		float stepOffset = wave * 15.0f;
 
-		// \‘¢‘Ì‚É‘ã“ü
+		// æ§‹é€ ä½“ã«ä»£å…¥
 		hitBox.isAttackActive = true;
 		hitBox.x = x - sinf(angleY) * stepOffset;
 		hitBox.z = z - cosf(angleY) * stepOffset;
 		hitBox.radius = attackRadius;
 
-		// UŒ‚I—¹‚µ‚½‚çƒN[ƒ‹ŠJn
+		// æ”»æ’ƒçµ‚äº†ã—ãŸã‚‰ã‚¯ãƒ¼ãƒ«é–‹å§‹
 		if (animTime >= totalTime)
 		{
-			// UŒ‚”»’è‚ğ–³Œø
+			// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 			hitBox.isAttackActive = false;
 
 			SwitchAnimation(ENEMY_ANIM_ATTACKCOOL);
@@ -227,14 +227,14 @@ void Skeleton_Warrior::UpdateAttack(Player& player, float deltaTime, MagicEffect
 		{
 			isAttackCoolTimer = 0.0f;
 
-			// ƒvƒŒƒCƒ„[‚ªUŒ‚”ÍˆÍ“à‚É‚¢‚éê‡
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ”»æ’ƒç¯„å›²å†…ã«ã„ã‚‹å ´åˆ
 			if (IsPlayerInAttackRange(player))
 			{
 				SwitchAnimation(ENEMY_ANIM_ATTACK);
 				state = ENEMY_ATTACK;
 				animTime = 0.0f;
 			}
-			else // UŒ‚”ÍˆÍŠO‚É‚¢‚éê‡
+			else // æ”»æ’ƒç¯„å›²å¤–ã«ã„ã‚‹å ´åˆ
 			{
 				SwitchAnimation(ENEMY_ANIM_DASH);
 				state = ENEMY_CHASE;
@@ -245,7 +245,7 @@ void Skeleton_Warrior::UpdateAttack(Player& player, float deltaTime, MagicEffect
 
 void Skeleton_Warrior::UpdateDamage() {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
 	SwitchAnimation(ENEMY_ANIM_DAMAGE);
@@ -260,23 +260,23 @@ void Skeleton_Warrior::UpdateDamage() {
 
 bool Skeleton_Warrior::TakeDamage(int value, SoundManager& soundManager) {
 
-	// Šî’êƒNƒ‰ƒX‚ÌŠÖ”‚ğŒÄ‚Ñ‚¾‚µA€‚ñ‚¾‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	// åŸºåº•ã‚¯ãƒ©ã‚¹ã®é–¢æ•°ã‚’å‘¼ã³ã ã—ã€æ­»ã‚“ã ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	bool isDead = Enemy::TakeDamage(value, soundManager);
 
-	// €–S‚µ‚½ê‡‚É•œŠˆ’Š‘I
+	// æ­»äº¡ã—ãŸå ´åˆã«å¾©æ´»æŠ½é¸
 	if (isDead)
 	{
-		// 2“x–Ú‚Ì•œŠˆ‚Í‚µ‚È‚¢
+		// 2åº¦ç›®ã®å¾©æ´»ã¯ã—ãªã„
 		if (isRevived) return true;
 
 		std::uniform_int_distribution<int> reviveChance(REVIVE_CHANCE_MIN, REVIVE_CHANCE_MAX);
 
 		int reviveCheck = reviveChance(rng);
 
-		// JSON‚Åİ’è‚µ‚½’lˆÈ‰º‚¾‚Á‚½ê‡•œŠˆ
+		// JSONã§è¨­å®šã—ãŸå€¤ä»¥ä¸‹ã ã£ãŸå ´åˆå¾©æ´»
 		if (reviveCheck <= reviveChancePercent)
 		{
-			// •œŠˆ‰Â”\‚É‚·‚é
+			// å¾©æ´»å¯èƒ½ã«ã™ã‚‹
 			willRevive = true;
 			state = ENEMY_DEATH;
 			SwitchAnimation(ENEMY_ANIM_DEATH);
@@ -303,10 +303,10 @@ void Skeleton_Warrior::UpdateRevive() {
 
 void Skeleton_Warrior::UpdateDeath(float deltaTime) {
 
-	// UŒ‚”»’è‚ğ–³Œø
+	// æ”»æ’ƒåˆ¤å®šã‚’ç„¡åŠ¹
 	hitBox.isAttackActive = false;
 
-	// €–SƒAƒjƒ[ƒVƒ‡ƒ“Œã‚É“|‚ê‚éƒAƒjƒ[ƒVƒ‡ƒ“‚É‘JˆÚ
+	// æ­»äº¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¾Œã«å€’ã‚Œã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«é·ç§»
 	if (animTime >= totalTime)
 	{
 		SwitchAnimation(ENEMY_ANIM_DEATHPOSE);
@@ -314,31 +314,31 @@ void Skeleton_Warrior::UpdateDeath(float deltaTime) {
 
 	deathTimer += deltaTime;
 
-	// •œŠˆ‚Å‚«‚éê‡
+	// å¾©æ´»ã§ãã‚‹å ´åˆ
 	if (willRevive)
 	{
-		// ˆê’èŠÔŒã‚É•œŠˆó‘Ô‚Ö‘JˆÚ
+		// ä¸€å®šæ™‚é–“å¾Œã«å¾©æ´»çŠ¶æ…‹ã¸é·ç§»
 		if (deathTimer >= reviveWaitTime)
 		{
 			willRevive = false;
 
-			// •œŠˆ‚Í1“x‚¾‚¯
+			// å¾©æ´»ã¯1åº¦ã ã‘
 			isRevived = true;
 			state = SKELETON_W_RESURRECTION;
 			SwitchAnimation(SKELETON_W_REVIVE);
 
-			// JSON‚Åw’è‚µ‚½”{—¦‚ÌHP‚Å•œŠˆ‚³‚¹‚é
+			// JSONã§æŒ‡å®šã—ãŸå€ç‡ã®HPã§å¾©æ´»ã•ã›ã‚‹
 			hp = maxHp * 3 / 2;
 
-			// HPƒQ[ƒW‚ÌÅ‘å’l‚ğİ’è 
+			// HPã‚²ãƒ¼ã‚¸ã®æœ€å¤§å€¤ã‚’è¨­å®š 
 			maxHp = hp;
 
-			// •œŠˆ‚Í‚à‚¤1“x“|‚·‚±‚Æ‚É‚È‚é‚½‚ßAJSON‚Åw’è‚µ‚½”{—¦•ªƒXƒRƒA‚ğ‰ÁZ
+			// å¾©æ´»æ™‚ã¯ã‚‚ã†1åº¦å€’ã™ã“ã¨ã«ãªã‚‹ãŸã‚ã€JSONã§æŒ‡å®šã—ãŸå€ç‡åˆ†ã‚¹ã‚³ã‚¢ã‚’åŠ ç®—
 			score *= reviveScoreMultiplier;
 			deathTimer = 0.0f;
 		}
 	}
-	else // ˆê’èŠÔŒo‰ßŒã‚É”ñƒAƒNƒeƒBƒu‰»
+	else // ä¸€å®šæ™‚é–“çµŒéå¾Œã«éã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
 	{
 		if (deathTimer >= hideTime)
 		{

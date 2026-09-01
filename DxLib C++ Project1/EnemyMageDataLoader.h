@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 struct SkeletonMageStatus;
 
 class EnemyMageDataLoader {
 public:
 
-	// JSONƒtƒ@ƒCƒ‹‚©‚çƒf[ƒ^“Ç‚İ‚İ‚ğˆË—Š
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚’ä¾é ¼
 	static bool Load(SkeletonMageStatus& outData);
 
 private:
 
-	//@“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğ\‘¢‘Ì‚Ö•Û‘¶‚·‚é
+	//ã€€èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹é€ ä½“ã¸ä¿å­˜ã™ã‚‹
 	static bool LoadData(const char* jsonPath, SkeletonMageStatus& outData);
 
 };

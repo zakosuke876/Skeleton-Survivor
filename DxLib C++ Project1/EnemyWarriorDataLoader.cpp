@@ -1,4 +1,4 @@
-#include "EnemyWarriorDataLoader.h"
+ï»¿#include "EnemyWarriorDataLoader.h"
 #include "EnemyStatusTypes.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
@@ -15,7 +15,7 @@ bool EnemyWarriorDataLoader::LoadData(const char* jsonPath, SkeletonWarriorStatu
 
 	return JsonLoader::Load(jsonPath, "Skeleton_Warrior", [&](const json& data) {
 
-		// “Ç‚İ‚ñ‚¾’l‚ğ\‘¢‘Ì‚Öİ’è
+		// èª­ã¿è¾¼ã‚“ã å€¤ã‚’æ§‹é€ ä½“ã¸è¨­å®š
 		outData.enemyStatus.baseHp = data.at("baseHp").get<int>();
 
 		outData.enemyStatus.baseAttack = data.at("baseAttack").get<int>();
@@ -46,7 +46,7 @@ bool EnemyWarriorDataLoader::LoadData(const char* jsonPath, SkeletonWarriorStatu
 
 		outData.enemyStatus.texturePath = data.at("texturePath").get<std::string>();
 
-		// ƒEƒH[ƒŠƒA[ŒÅ—LƒXƒe[ƒ^ƒX
+		// ã‚¦ã‚©ãƒ¼ãƒªã‚¢ãƒ¼å›ºæœ‰ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 		outData.reviveChancePercent = data.at("reviveChancePercent").get<int>();
 
 		outData.reviveWaitTime = data.at("reviveWaitTime").get<float>();

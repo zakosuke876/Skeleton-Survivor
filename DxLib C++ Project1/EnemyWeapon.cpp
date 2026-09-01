@@ -1,28 +1,28 @@
-#include "EnemyWeapon.h"
+ï»¿#include "EnemyWeapon.h"
 
 EnemyWeapon::EnemyWeapon() {}
 
 EnemyWeapon::~EnemyWeapon() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	MV1DeleteModel(weaponHandle);
 }
 
 void EnemyWeapon::SetUp(int srcModelHandle, int texHandle, const char* boneNamae) {
 
-    // Œ³ƒ‚ƒfƒ‹‚©‚ç•¡»
+    // å…ƒãƒ¢ãƒ‡ãƒ«ã‹ã‚‰è¤‡è£½
     weaponHandle = MV1DuplicateModel(srcModelHandle);
 
     if (texHandle != -1)
     {
-        // ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
         MV1SetTextureGraphHandle(weaponHandle, 0, texHandle, FALSE);
     }
 }
 
 void EnemyWeapon::Update(int enemyModelHandle) {
 
-    // ƒ{[ƒ“ƒCƒ“ƒfƒbƒNƒX‚ª–¢æ“¾‚È‚çŒŸõ
+    // ãƒœãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæœªå–å¾—ãªã‚‰æ¤œç´¢
     if (handFrameIndex == -1)
     {
         handFrameIndex = MV1SearchFrame(enemyModelHandle, "handslot.r");

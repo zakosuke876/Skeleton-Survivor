@@ -1,0 +1,7 @@
+root = true
+
+# C/C++ は BOM付きUTF-8(MSVCがSJISと誤認するのを防ぐ)
+[*.{c,cpp,h,hpp}]
+charset = utf-8-bom
+end_of_line = crlf
+insert_final_newline = true

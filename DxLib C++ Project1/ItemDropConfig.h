@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 
 struct ItemTypeRate {
-	int smallRate;  // ¬ƒ^ƒCƒv
-	int mediumRate; // ’†ƒ^ƒCƒv
-	int largeRate;  // ‘åƒ^ƒCƒv
+	int smallRate;  // å°ã‚¿ã‚¤ãƒ—
+	int mediumRate; // ä¸­ã‚¿ã‚¤ãƒ—
+	int largeRate;  // å¤§ã‚¿ã‚¤ãƒ—
 };
 
 struct ItemDropConfig {
-	int dropRate;              // ƒAƒCƒeƒ€‚Ìƒhƒƒbƒv—¦(%)
-	float dropOffsetY;         // ƒhƒƒbƒv‚ÌÀ•W‚ğ‚¸‚ç‚·‚½‚ß‚ÌY•ûŒüƒIƒtƒZƒbƒg
-	float expItemRandomOffset; // ŒoŒ±’lƒAƒCƒeƒ€‚Ì¶¬À•W‚ğ‚¸‚ç‚·”ÍˆÍ
+	int dropRate;              // ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ‰ãƒ­ãƒƒãƒ—ç‡(%)
+	float dropOffsetY;         // ãƒ‰ãƒ­ãƒƒãƒ—æ™‚ã®åº§æ¨™ã‚’ãšã‚‰ã™ãŸã‚ã®Yæ–¹å‘ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	float expItemRandomOffset; // çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆåº§æ¨™ã‚’ãšã‚‰ã™ç¯„å›²
 	ItemTypeRate itemTypeRate;
 };

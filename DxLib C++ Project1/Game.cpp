@@ -1,27 +1,27 @@
-#include "Game.h"
+ï»¿#include "Game.h"
 #include "GameConfig.h"
 
 Game::Game() {
 
-    // ƒEƒBƒ“ƒhƒEE3D•`‰æ‚Ü‚í‚è‚Ì‰Šúİ’è
+    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»3Dæç”»ã¾ã‚ã‚Šã®åˆæœŸè¨­å®š
     SetMainWindowText("Skeleton Survivor");
     SetDrawScreen(DX_SCREEN_BACK);
     SetUseZBuffer3D(TRUE);
     SetWriteZBuffer3D(TRUE);
 
-    // —”‚Ìí‚ğ‰Šú‰»
+    // ä¹±æ•°ã®ç¨®ã‚’åˆæœŸåŒ–
     srand((unsigned int)time(nullptr));
 
-    // ‘OƒtƒŒ[ƒ€‚Ì‚ğ‹L˜^
+    // å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ™‚åˆ»ã‚’è¨˜éŒ²
     prevTime = GetNowCount();
 
-    // ‹N“®‚Éƒ^ƒCƒgƒ‹BGM‚ğÄ¶
+    // èµ·å‹•æ™‚ã«ã‚¿ã‚¤ãƒˆãƒ«BGMã‚’å†ç”Ÿ
     soundManager.PlayBgm(BGM_TITLE);
 
-    // ‹N“®‚Íƒ^ƒCƒgƒ‹ƒV[ƒ“‚©‚çŠJn
+    // èµ·å‹•æ™‚ã¯ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã‹ã‚‰é–‹å§‹
     currentScene = APP_TITLE;
 
-    // ŠeƒV[ƒ“‚ğ¶¬i•K—v‚ÈQÆ‚ğ“n‚·j
+    // å„ã‚·ãƒ¼ãƒ³ã‚’ç”Ÿæˆï¼ˆå¿…è¦ãªå‚ç…§ã‚’æ¸¡ã™ï¼‰
     titleScene = std::make_unique<TitleScene>(fontManager, rankingManager, soundManager, result);
 
     gameScene = std::make_unique<GameScene>(player, scoreManager, itemManager, soundManager, fontManager, ground,
@@ -30,16 +30,16 @@ Game::Game() {
 
 void Game::Run() {
 
-    // ƒƒCƒ“ƒ‹[ƒvFƒEƒBƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚é‚©I—¹—v‹‚ª‚ ‚é‚Ü‚Å‰ñ‚·
+    // ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‰ã˜ã‚‰ã‚Œã‚‹ã‹çµ‚äº†è¦æ±‚ãŒã‚ã‚‹ã¾ã§å›ã™
     while (ProcessMessage() == 0 && !titleScene->GetisQuit())
     {
-        // Œ»İ‚ğæ“¾
+        // ç¾åœ¨æ™‚åˆ»ã‚’å–å¾—
         int nowTime = GetNowCount();
 
-        // ‘OƒtƒŒ[ƒ€‚Æ‚Ì·‚ğ•b‚É•ÏŠ·ideltaTimej
+        // å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ã®å·®ã‚’ç§’ã«å¤‰æ›ï¼ˆdeltaTimeï¼‰
         deltaTime = (nowTime - prevTime) / 1000.0f;
 
-        // Œ»İ‚ğŸƒtƒŒ[ƒ€—p‚É•Û‘¶
+        // ç¾åœ¨æ™‚åˆ»ã‚’æ¬¡ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ã«ä¿å­˜
         prevTime = nowTime;
 
         Update();
@@ -49,19 +49,19 @@ void Game::Run() {
 
 void Game::Update() {
 
-    // Œ»İ‚ÌƒV[ƒ“‚²‚Æ‚ÉXVˆ—‚ğU‚è•ª‚¯‚é
+    // ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã”ã¨ã«æ›´æ–°å‡¦ç†ã‚’æŒ¯ã‚Šåˆ†ã‘ã‚‹
     switch (currentScene)
     {
-        // ƒ^ƒCƒgƒ‹ƒV[ƒ“‚ÌXV
+        // ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã®æ›´æ–°
         case APP_TITLE: {
 
             SceneType next = titleScene->Update(deltaTime);
 
-            // ƒQ[ƒ€ŠJn‚ª‘I‚Î‚ê‚½‚çƒQ[ƒ€ƒV[ƒ“‚Ö‘JˆÚ
+            // ã‚²ãƒ¼ãƒ é–‹å§‹ãŒé¸ã°ã‚ŒãŸã‚‰ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã¸é·ç§»
             if (next == SceneType::Game)
             {
                 titleScene->OnExit();
-                GameReset();          // ƒQ[ƒ€ó‘Ô‚ğƒŠƒZƒbƒg
+                GameReset();          // ã‚²ãƒ¼ãƒ çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆ
                 gameScene->OnEnter();
                 currentScene = APP_GAME;
             }
@@ -69,12 +69,12 @@ void Game::Update() {
             break;
         }
 
-        // ƒQ[ƒ€ƒV[ƒ“‚ÌXV
+        // ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã®æ›´æ–°
         case APP_GAME: {
 
             SceneType next = gameScene->Update(deltaTime);
 
-            // ƒ^ƒCƒgƒ‹‚Ö–ß‚é—v‹‚ª‚ ‚ê‚Îƒ^ƒCƒgƒ‹ƒV[ƒ“‚Ö‘JˆÚ
+            // ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹è¦æ±‚ãŒã‚ã‚Œã°ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã¸é·ç§»
             if (next == SceneType::Title)
             {
                 gameScene->OnExit();
@@ -94,20 +94,20 @@ void Game::Update() {
 
 void Game::Draw() {
 
-    // •`‰æ‘O‚É‰æ–Ê‚ğƒNƒŠƒA
+    // æç”»å‰ã«ç”»é¢ã‚’ã‚¯ãƒªã‚¢
     ClearDrawScreen();
 
-    // Œ»İ‚ÌƒV[ƒ“‚²‚Æ‚É•`‰æ‚ğU‚è•ª‚¯‚é
+    // ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã”ã¨ã«æç”»ã‚’æŒ¯ã‚Šåˆ†ã‘ã‚‹
     switch (currentScene)
     {
-        // ƒ^ƒCƒgƒ‹ƒV[ƒ“‚Ì•`‰æ
+        // ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã®æç”»
         case APP_TITLE:
 
             titleScene->Draw();
 
             break;
 
-        // ƒQ[ƒ€ƒV[ƒ“‚Ì•`‰æ
+        // ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã®æç”»
         case APP_GAME:
 
             gameScene->Draw();
@@ -119,13 +119,13 @@ void Game::Draw() {
             break;
     }
 
-    // — ‰æ–Ê‚ğ•\‰æ–Ê‚Ö”½‰f
+    // è£ç”»é¢ã‚’è¡¨ç”»é¢ã¸åæ˜ 
     ScreenFlip();
 }
 
 void Game::GameReset() {
 
-    // ƒQ[ƒ€ŠJn‚ÉŠeƒIƒuƒWƒFƒNƒg‚ğ‰Šúó‘Ô‚Ö–ß‚·
+    // ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã«å„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’åˆæœŸçŠ¶æ…‹ã¸æˆ»ã™
     player.Reset();
     enemyManager.Reset();
     itemManager.Reset();

@@ -1,4 +1,4 @@
-#include "EnemyManager.h"
+ï»¿#include "EnemyManager.h"
 #include "ScoreManager.h"
 #include "ItemManager.h"
 #include "SoundManager.h"
@@ -20,45 +20,45 @@
 
 EnemyManager::EnemyManager() {
 
-	// ƒ‰ƒ“ƒ_ƒ€¶¬—p
+	// ãƒ©ãƒ³ãƒ€ãƒ ç”Ÿæˆç”¨
 	std::random_device rd;
 	rng = std::mt19937(rd());
 
-	// JSON‚©‚çSkeleton_Normal‚Ìƒf[ƒ^“Ç‚İ‚İ‚ğw¦
+	// JSONã‹ã‚‰Skeleton_Normalã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚’æŒ‡ç¤º
 	if (!EnemyNormalDataLoader::Load(normalStatus))
 	{
-		printfDx("ƒm[ƒ}ƒ‹ƒXƒPƒ‹ƒgƒ“‚Ìƒf[ƒ^“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("ãƒãƒ¼ãƒãƒ«ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// JSON‚©‚çSkeleton_Warrior‚Ìƒf[ƒ^“Ç‚İ‚İ‚ğw¦
+	// JSONã‹ã‚‰Skeleton_Warriorã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚’æŒ‡ç¤º
 	if (!EnemyWarriorDataLoader::Load(warriorStatus))
 	{
-		printfDx("ƒEƒH[ƒŠƒA[ƒXƒPƒ‹ƒgƒ“‚Ìƒf[ƒ^“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("ã‚¦ã‚©ãƒ¼ãƒªã‚¢ãƒ¼ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// JSON‚©‚çSkeleton_Mage‚Ìƒf[ƒ^“Ç‚İ‚İ‚ğw¦
+	// JSONã‹ã‚‰Skeleton_Mageã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚’æŒ‡ç¤º
 	if (!EnemyMageDataLoader::Load(mageStatus))
 	{
-		printfDx("ƒƒCƒWƒXƒPƒ‹ƒgƒ“‚Ìƒf[ƒ^“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("ãƒ¡ã‚¤ã‚¸ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// JSON‚©‚ç“G‚ÌƒXƒ|[ƒ“î•ñ‚Ìƒf[ƒ^“Ç‚İ‚İ‚ğw¦
+	// JSONã‹ã‚‰æ•µã®ã‚¹ãƒãƒ¼ãƒ³æƒ…å ±ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚’æŒ‡ç¤º
 	if (!SpawnDataLoader::Load(spawnConfig))
 	{
-		printfDx("ƒXƒ|[ƒ“ƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("ã‚¹ãƒãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
+	// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	skeletonNormalModelHandle  = MV1LoadModel(normalStatus.enemyStatus.modelPath.c_str());
 	skeletonWarriorModelHandle = MV1LoadModel(warriorStatus.enemyStatus.modelPath.c_str());
 	skeletonMageModelHandle = MV1LoadModel(mageStatus.enemyStatus.modelPath.c_str());
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚Ş
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã‚€
 	skeletonNormalTexHandle = LoadGraph(normalStatus.enemyStatus.texturePath.c_str());
 	skeletonWarriorTexHandle = LoadGraph(warriorStatus.enemyStatus.texturePath.c_str());
 	skeletonMageTexHandle = LoadGraph(mageStatus.enemyStatus.texturePath.c_str());
 
-	// ƒXƒ|[ƒ“ŠÖ˜A‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	// ã‚¹ãƒãƒ¼ãƒ³é–¢é€£ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	spawnInterval = spawnConfig.spawnInterval;
 
 	maxEnemy = spawnConfig.maxEnemy;
@@ -67,14 +67,14 @@ EnemyManager::EnemyManager() {
 
 	growRatePerInterval = spawnConfig.growRatePerInterval;
 
-	// •Ší‚Ì“Ç‚İ‚İ
+	// æ­¦å™¨ã®èª­ã¿è¾¼ã¿
 	staffModelHandle = MV1LoadModel("Model/Staff/Mage_Staff.mv1");
 	staffTexHandle   = LoadGraph("Model/Staff/skeleton_texture.png");
 }
 
 EnemyManager::~EnemyManager() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	MV1DeleteModel(skeletonNormalModelHandle);
 	MV1DeleteModel(skeletonWarriorModelHandle);
 	MV1DeleteModel(skeletonMageModelHandle);
@@ -93,7 +93,7 @@ void EnemyManager::Reset() {
 	spawnTimer = 0.0f;
 	enemyGrowRate = 1.0f;
 
-	// ”z—ñ‚Ì’l‚ğ0‚ÉƒŠƒZƒbƒg
+	// é…åˆ—ã®å€¤ã‚’0ã«ãƒªã‚»ãƒƒãƒˆ
 	for (int i = 0; i < ENEMY_TYPE_COUNT; i++)
 	{
 		killCount[i] = 0;
@@ -102,25 +102,25 @@ void EnemyManager::Reset() {
 
 void EnemyManager::Spawn() {
 
-	// ƒXƒ|[ƒ“X,ZÀ•W‚Ì”ÍˆÍİ’è
+	// ã‚¹ãƒãƒ¼ãƒ³X,Zåº§æ¨™ã®ç¯„å›²è¨­å®š
 	std::uniform_real_distribution<float> rx(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
 	std::uniform_real_distribution<float> rz(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
 
-	// ¶¬”ÍˆÍ‚ğ––”ö-1‚É‚µ‚Ä“G‚ğ’Ç‰Á‚µ‚½Û‚É©“®‚ÅÅ‘å’l‚É‘Î‰
+	// ç”Ÿæˆç¯„å›²ã‚’æœ«å°¾-1ã«ã—ã¦æ•µã‚’è¿½åŠ ã—ãŸéš›ã«è‡ªå‹•ã§æœ€å¤§å€¤ã«å¯¾å¿œ
 	std::uniform_int_distribution<int> TypeNum(ENEMY_NORMAL, ENEMY_TYPE_COUNT - 1);
 
-	// ƒtƒB[ƒ‹ƒh“àƒ‰ƒ“ƒ_ƒ€‚ÈÀ•W‚ÉƒXƒ|[ƒ“
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å†…ãƒ©ãƒ³ãƒ€ãƒ ãªåº§æ¨™ã«ã‚¹ãƒãƒ¼ãƒ³
 	float x = rx(rng);
 	float z = rz(rng);
 
 	int enemyTypeNum = TypeNum(rng);
 
-	// ’l‚É‚æ‚Á‚Ä¶¬‚·‚é“G‚Ìí—Ş‚ğ•Ï‚¦‚é
+	// å€¤ã«ã‚ˆã£ã¦ç”Ÿæˆã™ã‚‹æ•µã®ç¨®é¡ã‚’å¤‰ãˆã‚‹
 	switch (enemyTypeNum)
 	{
 		case ENEMY_NORMAL:
 
-			// “G‚ğ¶¬
+			// æ•µã‚’ç”Ÿæˆ
 			enemies.emplace_back(std::make_unique<Skeleton_Normal>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, normalStatus, enemyGrowRate));
 
 			break;
@@ -141,15 +141,15 @@ void EnemyManager::Spawn() {
 
 void EnemyManager::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManger) {
 
-	// íœ‘O‚Ì“G‚Ì”‚ğ•Û
+	// å‰Šé™¤å‰ã®æ•µã®æ•°ã‚’ä¿æŒ
 	size_t enemyPrevCount = enemies.size();
 
-	//	“G‚Ì”‚ªãŒÀ–¢–‚Ìê‡ƒ^ƒCƒ}[‚ği‚ß‚é
+	//	æ•µã®æ•°ãŒä¸Šé™æœªæº€ã®å ´åˆã‚¿ã‚¤ãƒãƒ¼ã‚’é€²ã‚ã‚‹
 	if (enemies.size() < maxEnemy)
 	{
 		spawnTimer += deltaTime;
 
-		// ˆê’èŠÔŠu‚Å“G‚ğ¶¬
+		// ä¸€å®šé–“éš”ã§æ•µã‚’ç”Ÿæˆ
 		if (spawnTimer >= spawnInterval)
 		{
 			Spawn();
@@ -158,29 +158,29 @@ void EnemyManager::Update(Player& player, float deltaTime, MagicEffectManager& m
 		}
 	}
 
-	// ƒQ[ƒ€ƒvƒŒƒCŠÔ‚ğŒv‘ª
+	// ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤æ™‚é–“ã‚’è¨ˆæ¸¬
 	playTimer += deltaTime;
 
-	// growInterval‚²‚Æ‚É“G‚ª‹­‚­‚È‚éB(ƒXƒe[ƒ^ƒX‚ªenemyGrowRate”{‚¸‚Â‹­‰»)
+	// growIntervalã”ã¨ã«æ•µãŒå¼·ããªã‚‹ã€‚(ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒenemyGrowRateå€ãšã¤å¼·åŒ–)
 	enemyGrowRate = 1.0f + floor(playTimer / growInterval) * growRatePerInterval;
 
-	// “G‚ÌXV
+	// æ•µã®æ›´æ–°
 	for (auto& e : enemies)
 	{
 		e->Update(player, deltaTime, magicEffectManger);
 	}
 
-	// ”ñƒAƒNƒeƒBƒu‚È“G‚Ìíœ
+	// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªæ•µã®å‰Šé™¤
 	enemies.erase(
 		std::remove_if(enemies.begin(), enemies.end(),
 			[](const std::unique_ptr<Enemy>& e) { return !e->IsActive();}),
 		enemies.end()
 	);
 
-	// “G‚Ì”‚ªŒ¸‚Á‚½ê‡
+	// æ•µã®æ•°ãŒæ¸›ã£ãŸå ´åˆ
 	if (enemies.size() < enemyPrevCount)
 	{
-		// ƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg‚µ‚Ä‚·‚®‚É“G‚ªƒXƒ|[ƒ“‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+		// ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¦ã™ãã«æ•µãŒã‚¹ãƒãƒ¼ãƒ³ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 		spawnTimer = 0.0f;
 	}
 }
@@ -200,61 +200,61 @@ void EnemyManager::DrawUI() const {
 	}
 }
 
-// ƒvƒŒƒCƒ„[‚ÌUŒ‚‚ª“G‚É“–‚½‚Á‚½‚©”»’è
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒãŒæ•µã«å½“ãŸã£ãŸã‹åˆ¤å®š
 void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, SoundManager& soundManager) {
 
 	PlayerAttackHitBox playerHitBox = player.GetPlayerAttackHitBox();
 
-	// UŒ‚”»’è‚ª–³Œø‚È‚çˆ—‚µ‚È‚¢
+	// æ”»æ’ƒåˆ¤å®šãŒç„¡åŠ¹ãªã‚‰å‡¦ç†ã—ãªã„
 	if (!playerHitBox.isAttackActive) return;
 
 	for (auto& e : enemies)
 	{
-		// ”ñƒAƒNƒeƒBƒu‚È“G‚Íˆ—‚µ‚È‚¢
+		// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªæ•µã¯å‡¦ç†ã—ãªã„
 		if (!e->IsActive()) continue;
 
-		// ƒvƒŒƒCƒ„[‚ÌUŒ‚ˆÊ’u‚Æ“G‚Ì·•ª‚ğ‹‚ß‚é
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒä½ç½®ã¨æ•µã®å·®åˆ†ã‚’æ±‚ã‚ã‚‹
 		float dx = e->GetPos().x - playerHitBox.x;
 		float dz = e->GetPos().z - playerHitBox.z;
 
-		// ‹——£‚Ì2æ‚ğ‹‚ß‚é
+		// è·é›¢ã®2ä¹—ã‚’æ±‚ã‚ã‚‹
 		float distanceSq = dx * dx + dz * dz;
 
-		// ‰~‚Ç‚¤‚µ‚Ì“–‚½‚è”»’èŒvZ‚Ì‚½‚ß‚É”¼Œa‚Ì‡Œv‚ğ‹‚ß‚é
+		// å††ã©ã†ã—ã®å½“ãŸã‚Šåˆ¤å®šè¨ˆç®—ã®ãŸã‚ã«åŠå¾„ã®åˆè¨ˆã‚’æ±‚ã‚ã‚‹
 		float totalRadius = e->GetBodyRadius() + playerHitBox.radius;
 
 		if (distanceSq < totalRadius * totalRadius)
 		{
-			// HP‚ª0ˆÈ‰º‚É‚È‚Á‚½ê‡
+			// HPãŒ0ä»¥ä¸‹ã«ãªã£ãŸå ´åˆ
 			if (e->TakeDamage(player.GetAttackPower(), soundManager))
 			{
-				// ƒXƒRƒA‰ÁZ
+				// ã‚¹ã‚³ã‚¢åŠ ç®—
 				scoreManager.AddScore(e->GetEnemyType(), e->GetScoreValue());
 
-				// “|‚µ‚½“G‚Ì”‚ğí—Ş‚²‚Æ‚É‰ÁZ
+				// å€’ã—ãŸæ•µã®æ•°ã‚’ç¨®é¡ã”ã¨ã«åŠ ç®—
 				CountEnemyKill(e->GetEnemyType());
 
-				// ‰ñ•œƒAƒCƒeƒ€¶¬ˆË—Š(Šm—¦)
+				// å›å¾©ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆä¾é ¼(ç¢ºç‡)
 				itemManager.DropRecoveryItem(e->GetPos().x, e->GetPos().y, e->GetPos().z);
 
-				// ŒoŒ±’lƒAƒCƒeƒ€¶¬ˆË—Š(Šm’è)
+				// çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆä¾é ¼(ç¢ºå®š)
 				itemManager.DropExpItem(e->GetPos().x, e->GetPos().y, e->GetPos().z);
 			}
 		}
 	}
 }
 
-// “G‚ÌUŒ‚‚ªƒvƒŒƒCƒ„[‚É“–‚½‚Á‚½‚©”»’è
+// æ•µã®æ”»æ’ƒãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å½“ãŸã£ãŸã‹åˆ¤å®š
 void EnemyManager::CheckEnemyAttackHit(Player& player, SoundManager& soundManager) {
 
 	for (auto& e : enemies)
 	{
-		// ”ñƒAƒNƒeƒBƒu‚È“G‚Íˆ—‚µ‚È‚¢
+		// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªæ•µã¯å‡¦ç†ã—ãªã„
 		if (!e->IsActive()) continue;
 
 		EnemyAttackHitBox enemyHitBox = e->GetHitBox();
 
-		// UŒ‚”»’è‚ª–³Œø‚È‚çˆ—‚µ‚È‚¢
+		// æ”»æ’ƒåˆ¤å®šãŒç„¡åŠ¹ãªã‚‰å‡¦ç†ã—ãªã„
 		if (!enemyHitBox.isAttackActive) continue;
 
 		float dx = player.GetPosition().x - enemyHitBox.x;
@@ -266,7 +266,7 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, SoundManager& soundManage
 
 		if (distanceSq < totalRadius * totalRadius)
 		{
-			// UŒ‚—Í‚ğæ“¾‚µ‚Ä‚»‚Ì’l•ª‚Ìƒ_ƒ[ƒW
+			// æ”»æ’ƒåŠ›ã‚’å–å¾—ã—ã¦ãã®å€¤åˆ†ã®ãƒ€ãƒ¡ãƒ¼ã‚¸
 			player.TakeDamage(e->GetAttackPower(), soundManager);
 		}
 	}
@@ -274,6 +274,6 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, SoundManager& soundManage
 
 void EnemyManager::CountEnemyKill(EnemyType type) {
 
-	// “|‚µ‚½“G‚Ì”‚ğí—Ş‚²‚Æ‚É‰ÁZA•Û
+	// å€’ã—ãŸæ•µã®æ•°ã‚’ç¨®é¡ã”ã¨ã«åŠ ç®—ã€ä¿æŒ
 	killCount[type]++;
 }

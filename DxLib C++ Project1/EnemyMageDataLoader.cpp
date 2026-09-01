@@ -1,4 +1,4 @@
-#include "EnemyMageDataLoader.h"
+ï»¿#include "EnemyMageDataLoader.h"
 #include "EnemyStatusTypes.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
@@ -8,7 +8,7 @@ using json = nlohmann::json;
 
 bool EnemyMageDataLoader::Load(SkeletonMageStatus& outData) {
 
-	// JsonPathE\‘¢‘Ì‚ğ“n‚·
+	// JsonPathãƒ»æ§‹é€ ä½“ã‚’æ¸¡ã™
 	return LoadData(JsonPath::SKELETON_MAGE_DATA, outData);
 }
 
@@ -16,7 +16,7 @@ bool EnemyMageDataLoader::LoadData(const char* jsonPath, SkeletonMageStatus& out
 
 	return JsonLoader::Load(jsonPath, "Skeleton_Mage", [&](const json& data) {
 
-		// “Ç‚İ‚ñ‚¾’l‚ğ\‘¢‘Ì‚Öİ’è
+		// èª­ã¿è¾¼ã‚“ã å€¤ã‚’æ§‹é€ ä½“ã¸è¨­å®š
 		outData.enemyStatus.baseHp = data.at("baseHp").get<int>();
 
 		outData.enemyStatus.baseAttack = data.at("baseAttack").get<int>();

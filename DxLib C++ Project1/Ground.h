@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "GameConfig.h"
 
 class Ground {
@@ -13,13 +13,13 @@ public:
 	static float GetMinZPos() { return GameConfig::FIELD_MIN_Z; }
 private:
 	
-	//@ƒOƒŠƒbƒh‚Ìİ’è
-	// YÀ•W
+	//ã€€ã‚°ãƒªãƒƒãƒ‰ã®è¨­å®š
+	// Yåº§æ¨™
 	static constexpr float GROUND_Y = -3.6f;
 
-	// °‚Ìƒ‚ƒfƒ‹
+	// åºŠã®ãƒ¢ãƒ‡ãƒ«
 	int groundHandle;
 
-	// °‚ÌŠg‘å”{—¦
+	// åºŠã®æ‹¡å¤§å€ç‡
 	static constexpr float GROUND_SCALE = 0.25f;
 };

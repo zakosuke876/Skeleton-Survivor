@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 
 enum class SceneType {
 	Title,
 	Game,
-	None, // u‚Ü‚¾Ø‚è‘Ö‚¦‚Ä‚¢‚È‚¢vó‘Ô
+	None, // ã€Œã¾ã åˆ‡ã‚Šæ›¿ãˆã¦ã„ãªã„ã€çŠ¶æ…‹
 };
 
 class Scene {
@@ -11,10 +11,10 @@ public:
 
 	virtual ~Scene() = default;
 
-	// ‚±‚ÌƒV[ƒ“‚É“ü‚Á‚½uŠÔ‚Ìˆ—
+	// ã“ã®ã‚·ãƒ¼ãƒ³ã«å…¥ã£ãŸç¬é–“ã®å‡¦ç†
 	virtual void OnEnter() {}
 
-	// ‚±‚ÌƒV[ƒ“‚ğo‚éuŠÔ‚Ìˆ—
+	// ã“ã®ã‚·ãƒ¼ãƒ³ã‚’å‡ºã‚‹ç¬é–“ã®å‡¦ç†
 	virtual void OnExit()  {}
 
 	virtual SceneType Update(float deltaTime) = 0;

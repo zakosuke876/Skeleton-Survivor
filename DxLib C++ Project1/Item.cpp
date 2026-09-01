@@ -1,15 +1,15 @@
-#include "Item.h"
+ï»¿#include "Item.h"
 #include "DxLib.h"
 
 Item::Item() {
 
-	// —LŒø‰»
+	// æœ‰åŠ¹åŒ–
 	isActive = true;
 }
 
 void Item::Draw() const {
 
-	// –³Œø‰»ó‘Ô‚È‚çˆ—‚µ‚È‚¢
+	// ç„¡åŠ¹åŒ–çŠ¶æ…‹ãªã‚‰å‡¦ç†ã—ãªã„
 	if (!isActive) return;
 
 	DrawModel();

@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 #include "MagicEffect.h"
 #include <vector>
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class Player;
 class SoundManager;
 
@@ -12,25 +12,25 @@ public:
 	MagicEffectManager();
 	~MagicEffectManager();
 
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 
 	void Update(const Player& player, float deltaTime);
 	void Draw() const;
 
-	// –‚–@‚ÆƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è
+	// é­”æ³•ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®š
 	void CheckPlayerHit(Player& player, SoundManager& soundManager);
 
-	// w’èÀ•W‚É–‚–@‚ğ¶¬‚·‚é
+	// æŒ‡å®šåº§æ¨™ã«é­”æ³•ã‚’ç”Ÿæˆã™ã‚‹
 	void PlayMagic(float startX, float startY, float startZ, int damage);
 
 private:
 
-	// –‚–@ƒGƒtƒFƒNƒgŠÇ—
+	// é­”æ³•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†
 	std::vector<MagicEffect> effects;
 
-	// •ªŠ„“Ç‚İ‚İ‚µ‚½‰æ‘œƒnƒ“ƒhƒ‹‚ğ•Û‚·‚é”z—ñ
+	// åˆ†å‰²èª­ã¿è¾¼ã¿ã—ãŸç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿æŒã™ã‚‹é…åˆ—
 	int grHandles[MagicEffect::EFFECT_ALL] = {};
 
-	// –‚–@‚ÌÅ‘å“¯oŒ»”
+	// é­”æ³•ã®æœ€å¤§åŒæ™‚å‡ºç¾æ•°
 	static constexpr int MAX_EFFECT = 10;
 };

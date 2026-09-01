@@ -1,23 +1,23 @@
-#include "FontManager.h"
+ï»¿#include "FontManager.h"
 #include "DxLib.h"
 
 FontManager::FontManager() {
 
-	// dungeon-mode‚ğg‚¤ƒtƒHƒ“ƒg
+	// dungeon-modeã‚’ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆ
 	AddFontResourceEx("Font/dungeon-mode.ttf", FR_PRIVATE, nullptr);
 	playerUIFont = CreateFontToHandle(FONT_NAME, 15, 3);
 	titleFont    = CreateFontToHandle(FONT_NAME, 30, 3);
 	scoreFont    = CreateFontToHandle(FONT_NAME, 16, 3);
 	rankingFont  = CreateFontToHandle(FONT_NAME, 40, 3);
 
-	// “ú–{Œê•\¦—p‚Ì•W€ƒtƒHƒ“ƒg
+	// æ—¥æœ¬èªè¡¨ç¤ºç”¨ã®æ¨™æº–ãƒ•ã‚©ãƒ³ãƒˆ
 	manualFont   = CreateFontToHandle(NULL, 30, 3);
 	pauseFont    = CreateFontToHandle(NULL, 30, 3);
 }
 
 FontManager::~FontManager() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	DeleteFontToHandle(playerUIFont);
 	DeleteFontToHandle(titleFont);
 	DeleteFontToHandle(scoreFont);

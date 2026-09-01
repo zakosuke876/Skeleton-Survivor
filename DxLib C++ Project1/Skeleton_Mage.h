@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 #include "Enemy.h"
 #include "EnemyWeapon.h"
 
 
-// SKELETON_MAGE“Æ©‚ÌƒXƒe[ƒg,ENEMY_STATE_MAX‚©‚ç‚Ì‘±‚«”Ô†
+// SKELETON_MAGEç‹¬è‡ªã®ã‚¹ãƒ†ãƒ¼ãƒˆ,ENEMY_STATE_MAXã‹ã‚‰ã®ç¶šãç•ªå·
 enum Skeleton_MageState {
 
-	SKELETON_M_VICTORY = ENEMY_STATE_MAX       // Ÿ—˜ó‘Ô
+	SKELETON_M_VICTORY = ENEMY_STATE_MAX       // å‹åˆ©çŠ¶æ…‹
 };
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚ÍSkeleton_Mage.cpp‚Å’è‹`;
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã¯Skeleton_Mage.cppã§å®šç¾©;
 extern const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[];
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class MagicEffectManager;
 
 class Skeleton_Mage : public Enemy {
@@ -31,15 +31,15 @@ private:
 	void UpdateDeath(float deltaTime) override;
 	void DrawModel() const override;
 
-	// ñ
+	// æ–
 	EnemyWeapon staff;
 
-	// ¡‰ñ‚ÌUŒ‚‚Å”­Ë‚µ‚½‚©
+	// ä»Šå›ã®æ”»æ’ƒã§ç™ºå°„ã—ãŸã‹
 	bool hasFired = false;
 
-	// UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‚Ç‚Ì“_‚Å”­Ë‚·‚é‚©(0.0`1.0)
+	// æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã©ã®æ™‚ç‚¹ã§ç™ºå°„ã™ã‚‹ã‹(0.0ï½1.0)
 	static constexpr float FIRE_TIMING = 0.6f;
 
-	// ”­ËˆÊ’u‚Ì‚‚³ƒIƒtƒZƒbƒg
+	// ç™ºå°„ä½ç½®ã®é«˜ã•ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	static constexpr float FIRE_OFFSET = 20.0f;
 };

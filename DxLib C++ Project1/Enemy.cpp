@@ -1,4 +1,4 @@
-#include "Enemy.h"
+ï»¿#include "Enemy.h"
 #include "Player.h"
 #include "GameConfig.h"
 #include "SoundManager.h"
@@ -8,33 +8,33 @@
 
 Enemy::Enemy() {
 
-	// ƒ‰ƒ“ƒ_ƒ€¶¬—p
+	// ãƒ©ãƒ³ãƒ€ãƒ ç”Ÿæˆç”¨
 	std::random_device rd;
 	rng = std::mt19937(rd());
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	isActive = true;
 	hasTargetPosition = false;
 
-	// –³“GŠÔŠÖŒW
+	// ç„¡æ•µæ™‚é–“é–¢ä¿‚
 	isInvincible = false;
 	invincibleTimer = 0.0f;
 }
 
 Enemy::~Enemy() {
 
-	// ƒŠƒ\[ƒX‚ÌŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹ã®é–‹æ”¾
 	MV1DeleteModel(modelHandle);
 }
 
 void Enemy::SwitchAnimation(int animationNum) {
 
-	// “¯‚¶ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìê‡ˆ—‚µ‚È‚¢
+	// åŒã˜ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å ´åˆå‡¦ç†ã—ãªã„
 	if (currentAnim == animationNum) return;
 
 	MV1DetachAnim(modelHandle, attachIndex);
 
-	// animTable‚ğg‚¢AqƒNƒ‰ƒX‚²‚Æ‚ÌˆÙ‚È‚éƒAƒjƒ[ƒVƒ‡ƒ“”Ô†‚ğæ“¾‚·‚é
+	// animTableã‚’ä½¿ã„ã€å­ã‚¯ãƒ©ã‚¹ã”ã¨ã®ç•°ãªã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·ã‚’å–å¾—ã™ã‚‹
 	attachIndex = MV1AttachAnim(modelHandle, animTable[animationNum].animIndex);
 
 	totalTime = MV1GetAttachAnimTotalTime(modelHandle, attachIndex);
@@ -44,13 +44,13 @@ void Enemy::SwitchAnimation(int animationNum) {
 
 void Enemy::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶ƒ^ƒCƒ}[‚ği‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿã‚¿ã‚¤ãƒãƒ¼ã‚’é€²ã‚ã‚‹
 	UpdateAnim();
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ‚ğ”½‰f
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“ã‚’åæ˜ 
 	MV1SetAttachAnimTime(modelHandle, attachIndex, animTime);
 
-	// –³“GŠÔŒv‘ª
+	// ç„¡æ•µæ™‚é–“è¨ˆæ¸¬
 	if (isInvincible)
 	{
 		invincibleTimer += deltaTime;
@@ -67,27 +67,27 @@ void Enemy::UpdatePatrol(const Player& player) {
 
 	if (!hasTargetPosition)
 	{
-		// –Ú“I’nX,ZÀ•W‚Ì”ÍˆÍİ’è
+		// ç›®çš„åœ°X,Zåº§æ¨™ã®ç¯„å›²è¨­å®š
 		std::uniform_real_distribution<float> distanceX(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
 		std::uniform_real_distribution<float> distanceZ(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
 
 		targetX = distanceX(rng);
 		targetZ = distanceZ(rng);
 
-		// –Ú“I’n“’…‚Ü‚ÅÄŒvZ‚µ‚È‚¢
+		// ç›®çš„åœ°åˆ°ç€ã¾ã§å†è¨ˆç®—ã—ãªã„
 		hasTargetPosition = true;
 	}
 
-	// “’…”»’è‚Ég‚¤‚½‚ßAˆÚ“®‘O‚Ì–Ú“I’n‚Ü‚Å‚Ì‹——£‚ğó‚¯æ‚é
+	// åˆ°ç€åˆ¤å®šã«ä½¿ã†ãŸã‚ã€ç§»å‹•å‰ã®ç›®çš„åœ°ã¾ã§ã®è·é›¢ã‚’å—ã‘å–ã‚‹
 	float distance = MoveToward(targetX, targetZ, speed);
 
 	if (distance <= 5.0f)
 	{
-		// –Ú“I’n‚ğÄŒvZ
+		// ç›®çš„åœ°ã‚’å†è¨ˆç®—
 		hasTargetPosition = false;
 	}
 
-	// ƒvƒŒƒCƒ„[‚ª’ÇÕ”ÍˆÍ“à‚É“ü‚Á‚½‚©
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè¿½è·¡ç¯„å›²å†…ã«å…¥ã£ãŸã‹
 	if (IsPlayerInChaseRange(player))
 	{
 		state = ENEMY_CHASE;
@@ -99,14 +99,14 @@ void Enemy::UpdatePatrol(const Player& player) {
 
 void Enemy::UpdateChase(const Player& player) {
 
-	// ƒvƒŒƒCƒ„[‚ª’ÇÕ”ÍˆÍŠO‚Éo‚½‚©
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè¿½è·¡ç¯„å›²å¤–ã«å‡ºãŸã‹
 	if (!IsPlayerInChaseRange(player))
 	{
 		state = ENEMY_PATROL;
 		SwitchAnimation(ENEMY_ANIM_WALK);
 	}
 
-	// ƒvƒŒƒCƒ„[‚ªUŒ‚”ÍˆÍ“à‚É“ü‚Á‚½‚©
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ”»æ’ƒç¯„å›²å†…ã«å…¥ã£ãŸã‹
 	if (IsPlayerInAttackRange(player))
 	{
 		state = ENEMY_ATTACK;
@@ -142,53 +142,53 @@ float Enemy::MoveToward(float targetX, float targetZ, float speed) {
 
 void Enemy::UpdateAnim() {
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚²‚Æ‚Éİ’è‚µ‚½ŠÔ•ªi‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã”ã¨ã«è¨­å®šã—ãŸæ™‚é–“åˆ†é€²ã‚ã‚‹
 	animTime += animTable[currentAnim].animSpeed;
 
-	// ‘Ä¶ŠÔ‚ğ’´‚¦‚½‚çƒ‹[ƒv
+	// ç·å†ç”Ÿæ™‚é–“ã‚’è¶…ãˆãŸã‚‰ãƒ«ãƒ¼ãƒ—
 	if (animTime >= totalTime)
 	{
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒ‹[ƒv‚³‚¹‚é‚©
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹ã‹
 		if (animTable[currentAnim].loop)
 		{
-			// Ä¶ŠÔ‚ğƒŠƒZƒbƒg‚µ‚Äƒ‹[ƒv
+			// å†ç”Ÿæ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¦ãƒ«ãƒ¼ãƒ—
 			animTime = 0.0f;
 		}
 		else
 		{
-			// Ä¶‚ğ’â~
+			// å†ç”Ÿã‚’åœæ­¢
 			animTime = totalTime;
 		}
 	}
 }
 
-// ƒ_ƒ[ƒW‚ğ—^‚¦A€–S‚µ‚½ê‡‚Ítrue‚ğ•Ô‚·
+// ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã€æ­»äº¡ã—ãŸå ´åˆã¯trueã‚’è¿”ã™
 bool Enemy::TakeDamage(int value, SoundManager& soundManager) {
 	
-	// –³“GŠÔ’†‚Íˆ—‚µ‚È‚¢
+	// ç„¡æ•µæ™‚é–“ä¸­ã¯å‡¦ç†ã—ãªã„
 	if (isInvincible) return false;
 
-	// ƒXƒ|[ƒ“’†‚Íˆ—‚µ‚È‚¢
+	// ã‚¹ãƒãƒ¼ãƒ³ä¸­ã¯å‡¦ç†ã—ãªã„
 	if (state == ENEMY_SPAWN) return false;
 
-	// Œø‰Ê‰¹Ä¶‚ğˆË—Š(ˆø”‚Åƒ^ƒCƒv‚ğ“n‚·)
+	// åŠ¹æœéŸ³å†ç”Ÿã‚’ä¾é ¼(å¼•æ•°ã§ã‚¿ã‚¤ãƒ—ã‚’æ¸¡ã™)
 	soundManager.PlaySe(ATTACK_HIT);
 
 	SwitchAnimation(ENEMY_ANIM_DAMAGE);
 
-	// –³“GŠÔŠJn
+	// ç„¡æ•µæ™‚é–“é–‹å§‹
 	isInvincible = true;
 
 	state = ENEMY_DAMAGE;
 
 	hp -= value;
 	
-	// €–S‚µ‚½ê‡
+	// æ­»äº¡ã—ãŸå ´åˆ
 	if (hp <= 0)
 	{
 		Die();
 
-		// €–S‚µ‚½‚±‚Æ‚ğ“`‚¦‚é
+		// æ­»äº¡ã—ãŸã“ã¨ã‚’ä¼ãˆã‚‹
 		return true;
 	}
 
@@ -214,22 +214,22 @@ void Enemy::DrawUI() const {
 
 	if (!isActive) return;
 
-	// HP‚ªÅ‘å’l‚Ìê‡‚Í•`‰æ‚µ‚È‚¢
+	// HPãŒæœ€å¤§å€¤ã®å ´åˆã¯æç”»ã—ãªã„
 	if (hp >= maxHp) return;
 
 
 	VECTOR pos = VGet(x, y, z);
 	pos.y += ENEMY_HPGAUGE_WORLD_OFFSET_Y;
 
-	// ƒ[ƒ‹ƒhÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 	VECTOR screenPos = ConvWorldPosToScreenPos(pos);
 
-	// Œ»İHP‚ÌŠ„‡(0.0`1.0)
+	// ç¾åœ¨HPã®å‰²åˆ(0.0ï½1.0)
 	const float hpRate = static_cast<float>(hp) / maxHp;
 
 	int color = GetColor(0, 255, 0);
 
-	// HP‚ª”¼•ªˆÈ‰º‚ÅƒQ[ƒW‚ğ‰©F‚É‚·‚é
+	// HPãŒåŠåˆ†ä»¥ä¸‹ã§ã‚²ãƒ¼ã‚¸ã‚’é»„è‰²ã«ã™ã‚‹
 	if (hpRate <= HP_GAUGE_YELLOW_VALUE)
 	{
 		color = GetColor(255, 255, 0);
@@ -240,20 +240,20 @@ void Enemy::DrawUI() const {
 	int gaugeRight  = screenPos.x + ENEMY_HPGAUGE_OFFSET_X + hpGaugeWidth;
 	int gaugeBottom = screenPos.y;
 
-	// HPƒQ[ƒW
-	// ”wŒi(Ô)
+	// HPã‚²ãƒ¼ã‚¸
+	// èƒŒæ™¯(èµ¤)
 	DrawBox(gaugeLeft, gaugeTop, gaugeRight, gaugeBottom, GetColor(255, 0, 0), TRUE);
 
-	// Œ»İHP(—Î)
+	// ç¾åœ¨HP(ç·‘)
 	DrawBox(gaugeLeft, gaugeTop, gaugeLeft + int(hpGaugeWidth * hpRate), gaugeBottom, color, TRUE);
 
-	// ˜gü(”’)
+	// æ ç·š(ç™½)
 	DrawLineBox(gaugeLeft, gaugeTop, gaugeRight, gaugeBottom, GetColor(255, 255, 255));
 }
 
 bool Enemy::IsPlayerInChaseRange(const Player& player) const {
 
-	// ©•ª‚ÆƒvƒŒƒCƒ„[‚Ì‹——£‚ª}chaseRangeRadius–¢–‚Ìê‡CHASEó‘Ô‚Ö
+	// è‡ªåˆ†ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è·é›¢ãŒÂ±chaseRangeRadiusæœªæº€ã®å ´åˆCHASEçŠ¶æ…‹ã¸
 	float dx = player.GetPosition().x - x;
 	float dz = player.GetPosition().z - z;
 
@@ -262,7 +262,7 @@ bool Enemy::IsPlayerInChaseRange(const Player& player) const {
 
 bool Enemy::IsPlayerInAttackRange(const Player& player) const {
 
-	// // ©•ª‚ÆƒvƒŒƒCƒ„[‚Ì‹——£‚ª}attackRangeRadius–¢–‚Ìê‡CHASEó‘Ô‚Ö[
+	// // è‡ªåˆ†ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è·é›¢ãŒÂ±attackRangeRadiusæœªæº€ã®å ´åˆCHASEçŠ¶æ…‹ã¸[
 	float dx = player.GetPosition().x - x;
 	float dz = player.GetPosition().z - z;
 

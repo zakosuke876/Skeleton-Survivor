@@ -1,4 +1,4 @@
-#include "ItemDropConfigLoader.h"
+ï»¿#include "ItemDropConfigLoader.h"
 #include "ItemDropConfig.h"
 #include "DxLib.h"
 #include "JsonPath.h"
@@ -9,7 +9,7 @@ using json = nlohmann::json;
 
 bool ItemDropConfigLoader::Load(ItemDropConfig& outData) {
 
-	// JsonPathE\‘¢‘Ì‚ğ“n‚·
+	// JsonPathãƒ»æ§‹é€ ä½“ã‚’æ¸¡ã™
 	return LoadData(JsonPath::ITEM_DROP_CONFIG, outData);
 }
 
@@ -17,7 +17,7 @@ bool ItemDropConfigLoader::LoadData(const char* jsonPath, ItemDropConfig& outDat
 
 	return JsonLoader::Load(jsonPath, "ItemDropConfig", [&](const json& config) {
 
-		// “Ç‚İ‚ñ‚¾’l‚ğ\‘¢‘Ì‚Öİ’è
+		// èª­ã¿è¾¼ã‚“ã å€¤ã‚’æ§‹é€ ä½“ã¸è¨­å®š
 		outData.dropRate = config.at("dropRate").get<int>();
 
 		outData.dropOffsetY = config.at("dropOffsetY").get<float>();
@@ -32,11 +32,11 @@ bool ItemDropConfigLoader::LoadData(const char* jsonPath, ItemDropConfig& outDat
 
 		outData.itemTypeRate.largeRate = typeRate.at("large").get<int>();
 
-		// ƒAƒCƒeƒ€‚Ìƒhƒƒbƒv—¦‚ª‡Œv100‚É‚È‚Á‚Ä‚¢‚é‚©ŒvZ
+		// ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ‰ãƒ­ãƒƒãƒ—ç‡ãŒåˆè¨ˆ100ã«ãªã£ã¦ã„ã‚‹ã‹è¨ˆç®—
 		int total = outData.itemTypeRate.smallRate + outData.itemTypeRate.mediumRate + outData.itemTypeRate.largeRate;
 		if (total != 100)
 		{
-			printfDx("itemTypeRate‚Ì‡Œv‚ª100%%‚É‚È‚Á‚Ä‚¢‚Ü‚¹‚ñ(‡Œv:%d)\n", total);
+			printfDx("itemTypeRateã®åˆè¨ˆãŒ100%%ã«ãªã£ã¦ã„ã¾ã›ã‚“(åˆè¨ˆ:%d)\n", total);
 			return false;
 		}
 

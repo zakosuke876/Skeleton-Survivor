@@ -1,27 +1,27 @@
-#pragma once
+ï»¿#pragma once
 #include "Item.h"
 #include <string>
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class Player;
 class SoundManager;
 
-// ‰ñ•œƒAƒCƒeƒ€‚Ìí—Ş
+// å›å¾©ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡
 enum class RecoveryItemType {
-	RECOVERY_SMALL,   // ¬
-	RECOVERY_MEDIUM,  // ’†
-	RECOVERY_LARGE,   // ‘å
-	ITEM_TYPE_MAX,    // ”z—ñƒTƒCƒY‚Æ‚µ‚Äˆµ‚¤
+	RECOVERY_SMALL,   // å°
+	RECOVERY_MEDIUM,  // ä¸­
+	RECOVERY_LARGE,   // å¤§
+	ITEM_TYPE_MAX,    // é…åˆ—ã‚µã‚¤ã‚ºã¨ã—ã¦æ‰±ã†
 };
 
-// JSON‚©‚ç“Ç‚İ‚ñ‚¾‰ñ•œƒAƒCƒeƒ€‚Ìƒf[ƒ^‚ğŠi”[‚·‚é\‘¢‘Ì
+// JSONã‹ã‚‰èª­ã¿è¾¼ã‚“ã å›å¾©ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“
 struct RecoveryItemData {
-	int recoveryValue; // ‰ñ•œ—Í
-	std::string graphPath; // ‰æ‘œƒtƒ@ƒCƒ‹‚ÌƒpƒX
+	int recoveryValue; // å›å¾©åŠ›
+	std::string graphPath; // ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 };
 
 
-// enum class‚ğint‚É•ÏŠ·‚·‚éi”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX‚Ég—p‚·‚é‚½‚ßj
+// enum classã‚’intã«å¤‰æ›ã™ã‚‹ï¼ˆé…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä½¿ç”¨ã™ã‚‹ãŸã‚ï¼‰
 constexpr int ToInt(RecoveryItemType type) {
 
 	return static_cast<int>(type);
@@ -37,6 +37,6 @@ public:
 
 private:
 
-	// ‰ñ•œ—Í
+	// å›å¾©åŠ›
 	int recoveryPower = -1;
 };

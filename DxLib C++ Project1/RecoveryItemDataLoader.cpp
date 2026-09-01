@@ -1,4 +1,4 @@
-#include "RecoveryItemDataLoader.h"
+ï»¿#include "RecoveryItemDataLoader.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
 #include <fstream>
@@ -13,7 +13,7 @@ RecoveryItemType RecoveryItemDataLoader::StringToRecoveryType(const std::string&
 	if (str == "RECOVERY_MEDIUM") return RecoveryItemType::RECOVERY_MEDIUM;
 	if (str == "RECOVERY_LARGE")  return RecoveryItemType::RECOVERY_LARGE;
 
-	// ‘z’èŠO‚Ì•¶š—ñ‚Ìê‡
+	// æƒ³å®šå¤–ã®æ–‡å­—åˆ—ã®å ´åˆ
 	return RecoveryItemType::ITEM_TYPE_MAX;
 }
 
@@ -26,23 +26,23 @@ bool RecoveryItemDataLoader::LoadData(const char* jsonPath, std::array<RecoveryI
 
 	return JsonLoader::Load(jsonPath, "recoveryItems", [&](const json& items) {
 
-		// recoveryItems”z—ñ‚ğ1Œ‚¸‚Âæ‚èo‚·
+		// recoveryItemsé…åˆ—ã‚’1ä»¶ãšã¤å–ã‚Šå‡ºã™
 		for (const json& item : items)
 		{
-			// JSON‚©‚çtype•¶š—ñ‚ğæ“¾(enum‚Ö•ÏŠ·)
+			// JSONã‹ã‚‰typeæ–‡å­—åˆ—ã‚’å–å¾—(enumã¸å¤‰æ›)
 			RecoveryItemType type = StringToRecoveryType(item.at("type").get<std::string>());
 
-			// •s³‚Ètype•¶š—ñ‚ÍƒXƒLƒbƒv
+			// ä¸æ­£ãªtypeæ–‡å­—åˆ—ã¯ã‚¹ã‚­ãƒƒãƒ—
 			if (type == RecoveryItemType::ITEM_TYPE_MAX) continue;
 
-			// RecoveryItemData‚Öƒf[ƒ^‚ğ‚Ü‚Æ‚ß‚é
+			// RecoveryItemDataã¸ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ã‚‹
 			RecoveryItemData data;
 
 			data.recoveryValue = item.at("recoveryValue").get<int>();
 
 			data.graphPath = item.at("graphPath").get<std::string>();
 
-			// enum”Ô†‚ğg‚Á‚Ä”z—ñ‚Ö•Û‘¶
+			// enumç•ªå·ã‚’ä½¿ã£ã¦é…åˆ—ã¸ä¿å­˜
 			outTable[ToInt(type)] = data;
 		}
 

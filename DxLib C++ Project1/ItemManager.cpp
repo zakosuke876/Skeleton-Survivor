@@ -1,4 +1,4 @@
-#include "ItemManager.h"
+ï»¿#include "ItemManager.h"
 #include "SoundManager.h"
 #include "ExpItem.h"
 #include "Player.h"
@@ -15,11 +15,11 @@ ItemManager::ItemManager() {
 	std::random_device rd;
 	rng = std::mt19937(rd());
 
-	// JSONƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İAƒAƒCƒeƒ€ƒhƒƒbƒvŠÖŒW‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
+	// JSONãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€ã‚¢ã‚¤ãƒ†ãƒ ãƒ‰ãƒ­ãƒƒãƒ—é–¢ä¿‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	ItemDropConfig dropConfig;
 	if (!ItemDropConfigLoader::Load(dropConfig))
 	{
-		printfDx("ƒAƒCƒeƒ€ƒhƒƒbƒvƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("ã‚¢ã‚¤ãƒ†ãƒ ãƒ‰ãƒ­ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
 	dropRate = dropConfig.dropRate;
@@ -32,28 +32,28 @@ ItemManager::ItemManager() {
 
 	if (!RecoveryItemDataLoader::Load(recoveryItemDataTable))
 	{
-		printfDx("‰ñ•œƒAƒCƒeƒ€ƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("å›å¾©ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// ŒoŒ±’lƒAƒCƒeƒ€ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	// çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	if (!ExpItemDataLoader::Load(expItemDataTable))
 	{
-		printfDx("ŒoŒ±’lƒAƒCƒeƒ€ƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n");
+		printfDx("çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
 	}
 
-	// JSON‚©‚çæ“¾‚µ‚½graphPath‚ğg‚Á‚ÄƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚Ş
+	// JSONã‹ã‚‰å–å¾—ã—ãŸgraphPathã‚’ä½¿ã£ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã‚€
 	for (int i = 0; i < ToInt(RecoveryItemType::ITEM_TYPE_MAX); i++)
 	{
 		RecoveryTexHandles[i] = LoadGraph(recoveryItemDataTable[i].graphPath.c_str());
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	expTexHandle = LoadGraph(expItemDataTable.graphPath.c_str());
 }
 
 ItemManager::~ItemManager() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	for (int i = 0; i < ToInt(RecoveryItemType::ITEM_TYPE_MAX); i++)
 	{
 		DeleteGraph(RecoveryTexHandles[i]);
@@ -64,7 +64,7 @@ ItemManager::~ItemManager() {
 
 void ItemManager::Update() {
 
-	// ”ñƒAƒNƒeƒBƒu‚ÈƒAƒCƒeƒ€‚Ìíœ
+	// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¢ã‚¤ãƒ†ãƒ ã®å‰Šé™¤
 	items.erase(
 		std::remove_if(items.begin(), items.end(),
 			[](const std::unique_ptr<Item>& item) { return !item->IsActive();}),
@@ -86,28 +86,28 @@ void ItemManager::ItemDrop(float posX, float posY, float posZ, RecoveryItemType 
 
 bool ItemManager::ItemDropCheck() {
 
-	// 1`100‚Ì”ÍˆÍ‚Å—”¶¬
+	// 1ï½100ã®ç¯„å›²ã§ä¹±æ•°ç”Ÿæˆ
 	std::uniform_int_distribution<int> randChance(ITEM_DROP_CHANCE_MIN, ITEM_DROP_CHANCE_MAX);
 
-	// ƒAƒCƒeƒ€ƒhƒƒbƒv‚Ì’Š‘I
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‰ãƒ­ãƒƒãƒ—ã®æŠ½é¸
 	int dropChance = randChance(rng);
 
-	// ƒhƒƒbƒvğŒ‚ğ–‚½‚µ‚½ê‡
+	// ãƒ‰ãƒ­ãƒƒãƒ—æ¡ä»¶ã‚’æº€ãŸã—ãŸå ´åˆ
 	return dropChance <= dropRate;
 }
 
 void ItemManager::DropRecoveryItem(float posX, float posY, float posZ) {
 
-	// ƒhƒƒbƒv‚µ‚È‚©‚Á‚½ê‡‚Íˆ—‚ğI—¹
+	// ãƒ‰ãƒ­ãƒƒãƒ—ã—ãªã‹ã£ãŸå ´åˆã¯å‡¦ç†ã‚’çµ‚äº†
 	if (!ItemDropCheck())
 	{
 		return;
 	}
 
-	// ƒAƒCƒeƒ€‚Ìƒ^ƒCƒv‚ğ’Š‘I
+	// ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¿ã‚¤ãƒ—ã‚’æŠ½é¸
 	RecoveryItemType itemType = GetDropItemType();
 
-	// ƒAƒCƒeƒ€¶¬
+	// ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆ
 	ItemDrop(posX, posY, posZ, itemType);
 }
 
@@ -117,7 +117,7 @@ void ItemManager::DropExpItem(float posX, float posY, float posZ) {
 
 	int expValue = expItemDataTable.expValue;
 
-	// ŒoŒ±’lƒAƒCƒeƒ€‚ğ¶¬(X,ZÀ•W‚ğƒ‰ƒ“ƒ_ƒ€‚É‚¸‚ç‚·)
+	// çµŒé¨“å€¤ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç”Ÿæˆ(X,Zåº§æ¨™ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«ãšã‚‰ã™)
 	items.emplace_back(std::make_unique<ExpItem>(posX + randOffset(rng), posY + dropOffsetY, posZ + randOffset(rng), expValue, expTexHandle));
 }
 
@@ -137,10 +137,10 @@ void ItemManager::CheckPlayerCollision(Player& player, SoundManager& soundManage
 		float dx = player.GetPosition().x - item->GetPosition().x;
 		float dz = player.GetPosition().z - item->GetPosition().z;
 
-		// ‹——£‚Ì2æ‚ğ‹‚ß‚é
+		// è·é›¢ã®2ä¹—ã‚’æ±‚ã‚ã‚‹
 		float distanceSq = dx * dx + dz * dz;
 
-		// ‰~‚Ç‚¤‚µ‚Ì“–‚½‚è”»’èŒvZ‚Ì‚½‚ß‚É”¼Œa‚Ì‡Œv‚ğ‹‚ß‚é
+		// å††ã©ã†ã—ã®å½“ãŸã‚Šåˆ¤å®šè¨ˆç®—ã®ãŸã‚ã«åŠå¾„ã®åˆè¨ˆã‚’æ±‚ã‚ã‚‹
 		float totalRadius = player.GetBodyRadius() + item->GetRadius();
 
 		if (distanceSq < totalRadius * totalRadius)
@@ -155,10 +155,10 @@ RecoveryItemType ItemManager::GetDropItemType() {
 
 	std::uniform_int_distribution<int> randType(ITEM_TYPE_RANGE_MIN, ITEM_TYPE_RANGE_MAX);
 
-	// w’è‚µ‚½”ÍˆÍ“à‚Ì—”‚ğ¶¬
+	// æŒ‡å®šã—ãŸç¯„å›²å†…ã®ä¹±æ•°ã‚’ç”Ÿæˆ
 	int typeChance = randType(rng);
 
-	// —İÏ’l‚ğŒvZ(small‚Í small‚Ü‚Å, medium‚Í small + medium‚Ü‚Å)
+	// ç´¯ç©å€¤ã‚’è¨ˆç®—(smallã¯ smallã¾ã§, mediumã¯ small + mediumã¾ã§)
 	int smallMax  = itemTypeRate.smallRate;
 	int mediumMax = smallMax + itemTypeRate.mediumRate;
 

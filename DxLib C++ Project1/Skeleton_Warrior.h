@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 #include "Enemy.h"
 
-// Skeleton_Warrior“ÆŽ©‚ÌƒAƒjƒ[ƒVƒ‡ƒ“,ENEMY_ANIM_MAX,‚©‚ç‚Ì‘±‚«”Ô†
+// Skeleton_Warriorç‹¬è‡ªã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³,ENEMY_ANIM_MAX,ã‹ã‚‰ã®ç¶šãç•ªå·
 enum Skeleton_WarriorAnimation {
 
-	SKELETON_W_REVIVE = ENEMY_ANIM_MAX, // •œŠˆƒAƒjƒ[ƒVƒ‡ƒ“
+	SKELETON_W_REVIVE = ENEMY_ANIM_MAX, // å¾©æ´»ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 };
 
-// SKELETON_WARRIOR“ÆŽ©‚ÌƒXƒe[ƒg,ENEMY_STATE_MAX‚©‚ç‚Ì‘±‚«”Ô†
+// SKELETON_WARRIORç‹¬è‡ªã®ã‚¹ãƒ†ãƒ¼ãƒˆ,ENEMY_STATE_MAXã‹ã‚‰ã®ç¶šãç•ªå·
 enum Skeleton_WarriorState {
 
-	SKELETON_W_VICTORY = ENEMY_STATE_MAX, // Ÿ—˜ó‘Ô
-	SKELETON_W_RESURRECTION,              // •œŠˆó‘Ô
+	SKELETON_W_VICTORY = ENEMY_STATE_MAX, // å‹åˆ©çŠ¶æ…‹
+	SKELETON_W_RESURRECTION,              // å¾©æ´»çŠ¶æ…‹
 };
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚ÍSkeleton_Warrior.cpp‚Å’è‹`;
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã¯Skeleton_Warrior.cppã§å®šç¾©;
 extern const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[];
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class SoundManager;
 
 class MagicEffectManager;
@@ -42,26 +42,26 @@ private:
 	void DrawModel() const override;
 
 
-	// JSON‚©‚ç“Ç‚Ýž‚Þ’l
-	// •œŠˆŠm—¦(%)
+	// JSONã‹ã‚‰èª­ã¿è¾¼ã‚€å€¤
+	// å¾©æ´»ç¢ºçŽ‡(%)
 	int reviveChancePercent = -1;
 
-	// •œŠˆ‘Ò‹@ŽžŠÔ(•b)
+	// å¾©æ´»å¾…æ©Ÿæ™‚é–“(ç§’)
 	float reviveWaitTime = -1.0f;
 
-	// •œŠˆ‚µ‚½Û‚ÌHP”{—¦
+	// å¾©æ´»ã—ãŸéš›ã®HPå€çŽ‡
 	float reviveHpMultiplier = -1.0f;
 
-	// •œŠˆ‚µ‚½Û‚ÌƒXƒRƒA”{—¦
+	// å¾©æ´»ã—ãŸéš›ã®ã‚¹ã‚³ã‚¢å€çŽ‡
 	int reviveScoreMultiplier = -1;
 
-	// ‚±‚Ì“G‚ª•œŠˆ‚·‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ÉŽg‚¤—””ÍˆÍ
+	// ã“ã®æ•µãŒå¾©æ´»ã™ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã«ä½¿ã†ä¹±æ•°ç¯„å›²
 	static constexpr int REVIVE_CHANCE_MIN = 1;
 	static constexpr int REVIVE_CHANCE_MAX = 100;
 
-	// •œŠˆ‚µ‚½‚±‚Æ‚ª‚ ‚é‚©
+	// å¾©æ´»ã—ãŸã“ã¨ãŒã‚ã‚‹ã‹
 	bool isRevived = false;
 
-	// •œŠˆ‚·‚é‚©‚Ç‚¤‚©
+	// å¾©æ´»ã™ã‚‹ã‹ã©ã†ã‹
 	bool willRevive = false;
 };

@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 struct PlayerStatus;
 
 class PlayerDataLoader {

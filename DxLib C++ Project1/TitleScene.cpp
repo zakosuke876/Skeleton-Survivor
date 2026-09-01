@@ -1,4 +1,4 @@
-#include "TitleScene.h"
+ï»¿#include "TitleScene.h"
 #include "GameConfig.h"
 #include "FontManager.h"
 #include "RankingManager.h"
@@ -9,22 +9,22 @@
 TitleScene::TitleScene(FontManager& fontManager, RankingManager& rankingManager, SoundManager& soundManager, Result& result)
 	: fontManager(fontManager), rankingManager(rankingManager), soundManager(soundManager), result(result) {
 
-	// ‰æ‘œ“Ç‚İ‚İ
+	// ç”»åƒèª­ã¿è¾¼ã¿
 	manualGrHandles[0] = LoadGraph("Textures/ManualImage/Manual_0.png");
 	manualGrHandles[1] = LoadGraph("Textures/ManualImage/Manual_1.png");
 	skeletonNGrHandle = LoadGraph("UI/Enemy/Skeleton_N_Image.png");
 	skeletonWGrHandle = LoadGraph("UI/Enemy/Skeleton_W_Image.png");
 
-	// ƒ{ƒ^ƒ“‘I‘ğˆÊ’uƒŠƒZƒbƒg
+	// ãƒœã‚¿ãƒ³é¸æŠä½ç½®ãƒªã‚»ãƒƒãƒˆ
 	currentButtonIndex = 0;
 
-	// ‘€ìà–¾‚Ìƒy[ƒWƒŠƒZƒbƒg
+	// æ“ä½œèª¬æ˜ã®ãƒšãƒ¼ã‚¸ãƒªã‚»ãƒƒãƒˆ
 	manualPanelIndex = 0;
 }
 
 TitleScene::~TitleScene() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	for (int i = 0; i < MANUAL_PAGE_MAX; i++)
 	{
 		DeleteGraph(manualGrHandles[i]);
@@ -36,7 +36,7 @@ TitleScene::~TitleScene() {
 
 void TitleScene::Reset() {
 
-	// ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ‰Šú‰»
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’åˆæœŸåŒ–
 	currentButtonIndex = 0;
 
 	titleState = TITLE;
@@ -44,7 +44,7 @@ void TitleScene::Reset() {
 
 void TitleScene::OnEnter() {
 
-	//@ƒ^ƒCƒgƒ‹ƒV[ƒ“‚É“ü‚Á‚½uŠÔ‚Ìˆ—
+	//ã€€ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã«å…¥ã£ãŸç¬é–“ã®å‡¦ç†
 	titleState = TITLE;
 	currentButtonIndex = 0;
 	soundManager.PlayBgm(BGM_TITLE);
@@ -52,16 +52,16 @@ void TitleScene::OnEnter() {
 
 void TitleScene::OnExit() {
 
-	// ƒ^ƒCƒgƒ‹ƒV[ƒ“‚ğo‚éuŠÔ‚Ìˆ—
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã‚’å‡ºã‚‹ç¬é–“ã®å‡¦ç†
 	soundManager.StopBgm(BGM_TITLE);
 }
 
 SceneType TitleScene::Update(float deltaTime) {
 
-	// ‘OƒtƒŒ[ƒ€‚Ìó‘Ô‚ğƒRƒs[
+	// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®çŠ¶æ…‹ã‚’ã‚³ãƒ”ãƒ¼
 	memcpy(prevKey, currentKey, sizeof(currentKey));
 
-	// ¡ƒtƒŒ[ƒ€‚Ìó‘Ô‚Åã‘‚«
+	// ä»Šãƒ•ãƒ¬ãƒ¼ãƒ ã®çŠ¶æ…‹ã§ä¸Šæ›¸ã
 	GetHitKeyStateAll(currentKey);
 
 	switch (titleState)
@@ -92,15 +92,15 @@ SceneType TitleScene::Update(float deltaTime) {
 
 void TitleScene::ButtonMove() {
 
-	// ƒL[‚ğ‰Ÿ‚µ‚½uŠÔ‚¾‚¯ˆ—‚·‚é
+	// ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸç¬é–“ã ã‘å‡¦ç†ã™ã‚‹
 	if (currentKey[KEY_INPUT_UP] && !prevKey[KEY_INPUT_UP])
 	{
 		currentButtonIndex--;
 
-		// æ“ª‚ğ’´‚¦‚½ê‡
+		// å…ˆé ­ã‚’è¶…ãˆãŸå ´åˆ
 		if (currentButtonIndex < 0)
 		{
-			// ÅŒã‚Ìƒ{ƒ^ƒ“‚ÖˆÚ“®‚·‚é
+			// æœ€å¾Œã®ãƒœã‚¿ãƒ³ã¸ç§»å‹•ã™ã‚‹
 			currentButtonIndex = TITLE_BUTTON_MAX - 1;
 		}
 	}
@@ -109,10 +109,10 @@ void TitleScene::ButtonMove() {
 	{
 		currentButtonIndex++;
 
-		// ––”ö‚ğ’´‚¦‚½ê‡
+		// æœ«å°¾ã‚’è¶…ãˆãŸå ´åˆ
 		if (currentButtonIndex >= TITLE_BUTTON_MAX)
 		{
-			// Å‰‚Ìƒ{ƒ^ƒ“‚ÖˆÚ“®‚·‚é
+			// æœ€åˆã®ãƒœã‚¿ãƒ³ã¸ç§»å‹•ã™ã‚‹
 			currentButtonIndex = 0;
 		}
 	}
@@ -120,13 +120,13 @@ void TitleScene::ButtonMove() {
 
 SceneType TitleScene::ButtonSelect() {
 
-	// ƒ^ƒCƒgƒ‹ó‘Ô‚Å‚È‚¯‚ê‚Îƒ{ƒ^ƒ“‘€ì‚µ‚È‚¢
+	// ã‚¿ã‚¤ãƒˆãƒ«çŠ¶æ…‹ã§ãªã‘ã‚Œã°ãƒœã‚¿ãƒ³æ“ä½œã—ãªã„
 	if (titleState != TITLE) return SceneType::None;
 
-	// ƒXƒy[ƒXƒL[‚ğ‰Ÿ‚µ‚½uŠÔ‚¾‚¯ˆ—‚·‚é
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸç¬é–“ã ã‘å‡¦ç†ã™ã‚‹
 	if (!currentKey[KEY_INPUT_SPACE] || prevKey[KEY_INPUT_SPACE]) return SceneType::None;
 
-	// ƒXƒy[ƒX‚ğ‰Ÿ‚µ‚½‚Æ‚«‚Ìó‘Ô‚É‚æ‚Á‚Äˆ—‚ğ•ª‚¯‚é
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‚’æŠ¼ã—ãŸã¨ãã®çŠ¶æ…‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†ã‘ã‚‹
 	switch (currentButtonIndex)
 	{
 	case PLAY:
@@ -166,7 +166,7 @@ void TitleScene::BackToTitle() {
 
 	if (currentKey[KEY_INPUT_ESCAPE] && !prevKey[KEY_INPUT_ESCAPE])
 	{
-		// ƒ^ƒCƒgƒ‹ó‘Ô‚É–ß‚·
+		// ã‚¿ã‚¤ãƒˆãƒ«çŠ¶æ…‹ã«æˆ»ã™
 		titleState = TITLE;
 	}
 }
@@ -176,20 +176,20 @@ void TitleScene::TitleUI(const FontManager& fontManager) const {
 	int buttonLeft = TITLE_BUTTON_START_X;
 	int buttonRight = TITLE_BUTTON_START_X + TITLE_BUTTON_START_WIDTH;
 
-	// ƒ{ƒ^ƒ“‚ğBUTTON_MAXŒÂ•`‰æ‚·‚é
+	// ãƒœã‚¿ãƒ³ã‚’BUTTON_MAXå€‹æç”»ã™ã‚‹
 	for (int i = 0; i < TITLE_BUTTON_MAX; i++)
 	{
-		// ‘I‘ğ’†‚Ìƒ{ƒ^ƒ“‚Ì˜gü‚Í‰©FA‚»‚êˆÈŠO‚ÍƒOƒŒ[‚É‚·‚é
+		// é¸æŠä¸­ã®ãƒœã‚¿ãƒ³ã®æ ç·šã¯é»„è‰²ã€ãã‚Œä»¥å¤–ã¯ã‚°ãƒ¬ãƒ¼ã«ã™ã‚‹
 		int color = (currentButtonIndex == i) ? GetColor(255, 255, 0) : GetColor(180, 180, 180);
 
 		int currentTop = CalcButtonTop(i);
 		int currentBottom = currentTop + TITLE_BUTTON_START_HEIGHT;
 
-		// ‚¸‚ç‚µ‚È‚ª‚çƒ{ƒ^ƒ“‚ğ”z’u(BUTTON_MAX‚Ì”)
+		// ãšã‚‰ã—ãªãŒã‚‰ãƒœã‚¿ãƒ³ã‚’é…ç½®(BUTTON_MAXã®æ•°)
 		DrawBox(buttonLeft, currentTop, buttonRight, currentBottom, GetColor(80, 80, 80), TRUE);
-		DrawLineBox(buttonLeft, currentTop, buttonRight, currentBottom, color, TRUE); // ˜gü
+		DrawLineBox(buttonLeft, currentTop, buttonRight, currentBottom, color, TRUE); // æ ç·š
 
-		// ƒeƒLƒXƒg•\¦ˆÊ’u‚ğŒvZ
+		// ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºä½ç½®ã‚’è¨ˆç®—
 		int textX = CalcTextX(buttonLeft, TITLE_BUTTON_START_WIDTH, titleButtonTexts[i]);
 		int textY = CalcTextY(CalcButtonTop(i), TITLE_BUTTON_START_HEIGHT);
 
@@ -204,20 +204,20 @@ void TitleScene::TitleUI(const FontManager& fontManager) const {
 
 void TitleScene::ManualUI() const {
 
-	// ‘€ìà–¾—p‰æ‘œ‚ğ•\¦
+	// æ“ä½œèª¬æ˜ç”¨ç”»åƒã‚’è¡¨ç¤º
 	DrawGraph(MANUAL_IMAGE_X, MANUAL_IMAGE_Y, manualGrHandles[manualPanelIndex], TRUE);
 
 	switch (manualPanelIndex)
 	{
 	case 0:
 
-		DrawString(MANUAL_NEXT_PAGE_TEXT_X, MANUAL_NAV_TEXT_Y, "Ÿ‚Ìƒy[ƒW:¨", GetColor(255, 0, 0));
+		DrawString(MANUAL_NEXT_PAGE_TEXT_X, MANUAL_NAV_TEXT_Y, "æ¬¡ã®ãƒšãƒ¼ã‚¸:â†’", GetColor(255, 0, 0));
 
 		break;
 
 	case 1:
 
-		DrawString(MANUAL_PREV_PAGE_TEXT_X, MANUAL_NAV_TEXT_Y, "‘O‚Ìƒy[ƒW:©", GetColor(255, 0, 0));
+		DrawString(MANUAL_PREV_PAGE_TEXT_X, MANUAL_NAV_TEXT_Y, "å‰ã®ãƒšãƒ¼ã‚¸:â†", GetColor(255, 0, 0));
 
 		break;
 
@@ -226,21 +226,21 @@ void TitleScene::ManualUI() const {
 		break;
 	}
 
-	DrawString(MANUAL_CLOSE_TEXT_X, MANUAL_CLOSE_TEXT_Y, "•Â‚¶‚é:Esc", GetColor(255, 0, 0));
+	DrawString(MANUAL_CLOSE_TEXT_X, MANUAL_CLOSE_TEXT_Y, "é–‰ã˜ã‚‹:Esc", GetColor(255, 0, 0));
 }
 
 void TitleScene::UpdateManual() {
 
-	// Manualó‘Ô‚Å‚È‚¯‚ê‚Îˆ—‚µ‚È‚¢
+	// ManualçŠ¶æ…‹ã§ãªã‘ã‚Œã°å‡¦ç†ã—ãªã„
 	if (titleState != MANUAL_MENU) return;
 
-	// ƒL[‚ğ‰Ÿ‚µ‚½uŠÔ‚¾‚¯ˆ—‚·‚é
+	// ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸç¬é–“ã ã‘å‡¦ç†ã™ã‚‹
 	if (currentKey[KEY_INPUT_LEFT] && !prevKey[KEY_INPUT_LEFT])
 	{
-		// 1ƒy[ƒW–ß‚·
+		// 1ãƒšãƒ¼ã‚¸æˆ»ã™
 		manualPanelIndex--;
 
-		// ”ÍˆÍ§ŒÀ
+		// ç¯„å›²åˆ¶é™
 		manualPanelIndex = std::clamp(manualPanelIndex, 0, MANUAL_PAGE_MAX - 1);
 	}
 
@@ -256,12 +256,12 @@ void TitleScene::UpdateManual() {
 
 void TitleScene::RankingUI(const FontManager& fontManager, const RankingManager& rankingManager) const {
 
-	// Rankingó‘Ô‚Å‚È‚¯‚ê‚Îˆ—‚µ‚È‚¢
+	// RankingçŠ¶æ…‹ã§ãªã‘ã‚Œã°å‡¦ç†ã—ãªã„
 	if (titleState != RANKING_MENU) return;
 
 	rankingManager.DrawTitleRanking(fontManager);
 
-	DrawString(RANKING_CLOSE_TEXT_X, RANKING_CLOSE_TEXT_Y, "•Â‚¶‚é:Esc", GetColor(255, 0, 0));
+	DrawString(RANKING_CLOSE_TEXT_X, RANKING_CLOSE_TEXT_Y, "é–‰ã˜ã‚‹:Esc", GetColor(255, 0, 0));
 }
 
 void TitleScene::UpdateRanking() {

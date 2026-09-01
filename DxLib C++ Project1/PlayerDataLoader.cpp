@@ -1,4 +1,4 @@
-#include "PlayerDataLoader.h"
+﻿#include "PlayerDataLoader.h"
 #include "PlayerStatus.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
@@ -15,7 +15,7 @@ bool PlayerDataLoader::LoadData(const char* jsonPath, PlayerStatus& outData) {
 
 	return JsonLoader::Load(jsonPath, "Player", [&](const json& data) {
 
-		// �ǂݍ��񂾒l���\���̂֐ݒ�
+		// 読み込んだ値を構造体へ設定
 		outData.maxHp = data.at("maxHp").get<int>();
 
 		outData.attackPower = data.at("attackPower").get<int>();

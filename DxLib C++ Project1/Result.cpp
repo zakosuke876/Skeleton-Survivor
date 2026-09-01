@@ -1,4 +1,4 @@
-#include "Result.h"
+ï»¿#include "Result.h"
 #include "DxLib.h"
 #include "EnemyManager.h"
 #include "ScoreManager.h"
@@ -7,20 +7,20 @@
 
 Result::Result() {
 
-	// ƒtƒHƒ“ƒgì¬
+	// ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ
     headerFont = CreateFontToHandle("Dungeon Mode", 30, 3);
     enemyInfoFont = CreateFontToHandle("Dungeon Mode", 16, 3);
     textFont = CreateFontToHandle("Dungeon Mode", 30, 3);
 
-    // “G‰æ‘œ“Ç‚Ýž‚Ý
-    skeletonWIcon = LoadGraph("UI/Enemy/Skeleton_W_Icon - ƒRƒs[.png");
-    skeletonNIcon = LoadGraph("UI/Enemy/Skeleton_N_Icon - ƒRƒs[.png");
+    // æ•µç”»åƒèª­ã¿è¾¼ã¿
+    skeletonWIcon = LoadGraph("UI/Enemy/Skeleton_W_Icon - ã‚³ãƒ”ãƒ¼.png");
+    skeletonNIcon = LoadGraph("UI/Enemy/Skeleton_N_Icon - ã‚³ãƒ”ãƒ¼.png");
     skeletonMIcon = LoadGraph("UI/Enemy/Skeleton_M_Icon.png");
 }
 
 Result::~Result() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
     DeleteFontToHandle(headerFont);
     DeleteFontToHandle(enemyInfoFont);
     DeleteFontToHandle(textFont);
@@ -32,28 +32,28 @@ Result::~Result() {
 
 void Result::DrawPanel() const {
 
-    // GAMEOVER‚ÌŒ©o‚µ
+    // GAMEOVERã®è¦‹å‡ºã—
     DrawBox(RESULT_HEADER_LEFT, RESULT_HEADER_TOP, RESULT_HEADER_RIGHT, RESULT_HEADER_BOTTOM, GetColor(30, 30, 30), TRUE);
-    DrawBox(RESULT_HEADER_LEFT, RESULT_HEADER_TOP, RESULT_HEADER_RIGHT, RESULT_HEADER_BOTTOM, GetColor(0, 0, 255), FALSE); // ˜gü
+    DrawBox(RESULT_HEADER_LEFT, RESULT_HEADER_TOP, RESULT_HEADER_RIGHT, RESULT_HEADER_BOTTOM, GetColor(0, 0, 255), FALSE); // æž ç·š
     DrawFormatStringToHandle(520, 50, GetColor(255, 255, 255), headerFont, "GAME OVER");
 
-    // î•ñƒpƒlƒ‹(”¼“§–¾)
+    // æƒ…å ±ãƒ‘ãƒãƒ«(åŠé€æ˜Ž)
     SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
     DrawBox(RESULT_PANEL_LEFT, RESULT_PANEL_TOP, RESULT_PANEL_RIGHT, RESULT_PANEL_BOTTOM, GetColor(30, 30, 30), TRUE);
 
-    // ƒuƒŒƒ“ƒh‰ðœ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰è§£é™¤
     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-    DrawBox(RESULT_PANEL_LEFT, RESULT_PANEL_TOP, RESULT_PANEL_RIGHT, RESULT_PANEL_BOTTOM, GetColor(0, 0, 255), FALSE); // î•ñƒpƒlƒ‹‚Ì˜gü
+    DrawBox(RESULT_PANEL_LEFT, RESULT_PANEL_TOP, RESULT_PANEL_RIGHT, RESULT_PANEL_BOTTOM, GetColor(0, 0, 255), FALSE); // æƒ…å ±ãƒ‘ãƒãƒ«ã®æž ç·š
 }
 
 void Result::DrawEnemyInfo(EnemyManager& enemyManager, ScoreManager& scoreManager) const {
 
-    // “G‚Ì‰æ‘œ‚ð•\Ž¦
+    // æ•µã®ç”»åƒã‚’è¡¨ç¤º
     DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT, RESULT_ENEMY_IMAGE_BOTTOM, skeletonNIcon, TRUE);
     DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT + RESULT_ENEMY_IMAGE_OFFSET_WARRIOR, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT + RESULT_ENEMY_IMAGE_OFFSET_WARRIOR, RESULT_ENEMY_IMAGE_BOTTOM, skeletonWIcon, TRUE);
     DrawExtendGraph(RESULT_ENEMY_IMAGE_LEFT + RESULT_ENEMY_IMAGE_OFFSET_MAGE, RESULT_ENEMY_IMAGE_TOP, RESULT_ENEMY_IMAGE_RIGHT + RESULT_ENEMY_IMAGE_OFFSET_MAGE, RESULT_ENEMY_IMAGE_BOTTOM, skeletonMIcon, TRUE);
 
-    // ¡‰ñ‚ÌƒvƒŒƒC‚Å“|‚µ‚½“G‚Ì”EƒXƒRƒA‚ð•\Ž¦
+    // ä»Šå›žã®ãƒ—ãƒ¬ã‚¤ã§å€’ã—ãŸæ•µã®æ•°ãƒ»ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤º
     DrawFormatStringToHandle(RESULT_TEXT_NORMAL_X, RESULT_TEXT_KILL_Y, GetColor(255, 255, 255), enemyInfoFont, "KILLS  %d", enemyManager.GetKillCount(ENEMY_NORMAL));
     DrawFormatStringToHandle(RESULT_TEXT_WARRIOR_X, RESULT_TEXT_KILL_Y, GetColor(255, 255, 255), enemyInfoFont, "KILLS  %d", enemyManager.GetKillCount(ENEMY_WARRIOR));
     DrawFormatStringToHandle(RESULT_TEXT_MAGE_X, RESULT_TEXT_KILL_Y, GetColor(255, 255, 255), enemyInfoFont, "KILLS  %d", enemyManager.GetKillCount(ENEMY_MAGE));
@@ -65,17 +65,17 @@ void Result::DrawEnemyInfo(EnemyManager& enemyManager, ScoreManager& scoreManage
 
 void Result::DrawPlayResult(ScoreManager& scoreManager) const {
 
-    // ‘ƒXƒRƒA‚ð•\Ž¦
+    // ç·ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤º
     DrawFormatStringToHandle(150, 500, GetColor(255, 255, 255), textFont, "TOTAL %d", scoreManager.GetScore());
 
-    // ƒXƒRƒA‚ðŒ³‚Éƒ‰ƒ“ƒN‚ð•\Ž¦(ƒ‰ƒ“ƒN”»’è‚ðˆË—Š)
+    // ã‚¹ã‚³ã‚¢ã‚’å…ƒã«ãƒ©ãƒ³ã‚¯ã‚’è¡¨ç¤º(ãƒ©ãƒ³ã‚¯åˆ¤å®šã‚’ä¾é ¼)
     DrawFormatStringToHandle(520, 500, GetColor(255, 255, 255), textFont, "RANK  %s", GetRank(scoreManager.GetScore()));
 
-    // ¶‘¶ŽžŠÔ‚ð•\Ž¦
-    DrawFormatStringToHandle(780, 120, GetColor(255, 255, 255), textFont, "TIME %02d•ª:%02d•b", scoreManager.GetMinutes(), scoreManager.GetSeconds());
+    // ç”Ÿå­˜æ™‚é–“ã‚’è¡¨ç¤º
+    DrawFormatStringToHandle(780, 120, GetColor(255, 255, 255), textFont, "TIME %02dåˆ†:%02dç§’", scoreManager.GetMinutes(), scoreManager.GetSeconds());
 
     DrawBox(500, 570, 800, 620, GetColor(20, 20, 20), TRUE);
-    DrawString(560, 590, "RƒL[‚Åƒ^ƒCƒgƒ‹‚É–ß‚é", GetColor(255, 255, 255));
+    DrawString(560, 590, "Rã‚­ãƒ¼ã§ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹", GetColor(255, 255, 255));
 }
 
 void Result::Draw(EnemyManager& enemyManager, ScoreManager& scoreManager, RankingManager& rankingManager, FontManager& fontManager) const {
@@ -89,7 +89,7 @@ void Result::Draw(EnemyManager& enemyManager, ScoreManager& scoreManager, Rankin
     DrawPlayResult(scoreManager);
 }
 
-// ƒ‰ƒ“ƒN”»’è
+// ãƒ©ãƒ³ã‚¯åˆ¤å®š
 const char* Result::GetRank(int score) const {
 
     if (score >= RANK_S_SCORE) return "S";

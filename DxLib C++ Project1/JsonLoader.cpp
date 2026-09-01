@@ -1,4 +1,4 @@
-#include "JsonLoader.h"
+ï»¿#include "JsonLoader.h"
 #include <fstream>
 #include "DxLib.h"
 
@@ -10,7 +10,7 @@ bool JsonLoader::Load(const char* path, const char* key, const std::function<boo
 
 	if (!file.is_open())
 	{
-		printfDx("ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñ: %s\n", path);
+		printfDx("ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ã¾ã›ã‚“: %s\n", path);
 		return false;
 	}
 
@@ -22,12 +22,12 @@ bool JsonLoader::Load(const char* path, const char* key, const std::function<boo
 
 		if (!j.contains(key)) return false;
 
-		// Šeƒ[ƒ_[ŒÅ—L‚Ì‘ã“ü‚¾‚¯·‚µž‚Þ
+		// å„ãƒ­ãƒ¼ãƒ€ãƒ¼å›ºæœ‰ã®ä»£å…¥ã ã‘å·®ã—è¾¼ã‚€
 		return fill(j[key]);
 	}
 	catch (const json::exception& e)
 	{
-		printfDx("JSON“Ç‚Ýž‚ÝƒGƒ‰[: %s\n", e.what());
+		printfDx("JSONèª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼: %s\n", e.what());
 		return false;
 	}
 }

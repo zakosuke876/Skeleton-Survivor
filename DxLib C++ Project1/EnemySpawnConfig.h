@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 
 struct EnemySpawnConfig {
-	float spawnInterval;       // “G‚ÌƒXƒ|[ƒ“ŠÔŠu(•b)
-	int maxEnemy;              // “G‚ÌÅ‘å“¯oŒ»”
-	float growInterval;        // “G‚ª‹­‰»‚³‚ê‚éŠÔŠu(•b)
-	float growRatePerInterval; // 1‰ñ‚Ì‹­‰»‚Åã¸‚·‚é”{—¦
+	float spawnInterval;       // æ•µã®ã‚¹ãƒãƒ¼ãƒ³é–“éš”(ç§’)
+	int maxEnemy;              // æ•µã®æœ€å¤§åŒæ™‚å‡ºç¾æ•°
+	float growInterval;        // æ•µãŒå¼·åŒ–ã•ã‚Œã‚‹é–“éš”(ç§’)
+	float growRatePerInterval; // 1å›ã®å¼·åŒ–ã§ä¸Šæ˜‡ã™ã‚‹å€ç‡
 };

@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 #include "Enemy.h"
 
-// Skeleton_Normal“ÆŽ©‚ÌƒAƒjƒ[ƒVƒ‡ƒ“,ENEMY_ANIM_MAX,‚©‚ç‚Ì‘±‚«”Ô†
+// Skeleton_Normalç‹¬è‡ªã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³,ENEMY_ANIM_MAX,ã‹ã‚‰ã®ç¶šãç•ªå·
 enum Skeleton_NormalAnimation {
 
-	SKELETON_N_ANIM_VICTORY_POSE = ENEMY_ANIM_MAX,  // Ÿ—˜ƒAƒjƒ[ƒVƒ‡ƒ“
+	SKELETON_N_ANIM_VICTORY_POSE = ENEMY_ANIM_MAX,  // å‹åˆ©ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 };
 
-// SKELETON_NORMAL“ÆŽ©‚ÌƒXƒe[ƒg,ENEMY_STATE_MAX‚©‚ç‚Ì‘±‚«”Ô†
+// SKELETON_NORMALç‹¬è‡ªã®ã‚¹ãƒ†ãƒ¼ãƒˆ,ENEMY_STATE_MAXã‹ã‚‰ã®ç¶šãç•ªå·
 enum Skeleton_NormalState {
 
-	SKELETON_N_VICTORY = ENEMY_STATE_MAX       // Ÿ—˜ó‘Ô
+	SKELETON_N_VICTORY = ENEMY_STATE_MAX       // å‹åˆ©çŠ¶æ…‹
 };
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚ÍSkeleton_Normal.cpp‚Å’è‹`;
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã¯Skeleton_Normal.cppã§å®šç¾©;
 extern const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[];
 
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class MagicEffectManager;
 
 

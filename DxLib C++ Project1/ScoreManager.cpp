@@ -1,4 +1,4 @@
-#include "ScoreManager.h"
+ï»¿#include "ScoreManager.h"
 #include "FontManager.h"
 #include "DxLib.h"
 
@@ -11,12 +11,12 @@ void ScoreManager::Reset() {
 
 	score = 0;
 
-	// Œo‰ßŠÔEƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg
+	// çµŒéæ™‚é–“ãƒ»ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆ
 	playTime = 0.0f;
 	minutes = 0;
 	seconds = 0;
 
-	// ”z—ñ‚Ì’l‚ğ0‚ÉƒŠƒZƒbƒg
+	// é…åˆ—ã®å€¤ã‚’0ã«ãƒªã‚»ãƒƒãƒˆ
 	for (int i = 0; i < ENEMY_TYPE_COUNT; i++)
 	{
 		scoreByEnemyType[i] = 0;
@@ -33,7 +33,7 @@ void ScoreManager::Update(float deltaTime) {
 
 	playTime += deltaTime;
 
-	// •ª:•b‚ÉŒvZ‚·‚é
+	// åˆ†:ç§’ã«è¨ˆç®—ã™ã‚‹
 	int totalSeconds = (int)playTime;
 	minutes = totalSeconds / 60;
 	seconds = totalSeconds % 60;
@@ -42,5 +42,5 @@ void ScoreManager::Update(float deltaTime) {
 void ScoreManager::Draw(const FontManager& fontManager) const {
 
 	DrawFormatStringToHandle(SCORE_TEXT_X, SCORE_TEXT_Y, GetColor(255, 0, 0), fontManager.GetScoreFont(), "Score %06d", score);
-	DrawFormatStringToHandle(TIME_TEXT_X, TIME_TEXT_Y, GetColor(255, 0, 0), fontManager.GetScoreFont(), "TIME %02d:%02d•b", minutes, seconds);
+	DrawFormatStringToHandle(TIME_TEXT_X, TIME_TEXT_Y, GetColor(255, 0, 0), fontManager.GetScoreFont(), "TIME %02d:%02dç§’", minutes, seconds);
 }

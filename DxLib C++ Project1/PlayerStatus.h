@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 
-// JSON‚©‚ç“Ç‚İ‚ñ‚¾ƒvƒŒƒCƒ„[‚Ìİ’è’l(ƒXƒe[ƒ^ƒXE“–‚½‚è”»’èEƒŠƒ\[ƒXƒpƒX‚È‚Ç)‚ğŠi”[‚·‚é\‘¢‘Ì
-// “Ç‚İ‚ñ‚¾’l‚ğPlayerƒNƒ‰ƒX‚Ìƒƒ“ƒo•Ï”‚ÖƒRƒs[‚µ‚Äg—p
+// JSONã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¨­å®šå€¤(ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ»å½“ãŸã‚Šåˆ¤å®šãƒ»ãƒªã‚½ãƒ¼ã‚¹ãƒ‘ã‚¹ãªã©)ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“
+// èª­ã¿è¾¼ã‚“ã å€¤ã‚’Playerã‚¯ãƒ©ã‚¹ã®ãƒ¡ãƒ³ãƒå¤‰æ•°ã¸ã‚³ãƒ”ãƒ¼ã—ã¦ä½¿ç”¨
 struct PlayerStatus {
-	int maxHp;                    // Å‘åHP
-	int attackPower;              // UŒ‚—Í
-	float speed;                  // •à‚«ƒXƒs[ƒh
-	float dashMultiplier;         // ƒ_ƒbƒVƒ…‚ÌƒXƒs[ƒh”{—¦
-	int startLevel;               // ‰ŠúƒŒƒxƒ‹
-	int startNextLevelExp;        // Ÿ‚ÌƒŒƒxƒ‹ƒAƒbƒv‚É•K—v‚ÈŒoŒ±’l‚Ì‰Šú’l
-	float attackRadius;           // UŒ‚”»’è‚Ì”¼Œa
-	float bodyRadius;             // ‘Ì‚Ì“–‚½‚è”»’è”¼Œa
-	int levelUpAttackPower;       // ƒŒƒxƒ‹ƒAƒbƒv‚Åã¸‚·‚éUŒ‚—Í
-	float nextLevelExpMultiplier; // ƒŒƒxƒ‹ƒAƒbƒv‚É•K—v‚ÈŒoŒ±’l‚Ì”{—¦
-	float invincibleTime;         // –³“GŠÔ
-	float hideTime;               // €–SŒã‚ÉÁ‚¦‚é‚Ü‚Å‚ÌŠÔ
-	float levelUpTextActiveTime;  // ƒŒƒxƒ‹ƒAƒbƒv‰‰o(ƒeƒLƒXƒg)‚Ì•\¦ŠÔ
-	float scale;                  // ƒ‚ƒfƒ‹‚ÌŠg‘å”{—¦
-	std::string modelPath;        // ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ÌƒpƒX
-	std::string texturePath;      // ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ÌƒpƒX
+	int maxHp;                    // æœ€å¤§HP
+	int attackPower;              // æ”»æ’ƒåŠ›
+	float speed;                  // æ­©ãã‚¹ãƒ”ãƒ¼ãƒ‰
+	float dashMultiplier;         // ãƒ€ãƒƒã‚·ãƒ¥æ™‚ã®ã‚¹ãƒ”ãƒ¼ãƒ‰å€ç‡
+	int startLevel;               // åˆæœŸãƒ¬ãƒ™ãƒ«
+	int startNextLevelExp;        // æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã«å¿…è¦ãªçµŒé¨“å€¤ã®åˆæœŸå€¤
+	float attackRadius;           // æ”»æ’ƒåˆ¤å®šã®åŠå¾„
+	float bodyRadius;             // ä½“ã®å½“ãŸã‚Šåˆ¤å®šåŠå¾„
+	int levelUpAttackPower;       // ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã§ä¸Šæ˜‡ã™ã‚‹æ”»æ’ƒåŠ›
+	float nextLevelExpMultiplier; // ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã«å¿…è¦ãªçµŒé¨“å€¤ã®å€ç‡
+	float invincibleTime;         // ç„¡æ•µæ™‚é–“
+	float hideTime;               // æ­»äº¡å¾Œã«æ¶ˆãˆã‚‹ã¾ã§ã®æ™‚é–“
+	float levelUpTextActiveTime;  // ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ¼”å‡º(ãƒ†ã‚­ã‚¹ãƒˆ)ã®è¡¨ç¤ºæ™‚é–“
+	float scale;                  // ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§å€ç‡
+	std::string modelPath;        // ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
+	std::string texturePath;      // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 };

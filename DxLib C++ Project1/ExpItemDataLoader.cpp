@@ -1,4 +1,4 @@
-#include "ExpItemDataLoader.h"
+ï»¿#include "ExpItemDataLoader.h"
 #include "ExpItem.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"
@@ -8,7 +8,7 @@ using json = nlohmann::json;
 
 bool ExpItemDataLoader::Load(ExpItemData& outData) {
 
-	// JsonPathE\‘¢‘Ì‚ğ“n‚·
+	// JsonPathãƒ»æ§‹é€ ä½“ã‚’æ¸¡ã™
 	return LoadData(JsonPath::EXP_ITEM_DATA, outData);
 }
 

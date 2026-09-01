@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include "Enemy.h"
 #include "EnemySpawnConfig.h"
 #include <random>
 #include <vector>
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class Player;
 class ScoreManager;
 class ItemManager;
@@ -17,17 +17,17 @@ public:
 
 	EnemyManager();
 	~EnemyManager();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
 	void Draw() const;
 	void DrawUI() const;
 	void CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, SoundManager& soundManager);
 	void CheckEnemyAttackHit(Player& player, SoundManager& soundManager);
 
-	//	“|‚µ‚½“G‚Ì”‚ğ“G‚Ìí—Ş‚²‚Æ‚ÉƒJƒEƒ“ƒg
+	//	å€’ã—ãŸæ•µã®æ•°ã‚’æ•µã®ç¨®é¡ã”ã¨ã«ã‚«ã‚¦ãƒ³ãƒˆ
 	void CountEnemyKill(EnemyType type);
 
-	// “|‚µ‚½“G‚Ì”‚ğí—Ş•Ê‚Åæ“¾‚·‚éƒQƒbƒ^[
+	// å€’ã—ãŸæ•µã®æ•°ã‚’ç¨®é¡åˆ¥ã§å–å¾—ã™ã‚‹ã‚²ãƒƒã‚¿ãƒ¼
 	int GetKillCount(EnemyType type) const {
 
 		return killCount[type];
@@ -37,68 +37,68 @@ private:
 
 	void Spawn();
 
-	// “GŠÇ—
+	// æ•µç®¡ç†
 	std::vector<std::unique_ptr<Enemy>> enemies;
 	float spawnTimer = 0.0f;
 
-	// ƒm[ƒ}ƒ‹ƒXƒPƒ‹ƒgƒ“‚ÌƒXƒe[ƒ^ƒX
+	// ãƒãƒ¼ãƒãƒ«ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	SkeletonNormalStatus normalStatus;
 
-	// ƒEƒH[ƒŠƒA[ƒXƒPƒ‹ƒgƒ“‚ÌƒXƒe[ƒ^ƒX
+	// ã‚¦ã‚©ãƒ¼ãƒªã‚¢ãƒ¼ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	SkeletonWarriorStatus  warriorStatus;
 
-	// ƒƒCƒWƒXƒPƒ‹ƒgƒ“‚ÌƒXƒe[ƒ^ƒX
+	// ãƒ¡ã‚¤ã‚¸ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	SkeletonMageStatus mageStatus;
 
-	// ƒXƒ|[ƒ“ŠÖŒW‚Ìƒf[ƒ^
+	// ã‚¹ãƒãƒ¼ãƒ³é–¢ä¿‚ã®ãƒ‡ãƒ¼ã‚¿
 	EnemySpawnConfig spawnConfig;
 	
-	// JSON‚©‚ç“Ç‚İ‚Ş’l
-	// “G‚ÌƒXƒ|[ƒ“ŠÔŠu(•b)
+	// JSONã‹ã‚‰èª­ã¿è¾¼ã‚€å€¤
+	// æ•µã®ã‚¹ãƒãƒ¼ãƒ³é–“éš”(ç§’)
 	float spawnInterval = -1.0f;
 
-	// “G‚ÌÅ‘å“¯oŒ»”
+	// æ•µã®æœ€å¤§åŒæ™‚å‡ºç¾æ•°
 	int maxEnemy = -1;
 
-	// “G‚ª‹­‰»‚³‚ê‚éŠÔŠu(•b)
+	// æ•µãŒå¼·åŒ–ã•ã‚Œã‚‹é–“éš”(ç§’)
 	float growInterval = -1.0f;
 
-	// 1‰ñ‚Ì‹­‰»‚Åã¸‚·‚é”{—¦
+	// 1å›ã®å¼·åŒ–ã§ä¸Šæ˜‡ã™ã‚‹å€ç‡
 	float growRatePerInterval = -1.0f;
 
-	// ŠÔŒo‰ß‚²‚Æ‚É“G‚ğ‹­‰»‚·‚é
+	// æ™‚é–“çµŒéã”ã¨ã«æ•µã‚’å¼·åŒ–ã™ã‚‹
 	float playTimer = 0.0f;
 
-	// “G‚ÌƒXƒe[ƒ^ƒX‹­‰»”{—¦
+	// æ•µã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å¼·åŒ–å€ç‡
 	float enemyGrowRate = 1.0f;
 
-	// “|‚µ‚½“G‚Ì”‚ğŠÇ—‚·‚é”z—ñ
+	// å€’ã—ãŸæ•µã®æ•°ã‚’ç®¡ç†ã™ã‚‹é…åˆ—
 	int killCount[ENEMY_TYPE_COUNT] = {0};
 
-	// Skeleton_Normal‚Ì•¡»Œ³ƒ‚ƒfƒ‹
+	// Skeleton_Normalã®è¤‡è£½å…ƒãƒ¢ãƒ‡ãƒ«
 	int skeletonNormalModelHandle  = -1;
 
-	// Skeleton_Warrior‚Ì•¡»Œ³ƒ‚ƒfƒ‹
+	// Skeleton_Warriorã®è¤‡è£½å…ƒãƒ¢ãƒ‡ãƒ«
 	int skeletonWarriorModelHandle = -1;
 
-	// Skeleton_Mage‚Ì•¡»Œ³ƒ‚ƒfƒ‹
+	// Skeleton_Mageã®è¤‡è£½å…ƒãƒ¢ãƒ‡ãƒ«
 	int skeletonMageModelHandle = -1;
 
-	// Skeleton_Normal—pƒeƒNƒXƒ`ƒƒ
+	// Skeleton_Normalç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	int skeletonNormalTexHandle = -1;
 
-	// Skeleton_Warrior—pƒeƒNƒXƒ`ƒƒ
+	// Skeleton_Warriorç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	int skeletonWarriorTexHandle = -1;
 
-	// Skeleton_Mage—pƒeƒNƒXƒ`ƒƒ
+	// Skeleton_Mageç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	int skeletonMageTexHandle = -1;
 
-	// ñ‚Ìƒ‚ƒfƒ‹
+	// æ–ã®ãƒ¢ãƒ‡ãƒ«
 	int staffModelHandle = -1;
 
-	// ñ‚ÌƒeƒNƒXƒ`ƒƒ
+	// æ–ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	int staffTexHandle = -1;
 
-	// ƒ‰ƒ“ƒ_ƒ€ƒGƒ“ƒWƒ“
+	// ãƒ©ãƒ³ãƒ€ãƒ ã‚¨ãƒ³ã‚¸ãƒ³
 	std::mt19937 rng;
 };

@@ -1,4 +1,4 @@
-#include "MagicEffect.h"
+ï»¿#include "MagicEffect.h"
 #include "GameConfig.h"
 #include "Player.h"
 
@@ -9,7 +9,7 @@ MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* ha
 
 	lifeTimer = 0.0f;
 
-	// ‰æ‘œƒnƒ“ƒhƒ‹”z—ñ‚ğİ’è
+	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«é…åˆ—ã‚’è¨­å®š
 	grHandles = handles;
 
 	x = startX;
@@ -21,60 +21,60 @@ MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* ha
 
 void MagicEffect::Update(const Player& player, float deltaTime) {
 
-	// ƒRƒ}‘—‚èƒ^ƒCƒ}[‚ği‚ß‚é
+	// ã‚³ãƒé€ã‚Šã‚¿ã‚¤ãƒãƒ¼ã‚’é€²ã‚ã‚‹
 	frameTimer += deltaTime;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
 	if (frameTimer >= FRAME_INTERVAL)
 	{
 		frameTimer = 0.0f;
 		currentFrame++;
 
-		// ÅIƒRƒ}‚Ü‚ÅÄ¶‚µ‚½ê‡
+		// æœ€çµ‚ã‚³ãƒã¾ã§å†ç”Ÿã—ãŸå ´åˆ
 		if (currentFrame > endFrame)
 		{
-			// ƒ‹[ƒv‚·‚é‚©
+			// ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹
 			if (isLoop)
 			{
 				currentFrame = startFrame;
 			}
 			else
 			{
-				// ÅIƒRƒ}‚Å~‚ß‚é
+				// æœ€çµ‚ã‚³ãƒã§æ­¢ã‚ã‚‹
 				currentFrame = endFrame;
 			}
 		}
 	}
 	
-	// ¶‘¶ŠÔ‚ğŒv‘ª
+	// ç”Ÿå­˜æ™‚é–“ã‚’è¨ˆæ¸¬
 	lifeTimer += deltaTime;
 
-	// ¶‘¶ŠÔ‚ğ’´‚¦‚½ê‡
+	// ç”Ÿå­˜æ™‚é–“ã‚’è¶…ãˆãŸå ´åˆ
 	if (lifeTimer >= LIFE_TIME)
 	{
 		isActive = false;
 	}
 
-	// –‚–@‚ÍƒvƒŒƒCƒ„[‚ğ’Ç]‚³‚¹‚é
+	// é­”æ³•ã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¿½å¾“ã•ã›ã‚‹
 	float dx = player.GetPosition().x - x;
 	float dz = player.GetPosition().z - z;
 
-	// ‹——£‚ğ‹‚ß‚é
+	// è·é›¢ã‚’æ±‚ã‚ã‚‹
 	float distance = sqrt(dx * dx + dz * dz);
 
-	// 0œZ‘Îô
+	// 0é™¤ç®—å¯¾ç­–
 	if (distance > 0.0f)
 	{
-		// ³‹K‰»
+		// æ­£è¦åŒ–
 		float dirX = dx / distance;
 		float dirZ = dz / distance;
 
-		// ƒvƒŒƒCƒ„[•ûŒü‚ÖˆÚ“®
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ–¹å‘ã¸ç§»å‹•
 		x += dirX * speed;
 		z += dirZ * speed;
 	}
 
-	// ƒtƒB[ƒ‹ƒhŠO‚Éo‚½ê‡Á‚¦‚é
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤–ã«å‡ºãŸå ´åˆæ¶ˆãˆã‚‹
 	if (x < GameConfig::FIELD_MIN_X || x > GameConfig::FIELD_MAX_X ||
 		z < GameConfig::FIELD_MIN_Z || z > GameConfig::FIELD_MAX_Z)
 	{
@@ -84,10 +84,10 @@ void MagicEffect::Update(const Player& player, float deltaTime) {
 
 void MagicEffect::Draw() const {
 
-	// –³Œø‰»ó‘Ô‚È‚çˆ—‚µ‚È‚¢
+	// ç„¡åŠ¹åŒ–çŠ¶æ…‹ãªã‚‰å‡¦ç†ã—ãªã„
 	if (!isActive) return;
 
-	// ƒrƒ‹ƒ{[ƒh‚Å–‚–@ƒGƒtƒFƒNƒg‚ğ•`‰æ
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã§é­”æ³•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æç”»
 	DrawBillboard3D(VGet(x, y, z), 0.5f, 0.5f, EFFECT_SCALE, 0.0f,
 		grHandles[currentFrame], TRUE);
 }

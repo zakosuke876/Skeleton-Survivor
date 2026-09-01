@@ -1,4 +1,4 @@
-#include "ExpItem.h"
+ï»¿#include "ExpItem.h"
 #include "Player.h"
 #include "SoundManager.h"
 #include "DxLib.h"
@@ -9,10 +9,10 @@ ExpItem::ExpItem(float posX, float posY, float posZ, int expValue, int texHandle
 	y = posY;
 	z = posZ;
 
-	// “¾‚ç‚ê‚éŒoŒ±’l‚ğİ’è
+	// å¾—ã‚‰ã‚Œã‚‹çµŒé¨“å€¤ã‚’è¨­å®š
 	addExpValue = expValue;
 
-	// ‰æ‘œƒnƒ“ƒhƒ‹‚ğİ’è
+	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®š
 	grHandle = texHandle;
 }
 
@@ -23,9 +23,9 @@ void ExpItem::DrawModel() const {
 
 void ExpItem::OnPickUp(Player& player, const SoundManager& soundManager) {
 
-	// ŒoŒ±’l‚ğ‰ÁZ‚·‚é
+	// çµŒé¨“å€¤ã‚’åŠ ç®—ã™ã‚‹
 	player.AddExp(addExpValue, soundManager);
 
-	// Œø‰Ê‰¹Ä¶‚ğˆË—Š(ˆø”‚Åƒ^ƒCƒv‚ğ“n‚·)
+	// åŠ¹æœéŸ³å†ç”Ÿã‚’ä¾é ¼(å¼•æ•°ã§ã‚¿ã‚¤ãƒ—ã‚’æ¸¡ã™)
 	soundManager.PlaySe(EXP);
 }

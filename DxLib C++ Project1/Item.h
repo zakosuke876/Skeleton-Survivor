@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class Player;
 class SoundManager;
 
@@ -12,39 +12,39 @@ public:
 	Item();
 	void Draw() const;
 
-	// À•W‚ğæ“¾‚·‚é
+	// åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 	VECTOR GetPosition() const { return VGet(x, y, z); }
 
-	// ”¼Œa‚ğæ“¾‚·‚é(“–‚½‚è”»’è—p)
+	// åŠå¾„ã‚’å–å¾—ã™ã‚‹(å½“ãŸã‚Šåˆ¤å®šç”¨)
 	float GetRadius() const { return ITEM_RADIUS; }
 
-	// ƒIƒuƒWƒFƒNƒg‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ•Ô‚·
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	bool IsActive() const { return isActive; }
 
-	// ƒvƒŒƒCƒ„[‚ÆG‚ê‚½Û‚Éƒtƒ‰ƒO‚ğ‘‚«Š·‚¦–³Œø‰»‚·‚é
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨è§¦ã‚ŒãŸéš›ã«ãƒ•ãƒ©ã‚°ã‚’æ›¸ãæ›ãˆç„¡åŠ¹åŒ–ã™ã‚‹
 	void SetActive(bool active) { isActive = active; }
 
-	// ƒAƒCƒeƒ€ŒÅ—L‚Ìˆ—‚ğ‚³‚¹‚é
+	// ã‚¢ã‚¤ãƒ†ãƒ å›ºæœ‰ã®å‡¦ç†ã‚’ã•ã›ã‚‹
 	virtual void OnPickUp(Player& player, const SoundManager& soundManager) = 0;
 
 protected:
 
 	virtual void DrawModel() const = 0;
 
-	// ‰æ‘œƒnƒ“ƒhƒ‹
+	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int grHandle = -1;
 
-	// À•W
+	// åº§æ¨™
 	float x = 0.0f;
 	float y = 0.0f;
 	float z = 0.0f;
 
-	// ”¼Œa
+	// åŠå¾„
 	static constexpr float ITEM_RADIUS = 10.0f;
 
-	// ƒ‚ƒfƒ‹‚ÌŠg‘å”{—¦
+	// ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§å€ç‡
 	static constexpr float ITEM_SCALE = 20.0f;
 
-	// ƒIƒuƒWƒFƒNƒg‚ª—LŒø‚©‚Ç‚¤‚©
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
 	bool isActive = false;
 };

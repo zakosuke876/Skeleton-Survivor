@@ -1,45 +1,45 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 
 
-// JSON‚©‚ç“Ç‚İ‚ñ‚¾“G‚Ì‹¤’ÊƒXƒe[ƒ^ƒX‚ğŠi”[‚·‚é\‘¢‘Ì
-// “Ç‚İ‚ñ‚¾’l‚ğEnemy”h¶ƒNƒ‰ƒX‚Ìƒƒ“ƒo•Ï”‚ÖƒRƒs[‚µ‚Äg—p
+// JSONã‹ã‚‰èª­ã¿è¾¼ã‚“ã æ•µã®å…±é€šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“
+// èª­ã¿è¾¼ã‚“ã å€¤ã‚’Enemyæ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã®ãƒ¡ãƒ³ãƒå¤‰æ•°ã¸ã‚³ãƒ”ãƒ¼ã—ã¦ä½¿ç”¨
 struct EnemyStatus {
-	int baseHp;              // Šî‘bHP(growRate‚Å”{—¦‚ğ‚©‚¯‚é‘O‚Ì’l)
-	int baseAttack;          // Šî‘bUŒ‚—Í(growRate‚Å”{—¦‚ğ‚©‚¯‚é‘O‚Ì’l)
-	float speed;             // •à‚­ƒXƒs[ƒh
-	float dashSpeed;         // ‘–‚éƒXƒs[ƒh
-	float attackCoolTime;    // UŒ‚ƒN[ƒ‹ƒ^ƒCƒ€(•b)
-	float invincibleTime;    // –³“GŠÔ(•b)
-	float hideTime;          // €–SŒã‚ÉÁ‚¦‚é‚Ü‚Å‚ÌŠÔ(•b)
-	float chaseRangeRadius;  // ƒ`ƒFƒCƒXó‘Ô‚Ö‘JˆÚ‚·‚é‹——£
-	float attackRangeRadius; // UŒ‚ó‘Ô‚Ö‘JˆÚ‚·‚é‹——£
-	float attackRadius;      // UŒ‚”»’è‚Ì”¼Œa
-	float bodyRadius;        // ‘Ì‚Ì“–‚½‚è”»’è”¼Œa
-	int score;               // “|‚µ‚½‚É‰ÁZ‚³‚ê‚éƒXƒRƒA
-	float scale;             // ƒ‚ƒfƒ‹‚ÌŠg‘å”{—¦
-	std::string modelPath;   // ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ÌƒpƒX
-	std::string texturePath; // ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ÌƒpƒX
+	int baseHp;              // åŸºç¤HP(growRateã§å€ç‡ã‚’ã‹ã‘ã‚‹å‰ã®å€¤)
+	int baseAttack;          // åŸºç¤æ”»æ’ƒåŠ›(growRateã§å€ç‡ã‚’ã‹ã‘ã‚‹å‰ã®å€¤)
+	float speed;             // æ­©ãã‚¹ãƒ”ãƒ¼ãƒ‰
+	float dashSpeed;         // èµ°ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+	float attackCoolTime;    // æ”»æ’ƒã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ (ç§’)
+	float invincibleTime;    // ç„¡æ•µæ™‚é–“(ç§’)
+	float hideTime;          // æ­»äº¡å¾Œã«æ¶ˆãˆã‚‹ã¾ã§ã®æ™‚é–“(ç§’)
+	float chaseRangeRadius;  // ãƒã‚§ã‚¤ã‚¹çŠ¶æ…‹ã¸é·ç§»ã™ã‚‹è·é›¢
+	float attackRangeRadius; // æ”»æ’ƒçŠ¶æ…‹ã¸é·ç§»ã™ã‚‹è·é›¢
+	float attackRadius;      // æ”»æ’ƒåˆ¤å®šã®åŠå¾„
+	float bodyRadius;        // ä½“ã®å½“ãŸã‚Šåˆ¤å®šåŠå¾„
+	int score;               // å€’ã—ãŸæ™‚ã«åŠ ç®—ã•ã‚Œã‚‹ã‚¹ã‚³ã‚¢
+	float scale;             // ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§å€ç‡
+	std::string modelPath;   // ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
+	std::string texturePath; // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 };
 
 
-// ‚±‚±‚©‚ç‰º‚É“GŒÅ—L‚ÌƒXƒe[ƒ^ƒX‚ğ\‘¢‘Ì‚Å’è‹`‚µ‚ÄJSON‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Ş
+// ã“ã“ã‹ã‚‰ä¸‹ã«æ•µå›ºæœ‰ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ§‹é€ ä½“ã§å®šç¾©ã—ã¦JSONã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 
-// ƒm[ƒ}ƒ‹ƒXƒPƒ‹ƒgƒ“‚ÌƒXƒe[ƒ^ƒX\‘¢‘Ì
+// ãƒãƒ¼ãƒãƒ«ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ§‹é€ ä½“
 struct SkeletonNormalStatus {
 	EnemyStatus enemyStatus;
 };
 
-// ƒEƒH[ƒŠƒA[ƒXƒPƒ‹ƒgƒ“‚ÌƒXƒe[ƒ^ƒX\‘¢‘Ì
+// ã‚¦ã‚©ãƒ¼ãƒªã‚¢ãƒ¼ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ§‹é€ ä½“
 struct SkeletonWarriorStatus {
 	EnemyStatus enemyStatus;
-	int reviveChancePercent;   // •œŠˆŠm—¦
-	float reviveWaitTime;      // •œŠˆ‘Ò‹@ŠÔ
-	float reviveHpMultiplier;  // •œŠˆ‚µ‚½Û‚ÌHp”{—¦
-	int reviveScoreMultiplier; // •œŠˆ‚µ‚½Û‚ÌƒXƒRƒA”{—¦
+	int reviveChancePercent;   // å¾©æ´»ç¢ºç‡
+	float reviveWaitTime;      // å¾©æ´»å¾…æ©Ÿæ™‚é–“
+	float reviveHpMultiplier;  // å¾©æ´»ã—ãŸéš›ã®Hpå€ç‡
+	int reviveScoreMultiplier; // å¾©æ´»ã—ãŸéš›ã®ã‚¹ã‚³ã‚¢å€ç‡
 };
 
-// ƒƒCƒWƒXƒPƒ‹ƒgƒ“‚ÌƒXƒe[ƒ^ƒX\‘¢‘Ì
+// ãƒ¡ã‚¤ã‚¸ã‚¹ã‚±ãƒ«ãƒˆãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ§‹é€ ä½“
 struct SkeletonMageStatus {
 	EnemyStatus enemyStatus;
 };

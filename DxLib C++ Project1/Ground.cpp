@@ -1,45 +1,45 @@
-#include "Ground.h"
+ï»¿#include "Ground.h"
 #include "DxLib.h"
 
 Ground::Ground() {
 
-    // ’n–Êƒ‚ƒfƒ‹“Ç‚İ‚İ
+    // åœ°é¢ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
     groundHandle = MV1LoadModel("Stage/Ground.mv1");
 
-    // ’n–Êƒ‚ƒfƒ‹‚ÌƒXƒP[ƒ‹‚ğİ’è
+    // åœ°é¢ãƒ¢ãƒ‡ãƒ«ã®ã‚¹ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š
     MV1SetScale(groundHandle, VGet(GROUND_SCALE, GROUND_SCALE, GROUND_SCALE));
 }
 
 void Ground::DrawGround() const {
 
-    // X²ƒ‹[ƒv
+    // Xè»¸ãƒ«ãƒ¼ãƒ—
     for (int x = -GameConfig::GRID_HALF_NUM; x <= GameConfig::GRID_HALF_NUM; x++)
     {
-        // XÀ•W‚ğƒ}ƒXŠÔŠu‚ğŒvZ‚µ‚Äİ’è
+        // Xåº§æ¨™ã‚’ãƒã‚¹é–“éš”ã‚’è¨ˆç®—ã—ã¦è¨­å®š
         float xPos = x * GameConfig::GRID_SIZE;
 
-        // Z²ƒ‹[ƒv
+        // Zè»¸ãƒ«ãƒ¼ãƒ—
         for (int z = -GameConfig::GRID_HALF_NUM; z <= GameConfig::GRID_HALF_NUM; z++)
         {
-            // ZÀ•W‚ğƒ}ƒXŠÔŠu‚ğŒvZ‚µ‚Äİ’è
+            // Zåº§æ¨™ã‚’ãƒã‚¹é–“éš”ã‚’è¨ˆç®—ã—ã¦è¨­å®š
             float zPos = z * GameConfig::GRID_SIZE;
 
-            // x,z‹¤‚É0‚Ì•”•ª‚ğŒ´“_‚É‚·‚é(ÔF‚Å•`‰æ)
+            // x,zå…±ã«0ã®éƒ¨åˆ†ã‚’åŸç‚¹ã«ã™ã‚‹(èµ¤è‰²ã§æç”»)
             if (x == 0 && z == 0)
             {
-                // ÔF‚Å•`‰æ
+                // èµ¤è‰²ã§æç”»
                 MV1SetDifColorScale(groundHandle, GetColorF(1.0f, 0.0f, 0.0f, 1.0f));
             }
             else
             {
-                // ƒ‚ƒfƒ‹‚ÌŒ´F‚Å•`‰æ
+                // ãƒ¢ãƒ‡ãƒ«ã®åŸè‰²ã§æç”»
                 MV1SetDifColorScale(groundHandle, GetColorF(1.0f, 1.0f, 1.0f, 1.0f));
             }
 
-            // ƒ‚ƒfƒ‹‚ğÀ•W‚ÉƒZƒbƒg
+            // ãƒ¢ãƒ‡ãƒ«ã‚’åº§æ¨™ã«ã‚»ãƒƒãƒˆ
             MV1SetPosition(groundHandle, VGet(xPos, GROUND_Y, zPos));
 
-            // ’n–Êƒ‚ƒfƒ‹•`‰æ
+            // åœ°é¢ãƒ¢ãƒ‡ãƒ«æç”»
             MV1DrawModel(groundHandle);
         }
     }

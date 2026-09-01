@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Ground.h"
 #include "Camera.h"
 #include "Player.h"
@@ -17,23 +17,23 @@
 #include <memory>
 
 
-// ƒV[ƒ“‚Ìí—Ş
+// ã‚·ãƒ¼ãƒ³ã®ç¨®é¡
 enum AppScene {
-	APP_TITLE, // ƒ^ƒCƒgƒ‹ƒV[ƒ“
-	APP_GAME,  // ƒQ[ƒ€ƒV[ƒ“
+	APP_TITLE, // ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³
+	APP_GAME,  // ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³
 };
 
 class Game {
 public:
 
 	Game();
-	void Run(); // ƒQ[ƒ€ƒ‹[ƒv
+	void Run(); // ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—
 
 private:
 
 	void Update();
 	void Draw();
-	void GameReset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void GameReset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 
 	Ground ground;
 	Camera camera;
@@ -51,12 +51,12 @@ private:
 	std::unique_ptr<TitleScene> titleScene;
 
 
-	// ‘OƒtƒŒ[ƒ€‚©‚ç‚Ì(ƒ~ƒŠ•b)
+	// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã®æ™‚åˆ»(ãƒŸãƒªç§’)
 	int prevTime = 0;
 
-	// ‘OƒtƒŒ[ƒ€‚©‚ç‚ÌŒo‰ßŠÔ(•b)
+	// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã®çµŒéæ™‚é–“(ç§’)
 	float deltaTime = 0;
 
-	// Œ»İ‚ÌƒV[ƒ“
+	// ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³
 	AppScene currentScene;
 };

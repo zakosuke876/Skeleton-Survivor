@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class ScoreManager;
 class FontManager;
 
@@ -9,72 +9,72 @@ class RankingManager {
 public:
 
 	RankingManager();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 
-	// Œ»İ‚ÌƒXƒRƒA‚ğƒ‰ƒ“ƒLƒ“ƒO‚Ö“o˜^‚·‚é
+	// ç¾åœ¨ã®ã‚¹ã‚³ã‚¢ã‚’ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã¸ç™»éŒ²ã™ã‚‹
 	void AddScore(const ScoreManager& scoreManager);
 	void Update(float deltaTime);
 
-	// XV‚µ‚½‡ˆÊ‚ğæ“¾‚·‚é
+	// æ›´æ–°ã—ãŸé †ä½ã‚’å–å¾—ã™ã‚‹
 	int GetNewRank() const { return newRank; }
 	void DrawRanking(const FontManager& fontManager) const;
 
-	// ƒ^ƒCƒgƒ‹‰æ–Ê—p
+	// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ç”¨
 	void DrawTitleRanking(const FontManager& fontManager) const;
 
 private:
 
-	// ƒ‰ƒ“ƒLƒ“ƒO‚ğƒ\[ƒg‚·‚é(~‡)
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹(é™é †)
 	void SortRanking();
 
-	// ƒ‰ƒ“ƒLƒ“ƒO‚ÌÅ‘å•Û”
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®æœ€å¤§ä¿æŒæ•°
 	static constexpr int MAX_RANKING = 5;
 
-	// ‰Šúƒ‰ƒ“ƒLƒ“ƒO(~‡)
+	// åˆæœŸãƒ©ãƒ³ã‚­ãƒ³ã‚°(é™é †)
 	std::vector<int> ranking{ 5000, 4000, 3000, 2000, 1000 };
 
-	// ‹L˜^XV‚µ‚½‡ˆÊ‚ğ•Û
+	// è¨˜éŒ²æ›´æ–°ã—ãŸé †ä½ã‚’ä¿æŒ
 	int newRank = -1;
 
-	// ƒ‰ƒ“ƒLƒ“ƒOXV‚ÉƒeƒLƒXƒg‚ğ“_–Å‚³‚¹‚é
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°æ™‚ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’ç‚¹æ»…ã•ã›ã‚‹
 	float blinkTimer = 0.0f;
 
-	// “_–ÅŠÔŠu(•b)
+	// ç‚¹æ»…é–“éš”(ç§’)
 	static constexpr float BLINK_INTERVAL = 0.5f;
 
-	// ƒeƒLƒXƒg‚ğ“_–Å‚³‚¹‚é‚©‚Ç‚¤‚©
+	// ãƒ†ã‚­ã‚¹ãƒˆã‚’ç‚¹æ»…ã•ã›ã‚‹ã‹ã©ã†ã‹
 	bool isBlinkVisible = false;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦À•W(ƒQ[ƒ€ƒI[ƒo[)
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºåº§æ¨™(ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼)
 
-	 // ƒ‰ƒ“ƒLƒ“ƒO•\¦À•W
+	 // ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºåº§æ¨™
 	static constexpr int RANKING_X = 820;
 	static constexpr int RANKING_Y = 230;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO‚Ì‚‚³ŠÔŠu
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®é«˜ã•é–“éš”
 	static constexpr int RANKING_LINE_HEIGHT = 60;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦À•W(ƒ^ƒCƒgƒ‹ƒV[ƒ“)
-	 // ƒ‰ƒ“ƒLƒ“ƒO•\¦ƒpƒlƒ‹¶’[
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºåº§æ¨™(ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³)
+	 // ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºãƒ‘ãƒãƒ«å·¦ç«¯
 	static constexpr int TITLE_RANKING_BOX_LEFT   = 450;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦ƒpƒlƒ‹ã’[
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºãƒ‘ãƒãƒ«ä¸Šç«¯
 	static constexpr int TITLE_RANKING_BOX_TOP    = 100;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦ƒpƒlƒ‹‰E’[
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºãƒ‘ãƒãƒ«å³ç«¯
 	static constexpr int TITLE_RANKING_BOX_RIGHT  = 850;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦ƒpƒlƒ‹‰º’[
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºãƒ‘ãƒãƒ«ä¸‹ç«¯
 	static constexpr int TITLE_RANKING_BOX_BOTTOM = 650;
 
-	// RANKINGƒeƒLƒXƒg•\¦À•W
+	// RANKINGãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºåº§æ¨™
 	static constexpr int TITLE_RANKING_TEXT_X     = 500;
 	static constexpr int TITLE_RANKING_TEXT_Y     = 150;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO•\¦À•W
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºåº§æ¨™
 	static constexpr int TITLE_RANKING_X = 530;
 	static constexpr int TITLE_RANKING_Y = 230;
 
-	// ƒ‰ƒ“ƒLƒ“ƒO‚Ì‚‚³ŠÔŠu
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®é«˜ã•é–“éš”
 	static constexpr int TITLE_RANKING_LINE_HEIGHT = 80;
 };

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 
 class Camera {
@@ -8,10 +8,10 @@ public:
 
 private:
 
-	// ƒJƒƒ‰‚ÌˆÊ’u(YÀ•W)
+	// ã‚«ãƒ¡ãƒ©ã®ä½ç½®(Yåº§æ¨™)
 	static constexpr float CAMERA_HEIGHT = 130.0f;
 
-	// ƒJƒƒ‰‚ÌˆÊ’u(ZÀ•W)
+	// ã‚«ãƒ¡ãƒ©ã®ä½ç½®(Zåº§æ¨™)
 	static constexpr float CAMERA_DISTANCE = 200.0f;
 
 	float offsetX = 0.0f;

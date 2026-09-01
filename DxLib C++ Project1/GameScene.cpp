@@ -1,4 +1,4 @@
-#include "GameScene.h"
+ï»¿#include "GameScene.h"
 #include "Player.h"
 #include "ScoreManager.h"
 #include "ItemManager.h"
@@ -24,7 +24,7 @@ GameScene::GameScene(Player& player, ScoreManager& scoreManager, ItemManager& it
 
 void GameScene::OnEnter() {
 
-    // ƒQ[ƒ€ƒV[ƒ“‚É“ü‚Á‚½uŠÔ‚Ìˆ—
+    // ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã«å…¥ã£ãŸç¬é–“ã®å‡¦ç†
     state = GAME_PLAYING;
 	soundManager.PlayBgm(BGM_PLAY);
     magicEffectManager.Reset();
@@ -32,7 +32,7 @@ void GameScene::OnEnter() {
 
 void GameScene::OnExit() {
 
-    // ƒQ[ƒ€ƒV[ƒ“‚ğo‚éuŠÔ‚Ìˆ—
+    // ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‚’å‡ºã‚‹ç¬é–“ã®å‡¦ç†
     soundManager.StopBgm(BGM_PLAY);
 }
 
@@ -41,15 +41,15 @@ SceneType GameScene::Update(float deltaTime) {
 
     switch (state)
     {
-        // ƒQ[ƒ€ƒvƒŒƒC’†
+        // ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­
         case GAME_PLAYING:
 
             pauseScene.Update();
 
-            // ƒ|[ƒYƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡
+            // ãƒãƒ¼ã‚ºãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
             if (pauseScene.GetIsPause())
             {
-                // ƒ|[ƒYó‘Ô‚Ö‘JˆÚ
+                // ãƒãƒ¼ã‚ºçŠ¶æ…‹ã¸é·ç§»
                 state = GAME_PAUSE;
                 break;
             }
@@ -61,42 +61,42 @@ SceneType GameScene::Update(float deltaTime) {
             camera.UpdateCamera(player.GetPosition());
             magicEffectManager.Update(player, deltaTime);
 
-            // “–‚½‚è”»’èƒ`ƒFƒbƒN
+            // å½“ãŸã‚Šåˆ¤å®šãƒã‚§ãƒƒã‚¯
             enemyManager.CheckPlayerAttackHit(player, scoreManager, itemManager, soundManager);
             enemyManager.CheckEnemyAttackHit(player, soundManager);
             magicEffectManager.CheckPlayerHit(player, soundManager);
             itemManager.CheckPlayerCollision(player, soundManager);
 
 
-            // ƒvƒŒƒCƒ„[‚ªÁ‚¦‚½ê‡
+            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ¶ˆãˆãŸå ´åˆ
             if (!player.IsActive())
             {
-                // ƒXƒRƒA‚ğƒ‰ƒ“ƒLƒ“ƒO‚É’Ç‰Á
+                // ã‚¹ã‚³ã‚¢ã‚’ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã«è¿½åŠ 
                 rankingManager.AddScore(scoreManager);
 
                 soundManager.StopBgm(BGM_PLAY);
 
                 soundManager.PlayBgm(BGM_GAMEOVER);
 
-                // ƒQ[ƒ€ƒI[ƒo[ó‘Ô‚Ö‘JˆÚ
+                // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼çŠ¶æ…‹ã¸é·ç§»
                 state = GAME_OVER;
             }
 
             break;
 
-            // ƒ|[ƒY’†
+            // ãƒãƒ¼ã‚ºä¸­
         case GAME_PAUSE:
 
             pauseScene.Update();
 
-            // ƒ|[ƒYƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡
+            // ãƒãƒ¼ã‚ºãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
             if (!pauseScene.GetIsPause())
             {
-                // ƒQ[ƒ€ƒvƒŒƒCó‘Ô‚Ö‘JˆÚ
+                // ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤çŠ¶æ…‹ã¸é·ç§»
                 state = GAME_PLAYING;
             }
 
-            // RƒL[‚ª‰Ÿ‚³‚ê‚½ê‡
+            // Rã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
             if (CheckHitKey(KEY_INPUT_R))
             {
                 soundManager.StopBgm(BGM_PLAY);
@@ -108,7 +108,7 @@ SceneType GameScene::Update(float deltaTime) {
 
             break;
 
-            // ƒQ[ƒ€ƒI[ƒo[
+            // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
         case GAME_OVER:
 
             player.Update(deltaTime);
@@ -116,7 +116,7 @@ SceneType GameScene::Update(float deltaTime) {
             camera.UpdateCamera(player.GetPosition());
             rankingManager.Update(deltaTime);
 
-            // RƒL[‚ª‰Ÿ‚³‚ê‚½ê‡ƒ^ƒCƒgƒ‹‰æ–Ê‚É–ß‚é
+            // Rã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã«æˆ»ã‚‹
             if (CheckHitKey(KEY_INPUT_R))
             {
                 soundManager.StopBgm(BGM_GAMEOVER);
@@ -138,11 +138,11 @@ void GameScene::Draw() {
     {
     case GAME_PLAYING:
 
-        // Zƒoƒbƒtƒ@Ø‚è‘Ö‚¦
+        // Zãƒãƒƒãƒ•ã‚¡åˆ‡ã‚Šæ›¿ãˆ
         SetUseZBuffer3D(TRUE);
         SetWriteZBuffer3D(TRUE);
 
-        // 3D•`‰æ (Zƒoƒbƒtƒ@—LŒø)
+        // 3Dæç”» (Zãƒãƒƒãƒ•ã‚¡æœ‰åŠ¹)
         ground.DrawGround();
         player.Draw();
         enemyManager.Draw();
@@ -152,11 +152,11 @@ void GameScene::Draw() {
 
         magicEffectManager.Draw();
 
-        // Zƒoƒbƒtƒ@Ø‚è‘Ö‚¦
+        // Zãƒãƒƒãƒ•ã‚¡åˆ‡ã‚Šæ›¿ãˆ
         SetUseZBuffer3D(FALSE);
         SetWriteZBuffer3D(FALSE);
 
-        // 2D•`‰æ (Zƒoƒbƒtƒ@–³Œø)
+        // 2Dæç”» (Zãƒãƒƒãƒ•ã‚¡ç„¡åŠ¹)
         enemyManager.DrawUI();
         scoreManager.Draw(fontManager);
         player.DrawUI(fontManager);
@@ -166,21 +166,21 @@ void GameScene::Draw() {
 
     case GAME_PAUSE:
 
-        // Zƒoƒbƒtƒ@Ø‚è‘Ö‚¦
+        // Zãƒãƒƒãƒ•ã‚¡åˆ‡ã‚Šæ›¿ãˆ
         SetUseZBuffer3D(TRUE);
         SetWriteZBuffer3D(TRUE);
 
-        // 3D•`‰æ (Zƒoƒbƒtƒ@—LŒø)
+        // 3Dæç”» (Zãƒãƒƒãƒ•ã‚¡æœ‰åŠ¹)
         ground.DrawGround();
         player.Draw();
         enemyManager.Draw();
         itemManager.Draw();
 
-        // Zƒoƒbƒtƒ@Ø‚è‘Ö‚¦
+        // Zãƒãƒƒãƒ•ã‚¡åˆ‡ã‚Šæ›¿ãˆ
         SetUseZBuffer3D(FALSE);
         SetWriteZBuffer3D(FALSE);
 
-        // 2D•`‰æ (Zƒoƒbƒtƒ@–³Œø)
+        // 2Dæç”» (Zãƒãƒƒãƒ•ã‚¡ç„¡åŠ¹)
         enemyManager.DrawUI();
         scoreManager.Draw(fontManager);
         player.DrawUI(fontManager);
@@ -191,26 +191,26 @@ void GameScene::Draw() {
 
     case GAME_OVER:
 
-        // Zƒoƒbƒtƒ@Ø‚è‘Ö‚¦
+        // Zãƒãƒƒãƒ•ã‚¡åˆ‡ã‚Šæ›¿ãˆ
         SetUseZBuffer3D(TRUE);
         SetWriteZBuffer3D(TRUE);
 
-        // 3D•`‰æ (Zƒoƒbƒtƒ@—LŒø)
+        // 3Dæç”» (Zãƒãƒƒãƒ•ã‚¡æœ‰åŠ¹)
         ground.DrawGround();
         player.Draw();
         enemyManager.Draw();
         itemManager.Draw();
 
-        // Zƒoƒbƒtƒ@Ø‚è‘Ö‚¦
+        // Zãƒãƒƒãƒ•ã‚¡åˆ‡ã‚Šæ›¿ãˆ
         SetUseZBuffer3D(FALSE);
         SetWriteZBuffer3D(FALSE);
 
-        // 2D (Zƒoƒbƒtƒ@–³Œø)
+        // 2D (Zãƒãƒƒãƒ•ã‚¡ç„¡åŠ¹)
         enemyManager.DrawUI();
         scoreManager.Draw(fontManager);
         player.DrawUI(fontManager);
 
-        // ƒŠƒUƒ‹ƒg‚ğ•\¦
+        // ãƒªã‚¶ãƒ«ãƒˆã‚’è¡¨ç¤º
         result.Draw(enemyManager, scoreManager, rankingManager, fontManager);
 
         break;

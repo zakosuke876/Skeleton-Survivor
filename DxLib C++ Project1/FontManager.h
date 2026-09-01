@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class FontManager {
 public:
@@ -6,24 +6,24 @@ public:
 	FontManager();
 	~FontManager();
 
-	// ƒvƒŒƒCƒ„[‚ÌUIî•ñ‚Ì•\¦‚Åg‚¤ƒtƒHƒ“ƒg
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®UIæƒ…å ±ã®è¡¨ç¤ºã§ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆ
 	int GetPlayerUIFont() const { return playerUIFont; }
 
-	// ƒQ[ƒ€‚Ìƒ^ƒCƒgƒ‹•\¦‚Åg‚¤ƒtƒHƒ“ƒg
+	// ã‚²ãƒ¼ãƒ ã®ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤ºã§ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆ
 	int GetTitleFont() const { return titleFont; }
 
-	// ƒ‰ƒ“ƒLƒ“ƒOî•ñ‚Ì•\¦‚Åg‚¤ƒtƒHƒ“ƒg
+	// ãƒ©ãƒ³ã‚­ãƒ³ã‚°æƒ…å ±ã®è¡¨ç¤ºã§ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆ
 	int GetRankingFont() const { return rankingFont; }
 
-	// ƒXƒRƒA•\¦‚Åg‚¤ƒtƒHƒ“ƒg
+	// ã‚¹ã‚³ã‚¢è¡¨ç¤ºã§ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆ
 	int GetScoreFont() const { return scoreFont; }
 
-	// ƒ|[ƒY‰æ–Ê‚Ì•\¦‚Åg‚¤ƒtƒHƒ“ƒg
+	// ãƒãƒ¼ã‚ºç”»é¢ã®è¡¨ç¤ºã§ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆ
 	int GetPauseFont() const { return pauseFont; }
 
 private:
 
-	// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
 	int playerUIFont = -1;
 	int titleFont    = -1;
 	int rankingFont  = -1;
@@ -31,6 +31,6 @@ private:
 	int manualFont   = -1;
 	int pauseFont    = -1;
 
-	// ƒtƒHƒ“ƒg–¼
+	// ãƒ•ã‚©ãƒ³ãƒˆå
 	static constexpr const char* FONT_NAME = "Dungeon Mode";
 };

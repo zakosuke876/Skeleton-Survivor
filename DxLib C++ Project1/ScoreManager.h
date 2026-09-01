@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
 #include "EnemyType.h"
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class FontManager;
 
 class ScoreManager {
 public:
 
 	ScoreManager();
-	void Reset(); // ƒQ[ƒ€ƒŠƒZƒbƒgˆ—
+	void Reset(); // ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 	void AddScore(EnemyType type, int value);
 	void Update(float deltaTime);
 	void Draw(const FontManager& fontManager) const;
 
-	// “¾‚½ƒXƒRƒA‚ğ“G‚Ìí—Ş•Ê‚Åæ“¾‚·‚é
+	// å¾—ãŸã‚¹ã‚³ã‚¢ã‚’æ•µã®ç¨®é¡åˆ¥ã§å–å¾—ã™ã‚‹
 	int GetScoreByEnemyType(EnemyType type) const { return scoreByEnemyType[type]; }
 
-	// ‘ƒXƒRƒA‚ğæ“¾‚·‚é
+	// ç·ã‚¹ã‚³ã‚¢ã‚’å–å¾—ã™ã‚‹
 	int GetScore() const { return score; }
 
-	// ¶‘¶ŠÔ‚ğæ“¾(•ªE•b)
+	// ç”Ÿå­˜æ™‚é–“ã‚’å–å¾—(åˆ†ãƒ»ç§’)
 	int GetMinutes() const { return minutes; }
 	int GetSeconds() const { return seconds; }
 
@@ -27,19 +27,19 @@ private:
 
 	int score = 0;
 
-	// ƒvƒŒƒCŠÔ‚ğŒv‘ª(•ªE•b‚Å•\¦)
+	// ãƒ—ãƒ¬ã‚¤æ™‚é–“ã‚’è¨ˆæ¸¬(åˆ†ãƒ»ç§’ã§è¡¨ç¤º)
 	float playTime = 0.0f;
 	int minutes = 0;
 	int seconds = 0;
 
-	// “G‚Ìí—Ş‚²‚Æ‚ÉƒXƒRƒA‚ğ‰ÁZ‚·‚é”z—ñ
+	// æ•µã®ç¨®é¡ã”ã¨ã«ã‚¹ã‚³ã‚¢ã‚’åŠ ç®—ã™ã‚‹é…åˆ—
 	int scoreByEnemyType[ENEMY_TYPE_COUNT] = {0};
 
-	// ƒXƒRƒA•\¦‚ÌÀ•W
+	// ã‚¹ã‚³ã‚¢è¡¨ç¤ºã®åº§æ¨™
 	static constexpr int SCORE_TEXT_X  = 0;
 	static constexpr int SCORE_TEXT_Y = 20;
 
-	// ¶‘¶ŠÔ•\¦‚ÌÀ•W
+	// ç”Ÿå­˜æ™‚é–“è¡¨ç¤ºã®åº§æ¨™
 	static constexpr int TIME_TEXT_X = 0;
 	static constexpr int TIME_TEXT_Y = 60;
 };

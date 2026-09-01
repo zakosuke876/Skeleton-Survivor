@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class EnemyManager;
 class ScoreManager;
 class RankingManager;
@@ -21,51 +21,51 @@ private:
 	void DrawPlayResult(ScoreManager& scoreManager) const;
 	const char* GetRank(int score) const;
 
-	// ‰æ‘œƒnƒ“ƒhƒ‹
+	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int skeletonNIcon = -1;
 	int skeletonWIcon = -1;
 	int skeletonMIcon = -1;
 
-	// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
 	int headerFont = -1;
 	int enemyInfoFont = -1;
 	int textFont = -1;
 
-	// ƒŠƒUƒ‹ƒgƒpƒlƒ‹
-	// (Œ©o‚µ)
+	// ãƒªã‚¶ãƒ«ãƒˆãƒ‘ãƒãƒ«
+	// (è¦‹å‡ºã—)
 	static constexpr int RESULT_HEADER_LEFT = 500;
 	static constexpr int RESULT_HEADER_TOP = 30;
 	static constexpr int RESULT_HEADER_RIGHT = 800;
 	static constexpr int RESULT_HEADER_BOTTOM = 100;
 
-	// ƒŠƒUƒ‹ƒgî•ñƒpƒlƒ‹
+	// ãƒªã‚¶ãƒ«ãƒˆæƒ…å ±ãƒ‘ãƒãƒ«
 	static constexpr int RESULT_PANEL_LEFT = 100;
 	static constexpr int RESULT_PANEL_TOP = 100;
 	static constexpr int RESULT_PANEL_RIGHT = 1180;
 	static constexpr int RESULT_PANEL_BOTTOM = 600;
 
-	// “GƒLƒƒƒ‰
+	// æ•µã‚­ãƒ£ãƒ©
 	static constexpr int RESULT_ENEMY_IMAGE_LEFT = 100;
 	static constexpr int RESULT_ENEMY_IMAGE_TOP = 200;
 	static constexpr int RESULT_ENEMY_IMAGE_RIGHT = 250;
 	static constexpr int RESULT_ENEMY_IMAGE_BOTTOM = 350;
 
-	// 2‘Ì–Ú‚Ì‚¸‚ç‚µ•
+	// 2ä½“ç›®ã®ãšã‚‰ã—å¹…
 	static constexpr int RESULT_ENEMY_IMAGE_OFFSET_WARRIOR = 200;
 
-	// 3‘Ì–Ú‚Ì‚¸‚ç‚µ•
+	// 3ä½“ç›®ã®ãšã‚‰ã—å¹…
 	static constexpr int RESULT_ENEMY_IMAGE_OFFSET_MAGE = 400;
 
-	// “G‚²‚Æ‚Ìî•ñ‚ğ•\¦‚·‚éÀ•W
+	// æ•µã”ã¨ã®æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹åº§æ¨™
 	static constexpr int RESULT_TEXT_NORMAL_X = 100 + 20;
 	static constexpr int RESULT_TEXT_WARRIOR_X = 300 + 20;
 	static constexpr int RESULT_TEXT_MAGE_X = 500 + 20;
 
-	// “|‚µ‚½”A“|‚µ‚Ä“¾‚½ƒXƒRƒA
+	// å€’ã—ãŸæ•°ã€å€’ã—ã¦å¾—ãŸã‚¹ã‚³ã‚¢
 	static constexpr int RESULT_TEXT_KILL_Y = 350 + 10;
 	static constexpr int RESULT_TEXT_SCORE_Y = 350 + 10 + 50;
 
-	// ƒ‰ƒ“ƒN”»’è
+	// ãƒ©ãƒ³ã‚¯åˆ¤å®š
 	static constexpr int RANK_S_SCORE = 5000;
 	static constexpr int RANK_A_SCORE = 4000;
 	static constexpr int RANK_B_SCORE = 3000;

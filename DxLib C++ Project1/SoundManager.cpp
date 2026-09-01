@@ -1,22 +1,22 @@
-#include "SoundManager.h"
+ï»¿#include "SoundManager.h"
 #include "DxLib.h"
 
 
 
 SoundManager::SoundManager() {
 
-	// ƒ^ƒCƒv‚²‚Æ‚ÉŒø‰Ê‰¹‚ğ“Ç‚İ‚Ş
+	// ã‚¿ã‚¤ãƒ—ã”ã¨ã«åŠ¹æœéŸ³ã‚’èª­ã¿è¾¼ã‚€
 	seHandles[RECOVERY]   = LoadSoundMem("Sound/SE/Recovery.mp3");
 	seHandles[EXP]        = LoadSoundMem("Sound/SE/Exp.mp3");
 	seHandles[LEVELUP]    = LoadSoundMem("Sound/SE/LevelUp.mp3");
 	seHandles[ATTACK_HIT] = LoadSoundMem("Sound/SE/Attack_Hit.mp3");
 
-	// ƒ^ƒCƒv‚²‚Æ‚ÉBGM‚ğ“Ç‚İ‚Ş
+	// ã‚¿ã‚¤ãƒ—ã”ã¨ã«BGMã‚’èª­ã¿è¾¼ã‚€
 	bgmHandles[BGM_TITLE] = LoadSoundMem("Sound/BGM/Title_BGM.mp3");
 	bgmHandles[BGM_PLAY] = LoadSoundMem("Sound/BGM/Play_BGM.mp3");
 	bgmHandles[BGM_GAMEOVER] = LoadSoundMem("Sound/BGM/GameOver_BGM.mp3");
 
-	// ‰¹—Ê’²®
+	// éŸ³é‡èª¿æ•´
 	for (int i = 0; i < BGM_MAX; i++)
 	{
 		ChangeVolumeSoundMem(BGM_VOLUME, bgmHandles[i]);
@@ -30,7 +30,7 @@ SoundManager::SoundManager() {
 
 SoundManager::~SoundManager() {
 
-	// ƒŠƒ\[ƒXŠJ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	for (int i = 0; i < SE_MAX; i++)
 	{
 		DeleteSoundMem(seHandles[i]);
@@ -44,24 +44,24 @@ SoundManager::~SoundManager() {
 
 void SoundManager::PlaySe(SoundType type) const {
 
-	// ƒ^ƒCƒv‚É‰‚¶‚½Œø‰Ê‰¹‚ğÄ¶
+	// ã‚¿ã‚¤ãƒ—ã«å¿œã˜ãŸåŠ¹æœéŸ³ã‚’å†ç”Ÿ
 	PlaySoundMem(seHandles[type], DX_PLAYTYPE_BACK);
 }
 
 void SoundManager::PlayBgm(BgmType type) const {
 
-	// ‚·‚Å‚ÉÄ¶‚³‚ê‚Ä‚¢‚ê‚Îˆ—‚µ‚È‚¢
+	// ã™ã§ã«å†ç”Ÿã•ã‚Œã¦ã„ã‚Œã°å‡¦ç†ã—ãªã„
 	if (CheckSoundMem(bgmHandles[type]) == 1) return;
 
-	// BGMType‚ªƒQ[ƒ€ƒI[ƒo[‚Ìê‡ƒ‹[ƒvÄ¶‚µ‚È‚¢
+	// BGMTypeãŒã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®å ´åˆãƒ«ãƒ¼ãƒ—å†ç”Ÿã—ãªã„
 	if (type == BGM_GAMEOVER)
 	{
-		// ƒ‹[ƒvÄ¶‚µ‚È‚¢
+		// ãƒ«ãƒ¼ãƒ—å†ç”Ÿã—ãªã„
 		PlaySoundMem(bgmHandles[type], DX_PLAYTYPE_BACK);
 	}
 	else
 	{
-		// ƒ‹[ƒvÄ¶‚·‚é
+		// ãƒ«ãƒ¼ãƒ—å†ç”Ÿã™ã‚‹
 		PlaySoundMem(bgmHandles[type], DX_PLAYTYPE_LOOP);
 	}
 }

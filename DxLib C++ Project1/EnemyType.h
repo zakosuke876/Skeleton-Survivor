@@ -1,9 +1,9 @@
-#pragma once
+﻿#pragma once
 
-// �G�̎�ނ��Ǘ�
+// 敵の種類を管理
 enum EnemyType {
 	ENEMY_NORMAL,
 	ENEMY_WARRIOR,
 	ENEMY_MAGE,
-	ENEMY_TYPE_COUNT, // �����_�������̖����Ƃ��ė��p
+	ENEMY_TYPE_COUNT, // ランダム生成の末尾として利用
 };
