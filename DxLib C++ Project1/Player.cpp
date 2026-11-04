@@ -53,7 +53,8 @@ Player::Player() {
 
 void Player::Reset() {
 
-	x = 200.0f;
+	// フィールド中央にスポーン
+	x = 0.0f;
 	y = 0.0f;
 	z = 0.0f;
 	angleY = 0.0f;
