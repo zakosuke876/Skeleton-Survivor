@@ -169,6 +169,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="GroundEffect.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemDropConfigLoader.cpp" />
     <ClCompile Include="ItemManager.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="GroundEffect.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemDropConfig.h" />
     <ClInclude Include="ItemDropConfigLoader.h" />
