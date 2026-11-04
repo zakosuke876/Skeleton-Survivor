@@ -54,7 +54,9 @@ SceneType GameScene::Update(float deltaTime) {
                 break;
             }
 
-            player.Update(deltaTime);
+            player.Update(deltaTime, ground);
+
+
             enemyManager.Update(player, deltaTime, magicEffectManager);
             scoreManager.Update(deltaTime);
             itemManager.Update();
@@ -111,7 +113,9 @@ SceneType GameScene::Update(float deltaTime) {
             // ゲームオーバー
         case GAME_OVER:
 
-            player.Update(deltaTime);
+            player.Update(deltaTime, ground);
+
+
             enemyManager.Update(player, deltaTime, magicEffectManager);
             camera.UpdateCamera(player.GetPosition());
             rankingManager.Update(deltaTime);
