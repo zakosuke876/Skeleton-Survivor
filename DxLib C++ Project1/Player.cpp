@@ -113,10 +113,12 @@ void Player::Reset() {
 	}
 }
 
-void Player::Update(float deltaTime) {
+void Player::Update(float deltaTime, Ground& ground) {
 
 	// 死亡した場合処理しない
 	if (!isActive) return;
+
+	groundEffect.Update(deltaTime);
 
 	switch (state)
 	{
@@ -134,13 +136,13 @@ void Player::Update(float deltaTime) {
 
 	case PLAYER_WALK:
 
-		UpdateWalk();
+		UpdateWalk(ground);
 
 		break;
 
 	case PLAYER_DASH:
 
-		UpdateDash();
+		UpdateDash(ground);
 
 		break;
 
@@ -302,6 +304,8 @@ void Player::Draw() const {
 	MV1DrawModel(modelHandle);
 
 	sword.Draw();
+
+	groundEffect.Draw();
 }
 
 void Player::DrawUI(const FontManager& fontManager) const {
@@ -362,11 +366,17 @@ void Player::UpdateIdle() {
 	}
 }
 
-void Player::UpdateWalk() {
+void Player::UpdateWalk(Ground& ground) {
 
 	AnimSwitch(PLAYER_ANIM_WALK);
 
-	Move(speed);
+	unsigned int color = ground.GetGroundEffectColor(x, z);
+
+	// 通常タイプのマスの場合は0が返るため処理しない(特殊マスのみ実行)
+	if (color != 0) groundEffect.Spawn(x, z, color);
+
+	// 現在のマスのタイプごとに移動速度を変化させる
+	Move(speed * ground.GetSpeedMultiplierAtWorldPos(x, z));
 
 	// 移動入力がなくなった場合
 	if (!IsMoveInput())
@@ -387,12 +397,12 @@ void Player::UpdateWalk() {
 	}
 }
 
-void Player::UpdateDash() {
+void Player::UpdateDash(Ground& ground) {
 
 	AnimSwitch(PLAYER_ANIM_DASH);
 
-	// ダッシュ時はスピード2.5倍
-	Move(speed * dashMultiplier);
+	// 現在のマスのタイプごとに移動速度を変化させる
+	Move(speed * dashMultiplier * ground.GetSpeedMultiplierAtWorldPos(x, z));
 
 	if (!IsMoveInput())
 	{

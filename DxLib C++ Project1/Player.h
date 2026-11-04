@@ -1,9 +1,12 @@
 ﻿#pragma once
 #include "DxLib.h"
 #include "PlayerStatus.h"
+#include "GameConfig.h"
 #include <vector>
 #include <string>
 #include "Sword.h"
+
+#include "GroundEffect.h"
 
 // アニメーションの種類
 enum PlayerAnimation {
@@ -47,6 +50,7 @@ struct PlayerAttackHitBox {
 // 前方宣言
 class FontManager;
 class SoundManager;
+class Ground;
 
 
 class Player {
@@ -54,7 +58,7 @@ public:
 
 	Player();
 	void Reset(); // ゲームリセット処理
-	void Update(float deltaTime);
+	void Update(float deltaTime, Ground& ground);
 
 	// ----------------------------------------
 	// ステータス変更
@@ -92,14 +96,18 @@ public:
 
 private:
 
+
+
+	GroundEffect groundEffect;
+
 	// ----------------------------------------
 	// 各状態の更新処理
 	// ----------------------------------------
 
 	void UpdateSpawn();
 	void UpdateIdle();
-	void UpdateWalk();
-	void UpdateDash();
+	void UpdateWalk(Ground& ground);
+	void UpdateDash(Ground& ground);
 	void UpdateAttack();
 	void UpdateDamage();
 	void UpdateDeath(float deltaTime);
@@ -322,13 +330,6 @@ private:
 	int handFrameIndex = -1;
 
 	static constexpr float SWORD_SCALE = 0.01f;
-
-	VECTOR debugSwordTip = VGet(0, 0, 0);
-
-	// Player.h(デバッグ用)
-	static constexpr int TRAIL_MAX = 60;
-	VECTOR swordTrail[TRAIL_MAX]{};
-	int trailIndex = 0;
 
 	// 剣
 	Sword sword;
