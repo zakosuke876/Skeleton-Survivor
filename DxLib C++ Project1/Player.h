@@ -287,7 +287,6 @@ private:
 
 	// 攻撃判定の有効フレーム
 	static constexpr float ATTACK_HIT_START_FRAME = 10.0f;
-
 	static constexpr float ATTACK_HIT_END_FRAME   = 18.0f;
 
 	// ----------------------------------------
