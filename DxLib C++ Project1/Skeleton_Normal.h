@@ -32,14 +32,7 @@ public:
 private:
 
 	void UpdateSpawn() override;
-	void UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
 	void UpdateDamage() override;
 	void UpdateDeath(float deltaTime) override;
 	void DrawModel() const override;
-
-	static constexpr float ATTACK_STEP_OFFSET = 15.0f;
-
-	// 攻撃判定の有効フレーム
-	static constexpr float ATTACK_HIT_START_RATIO = 0.3f;
-	static constexpr float ATTACK_HIT_END_RATIO   = 0.7f;
 };

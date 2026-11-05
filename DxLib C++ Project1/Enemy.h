@@ -92,6 +92,8 @@ protected:
 
 	virtual void UpdatePatrol(const Player& player);
 	virtual void UpdateChase(const Player& player);
+	virtual void UpdateAttack(const Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
+
 
 	float MoveToward(float targetX, float targetZ, float speed);
 
@@ -115,7 +117,6 @@ protected:
 	// ----------------------------------------
 
 	virtual void UpdateSpawn() = 0;
-	virtual void UpdateAttack(Player& player, float DeltaTime, MagicEffectManager& magicEffectManager) = 0;
 	virtual void UpdateDamage() = 0;
 	virtual void UpdateDeath(float deltaTime) = 0;
 	virtual void DrawModel() const = 0;
@@ -153,6 +154,12 @@ protected:
 	// プレイヤーとの距離がこの値以下になった場合に該当する状態へ遷移
 	float chaseRangeRadius = -1;
 	float attackRangeRadius = -1;
+
+	// 攻撃判定の有効フレーム
+	static constexpr float ATTACK_HIT_START_RATIO = 0.3f;
+	static constexpr float ATTACK_HIT_END_RATIO   = 0.7f;
+
+	static constexpr float ATTACK_STEP_OFFSET = 15.0f;
 
 	// ----------------------------------------
 	// ステータス定数

@@ -183,66 +183,6 @@ void Skeleton_Warrior::UpdateSpawn() {
 	}
 }
 
-void Skeleton_Warrior::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
-
-	// 攻撃判定を無効
-	hitBox.isAttackActive = false;
-
-	if (currentAnim == ENEMY_ANIM_ATTACK)
-	{
-		// アニメーション再生時間の割合で攻撃判定を拡大縮小する
-		float t = animTime / totalTime;
-
-		// サイン波に変換
-		float wave = sinf(t * DX_PI_F);
-
-		// 最大で15伸びる
-		float stepOffset = wave * 15.0f;
-
-		// 構造体に代入
-		hitBox.isAttackActive = true;
-		hitBox.x = x - sinf(angleY) * stepOffset;
-		hitBox.z = z - cosf(angleY) * stepOffset;
-		hitBox.radius = attackRadius;
-
-		// 攻撃終了したらクール開始
-		if (animTime >= totalTime)
-		{
-			// 攻撃判定を無効
-			hitBox.isAttackActive = false;
-
-			SwitchAnimation(ENEMY_ANIM_ATTACKCOOL);
-		}
-	}
-	else if (currentAnim == ENEMY_ANIM_ATTACKCOOL)
-	{
-		float dx = player.GetPosition().x - x;
-		float dz = player.GetPosition().z - z;
-
-		angleY = atan2f(dx, dz) + DX_PI_F;
-		MV1SetRotationXYZ(modelHandle, VGet(0, angleY, 0));
-		isAttackCoolTimer += deltaTime;
-
-		if (isAttackCoolTimer >= attackCoolTime)
-		{
-			isAttackCoolTimer = 0.0f;
-
-			// プレイヤーが攻撃範囲内にいる場合
-			if (IsPlayerInAttackRange(player))
-			{
-				SwitchAnimation(ENEMY_ANIM_ATTACK);
-				state = ENEMY_ATTACK;
-				animTime = 0.0f;
-			}
-			else // 攻撃範囲外にいる場合
-			{
-				SwitchAnimation(ENEMY_ANIM_DASH);
-				state = ENEMY_CHASE;
-			}
-		}
-	}
-}
-
 void Skeleton_Warrior::UpdateDamage() {
 
 	// 攻撃判定を無効

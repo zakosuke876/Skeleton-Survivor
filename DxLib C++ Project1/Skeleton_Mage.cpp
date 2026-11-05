@@ -160,7 +160,7 @@ void Skeleton_Mage::UpdateSpawn() {
 	}
 }
 
-void Skeleton_Mage::UpdateAttack(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Skeleton_Mage::UpdateAttack(const Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
 
 	// 攻撃判定を無効
 	hitBox.isAttackActive = false;
