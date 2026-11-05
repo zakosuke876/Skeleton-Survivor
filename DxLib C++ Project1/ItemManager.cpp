@@ -5,15 +5,13 @@
 #include "ItemDropConfigLoader.h"
 #include "JsonPath.h"
 #include "DxLib.h"
-
 #include "RecoveryItemDataLoader.h"
-
 #include "ExpItemDataLoader.h"
+#include "Random.h"
 
-ItemManager::ItemManager() {
-
-	std::random_device rd;
-	rng = std::mt19937(rd());
+ItemManager::ItemManager(Random& random)
+	: random(random)
+{
 
 	// JSONファイルを読み込み、アイテムドロップ関係のデータを取得する
 	ItemDropConfig dropConfig;
@@ -86,11 +84,8 @@ void ItemManager::ItemDrop(float posX, float posY, float posZ, RecoveryItemType 
 
 bool ItemManager::ItemDropCheck() {
 
-	// 1～100の範囲で乱数生成
-	std::uniform_int_distribution<int> randChance(ITEM_DROP_CHANCE_MIN, ITEM_DROP_CHANCE_MAX);
-
-	// アイテムドロップの抽選
-	int dropChance = randChance(rng);
+	// アイテムドロップの抽選(1～100の範囲で乱数生成)
+	int dropChance = random.GetRandomInt(ITEM_DROP_CHANCE_MIN, ITEM_DROP_CHANCE_MAX);
 
 	// ドロップ条件を満たした場合
 	return dropChance <= dropRate;
@@ -113,12 +108,13 @@ void ItemManager::DropRecoveryItem(float posX, float posY, float posZ) {
 
 void ItemManager::DropExpItem(float posX, float posY, float posZ) {
 
-	std::uniform_real_distribution<float> randOffset(-expItemRandomOffset, expItemRandomOffset);
-
 	int expValue = expItemDataTable.expValue;
 
+	float randPosX = random.GetRandomFloat(-expItemRandomOffset, expItemRandomOffset);
+	float randPosZ = random.GetRandomFloat(-expItemRandomOffset, expItemRandomOffset);
+
 	// 経験値アイテムを生成(X,Z座標をランダムにずらす)
-	items.emplace_back(std::make_unique<ExpItem>(posX + randOffset(rng), posY + dropOffsetY, posZ + randOffset(rng), expValue, expTexHandle));
+	items.emplace_back(std::make_unique<ExpItem>(posX + randPosX, posY + dropOffsetY, posZ + randPosZ, expValue, expTexHandle));
 }
 
 
@@ -153,10 +149,8 @@ void ItemManager::CheckPlayerCollision(Player& player, SoundManager& soundManage
 
 RecoveryItemType ItemManager::GetDropItemType() {
 
-	std::uniform_int_distribution<int> randType(ITEM_TYPE_RANGE_MIN, ITEM_TYPE_RANGE_MAX);
-
 	// 指定した範囲内の乱数を生成
-	int typeChance = randType(rng);
+	int typeChance = random.GetRandomInt(ITEM_TYPE_RANGE_MIN, ITEM_TYPE_RANGE_MAX);
 
 	// 累積値を計算(smallは smallまで, mediumは small + mediumまで)
 	int smallMax  = itemTypeRate.smallRate;

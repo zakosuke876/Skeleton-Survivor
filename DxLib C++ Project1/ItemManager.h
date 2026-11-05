@@ -2,18 +2,19 @@
 #include "RecoveryItem.h"
 #include "ExpItem.h"
 #include "ItemDropConfig.h"
-#include <random>
 #include <vector>
 #include <array>
+#include <memory>
 
 // 前方宣言
 class Player;
 class SoundManager;
+class Random;
 
 class ItemManager {
 public:
 
-	ItemManager();
+	ItemManager(Random& random);
 	~ItemManager();
 	void Reset(); // ゲームリセット処理
 	void Update();
@@ -26,6 +27,8 @@ public:
 	RecoveryItemType GetDropItemType();
 
 private:
+
+	Random& random;
 
 	// アイテム管理
 	std::vector<std::unique_ptr<Item>> items;
@@ -62,7 +65,4 @@ private:
 	// アイテムの種類判定に使う乱数範囲
 	static constexpr int ITEM_TYPE_RANGE_MIN = 0;
 	static constexpr int ITEM_TYPE_RANGE_MAX = 100;
-
-	// ランダムエンジン
-	std::mt19937 rng;
 };

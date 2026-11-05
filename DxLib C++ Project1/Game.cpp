@@ -1,7 +1,9 @@
 ﻿#include "Game.h"
 #include "GameConfig.h"
 
-Game::Game() {
+Game::Game()
+    : itemManager(random)
+{
 
     // ウィンドウ・3D描画まわりの初期設定
     SetMainWindowText("Skeleton Survivor");

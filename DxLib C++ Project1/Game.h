@@ -12,8 +12,8 @@
 #include "GameScene.h"
 #include "PauseScene.h"
 #include "RankingManager.h"
+#include "Random.h"
 #include "DxLib.h"
-#include <random>
 #include <memory>
 
 
@@ -34,6 +34,9 @@ private:
 	void Update();
 	void Draw();
 	void GameReset(); // ゲームリセット処理
+
+	// 乱数の本体。各クラスへ注入するため、注入先より先に宣言する
+	Random random;
 
 	Ground ground;
 	Camera camera;

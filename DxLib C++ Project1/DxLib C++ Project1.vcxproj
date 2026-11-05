@@ -180,6 +180,7 @@
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerDataLoader.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="RankingManager.cpp" />
     <ClCompile Include="RecoveryItem.cpp" />
     <ClCompile Include="RecoveryItemDataLoader.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerDataLoader.h" />
     <ClInclude Include="PlayerStatus.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="RankingManager.h" />
     <ClInclude Include="RecoveryItem.h" />
     <ClInclude Include="RecoveryItemDataLoader.h" />
