@@ -1,12 +1,14 @@
 ﻿#pragma once
 #include <array>
-#include <random>
 #include "GameConfig.h"
+
+// 前方宣言
+class Random;
 
 class Ground {
 public:
 
-	Ground();
+	Ground(Random& random);
 	void DrawGround() const;
 	float GetSpeedMultiplierAtWorldPos(float worldX, float worldZ) const;
 	unsigned int GetGroundEffectColor(float worldX, float worldZ) const;
@@ -17,6 +19,8 @@ public:
 	static float GetMinZPos() { return GameConfig::FIELD_MIN_Z; }
 
 private:
+
+	Random& random;
 
 	GameConfig::GroundType GetType(int x, int z) const;
 	void SetType(int x, int z, GameConfig::GroundType type);
@@ -70,7 +74,4 @@ private:
 
 	// 床の拡大倍率
 	static constexpr float GROUND_SCALE = 0.25f;
-
-	// 乱数エンジン
-	std::mt19937 rng;
 };

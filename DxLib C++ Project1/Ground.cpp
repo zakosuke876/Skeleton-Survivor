@@ -1,8 +1,11 @@
 ﻿#include <cmath>
 #include "Ground.h"
+#include "Random.h"
 #include "DxLib.h"
 
-Ground::Ground() {
+Ground::Ground(Random& random) 
+    : random(random)
+{
 
     // 地面モデル読み込み
     groundHandle = MV1LoadModel("Stage/Grounds.mv1");
@@ -17,20 +20,6 @@ Ground::Ground() {
     groundGrassHandle = LoadGraph("Stage/GrassTexture.jpg");
     groundWaterHandle = LoadGraph("Stage/IceTexture.jpg");
     groundSandHandle = LoadGraph("Stage/SandTexture.jpg");
-
-    // 乱数エンジンを初期化
-    std::random_device rd;
-    rng = std::mt19937(rd());
-
-    // 特定座標のマスにタイプ(テクスチャ)を設定
-    /*SetType(-3, 3, GameConfig::GroundType::Grass);
-    SetType(-3, -3, GameConfig::GroundType::Grass);
-    SetType(3, 3, GameConfig::GroundType::Grass);
-    SetType(3, -3, GameConfig::GroundType::Grass);
-    SetType(-1, 1, GameConfig::GroundType::Sand);
-    SetType(-1, -1, GameConfig::GroundType::Sand);
-    SetType(1, 1, GameConfig::GroundType::Water);
-    SetType(1, -1, GameConfig::GroundType::Water);*/
 
     // 地形タイプをランダムに設定
     GroundRandomSet();
@@ -152,13 +141,11 @@ void Ground::SetType(int x, int z, GameConfig::GroundType type) {
 
 void Ground::GroundRandomSet() {
 
-    std::uniform_int_distribution<int> randGroundType(1, 100);
-
     for (int x = -GameConfig::GRID_HALF_NUM; x <= GameConfig::GRID_HALF_NUM; x ++)
     {
         for (int z = -GameConfig::GRID_HALF_NUM; z <= GameConfig::GRID_HALF_NUM; z++)
         {
-            int randomNum = randGroundType(rng);
+            int randomNum = random.GetRandomInt(1, 100);
 
             GameConfig::GroundType type = NumToType(randomNum);
 

@@ -45,6 +45,7 @@ private:
 	// エフェクトの生存時間
 	static constexpr float PARTICLE_LIFETIME = 0.15f;
 
+	// 生成間隔
 	static constexpr float PARTICLE_INTERVAL = 0.1f;
 	float spawnTimer = 0.0f;
 
