@@ -2,7 +2,7 @@
 #include "GameConfig.h"
 
 Game::Game()
-    : ground(random), enemyManager(random), itemManager(random)
+    : ground(random), player(random), enemyManager(random), itemManager(random)
 {
 
     // ウィンドウ・3D描画まわりの初期設定

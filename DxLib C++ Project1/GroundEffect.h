@@ -1,16 +1,21 @@
 ﻿#pragma once
 #include <array>
-#include <random>
+
+// 前方宣言
+class Random;
 
 class GroundEffect {
 public:
 
-	GroundEffect();
+	GroundEffect(Random& random);
 	void Spawn(float startX, float startZ, unsigned int effectColor);
 	void Update(float deltaTime);
 	void Draw() const;
 
 private:
+
+	// Gameが所有する本体を参照で借用
+	Random& random;
 
 	// エフェクト1つが持つデータ
 	struct Particle {
@@ -31,9 +36,6 @@ private:
 
 	// エフェクトのプール(使いまわす)
 	std::array<Particle, MAX_PARTICLE_COUNT> particles{};
-
-	// 乱数エンジン
-	std::mt19937 rng;
 
 	// 飛散速度の乱数範囲
 	static constexpr float MIN_RAND_VECTOR = -100.0f;

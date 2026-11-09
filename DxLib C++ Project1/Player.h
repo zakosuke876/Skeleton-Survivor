@@ -51,12 +51,13 @@ struct PlayerAttackHitBox {
 class FontManager;
 class SoundManager;
 class Ground;
+class Random;
 
 
 class Player {
 public:
 
-	Player();
+	Player(Random& random);
 	void Reset(); // ゲームリセット処理
 	void Update(float deltaTime, Ground& ground);
 
@@ -95,8 +96,6 @@ public:
 	int GetHandFrame() const { return handFrameIndex; }
 
 private:
-
-
 
 	GroundEffect groundEffect;
 

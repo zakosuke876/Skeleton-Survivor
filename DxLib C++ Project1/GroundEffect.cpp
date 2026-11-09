@@ -1,10 +1,10 @@
 ﻿#include "GroundEffect.h"
+#include "Random.h"
 #include "DxLib.h"
 
-GroundEffect::GroundEffect() {
-
-	std::random_device rd;
-	rng = std::mt19937(rd());
+GroundEffect::GroundEffect(Random& random)
+	: random(random)
+{
 }
 
 void GroundEffect::Update(float deltaTime) {
@@ -50,13 +50,9 @@ void GroundEffect::Spawn(float startX, float startZ, unsigned int effectColor) {
 		p.y = 0.0f;
 		p.z = startZ;
 
-		std::uniform_real_distribution<float> randVector(MIN_RAND_VECTOR, MAX_RAND_VECTOR);
-		std::uniform_real_distribution<float> randYVector(MIN_RAND_Y_VECTOR, MAX_RAND_Y_VECTOR);
-
 		// 飛散速度を乱数で生成して設定
-		p.vX = randVector(rng);
-		p.vY = randYVector(rng);
-		p.vZ = randVector(rng);
+		p.vX = random.GetRandomFloat(MIN_RAND_VECTOR, MAX_RAND_VECTOR);
+		p.vY = random.GetRandomFloat(MIN_RAND_Y_VECTOR, MAX_RAND_Y_VECTOR);
 
 		p.lifeTime = PARTICLE_LIFETIME;
 		p.timer    = 0.0f;

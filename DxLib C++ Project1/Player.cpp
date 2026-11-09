@@ -24,7 +24,9 @@ const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 	{6,  0.3f, false},
 };
 
-Player::Player() {
+Player::Player(Random& random)
+	: groundEffect(random)
+{
 
 	if (!PlayerDataLoader::Load((playerDataTable)))
 	{
