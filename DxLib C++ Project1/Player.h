@@ -52,12 +52,13 @@ class FontManager;
 class SoundManager;
 class Ground;
 class Random;
+class InputManager;
 
 
 class Player {
 public:
 
-	Player(Random& random);
+	Player(Random& random, const InputManager& inputManager);
 	void Reset(); // ゲームリセット処理
 	void Update(float deltaTime, Ground& ground);
 
@@ -99,6 +100,7 @@ private:
 
 	// Gameが所有する本体を参照で借用
 	Random& random;
+	const InputManager& inputManager;
 
 	GroundEffect groundEffect;
 

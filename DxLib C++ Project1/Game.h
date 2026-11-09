@@ -13,6 +13,7 @@
 #include "PauseScene.h"
 #include "RankingManager.h"
 #include "Random.h"
+#include "InputManager.h"
 #include "DxLib.h"
 #include <memory>
 
@@ -37,6 +38,7 @@ private:
 
 	// 乱数の本体。各クラスへ注入するため、注入先より先に宣言する
 	Random random;
+	InputManager inputManager;
 
 	Ground ground;
 	Camera camera;

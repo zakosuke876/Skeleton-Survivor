@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "PlayerDataLoader.h"
 #include "Random.h"
+#include "InputManager.h"
 #include "DxLib.h"
 #include <cmath>
 #include <algorithm>
@@ -25,8 +26,8 @@ const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 	{6,  0.3f, false},
 };
 
-Player::Player(Random& random)
-	: random(random), groundEffect(random)
+Player::Player(Random& random, const InputManager& inputManager)
+	: random(random), inputManager(inputManager), groundEffect(random)
 {
 
 	if (!PlayerDataLoader::Load((playerDataTable)))
@@ -492,10 +493,10 @@ void Player::Move(float moveSpeed) {
 	float moveZ = 0.0f;
 
 	// キー入力
-	if (CheckHitKey(KEY_INPUT_W)) moveZ += 1.0f;
-	if (CheckHitKey(KEY_INPUT_S)) moveZ -= 1.0f;
-	if (CheckHitKey(KEY_INPUT_A)) moveX -= 1.0f;
-	if (CheckHitKey(KEY_INPUT_D)) moveX += 1.0f;
+	if (inputManager.IsDown(KEY_INPUT_W)) moveZ += 1.0f;
+	if (inputManager.IsDown(KEY_INPUT_S)) moveZ -= 1.0f;
+	if (inputManager.IsDown(KEY_INPUT_A)) moveX -= 1.0f;
+	if (inputManager.IsDown(KEY_INPUT_D)) moveX += 1.0f;
 
 	float length = sqrtf(moveX * moveX + moveZ * moveZ);
 
@@ -527,21 +528,21 @@ void Player::ClampPosition() {
 
 bool Player::IsMoveInput() {
 
-	return CheckHitKey(KEY_INPUT_W) ||
-		   CheckHitKey(KEY_INPUT_S) ||
-		   CheckHitKey(KEY_INPUT_A) ||
-		   CheckHitKey(KEY_INPUT_D);
+	return inputManager.IsDown(KEY_INPUT_W) ||
+		   inputManager.IsDown(KEY_INPUT_S) ||
+		   inputManager.IsDown(KEY_INPUT_A) ||
+		   inputManager.IsDown(KEY_INPUT_D);
 }
 
 bool Player::IsDashInput() {
 
-	return CheckHitKey(KEY_INPUT_LSHIFT) ||
-		   CheckHitKey(KEY_INPUT_RSHIFT);
+	return inputManager.IsDown(KEY_INPUT_LSHIFT) ||
+		   inputManager.IsDown(KEY_INPUT_RSHIFT);
 }
 
 bool Player::IsAttackInput() {
 
-	return CheckHitKey(KEY_INPUT_SPACE);
+	return inputManager.IsPressed(KEY_INPUT_SPACE);
 }
 
 void Player::DrawHpGauge(const FontManager& fontManager) const {

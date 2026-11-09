@@ -2,7 +2,7 @@
 #include "GameConfig.h"
 
 Game::Game()
-    : ground(random), player(random), enemyManager(random), itemManager(random)
+    : ground(random), player(random, inputManager), enemyManager(random), itemManager(random)
 {
 
     // ウィンドウ・3D描画まわりの初期設定
@@ -47,6 +47,8 @@ void Game::Run() {
 }
 
 void Game::Update() {
+
+    inputManager.Update();
 
     // 現在のシーンごとに更新処理を振り分ける
     switch (currentScene)
