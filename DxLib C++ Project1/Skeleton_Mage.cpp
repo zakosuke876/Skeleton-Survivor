@@ -21,7 +21,9 @@ const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[] = {
 };
 
 
-Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate) {
+Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate, Random& random)
+	: Enemy(random)
+{
 
 	x = startX;
 	y = startY;

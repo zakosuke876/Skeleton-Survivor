@@ -18,7 +18,7 @@ class MagicEffectManager;
 class Skeleton_Mage : public Enemy {
 public:
 
-	Skeleton_Mage(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate);
+	Skeleton_Mage(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate, Random& random);
 	~Skeleton_Mage() override = default;
 	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
 	EnemyType GetEnemyType() const override { return enemyType; }

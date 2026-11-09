@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "EnemyWarriorDataLoader.h"
 #include "GameConfig.h"
+#include "Random.h"
 #include "DxLib.h"
 
 
@@ -25,7 +26,9 @@ const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
 	{4, 0.3f, false},   // 復活アニメーション
 };
 
-Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate) {
+Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate, Random& random)
+	: Enemy(random)
+{
 
 	x = startX;
 	y = startY;
@@ -209,9 +212,8 @@ bool Skeleton_Warrior::TakeDamage(int value, SoundManager& soundManager) {
 		// 2度目の復活はしない
 		if (isRevived) return true;
 
-		std::uniform_int_distribution<int> reviveChance(REVIVE_CHANCE_MIN, REVIVE_CHANCE_MAX);
-
-		int reviveCheck = reviveChance(rng);
+		// 復活するかどうかを抽選
+		int reviveCheck = random.GetRandomInt(REVIVE_CHANCE_MIN, REVIVE_CHANCE_MAX);
 
 		// JSONで設定した値以下だった場合復活
 		if (reviveCheck <= reviveChancePercent)

@@ -2,12 +2,12 @@
 #include "EnemyType.h"
 #include "EnemyStatusTypes.h"
 #include "DxLib.h"
-#include <random>
 #include <string>
 
 // 前方宣言
 class Player;
 class SoundManager;
+class Random;
 
 class MagicEffectManager;
 
@@ -60,7 +60,7 @@ struct EnemyAttackHitBox {
 class Enemy {
 public:
 
-	Enemy();
+	Enemy(Random& random);
 	virtual ~Enemy();
 
 	virtual void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
@@ -270,6 +270,6 @@ protected:
 	// 乱数
 	// ----------------------------------------
 
-	// 乱数エンジン
-	std::mt19937 rng;
+	// Gameが所有する本体を参照で借用
+	Random& random;
 };

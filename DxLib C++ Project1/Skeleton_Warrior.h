@@ -19,14 +19,13 @@ extern const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[];
 
 // 前方宣言
 class SoundManager;
-
 class MagicEffectManager;
 
 
 class Skeleton_Warrior : public Enemy {
 public:
 
-	Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate);
+	Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate, Random& random);
 	~Skeleton_Warrior() override = default;
 	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
 	bool TakeDamage(int value, SoundManager& soundManager) override;

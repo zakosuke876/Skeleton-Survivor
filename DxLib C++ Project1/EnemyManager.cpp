@@ -113,19 +113,19 @@ void EnemyManager::Spawn() {
 		case ENEMY_NORMAL:
 
 			// 敵を生成
-			enemies.emplace_back(std::make_unique<Skeleton_Normal>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, normalStatus, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Normal>(x, 0.0f, z, skeletonNormalModelHandle, skeletonNormalTexHandle, normalStatus, enemyGrowRate, random));
 
 			break;
 
 		case ENEMY_WARRIOR:
 
-			enemies.emplace_back(std::make_unique<Skeleton_Warrior>(x, 0.0f, z, skeletonWarriorModelHandle, skeletonWarriorTexHandle, warriorStatus, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Warrior>(x, 0.0f, z, skeletonWarriorModelHandle, skeletonWarriorTexHandle, warriorStatus, enemyGrowRate, random));
 
 			break;
 
 		case ENEMY_MAGE:
 
-			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, staffModelHandle, staffTexHandle, enemyGrowRate));
+			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, staffModelHandle, staffTexHandle, enemyGrowRate, random));
 
 			break;
 	}

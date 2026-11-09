@@ -2,16 +2,12 @@
 #include "Player.h"
 #include "GameConfig.h"
 #include "SoundManager.h"
-
-
+#include "Random.h"
 #include "MagicEffectManager.h"
 
-Enemy::Enemy() {
-
-	// ランダム生成用
-	std::random_device rd;
-	rng = std::mt19937(rd());
-
+Enemy::Enemy(Random& random)
+	: random(random)
+{
 	// 初期化
 	isActive = true;
 	hasTargetPosition = false;
@@ -68,11 +64,8 @@ void Enemy::UpdatePatrol(const Player& player) {
 	if (!hasTargetPosition)
 	{
 		// 目的地X,Z座標の範囲設定
-		std::uniform_real_distribution<float> distanceX(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
-		std::uniform_real_distribution<float> distanceZ(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
-
-		targetX = distanceX(rng);
-		targetZ = distanceZ(rng);
+		targetX = random.GetRandomFloat(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
+		targetZ = random.GetRandomFloat(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
 
 		// 目的地到着まで再計算しない
 		hasTargetPosition = true;

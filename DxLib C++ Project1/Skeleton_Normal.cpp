@@ -26,7 +26,9 @@ const EnemyAnimData SKELETON_NORMAL_ANIM_TABLE[] = {
 };
 
 
-Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonNormalStatus& noramalData, float growRate) {
+Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonNormalStatus& noramalData, float growRate, Random& random)
+	: Enemy(random)
+{
 
 	x = startX;
 	y = startY;
