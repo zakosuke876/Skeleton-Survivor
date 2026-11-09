@@ -20,6 +20,7 @@ public:
 
 private:
 
+	// Gameが所有する本体を参照で借用
 	Random& random;
 
 	GameConfig::GroundType GetType(int x, int z) const;

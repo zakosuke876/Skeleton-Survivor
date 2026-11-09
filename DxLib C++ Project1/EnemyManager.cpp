@@ -11,6 +11,7 @@
 #include "EnemyMageDataLoader.h"
 #include "SpawnDataLoader.h"
 #include "GameConfig.h"
+#include "Random.h"
 #include <algorithm>
 #include <cmath>
 #include "DxLib.h"
@@ -18,12 +19,9 @@
 
 #include "MagicEffectManager.h"
 
-EnemyManager::EnemyManager() {
-
-	// ランダム生成用
-	std::random_device rd;
-	rng = std::mt19937(rd());
-
+EnemyManager::EnemyManager(Random& random)
+	: random(random)
+{
 	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyNormalDataLoader::Load(normalStatus))
 	{
@@ -102,18 +100,12 @@ void EnemyManager::Reset() {
 
 void EnemyManager::Spawn() {
 
-	// スポーンX,Z座標の範囲設定
-	std::uniform_real_distribution<float> rx(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
-	std::uniform_real_distribution<float> rz(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
+	// スポーン X/Z 座標を乱数で設定
+	float x = random.GetRandomFloat(GameConfig::FIELD_MIN_X, GameConfig::FIELD_MAX_X);
+	float z = random.GetRandomFloat(GameConfig::FIELD_MIN_Z, GameConfig::FIELD_MAX_Z);
 
-	// 生成範囲を末尾-1にして敵を追加した際に自動で最大値に対応
-	std::uniform_int_distribution<int> TypeNum(ENEMY_NORMAL, ENEMY_TYPE_COUNT - 1);
-
-	// フィールド内ランダムな座標にスポーン
-	float x = rx(rng);
-	float z = rz(rng);
-
-	int enemyTypeNum = TypeNum(rng);
+	// 生成する敵の種類を乱数で決定
+	int enemyTypeNum = random.GetRandomInt(ENEMY_NORMAL, ENEMY_TYPE_COUNT - 1);
 
 	// 値によって生成する敵の種類を変える
 	switch (enemyTypeNum)

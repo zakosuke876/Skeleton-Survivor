@@ -28,6 +28,7 @@ public:
 
 private:
 
+	// Gameが所有する本体を参照で借用
 	Random& random;
 
 	// アイテム管理

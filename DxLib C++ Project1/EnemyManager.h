@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include "Enemy.h"
 #include "EnemySpawnConfig.h"
-#include <random>
 #include <vector>
+#include <memory>
 
 // 前方宣言
 class Player;
@@ -10,12 +10,13 @@ class ScoreManager;
 class ItemManager;
 class SoundManager;
 class MagicEffectManager;
+class Random;
 
 
 class EnemyManager {
 public:
 
-	EnemyManager();
+	EnemyManager(Random& random);
 	~EnemyManager();
 	void Reset(); // ゲームリセット処理
 	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
@@ -34,6 +35,9 @@ public:
 	}
 
 private:
+
+	// Gameが所有する本体を参照で借用
+	Random& random;
 
 	void Spawn();
 
@@ -98,7 +102,4 @@ private:
 
 	// 杖のテクスチャ
 	int staffTexHandle = -1;
-
-	// ランダムエンジン
-	std::mt19937 rng;
 };
