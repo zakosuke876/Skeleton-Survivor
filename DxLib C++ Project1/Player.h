@@ -97,6 +97,9 @@ public:
 
 private:
 
+	// Gameが所有する本体を参照で借用
+	Random& random;
+
 	GroundEffect groundEffect;
 
 	// ----------------------------------------

@@ -11,9 +11,6 @@ Game::Game()
     SetUseZBuffer3D(TRUE);
     SetWriteZBuffer3D(TRUE);
 
-    // 乱数の種を初期化
-    srand((unsigned int)time(nullptr));
-
     // 前フレームの時刻を記録
     prevTime = GetNowCount();
 

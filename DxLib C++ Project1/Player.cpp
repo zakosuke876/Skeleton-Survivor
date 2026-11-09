@@ -5,6 +5,7 @@
 #include "FontManager.h"
 #include "SoundManager.h"
 #include "PlayerDataLoader.h"
+#include "Random.h"
 #include "DxLib.h"
 #include <cmath>
 #include <algorithm>
@@ -25,7 +26,7 @@ const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 };
 
 Player::Player(Random& random)
-	: groundEffect(random)
+	: random(random), groundEffect(random)
 {
 
 	if (!PlayerDataLoader::Load((playerDataTable)))
@@ -103,7 +104,7 @@ void Player::Reset() {
 	// 最初はスポーン状態
 	state = PLAYER_SPAWN;
 
-	int anim = rand() % 2;
+	int anim = random.GetRandomInt(0, 1);
 
 	// 2種類のアニメーションからランダムに選ぶ
 	if (anim == 0)
