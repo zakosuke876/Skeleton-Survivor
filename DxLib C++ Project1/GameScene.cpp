@@ -10,16 +10,17 @@
 #include "EnemyManager.h"
 #include "RankingManager.h"
 #include "Camera.h"
+#include "InputManager.h"
 #include "DxLib.h"
 
 GameScene::GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
                      SoundManager& soundManager, FontManager& fontManager, Ground& ground,
                      PauseScene& pauseScene, Result& result, EnemyManager& enemyManager,
-                     RankingManager& rankingManager, Camera& camera)
+                     RankingManager& rankingManager, Camera& camera, const InputManager& inputManager)
     : player(player), scoreManager(scoreManager), itemManager(itemManager),
     soundManager(soundManager), fontManager(fontManager), ground(ground),
     pauseScene(pauseScene), result(result), enemyManager(enemyManager),
-    camera(camera), rankingManager(rankingManager) {
+    camera(camera), rankingManager(rankingManager), inputManager(inputManager) {
 }
 
 void GameScene::OnEnter() {
@@ -99,7 +100,7 @@ SceneType GameScene::Update(float deltaTime) {
             }
 
             // Rキーが押された場合
-            if (CheckHitKey(KEY_INPUT_R))
+            if (inputManager.IsPressed(KEY_INPUT_R))
             {
                 soundManager.StopBgm(BGM_PLAY);
 
@@ -121,7 +122,7 @@ SceneType GameScene::Update(float deltaTime) {
             rankingManager.Update(deltaTime);
 
             // Rキーが押された場合タイトル画面に戻る
-            if (CheckHitKey(KEY_INPUT_R))
+            if (inputManager.IsPressed(KEY_INPUT_R))
             {
                 soundManager.StopBgm(BGM_GAMEOVER);
 

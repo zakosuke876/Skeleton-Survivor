@@ -1,8 +1,11 @@
 ﻿#include "PauseScene.h"
 #include "FontManager.h"
+#include "InputManager.h"
 #include "DxLib.h"
 
-PauseScene::PauseScene() {
+PauseScene::PauseScene(const InputManager& inputManager)
+	: inputManager(inputManager)
+{
 
 	Reset();
 }
@@ -14,16 +17,7 @@ void PauseScene::Reset() {
 
 void PauseScene::Update() {
 
-	// 前フレームの状態をコピー
-	memcpy(prevKey, currentKey, sizeof(currentKey));
-
-	// 今フレームの状態で上書き
-	GetHitKeyStateAll(currentKey);
-
-	if (currentKey[KEY_INPUT_P] && !prevKey[KEY_INPUT_P])
-	{
-		isPause = !isPause;
-	}
+	if (inputManager.IsPressed(KEY_INPUT_P)) isPause = !isPause;
 }
 
 void PauseScene::Draw(const FontManager& fontManager) const {

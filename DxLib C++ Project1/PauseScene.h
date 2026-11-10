@@ -2,11 +2,12 @@
 
 // 前方宣言
 class FontManager;
+class InputManager;
 
 class PauseScene {
 public:
 
-	PauseScene();
+	PauseScene(const InputManager& inputManager);
 	void Reset(); // ゲームリセット処理
 	void Update();
 	void Draw(const FontManager& fontManager) const;
@@ -15,15 +16,14 @@ public:
 
 private:
 
+	// Gameが所有する本体を参照で借用
+	const InputManager& inputManager;
+
 	// ポーズ状態かどうか
 	bool isPause = false;
 
 	// ボタンの数
 	static constexpr int MAX_BUTTON = 2;
-
-	// キーの入力状態チェック
-	char prevKey[256]{};
-	char currentKey[256]{};
 
 	// パネル[ポーズ中…]表示の座標
 	static constexpr int PAUSE_HEADER_BOX_LEFT  = 500;

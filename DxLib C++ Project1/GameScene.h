@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "MagicEffectManager.h"
 
+// 前方宣言
 class Player;
 class ScoreManager;
 class ItemManager;
@@ -14,6 +15,7 @@ class Result;
 class EnemyManager;
 class RankingManager;
 class MagicEffectManager;
+class InputManager;
 
 
 // ゲーム内の状態
@@ -29,7 +31,7 @@ public:
 	GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
 			  SoundManager& soundManager, FontManager& fontManager, Ground& ground,
 		      PauseScene& pauseScene, Result& result, EnemyManager& enemyManager,
-			  RankingManager& rankingManager, Camera& camera);
+			  RankingManager& rankingManager, Camera& camera, const InputManager& inputManager);
 
 	void OnEnter() override;
 	void OnExit() override;
@@ -55,4 +57,5 @@ private:
 	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
 	MagicEffectManager magicEffectManager;
+	const InputManager& inputManager;
 };

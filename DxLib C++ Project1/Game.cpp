@@ -2,7 +2,8 @@
 #include "GameConfig.h"
 
 Game::Game()
-    : ground(random), player(random, inputManager), enemyManager(random), itemManager(random)
+    : ground(random), player(random, inputManager), enemyManager(random), itemManager(random),
+    pauseScene(inputManager)
 {
 
     // ウィンドウ・3D描画まわりの初期設定
@@ -21,10 +22,10 @@ Game::Game()
     currentScene = APP_TITLE;
 
     // 各シーンを生成（必要な参照を渡す）
-    titleScene = std::make_unique<TitleScene>(fontManager, rankingManager, soundManager, result);
+    titleScene = std::make_unique<TitleScene>(fontManager, rankingManager, soundManager, result, inputManager);
 
     gameScene = std::make_unique<GameScene>(player, scoreManager, itemManager, soundManager, fontManager, ground,
-        pauseScene, result, enemyManager, rankingManager, camera);
+        pauseScene, result, enemyManager, rankingManager, camera, inputManager);
 }
 
 void Game::Run() {

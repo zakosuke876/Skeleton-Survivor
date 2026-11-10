@@ -3,11 +3,12 @@
 #include "FontManager.h"
 #include "RankingManager.h"
 #include "Result.h"
+#include "InputManager.h"
 #include "DxLib.h"
 #include <algorithm>
 
-TitleScene::TitleScene(FontManager& fontManager, RankingManager& rankingManager, SoundManager& soundManager, Result& result)
-	: fontManager(fontManager), rankingManager(rankingManager), soundManager(soundManager), result(result) {
+TitleScene::TitleScene(FontManager& fontManager, RankingManager& rankingManager, SoundManager& soundManager, Result& result, const InputManager& inputManager)
+	: fontManager(fontManager), rankingManager(rankingManager), soundManager(soundManager), result(result), inputManager(inputManager) {
 
 	// 画像読み込み
 	manualGrHandles[0] = LoadGraph("Textures/ManualImage/Manual_0.png");
@@ -58,12 +59,6 @@ void TitleScene::OnExit() {
 
 SceneType TitleScene::Update(float deltaTime) {
 
-	// 前フレームの状態をコピー
-	memcpy(prevKey, currentKey, sizeof(currentKey));
-
-	// 今フレームの状態で上書き
-	GetHitKeyStateAll(currentKey);
-
 	switch (titleState)
 	{
 	case TITLE:
@@ -92,8 +87,8 @@ SceneType TitleScene::Update(float deltaTime) {
 
 void TitleScene::ButtonMove() {
 
-	// キーを押した瞬間だけ処理する
-	if (currentKey[KEY_INPUT_UP] && !prevKey[KEY_INPUT_UP])
+
+	if (inputManager.IsPressed(KEY_INPUT_UP))
 	{
 		currentButtonIndex--;
 
@@ -105,7 +100,7 @@ void TitleScene::ButtonMove() {
 		}
 	}
 
-	if (currentKey[KEY_INPUT_DOWN] && !prevKey[KEY_INPUT_DOWN])
+	if (inputManager.IsPressed(KEY_INPUT_DOWN))
 	{
 		currentButtonIndex++;
 
@@ -123,39 +118,39 @@ SceneType TitleScene::ButtonSelect() {
 	// タイトル状態でなければボタン操作しない
 	if (titleState != TITLE) return SceneType::None;
 
-	// スペースキーを押した瞬間だけ処理する
-	if (!currentKey[KEY_INPUT_SPACE] || prevKey[KEY_INPUT_SPACE]) return SceneType::None;
+	// スペースキーを押した瞬間だけ以降を処理する
+	if (!inputManager.IsPressed(KEY_INPUT_SPACE)) return SceneType::None;
 
 	// スペースを押したときの状態によって処理を分ける
 	switch (currentButtonIndex)
 	{
-	case PLAY:
+		case PLAY:
 
-		return SceneType::Game;
+			return SceneType::Game;
 
-		break;
+			break;
 
-	case MANUAL:
+		case MANUAL:
 
-		titleState = MANUAL_MENU;
+			titleState = MANUAL_MENU;
 
-		break;
+			break;
 
-	case RANKING:
+		case RANKING:
 
-		titleState = RANKING_MENU;
+			titleState = RANKING_MENU;
 
-		break;
+			break;
 
-	case QUIT:
+		case QUIT:
 
-		isQuit = true;
+			isQuit = true;
 
-		break;
+			break;
 
-	default:
+		default:
 
-		break;
+			break;
 	}
 
 	return SceneType::None;
@@ -164,11 +159,8 @@ SceneType TitleScene::ButtonSelect() {
 
 void TitleScene::BackToTitle() {
 
-	if (currentKey[KEY_INPUT_ESCAPE] && !prevKey[KEY_INPUT_ESCAPE])
-	{
-		// タイトル状態に戻す
-		titleState = TITLE;
-	}
+	// タイトル状態に戻す
+	if (inputManager.IsPressed(KEY_INPUT_ESCAPE)) titleState = TITLE;
 }
 
 void TitleScene::TitleUI(const FontManager& fontManager) const {
@@ -235,7 +227,7 @@ void TitleScene::UpdateManual() {
 	if (titleState != MANUAL_MENU) return;
 
 	// キーを押した瞬間だけ処理する
-	if (currentKey[KEY_INPUT_LEFT] && !prevKey[KEY_INPUT_LEFT])
+	if (inputManager.IsPressed(KEY_INPUT_LEFT))
 	{
 		// 1ページ戻す
 		manualPanelIndex--;
@@ -244,7 +236,7 @@ void TitleScene::UpdateManual() {
 		manualPanelIndex = std::clamp(manualPanelIndex, 0, MANUAL_PAGE_MAX - 1);
 	}
 
-	if (currentKey[KEY_INPUT_RIGHT] && !prevKey[KEY_INPUT_RIGHT])
+	if (inputManager.IsPressed(KEY_INPUT_RIGHT))
 	{
 		manualPanelIndex++;
 
