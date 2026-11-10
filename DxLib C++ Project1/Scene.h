@@ -4,6 +4,7 @@ enum class SceneType {
 	Title,
 	Game,
 	None, // 「まだ切り替えていない」状態
+	Quit, // ゲーム終了
 };
 
 class Scene {

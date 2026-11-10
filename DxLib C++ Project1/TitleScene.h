@@ -5,6 +5,7 @@
 #include "SoundManager.h"
 #include "Result.h"
 #include "Scene.h"
+#include "SceneContext.h"
 #include "DxLib.h"
 #include <algorithm>
 
@@ -29,17 +30,14 @@ enum TitleState {
 class TitleScene : public Scene {
 public:
 
-	TitleScene(FontManager& fontManager, RankingManager& rankingManager, SoundManager& soundManager, Result& result, const InputManager& inputManager);
+	TitleScene(const SceneContext& context);
 	~TitleScene();
-	void Reset(); // ゲームリセット処理
 
 	void OnEnter() override;
 	void OnExit()  override;
 
 	SceneType Update(float deltaTime) override;
 	void Draw() override;
-
-	bool GetisQuit()  const { return isQuit; }
 
 private:
 
@@ -141,7 +139,4 @@ private:
 
 	// 操作説明パネルのページ管理
 	int manualPanelIndex = -1;
-
-	// ゲームを終了させるかどうか
-	bool isQuit = false;
 };

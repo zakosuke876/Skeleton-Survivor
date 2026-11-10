@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Scene.h"
 #include "MagicEffectManager.h"
+#include "SceneContext.h"
 
 // 前方宣言
 class Player;
@@ -28,10 +29,12 @@ enum GameState {
 class GameScene : public Scene {
 public:
 
-	GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
+	/*GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
 			  SoundManager& soundManager, FontManager& fontManager, Ground& ground,
 		      PauseScene& pauseScene, Result& result, EnemyManager& enemyManager,
-			  RankingManager& rankingManager, Camera& camera, const InputManager& inputManager);
+			  RankingManager& rankingManager, Camera& camera, const InputManager& inputManager);*/
+
+	GameScene(const SceneContext& context);
 
 	void OnEnter() override;
 	void OnExit() override;

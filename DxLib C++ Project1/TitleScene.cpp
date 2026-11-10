@@ -7,8 +7,8 @@
 #include "DxLib.h"
 #include <algorithm>
 
-TitleScene::TitleScene(FontManager& fontManager, RankingManager& rankingManager, SoundManager& soundManager, Result& result, const InputManager& inputManager)
-	: fontManager(fontManager), rankingManager(rankingManager), soundManager(soundManager), result(result), inputManager(inputManager) {
+TitleScene::TitleScene(const SceneContext& context)
+	: fontManager(context.fontManager), rankingManager(context.rankingManager), soundManager(context.soundManager), result(context.result), inputManager(context.inputManager) {
 
 	// 画像読み込み
 	manualGrHandles[0] = LoadGraph("Textures/ManualImage/Manual_0.png");
@@ -35,14 +35,6 @@ TitleScene::~TitleScene() {
 	DeleteGraph(skeletonWGrHandle);
 }
 
-void TitleScene::Reset() {
-
-	// カーソルの位置を初期化
-	currentButtonIndex = 0;
-
-	titleState = TITLE;
-}
-
 void TitleScene::OnEnter() {
 
 	//　タイトルシーンに入った瞬間の処理
@@ -61,25 +53,25 @@ SceneType TitleScene::Update(float deltaTime) {
 
 	switch (titleState)
 	{
-	case TITLE:
+		case TITLE:
 
-		ButtonMove();
+			ButtonMove();
 
-		return ButtonSelect();
+			return ButtonSelect();
 
-		break;
+			break;
 
-	case MANUAL_MENU:
+		case MANUAL_MENU:
 
-		UpdateManual();
+			UpdateManual();
 
-		break;
+			break;
 
-	case RANKING_MENU:
+		case RANKING_MENU:
 
-		UpdateRanking();
+			UpdateRanking();
 
-		break;
+			break;
 	}
 
 	return SceneType::None;
@@ -144,7 +136,7 @@ SceneType TitleScene::ButtonSelect() {
 
 		case QUIT:
 
-			isQuit = true;
+			return SceneType::Quit;
 
 			break;
 

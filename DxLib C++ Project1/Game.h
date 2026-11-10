@@ -14,6 +14,11 @@
 #include "RankingManager.h"
 #include "Random.h"
 #include "InputManager.h"
+
+
+#include "SceneManager.h"
+#include "SceneContext.h"
+
 #include "DxLib.h"
 #include <memory>
 
@@ -34,7 +39,6 @@ private:
 
 	void Update();
 	void Draw();
-	void GameReset(); // ゲームリセット処理
 
 	// 乱数の本体。各クラスへ注入するため、注入先より先に宣言する
 	Random random;
@@ -51,17 +55,12 @@ private:
 	Result result;
 	PauseScene pauseScene;
 	RankingManager rankingManager;
-
-	std::unique_ptr<GameScene> gameScene;
-	std::unique_ptr<TitleScene> titleScene;
-
+	SceneContext context;
+	SceneManager sceneManager;
 
 	// 前フレームからの時刻(ミリ秒)
 	int prevTime = 0;
 
 	// 前フレームからの経過時間(秒)
 	float deltaTime = 0;
-
-	// 現在のシーン
-	AppScene currentScene;
 };

@@ -13,14 +13,13 @@
 #include "InputManager.h"
 #include "DxLib.h"
 
-GameScene::GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
-                     SoundManager& soundManager, FontManager& fontManager, Ground& ground,
-                     PauseScene& pauseScene, Result& result, EnemyManager& enemyManager,
-                     RankingManager& rankingManager, Camera& camera, const InputManager& inputManager)
-    : player(player), scoreManager(scoreManager), itemManager(itemManager),
-    soundManager(soundManager), fontManager(fontManager), ground(ground),
-    pauseScene(pauseScene), result(result), enemyManager(enemyManager),
-    camera(camera), rankingManager(rankingManager), inputManager(inputManager) {
+GameScene::GameScene(const SceneContext& context) 
+    : player(context.player), scoreManager(context.scoreManager), itemManager(context.itemManager),
+    soundManager(context.soundManager), fontManager(context.fontManager), ground(context.ground),
+    camera(context.camera), pauseScene(context.pauseScene), result(context.result), enemyManager(context.enemyManager),
+    rankingManager(context.rankingManager), inputManager(context.inputManager)
+{
+
 }
 
 void GameScene::OnEnter() {
@@ -29,6 +28,14 @@ void GameScene::OnEnter() {
     state = GAME_PLAYING;
 	soundManager.PlayBgm(BGM_PLAY);
     magicEffectManager.Reset();
+
+    // ゲーム開始時に各オブジェクトを初期状態へ戻す
+    player.Reset();
+    enemyManager.Reset();
+    itemManager.Reset();
+    scoreManager.Reset();
+    rankingManager.Reset();
+    pauseScene.Reset();
 }
 
 void GameScene::OnExit() {

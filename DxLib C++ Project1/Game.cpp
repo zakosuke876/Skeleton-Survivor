@@ -2,8 +2,10 @@
 #include "GameConfig.h"
 
 Game::Game()
-    : ground(random), player(random, inputManager), enemyManager(random), itemManager(random),
-    pauseScene(inputManager)
+    : ground(random), player(random, inputManager), enemyManager(random), itemManager(random), pauseScene(inputManager),
+      context{player, scoreManager, itemManager, soundManager, fontManager, ground, pauseScene, result, enemyManager,
+              rankingManager, camera, inputManager},
+      sceneManager(context)
 {
 
     // ウィンドウ・3D描画まわりの初期設定
@@ -17,21 +19,12 @@ Game::Game()
 
     // 起動時にタイトルBGMを再生
     soundManager.PlayBgm(BGM_TITLE);
-
-    // 起動時はタイトルシーンから開始
-    currentScene = APP_TITLE;
-
-    // 各シーンを生成（必要な参照を渡す）
-    titleScene = std::make_unique<TitleScene>(fontManager, rankingManager, soundManager, result, inputManager);
-
-    gameScene = std::make_unique<GameScene>(player, scoreManager, itemManager, soundManager, fontManager, ground,
-        pauseScene, result, enemyManager, rankingManager, camera, inputManager);
 }
 
 void Game::Run() {
 
     // メインループ：ウィンドウが閉じられるか終了要求があるまで回す
-    while (ProcessMessage() == 0 && !titleScene->GetisQuit())
+    while (ProcessMessage() == 0 && !sceneManager.IsGameFinished())
     {
         // 現在時刻を取得
         int nowTime = GetNowCount();
@@ -51,47 +44,7 @@ void Game::Update() {
 
     inputManager.Update();
 
-    // 現在のシーンごとに更新処理を振り分ける
-    switch (currentScene)
-    {
-        // タイトルシーンの更新
-        case APP_TITLE: {
-
-            SceneType next = titleScene->Update(deltaTime);
-
-            // ゲーム開始が選ばれたらゲームシーンへ遷移
-            if (next == SceneType::Game)
-            {
-                titleScene->OnExit();
-                GameReset();          // ゲーム状態をリセット
-                gameScene->OnEnter();
-                currentScene = APP_GAME;
-            }
-
-            break;
-        }
-
-        // ゲームシーンの更新
-        case APP_GAME: {
-
-            SceneType next = gameScene->Update(deltaTime);
-
-            // タイトルへ戻る要求があればタイトルシーンへ遷移
-            if (next == SceneType::Title)
-            {
-                gameScene->OnExit();
-                titleScene->OnEnter();
-                currentScene = APP_TITLE;
-            }
-
-            break;
-        }
-
-
-        default:
-
-            break;
-    }
+    sceneManager.Update(deltaTime);
 }
 
 void Game::Draw() {
@@ -99,40 +52,8 @@ void Game::Draw() {
     // 描画前に画面をクリア
     ClearDrawScreen();
 
-    // 現在のシーンごとに描画を振り分ける
-    switch (currentScene)
-    {
-        // タイトルシーンの描画
-        case APP_TITLE:
-
-            titleScene->Draw();
-
-            break;
-
-        // ゲームシーンの描画
-        case APP_GAME:
-
-            gameScene->Draw();
-
-            break;
-
-        default:
-
-            break;
-    }
+    sceneManager.Draw();
 
     // 裏画面を表画面へ反映
     ScreenFlip();
-}
-
-void Game::GameReset() {
-
-    // ゲーム開始時に各オブジェクトを初期状態へ戻す
-    player.Reset();
-    enemyManager.Reset();
-    itemManager.Reset();
-    scoreManager.Reset();
-    rankingManager.Reset();
-    titleScene->Reset();
-    pauseScene.Reset();
 }
