@@ -18,7 +18,7 @@ public:
 	void Draw() const;
 
 	// 魔法とプレイヤーの当たり判定
-	void CheckPlayerHit(Player& player, SoundManager& soundManager);
+	void CheckPlayerHit(Player& player, const SoundManager& soundManager);
 
 	// 指定座標に魔法を生成する
 	void PlayMagic(float startX, float startY, float startZ, int damage);

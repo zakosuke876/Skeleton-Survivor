@@ -85,7 +85,7 @@ public:
 	int GetScoreValue()  const { return score; }
 	int GetHp() const { return hp; }
 
-	virtual bool TakeDamage(int value, SoundManager& soundManager);
+	virtual bool TakeDamage(int value, const SoundManager& soundManager);
 	virtual EnemyType GetEnemyType() const = 0;
 
 protected:

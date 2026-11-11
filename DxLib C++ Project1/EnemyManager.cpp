@@ -193,7 +193,7 @@ void EnemyManager::DrawUI() const {
 }
 
 // プレイヤーの攻撃が敵に当たったか判定
-void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, SoundManager& soundManager) {
+void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, const SoundManager& soundManager) {
 
 	PlayerAttackHitBox playerHitBox = player.GetPlayerAttackHitBox();
 
@@ -237,7 +237,7 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 }
 
 // 敵の攻撃がプレイヤーに当たったか判定
-void EnemyManager::CheckEnemyAttackHit(Player& player, SoundManager& soundManager) {
+void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& soundManager) {
 
 	for (auto& e : enemies)
 	{

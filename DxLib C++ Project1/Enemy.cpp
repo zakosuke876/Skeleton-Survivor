@@ -227,7 +227,7 @@ void Enemy::UpdateAnim() {
 }
 
 // ダメージを与え、死亡した場合はtrueを返す
-bool Enemy::TakeDamage(int value, SoundManager& soundManager) {
+bool Enemy::TakeDamage(int value, const SoundManager& soundManager) {
 	
 	// 無敵時間中は処理しない
 	if (isInvincible) return false;

@@ -22,8 +22,8 @@ public:
 	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
 	void Draw() const;
 	void DrawUI() const;
-	void CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, SoundManager& soundManager);
-	void CheckEnemyAttackHit(Player& player, SoundManager& soundManager);
+	void CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, const SoundManager& soundManager);
+	void CheckEnemyAttackHit(Player& player, const SoundManager& soundManager);
 
 	//	倒した敵の数を敵の種類ごとにカウント
 	void CountEnemyKill(EnemyType type);

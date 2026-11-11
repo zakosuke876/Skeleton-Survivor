@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+// 前方宣言
 class Player;
 class ScoreManager;
 class ItemManager;
@@ -19,11 +20,11 @@ struct SceneContext {
 	Player& player;
 	ScoreManager& scoreManager;
 	ItemManager& itemManager;
-	SoundManager& soundManager;
-	FontManager& fontManager;
-	Ground& ground;
+	const SoundManager& soundManager;
+	const FontManager& fontManager;
+	const Ground& ground;
 	PauseScene& pauseScene;
-	Result& result;
+	const Result& result;
 	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
 	Camera& camera;

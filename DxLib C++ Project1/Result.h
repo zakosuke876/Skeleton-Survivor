@@ -12,7 +12,7 @@ public:
 	Result();
 	~Result();
 
-	void Draw(EnemyManager& enemyManager, ScoreManager& scoreManager, RankingManager& rankingManager, FontManager& fontManager) const;
+	void Draw(EnemyManager& enemyManager, ScoreManager& scoreManager, RankingManager& rankingManager, const FontManager& fontManager) const;
 
 private:
 

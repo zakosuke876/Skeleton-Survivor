@@ -23,7 +23,7 @@ public:
 	bool ItemDropCheck();
 	void DropRecoveryItem(float posX, float posY, float posZ);
 	void DropExpItem(float posX, float posY, float posZ);
-	void CheckPlayerCollision(Player& player, SoundManager& soundManager);
+	void CheckPlayerCollision(Player& player, const SoundManager& soundManager);
 	RecoveryItemType GetDropItemType();
 
 private:

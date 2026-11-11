@@ -118,7 +118,7 @@ void Player::Reset() {
 	}
 }
 
-void Player::Update(float deltaTime, Ground& ground) {
+void Player::Update(float deltaTime, const Ground& ground) {
 
 	// 死亡した場合処理しない
 	if (!isActive) return;
@@ -230,7 +230,7 @@ void Player::Update(float deltaTime, Ground& ground) {
 	sword.Update(modelHandle);
 }
 
-void Player::TakeDamage(int value, SoundManager& soundManager) {
+void Player::TakeDamage(int value, const SoundManager& soundManager) {
 
 	// 攻撃判定を無効
 	attackHitBox.isAttackActive = false;
@@ -371,7 +371,7 @@ void Player::UpdateIdle() {
 	}
 }
 
-void Player::UpdateWalk(Ground& ground) {
+void Player::UpdateWalk(const Ground& ground) {
 
 	AnimSwitch(PLAYER_ANIM_WALK);
 
@@ -402,7 +402,7 @@ void Player::UpdateWalk(Ground& ground) {
 	}
 }
 
-void Player::UpdateDash(Ground& ground) {
+void Player::UpdateDash(const Ground& ground) {
 
 	AnimSwitch(PLAYER_ANIM_DASH);
 

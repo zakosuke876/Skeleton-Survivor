@@ -29,11 +29,6 @@ enum GameState {
 class GameScene : public Scene {
 public:
 
-	/*GameScene(Player& player, ScoreManager& scoreManager, ItemManager& itemManager,
-			  SoundManager& soundManager, FontManager& fontManager, Ground& ground,
-		      PauseScene& pauseScene, Result& result, EnemyManager& enemyManager,
-			  RankingManager& rankingManager, Camera& camera, const InputManager& inputManager);*/
-
 	GameScene(const SceneContext& context);
 
 	void OnEnter() override;
@@ -51,14 +46,14 @@ private:
 	Player& player;
 	ScoreManager& scoreManager;
 	ItemManager& itemManager;
-	SoundManager& soundManager;
-	FontManager& fontManager;
-	Ground& ground;
+	const SoundManager& soundManager;
+	const FontManager& fontManager;
+	const Ground& ground;
 	Camera& camera;
 	PauseScene& pauseScene;
-	Result& result;
+	const Result& result;
 	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
-	MagicEffectManager magicEffectManager;
 	const InputManager& inputManager;
+	MagicEffectManager magicEffectManager;
 };

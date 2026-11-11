@@ -126,7 +126,7 @@ void ItemManager::Draw() const {
 	}
 }
 
-void ItemManager::CheckPlayerCollision(Player& player, SoundManager& soundManager) {
+void ItemManager::CheckPlayerCollision(Player& player, const SoundManager& soundManager) {
 
 	for (auto& item : items)
 	{

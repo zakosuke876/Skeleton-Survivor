@@ -201,7 +201,7 @@ void Skeleton_Warrior::UpdateDamage() {
 }
 
 
-bool Skeleton_Warrior::TakeDamage(int value, SoundManager& soundManager) {
+bool Skeleton_Warrior::TakeDamage(int value, const SoundManager& soundManager) {
 
 	// 基底クラスの関数を呼びだし、死んだかどうかをチェック
 	bool isDead = Enemy::TakeDamage(value, soundManager);

@@ -78,7 +78,7 @@ void Result::DrawPlayResult(ScoreManager& scoreManager) const {
     DrawString(560, 590, "Rキーでタイトルに戻る", GetColor(255, 255, 255));
 }
 
-void Result::Draw(EnemyManager& enemyManager, ScoreManager& scoreManager, RankingManager& rankingManager, FontManager& fontManager) const {
+void Result::Draw(EnemyManager& enemyManager, ScoreManager& scoreManager, RankingManager& rankingManager, const FontManager& fontManager) const {
 
     DrawPanel();
 

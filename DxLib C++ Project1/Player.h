@@ -60,13 +60,13 @@ public:
 
 	Player(Random& random, const InputManager& inputManager);
 	void Reset(); // ゲームリセット処理
-	void Update(float deltaTime, Ground& ground);
+	void Update(float deltaTime, const Ground& ground);
 
 	// ----------------------------------------
 	// ステータス変更
 	// ----------------------------------------
 
-	void TakeDamage(int value, SoundManager& soundManager);
+	void TakeDamage(int value, const SoundManager& soundManager);
 	void Recovery(int value);
 	void AddExp(int value, const SoundManager& soundManager);
 	void LevelUp(const SoundManager& soundManager);
@@ -110,8 +110,8 @@ private:
 
 	void UpdateSpawn();
 	void UpdateIdle();
-	void UpdateWalk(Ground& ground);
-	void UpdateDash(Ground& ground);
+	void UpdateWalk(const Ground& ground);
+	void UpdateDash(const Ground& ground);
 	void UpdateAttack();
 	void UpdateDamage();
 	void UpdateDeath(float deltaTime);

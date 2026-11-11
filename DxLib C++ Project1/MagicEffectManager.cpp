@@ -34,7 +34,7 @@ void MagicEffectManager::PlayMagic(float startX, float startY, float startZ, int
 	effects.emplace_back(startX, startY, startZ, grHandles, damage);
 }
 
-void MagicEffectManager::CheckPlayerHit(Player& player, SoundManager& soundManager) {
+void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soundManager) {
 
 	for (auto& e : effects)
 	{
