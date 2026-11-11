@@ -3,9 +3,7 @@
 #include "FontManager.h"
 #include "RankingManager.h"
 #include "SoundManager.h"
-#include "Result.h"
 #include "Scene.h"
-#include "SceneContext.h"
 #include "DxLib.h"
 #include <algorithm>
 
@@ -30,7 +28,14 @@ enum TitleState {
 class TitleScene : public Scene {
 public:
 
-	TitleScene(const SceneContext& context);
+	// TitleSceneで使用する参照をまとめた構造体
+	struct TitleContext {
+		const SoundManager& soundManager;
+		const InputManager& inputManager;
+		const RankingManager& rankingManager;
+	};
+
+	TitleScene(const TitleContext& context);
 	~TitleScene();
 
 	void OnEnter() override;
@@ -43,9 +48,8 @@ private:
 
 	const SoundManager& soundManager;
 	const FontManager& fontManager;
-	const Result& result;
 	const InputManager& inputManager;
-	RankingManager& rankingManager;
+	const RankingManager& rankingManager;
 
 	int CalcButtonTop(int index) const;
 	int CalcTextX(int left, int width, const char* text) const;

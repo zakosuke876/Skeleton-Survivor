@@ -49,8 +49,24 @@ std::unique_ptr<Scene> SceneManager::CreateScene(SceneType scene) {
 
 	switch (scene)
 	{
-		case SceneType::Title: return std::make_unique<TitleScene>(context);
-		case SceneType::Game:  return std::make_unique<GameScene>(context);
-		default:               return nullptr;
+		case SceneType::Title:
+		{
+			TitleScene::TitleContext titleContext { 
+				  context.soundManager, context.fontManager,
+				  context.inputManager, context.rankingManager
+				};
+
+			return std::make_unique<TitleScene>(titleContext);
+		}
+
+		case SceneType::Game:
+		{
+			return std::make_unique<GameScene>(context);
+		}
+
+		default:
+		{
+			return nullptr;
+		}
 	}
 }

@@ -2,13 +2,12 @@
 #include "GameConfig.h"
 #include "FontManager.h"
 #include "RankingManager.h"
-#include "Result.h"
 #include "InputManager.h"
 #include "DxLib.h"
 #include <algorithm>
 
-TitleScene::TitleScene(const SceneContext& context)
-	: soundManager(context.soundManager), fontManager(context.fontManager), result(context.result), inputManager(context.inputManager), rankingManager(context.rankingManager) {
+TitleScene::TitleScene(const TitleContext& context)
+	: soundManager(context.soundManager), fontManager(context.fontManager), inputManager(context.inputManager), rankingManager(context.rankingManager) {
 
 	// 画像読み込み
 	manualGrHandles[0] = LoadGraph("Textures/ManualImage/Manual_0.png");
