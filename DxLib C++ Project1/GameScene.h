@@ -43,17 +43,17 @@ private:
 	// 現在のゲーム状態
 	GameState state = GAME_PLAYING;
 
-	Player& player;
-	ScoreManager& scoreManager;
-	ItemManager& itemManager;
 	const SoundManager& soundManager;
 	const FontManager& fontManager;
 	const Ground& ground;
-	Camera& camera;
-	PauseScene& pauseScene;
 	const Result& result;
+	const InputManager& inputManager;
+	Player& player;
+	ScoreManager& scoreManager;
+	ItemManager& itemManager;
+	PauseScene& pauseScene;
 	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
-	const InputManager& inputManager;
+	Camera& camera;
 	MagicEffectManager magicEffectManager;
 };

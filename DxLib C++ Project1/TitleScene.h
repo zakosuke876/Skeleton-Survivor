@@ -41,11 +41,11 @@ public:
 
 private:
 
-	const FontManager& fontManager;
-	RankingManager& rankingManager;
 	const SoundManager& soundManager;
+	const FontManager& fontManager;
 	const Result& result;
 	const InputManager& inputManager;
+	RankingManager& rankingManager;
 
 	int CalcButtonTop(int index) const;
 	int CalcTextX(int left, int width, const char* text) const;

@@ -3,8 +3,8 @@
 
 Game::Game()
     : ground(random), player(random, inputManager), enemyManager(random), itemManager(random), pauseScene(inputManager),
-      context{player, scoreManager, itemManager, soundManager, fontManager, ground, pauseScene, result, enemyManager,
-              rankingManager, camera, inputManager},
+      context{soundManager, fontManager, ground, result, inputManager, player, scoreManager, itemManager, pauseScene,
+              enemyManager, rankingManager, camera},
       sceneManager(context)
 {
 

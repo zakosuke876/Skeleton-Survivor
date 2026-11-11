@@ -14,10 +14,10 @@
 #include "DxLib.h"
 
 GameScene::GameScene(const SceneContext& context) 
-    : player(context.player), scoreManager(context.scoreManager), itemManager(context.itemManager),
-    soundManager(context.soundManager), fontManager(context.fontManager), ground(context.ground),
-    camera(context.camera), pauseScene(context.pauseScene), result(context.result), enemyManager(context.enemyManager),
-    rankingManager(context.rankingManager), inputManager(context.inputManager)
+    : soundManager(context.soundManager), fontManager(context.fontManager), ground(context.ground),
+      result(context.result), inputManager(context.inputManager), player(context.player),
+      scoreManager(context.scoreManager), itemManager(context.itemManager), pauseScene(context.pauseScene),
+      enemyManager(context.enemyManager), rankingManager(context.rankingManager), camera(context.camera)
 {
 
 }

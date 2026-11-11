@@ -17,16 +17,16 @@ class InputManager;
 
 // 各シーンの生成に必要な依存をまとめた構造体。Gameで詰めて、SceneManagerが各シーンへ渡す。
 struct SceneContext {
-	Player& player;
-	ScoreManager& scoreManager;
-	ItemManager& itemManager;
 	const SoundManager& soundManager;
 	const FontManager& fontManager;
 	const Ground& ground;
-	PauseScene& pauseScene;
 	const Result& result;
+	const InputManager& inputManager;
+	Player& player;
+	ScoreManager& scoreManager;
+	ItemManager& itemManager;
+	PauseScene& pauseScene;
 	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
 	Camera& camera;
-	const InputManager& inputManager;
 };

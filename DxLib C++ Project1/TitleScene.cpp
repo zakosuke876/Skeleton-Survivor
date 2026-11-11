@@ -8,7 +8,7 @@
 #include <algorithm>
 
 TitleScene::TitleScene(const SceneContext& context)
-	: fontManager(context.fontManager), rankingManager(context.rankingManager), soundManager(context.soundManager), result(context.result), inputManager(context.inputManager) {
+	: soundManager(context.soundManager), fontManager(context.fontManager), result(context.result), inputManager(context.inputManager), rankingManager(context.rankingManager) {
 
 	// 画像読み込み
 	manualGrHandles[0] = LoadGraph("Textures/ManualImage/Manual_0.png");
