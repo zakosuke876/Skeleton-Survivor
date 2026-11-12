@@ -54,31 +54,6 @@ void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soun
 			player.TakeDamage(e.GetDamage(), soundManager);
 		}
 	}
-
-	/*for (auto& e : effects)
-	{
-		// 非アクティブな魔法は処理しない
-		if (!e.IsActive()) continue;
-
-		// 魔法とプレイヤーの差分を求める
-		float dx = player.GetPosition().x - e.GetPos().x;
-		float dz = player.GetPosition().z - e.GetPos().z;
-
-		// 距離の2乗を求める
-		float distanceSq = dx * dx + dz * dz;
-
-		// 円どうしの当たり判定計算のために半径の合計を求める
-		float totalRadius = player.GetBodyRadius() + e.GetRadius();
-
-		if (distanceSq < totalRadius * totalRadius)
-		{
-			// 当たった魔法を無効化
-			e.SetActive(false);
-
-			// プレイヤーにダメージを与える
-			player.TakeDamage(e.GetDamage(), soundManager);
-		}
-	}*/
 }
 
 void MagicEffectManager::Update(const Player& player, float deltaTime) {
