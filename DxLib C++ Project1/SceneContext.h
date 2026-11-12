@@ -13,6 +13,7 @@ class EnemyManager;
 class RankingManager;
 class Camera;
 class InputManager;
+class CollisionSystem;
 
 
 // 各シーンの生成に必要な依存をまとめた構造体。Gameで詰めて、SceneManagerが各シーンへ渡す。
@@ -22,6 +23,7 @@ struct SceneContext {
 	const Ground& ground;
 	const Result& result;
 	const InputManager& inputManager;
+	const CollisionSystem& collisionSystem;
 	Player& player;
 	ScoreManager& scoreManager;
 	ItemManager& itemManager;

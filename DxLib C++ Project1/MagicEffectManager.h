@@ -5,11 +5,12 @@
 // 前方宣言
 class Player;
 class SoundManager;
+class CollisionSystem;
 
 class MagicEffectManager {
 public:
 
-	MagicEffectManager();
+	MagicEffectManager(const CollisionSystem& collisionSystem);
 	~MagicEffectManager();
 
 	void Reset(); // ゲームリセット処理
@@ -24,6 +25,9 @@ public:
 	void PlayMagic(float startX, float startY, float startZ, int damage);
 
 private:
+
+	// Gameが所有する本体を参照で借用
+	const CollisionSystem& collisionSystem;
 
 	// 魔法エフェクト管理
 	std::vector<MagicEffect> effects;

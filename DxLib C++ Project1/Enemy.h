@@ -8,7 +8,6 @@
 class Player;
 class SoundManager;
 class Random;
-
 class MagicEffectManager;
 
 // 共通アニメーションの番号

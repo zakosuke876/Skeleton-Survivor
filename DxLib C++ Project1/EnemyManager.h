@@ -11,12 +11,13 @@ class ItemManager;
 class SoundManager;
 class MagicEffectManager;
 class Random;
+class CollisionSystem;
 
 
 class EnemyManager {
 public:
 
-	EnemyManager(Random& random);
+	EnemyManager(Random& random, const CollisionSystem& collisionSystem);
 	~EnemyManager();
 	void Reset(); // ゲームリセット処理
 	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
@@ -38,6 +39,7 @@ private:
 
 	// Gameが所有する本体を参照で借用
 	Random& random;
+	const CollisionSystem& collisionSystem;
 
 	void Spawn();
 

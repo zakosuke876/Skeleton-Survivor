@@ -17,7 +17,8 @@ GameScene::GameScene(const SceneContext& context)
     : soundManager(context.soundManager), fontManager(context.fontManager), ground(context.ground),
       result(context.result), inputManager(context.inputManager), player(context.player),
       scoreManager(context.scoreManager), itemManager(context.itemManager), pauseScene(context.pauseScene),
-      enemyManager(context.enemyManager), rankingManager(context.rankingManager), camera(context.camera)
+      enemyManager(context.enemyManager), rankingManager(context.rankingManager), camera(context.camera),
+      magicEffectManager(context.collisionSystem)
 {
 
 }

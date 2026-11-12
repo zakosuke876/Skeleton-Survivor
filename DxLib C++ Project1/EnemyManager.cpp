@@ -12,6 +12,7 @@
 #include "SpawnDataLoader.h"
 #include "GameConfig.h"
 #include "Random.h"
+#include "CollisionSystem.h"
 #include <algorithm>
 #include <cmath>
 #include "DxLib.h"
@@ -19,8 +20,8 @@
 
 #include "MagicEffectManager.h"
 
-EnemyManager::EnemyManager(Random& random)
-	: random(random)
+EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSystem)
+	: random(random), collisionSystem(collisionSystem)
 {
 	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyNormalDataLoader::Load(normalStatus))
@@ -205,17 +206,8 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 		// 非アクティブな敵は処理しない
 		if (!e->IsActive()) continue;
 
-		// プレイヤーの攻撃位置と敵の差分を求める
-		float dx = e->GetPos().x - playerHitBox.x;
-		float dz = e->GetPos().z - playerHitBox.z;
-
-		// 距離の2乗を求める
-		float distanceSq = dx * dx + dz * dz;
-
-		// 円どうしの当たり判定計算のために半径の合計を求める
-		float totalRadius = e->GetBodyRadius() + playerHitBox.radius;
-
-		if (distanceSq < totalRadius * totalRadius)
+		if (collisionSystem.IsCircleHit(playerHitBox.x, playerHitBox.z, playerHitBox.radius,
+			e->GetPos().x, e->GetPos().z, e->GetBodyRadius()))
 		{
 			// HPが0以下になった場合
 			if (e->TakeDamage(player.GetAttackPower(), soundManager))
@@ -249,14 +241,8 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& sound
 		// 攻撃判定が無効なら処理しない
 		if (!enemyHitBox.isAttackActive) continue;
 
-		float dx = player.GetPosition().x - enemyHitBox.x;
-		float dz = player.GetPosition().z - enemyHitBox.z;
-
-		float distanceSq = dx * dx + dz * dz;
-
-		float totalRadius = player.GetBodyRadius() + enemyHitBox.radius;
-
-		if (distanceSq < totalRadius * totalRadius)
+		if (collisionSystem.IsCircleHit(enemyHitBox.x, enemyHitBox.z, enemyHitBox.radius,
+			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
 		{
 			// 攻撃力を取得してその値分のダメージ
 			player.TakeDamage(e->GetAttackPower(), soundManager);

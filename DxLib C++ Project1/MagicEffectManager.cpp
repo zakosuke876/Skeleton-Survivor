@@ -1,9 +1,12 @@
 ﻿#include "MagicEffectManager.h"
 #include "Player.h"
+#include "CollisionSystem.h"
 #include "DxLib.h"
 #include <algorithm>
 
-MagicEffectManager::MagicEffectManager() {
+MagicEffectManager::MagicEffectManager(const CollisionSystem& collisionSystem)
+	: collisionSystem(collisionSystem)
+{
 
 	// スプライトシートを分割して読み込む
 	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
@@ -41,6 +44,22 @@ void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soun
 		// 非アクティブな魔法は処理しない
 		if (!e.IsActive()) continue;
 
+		if (collisionSystem.IsCircleHit(e.GetPos().x, e.GetPos().z, e.GetRadius(),
+			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
+		{
+			// 当たった魔法を無効化
+			e.SetActive(false);
+
+			// プレイヤーにダメージを与える
+			player.TakeDamage(e.GetDamage(), soundManager);
+		}
+	}
+
+	/*for (auto& e : effects)
+	{
+		// 非アクティブな魔法は処理しない
+		if (!e.IsActive()) continue;
+
 		// 魔法とプレイヤーの差分を求める
 		float dx = player.GetPosition().x - e.GetPos().x;
 		float dz = player.GetPosition().z - e.GetPos().z;
@@ -59,7 +78,7 @@ void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soun
 			// プレイヤーにダメージを与える
 			player.TakeDamage(e.GetDamage(), soundManager);
 		}
-	}
+	}*/
 }
 
 void MagicEffectManager::Update(const Player& player, float deltaTime) {
