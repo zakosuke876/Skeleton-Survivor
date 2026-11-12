@@ -206,8 +206,9 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 		// 非アクティブな敵は処理しない
 		if (!e->IsActive()) continue;
 
-		if (collisionSystem.IsCircleHit(playerHitBox.x, playerHitBox.z, playerHitBox.radius,
-			e->GetPos().x, e->GetPos().z, e->GetBodyRadius()))
+		// 攻撃側は攻撃判定、被弾側は体で当たり判定を計算する
+		if (collisionSystem.IsCircleHit(playerHitBox.x, playerHitBox.z, playerHitBox.radius, // プレイヤーの攻撃判定
+			e->GetPos().x, e->GetPos().z, e->GetBodyRadius())) // 敵の体
 		{
 			// HPが0以下になった場合
 			if (e->TakeDamage(player.GetAttackPower(), soundManager))
@@ -241,8 +242,9 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& sound
 		// 攻撃判定が無効なら処理しない
 		if (!enemyHitBox.isAttackActive) continue;
 
-		if (collisionSystem.IsCircleHit(enemyHitBox.x, enemyHitBox.z, enemyHitBox.radius,
-			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
+		// 攻撃側は攻撃判定、被弾側は体で当たり判定を計算する
+		if (collisionSystem.IsCircleHit(enemyHitBox.x, enemyHitBox.z, enemyHitBox.radius, // 敵の攻撃判定
+			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius())) // プレイヤーの体
 		{
 			// 攻撃力を取得してその値分のダメージ
 			player.TakeDamage(e->GetAttackPower(), soundManager);
