@@ -16,7 +16,7 @@ public:
 	bool IsActive() const { return isActive; }
 
 	// 座標を取得する
-	VECTOR GetPos() const { return VGet(x, y, z); }
+	VECTOR GetPosition() const { return VGet(x, y, z); }
 
 	// 半径を取得する(当たり判定用)
 	float GetRadius() const { return MAGIC_RADIUS; }

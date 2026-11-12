@@ -44,7 +44,7 @@ void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soun
 		// 非アクティブな魔法は処理しない
 		if (!e.IsActive()) continue;
 
-		if (collisionSystem.IsCircleHit(e.GetPos().x, e.GetPos().z, e.GetRadius(),
+		if (collisionSystem.IsCircleHit(e.GetPosition().x, e.GetPosition().z, e.GetRadius(),
 			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
 		{
 			// 当たった魔法を無効化

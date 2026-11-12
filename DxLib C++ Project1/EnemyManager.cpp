@@ -208,7 +208,7 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 
 		// 攻撃側は攻撃判定、被弾側は体で当たり判定を計算する
 		if (collisionSystem.IsCircleHit(playerHitBox.x, playerHitBox.z, playerHitBox.radius, // プレイヤーの攻撃判定
-			e->GetPos().x, e->GetPos().z, e->GetBodyRadius())) // 敵の体
+			e->GetPosition().x, e->GetPosition().z, e->GetBodyRadius())) // 敵の体
 		{
 			// HPが0以下になった場合
 			if (e->TakeDamage(player.GetAttackPower(), soundManager))
@@ -220,10 +220,10 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 				CountEnemyKill(e->GetEnemyType());
 
 				// 回復アイテム生成依頼(確率)
-				itemManager.DropRecoveryItem(e->GetPos().x, e->GetPos().y, e->GetPos().z);
+				itemManager.DropRecoveryItem(e->GetPosition().x, e->GetPosition().y, e->GetPosition().z);
 
 				// 経験値アイテム生成依頼(確定)
-				itemManager.DropExpItem(e->GetPos().x, e->GetPos().y, e->GetPos().z);
+				itemManager.DropExpItem(e->GetPosition().x, e->GetPosition().y, e->GetPosition().z);
 			}
 		}
 	}

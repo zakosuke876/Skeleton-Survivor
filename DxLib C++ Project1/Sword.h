@@ -11,7 +11,7 @@ public:
 	void Update(int playerModelHandle);
 	void Draw() const;
 
-	VECTOR GetPos() const { return swordPos; }
+	VECTOR GetPosition() const { return swordPos; }
 
 private:
 

@@ -70,7 +70,7 @@ public:
 	// Getter
 	// ----------------------------------------
 
-	VECTOR GetPos() const { return VGet(x, y, z); }
+	VECTOR GetPosition() const { return VGet(x, y, z); }
 
 
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す

@@ -438,8 +438,8 @@ void Player::UpdateAttack() {
 		bool isAttackHitActive = (animTime >= ATTACK_HIT_START_FRAME && animTime <= ATTACK_HIT_END_FRAME);
 
 		// 構造体変数に代入
-		attackHitBox.x = sword.GetPos().x;
-		attackHitBox.z = sword.GetPos().z;
+		attackHitBox.x = sword.GetPosition().x;
+		attackHitBox.z = sword.GetPosition().z;
 		attackHitBox.radius = attackRadius;
 		attackHitBox.isAttackActive = isAttackHitActive;
 	}

@@ -12,7 +12,7 @@ public:
 	void Update(int enemyModelHandle);
 	void Draw() const;
 
-	VECTOR GetPos() const { return weaponPos; }
+	VECTOR GetPosition() const { return weaponPos; }
 
 private:
 
