@@ -14,11 +14,9 @@
 #include "RankingManager.h"
 #include "Random.h"
 #include "InputManager.h"
-
-
 #include "SceneManager.h"
 #include "SceneContext.h"
-
+#include "CollisionSystem.h"
 #include "DxLib.h"
 #include <memory>
 
@@ -40,9 +38,10 @@ private:
 	void Update();
 	void Draw();
 
-	// 乱数の本体。各クラスへ注入するため、注入先より先に宣言する
+	// 各クラスへ注入するため、注入先より先に宣言する
 	Random random;
 	InputManager inputManager;
+	CollisionSystem collisionSystem;
 
 	Ground ground;
 	Camera camera;

@@ -8,9 +8,10 @@
 #include "RecoveryItemDataLoader.h"
 #include "ExpItemDataLoader.h"
 #include "Random.h"
+#include "CollisionSystem.h"
 
-ItemManager::ItemManager(Random& random)
-	: random(random)
+ItemManager::ItemManager(Random& random, const CollisionSystem& collisionSystem)
+	: random(random), collisionSystem(collisionSystem)
 {
 
 	// JSONファイルを読み込み、アイテムドロップ関係のデータを取得する
@@ -130,16 +131,8 @@ void ItemManager::CheckPlayerCollision(Player& player, const SoundManager& sound
 
 	for (auto& item : items)
 	{
-		float dx = player.GetPosition().x - item->GetPosition().x;
-		float dz = player.GetPosition().z - item->GetPosition().z;
-
-		// 距離の2乗を求める
-		float distanceSq = dx * dx + dz * dz;
-
-		// 円どうしの当たり判定計算のために半径の合計を求める
-		float totalRadius = player.GetBodyRadius() + item->GetRadius();
-
-		if (distanceSq < totalRadius * totalRadius)
+		if (collisionSystem.IsCircleHit(player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius(),
+			item->GetPosition().x, item->GetPosition().z, item->GetRadius()))
 		{
 			item->OnPickUp(player, soundManager);
 			item->SetActive(false);

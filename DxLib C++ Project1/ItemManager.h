@@ -10,11 +10,12 @@
 class Player;
 class SoundManager;
 class Random;
+class CollisionSystem;
 
 class ItemManager {
 public:
 
-	ItemManager(Random& random);
+	ItemManager(Random& random, const CollisionSystem& collisionSystem);
 	~ItemManager();
 	void Reset(); // ゲームリセット処理
 	void Update();
@@ -30,6 +31,7 @@ private:
 
 	// Gameが所有する本体を参照で借用
 	Random& random;
+	const CollisionSystem& collisionSystem;
 
 	// アイテム管理
 	std::vector<std::unique_ptr<Item>> items;
