@@ -31,6 +31,7 @@ public:
 	// TitleSceneで使用する参照をまとめた構造体
 	struct TitleContext {
 		const SoundManager& soundManager;
+		const FontManager& fontManager;
 		const InputManager& inputManager;
 		const RankingManager& rankingManager;
 	};
