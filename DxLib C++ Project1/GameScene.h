@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "Scene.h"
-#include "MagicEffectManager.h"
 #include "SceneContext.h"
 
 // 前方宣言
@@ -55,5 +54,5 @@ private:
 	EnemyManager& enemyManager;
 	RankingManager& rankingManager;
 	Camera& camera;
-	MagicEffectManager magicEffectManager;
+	MagicEffectManager& magicEffectManager;
 };

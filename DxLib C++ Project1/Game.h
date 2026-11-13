@@ -17,6 +17,8 @@
 #include "SceneManager.h"
 #include "SceneContext.h"
 #include "CollisionSystem.h"
+#include "MagicEffect.h"
+#include "MagicEffectManager.h"
 #include "DxLib.h"
 #include <memory>
 
@@ -46,6 +48,7 @@ private:
 	Ground ground;
 	Camera camera;
 	Player player;
+	MagicEffectManager magicEffectManager;
 	EnemyManager enemyManager;
 	ScoreManager scoreManager;
 	ItemManager itemManager;

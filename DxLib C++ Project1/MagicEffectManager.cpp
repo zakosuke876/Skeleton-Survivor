@@ -7,7 +7,6 @@
 MagicEffectManager::MagicEffectManager(const CollisionSystem& collisionSystem)
 	: collisionSystem(collisionSystem)
 {
-
 	// スプライトシートを分割して読み込む
 	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
 }

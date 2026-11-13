@@ -11,6 +11,7 @@
 #include "RankingManager.h"
 #include "Camera.h"
 #include "InputManager.h"
+#include "MagicEffectManager.h"
 #include "DxLib.h"
 
 GameScene::GameScene(const SceneContext& context) 
@@ -18,7 +19,7 @@ GameScene::GameScene(const SceneContext& context)
       result(context.result), inputManager(context.inputManager), player(context.player),
       scoreManager(context.scoreManager), itemManager(context.itemManager), pauseScene(context.pauseScene),
       enemyManager(context.enemyManager), rankingManager(context.rankingManager), camera(context.camera),
-      magicEffectManager(context.collisionSystem)
+      magicEffectManager(context.magicEffectManager)
 {
 
 }

@@ -2,9 +2,10 @@
 #include "GameConfig.h"
 
 Game::Game()
-    : ground(random), player(random, inputManager), enemyManager(random, collisionSystem), itemManager(random, collisionSystem), pauseScene(inputManager),
-      context{soundManager, fontManager, ground, result, inputManager, collisionSystem, player, scoreManager, itemManager, pauseScene,
-              enemyManager, rankingManager, camera},
+    : ground(random), player(random, inputManager), magicEffectManager(collisionSystem), enemyManager(random, collisionSystem),
+      itemManager(random, collisionSystem), pauseScene(inputManager),
+      context{soundManager, fontManager, ground, result, inputManager, player, scoreManager, itemManager, pauseScene,
+              enemyManager, rankingManager, camera, magicEffectManager},
       sceneManager(context)
 {
 
