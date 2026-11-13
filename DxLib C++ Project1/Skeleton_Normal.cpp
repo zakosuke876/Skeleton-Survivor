@@ -88,9 +88,9 @@ Skeleton_Normal::Skeleton_Normal(float startX, float startY, float startZ, int s
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
-void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Skeleton_Normal::Update(Player& player, float deltaTime) {
 
-	Enemy::Update(player, deltaTime, magicEffectManager);
+	Enemy::Update(player, deltaTime);
 
 	switch (state)
 	{
@@ -114,7 +114,7 @@ void Skeleton_Normal::Update(Player& player, float deltaTime, MagicEffectManager
 
 		case ENEMY_ATTACK:
 
-			UpdateAttack(player, deltaTime, magicEffectManager);
+			UpdateAttack(player, deltaTime);
 
 			break;
 

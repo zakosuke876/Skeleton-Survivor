@@ -38,7 +38,7 @@ void Enemy::SwitchAnimation(int animationNum) {
 	currentAnim = animationNum;
 }
 
-void Enemy::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Enemy::Update(Player& player, float deltaTime) {
 
 	// アニメーション再生タイマーを進める
 	UpdateAnim();
@@ -111,7 +111,7 @@ void Enemy::UpdateChase(const Player& player) {
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
-void Enemy::UpdateAttack(const Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Enemy::UpdateAttack(const Player& player, float deltaTime) {
 
 	// 攻撃判定を無効
 	hitBox.isAttackActive = false;

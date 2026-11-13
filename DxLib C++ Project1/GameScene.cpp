@@ -67,7 +67,7 @@ SceneType GameScene::Update(float deltaTime) {
             player.Update(deltaTime, ground);
 
 
-            enemyManager.Update(player, deltaTime, magicEffectManager);
+            enemyManager.Update(player, deltaTime);
             scoreManager.Update(deltaTime);
             itemManager.Update();
             camera.UpdateCamera(player.GetPosition());
@@ -126,7 +126,7 @@ SceneType GameScene::Update(float deltaTime) {
             player.Update(deltaTime, ground);
 
 
-            enemyManager.Update(player, deltaTime, magicEffectManager);
+            enemyManager.Update(player, deltaTime);
             camera.UpdateCamera(player.GetPosition());
             rankingManager.Update(deltaTime);
 

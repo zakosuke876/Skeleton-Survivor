@@ -17,10 +17,10 @@ class CollisionSystem;
 class EnemyManager {
 public:
 
-	EnemyManager(Random& random, const CollisionSystem& collisionSystem);
+	EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager);
 	~EnemyManager();
 	void Reset(); // ゲームリセット処理
-	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
+	void Update(Player& player, float deltaTime);
 	void Draw() const;
 	void DrawUI() const;
 	void CheckPlayerAttackHit(const Player& player, ScoreManager& scoreManager, ItemManager& itemManager, const SoundManager& soundManager);
@@ -40,6 +40,7 @@ private:
 	// Gameが所有する本体を参照で借用
 	Random& random;
 	const CollisionSystem& collisionSystem;
+	MagicEffectManager& magicEffectManager;
 
 	void Spawn();
 

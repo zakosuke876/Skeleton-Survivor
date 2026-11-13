@@ -101,9 +101,9 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 	MV1SetPosition(modelHandle, VGet(x, y, z));
 }
 
-void Skeleton_Warrior::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Skeleton_Warrior::Update(Player& player, float deltaTime) {
 
-	Enemy::Update(player, deltaTime, magicEffectManager);
+	Enemy::Update(player, deltaTime);
 
 	// 死亡中・復活中は無敵タイマーが切れないようにする
 	if (state == ENEMY_DEATH || state == SKELETON_W_RESURRECTION)
@@ -134,7 +134,7 @@ void Skeleton_Warrior::Update(Player& player, float deltaTime, MagicEffectManage
 
 		case ENEMY_ATTACK:
 
-			UpdateAttack(player, deltaTime, magicEffectManager);
+			UpdateAttack(player, deltaTime);
 
 			break;
 

@@ -27,7 +27,7 @@ public:
 
 	Skeleton_Warrior(float startX, float startY, float startZ, int skeletonWModel, int TexHandle, SkeletonWarriorStatus& warriorData, float growRate, Random& random);
 	~Skeleton_Warrior() override = default;
-	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
+	void Update(Player& player, float deltaTime) override;
 	bool TakeDamage(int value, const SoundManager& soundManager) override;
 	EnemyType GetEnemyType() const override { return enemyType; }
 

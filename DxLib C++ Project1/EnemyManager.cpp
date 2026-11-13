@@ -14,14 +14,14 @@
 #include "Random.h"
 #include "CollisionSystem.h"
 #include <algorithm>
-#include <cmath>
+#include <cmath>+
 #include "DxLib.h"
 
 
 #include "MagicEffectManager.h"
 
-EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSystem)
-	: random(random), collisionSystem(collisionSystem)
+EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager)
+	: random(random), collisionSystem(collisionSystem), magicEffectManager(magicEffectManager)
 {
 	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyNormalDataLoader::Load(normalStatus))
@@ -126,13 +126,13 @@ void EnemyManager::Spawn() {
 
 		case ENEMY_MAGE:
 
-			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, staffModelHandle, staffTexHandle, enemyGrowRate, random));
+			enemies.emplace_back(std::make_unique<Skeleton_Mage>(x, 0.0f, z, skeletonMageModelHandle, skeletonMageTexHandle, mageStatus, staffModelHandle, staffTexHandle, enemyGrowRate, random, magicEffectManager));
 
 			break;
 	}
 }
 
-void EnemyManager::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManger) {
+void EnemyManager::Update(Player& player, float deltaTime) {
 
 	// 削除前の敵の数を保持
 	size_t enemyPrevCount = enemies.size();
@@ -160,7 +160,7 @@ void EnemyManager::Update(Player& player, float deltaTime, MagicEffectManager& m
 	// 敵の更新
 	for (auto& e : enemies)
 	{
-		e->Update(player, deltaTime, magicEffectManger);
+		e->Update(player, deltaTime);
 	}
 
 	// 非アクティブな敵の削除

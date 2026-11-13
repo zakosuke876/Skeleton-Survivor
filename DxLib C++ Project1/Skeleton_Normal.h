@@ -26,7 +26,7 @@ public:
 
 	Skeleton_Normal(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonNormalStatus& normalData, float growRate, Random& random);
 	~Skeleton_Normal() override = default;
-	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
+	void Update(Player& player, float deltaTime) override;
 	EnemyType GetEnemyType() const override { return enemyType; }
 
 private:

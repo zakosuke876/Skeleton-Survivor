@@ -8,7 +8,6 @@
 class Player;
 class SoundManager;
 class Random;
-class MagicEffectManager;
 
 // 共通アニメーションの番号
 // 各敵のアニメーションはこの順番に合わせて定義する
@@ -62,7 +61,7 @@ public:
 	Enemy(Random& random);
 	virtual ~Enemy();
 
-	virtual void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
+	virtual void Update(Player& player, float deltaTime);
 	void Draw() const;
 	void DrawUI() const;
 
@@ -91,7 +90,7 @@ protected:
 
 	virtual void UpdatePatrol(const Player& player);
 	virtual void UpdateChase(const Player& player);
-	virtual void UpdateAttack(const Player& player, float deltaTime, MagicEffectManager& magicEffectManager);
+	virtual void UpdateAttack(const Player& player, float deltaTime);
 
 
 	float MoveToward(float targetX, float targetZ, float speed);

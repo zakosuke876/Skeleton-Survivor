@@ -18,15 +18,18 @@ class MagicEffectManager;
 class Skeleton_Mage : public Enemy {
 public:
 
-	Skeleton_Mage(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate, Random& random);
+	Skeleton_Mage(float startX, float startY, float startZ, int skeletonNModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate, Random& random, MagicEffectManager& magicEffectManager);
 	~Skeleton_Mage() override = default;
-	void Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
+	void Update(Player& player, float deltaTime) override;
 	EnemyType GetEnemyType() const override { return enemyType; }
 
 private:
 
+	// Gameが所有する本体を参照で借用
+	MagicEffectManager& magicEffectManager;
+
 	void UpdateSpawn() override;
-	void UpdateAttack(const Player& player, float deltaTime, MagicEffectManager& magicEffectManager) override;
+	void UpdateAttack(const Player& player, float deltaTime) override;
 	void UpdateDamage() override;
 	void UpdateDeath(float deltaTime) override;
 	void DrawModel() const override;

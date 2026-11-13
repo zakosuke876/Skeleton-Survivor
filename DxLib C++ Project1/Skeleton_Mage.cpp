@@ -21,8 +21,9 @@ const EnemyAnimData SKELETON_MAGE_ANIM_TABLE[] = {
 };
 
 
-Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData, int staffModel, int staffTexHandle, float growRate, Random& random)
-	: Enemy(random)
+Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skeletonMModel, int TexHandle, SkeletonMageStatus& mageData,
+	int staffModel, int staffTexHandle, float growRate, Random& random, MagicEffectManager& magicEffectManager)
+	: Enemy(random), magicEffectManager(magicEffectManager)
 {
 
 	x = startX;
@@ -86,9 +87,9 @@ Skeleton_Mage::Skeleton_Mage(float startX, float startY, float startZ, int skele
 	staff.SetUp(staffModel, staffTexHandle, "handslot.r");
 }
 
-void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Skeleton_Mage::Update(Player& player, float deltaTime) {
 
-	Enemy::Update(player, deltaTime, magicEffectManager);
+	Enemy::Update(player, deltaTime);
 
 	switch (state)
 	{
@@ -112,7 +113,7 @@ void Skeleton_Mage::Update(Player& player, float deltaTime, MagicEffectManager& 
 
 	case ENEMY_ATTACK:
 
-		UpdateAttack(player, deltaTime, magicEffectManager);
+		UpdateAttack(player, deltaTime);
 
 		break;
 
@@ -162,7 +163,7 @@ void Skeleton_Mage::UpdateSpawn() {
 	}
 }
 
-void Skeleton_Mage::UpdateAttack(const Player& player, float deltaTime, MagicEffectManager& magicEffectManager) {
+void Skeleton_Mage::UpdateAttack(const Player& player, float deltaTime) {
 
 	// 攻撃判定を無効
 	hitBox.isAttackActive = false;
