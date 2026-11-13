@@ -131,8 +131,8 @@ void ItemManager::CheckPlayerCollision(Player& player, const SoundManager& sound
 
 	for (auto& item : items)
 	{
-		if (collisionSystem.IsCircleHit(player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius(),
-			item->GetPosition().x, item->GetPosition().z, item->GetRadius()))
+		if (collisionSystem.IsCircleHit(item->GetPosition().x, item->GetPosition().z, item->GetRadius(),
+			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
 		{
 			item->OnPickUp(player, soundManager);
 			item->SetActive(false);
