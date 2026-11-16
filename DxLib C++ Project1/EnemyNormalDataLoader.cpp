@@ -1,4 +1,5 @@
 ﻿#include "EnemyNormalDataLoader.h"
+
 #include "EnemyStatusTypes.h"
 #include "JsonPath.h"
 #include "JsonLoader.h"

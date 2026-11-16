@@ -159,6 +159,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyDataLoader.cpp" />
     <ClCompile Include="EnemyMageDataLoader.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyNormalDataLoader.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyDataLoader.h" />
     <ClInclude Include="EnemyMageDataLoader.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemyNormalDataLoader.h" />

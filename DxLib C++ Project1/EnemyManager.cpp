@@ -6,9 +6,7 @@
 #include "Skeleton_Normal.h"
 #include "Skeleton_Warrior.h"
 #include "Skeleton_Mage.h"
-#include "EnemyNormalDataLoader.h"
-#include "EnemyWarriorDataLoader.h"
-#include "EnemyMageDataLoader.h"
+#include "EnemyDataLoader.h"
 #include "SpawnDataLoader.h"
 #include "GameConfig.h"
 #include "Random.h"
@@ -24,19 +22,19 @@ EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSyste
 	: random(random), collisionSystem(collisionSystem), magicEffectManager(magicEffectManager)
 {
 	// JSONからSkeleton_Normalのデータ読み込みを指示
-	if (!EnemyNormalDataLoader::Load(normalStatus))
+	if (!EnemyDataLoader::LoadNormal(normalStatus))
 	{
 		printfDx("ノーマルスケルトンのデータ読み込みに失敗しました\n");
 	}
 
 	// JSONからSkeleton_Warriorのデータ読み込みを指示
-	if (!EnemyWarriorDataLoader::Load(warriorStatus))
+	if (!EnemyDataLoader::LoadWarrior(warriorStatus))
 	{
 		printfDx("ウォーリアースケルトンのデータ読み込みに失敗しました\n");
 	}
 
 	// JSONからSkeleton_Mageのデータ読み込みを指示
-	if (!EnemyMageDataLoader::Load(mageStatus))
+	if (!EnemyDataLoader::LoadMage(mageStatus))
 	{
 		printfDx("メイジスケルトンのデータ読み込みに失敗しました\n");
 	}

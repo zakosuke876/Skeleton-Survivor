@@ -1,6 +1,5 @@
 ﻿#include "Skeleton_Warrior.h"
 #include "Player.h"
-#include "EnemyWarriorDataLoader.h"
 #include "GameConfig.h"
 #include "Random.h"
 #include "DxLib.h"

@@ -1,6 +1,5 @@
 ﻿#include "Skeleton_Normal.h"
 #include "Player.h"
-#include "EnemyNormalDataLoader.h"
 #include "GameConfig.h"
 #include "DxLib.h"
 
