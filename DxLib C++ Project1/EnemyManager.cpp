@@ -12,11 +12,9 @@
 #include "Random.h"
 #include "CollisionSystem.h"
 #include <algorithm>
-#include <cmath>+
 #include "DxLib.h"
-
-
 #include "MagicEffectManager.h"
+#include "Logger.h"
 
 EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager)
 	: random(random), collisionSystem(collisionSystem), magicEffectManager(magicEffectManager)
@@ -24,25 +22,25 @@ EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSyste
 	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyDataLoader::LoadNormal(normalStatus))
 	{
-		printfDx("ノーマルスケルトンのデータ読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "ノーマルスケルトンのデータ読み込みに失敗しました");
 	}
 
 	// JSONからSkeleton_Warriorのデータ読み込みを指示
 	if (!EnemyDataLoader::LoadWarrior(warriorStatus))
 	{
-		printfDx("ウォーリアースケルトンのデータ読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "ウォーリアースケルトンのデータ読み込みに失敗しました");
 	}
 
 	// JSONからSkeleton_Mageのデータ読み込みを指示
 	if (!EnemyDataLoader::LoadMage(mageStatus))
 	{
-		printfDx("メイジスケルトンのデータ読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "メイジスケルトンのデータ読み込みに失敗しました");
 	}
 
 	// JSONから敵のスポーン情報のデータ読み込みを指示
 	if (!SpawnDataLoader::Load(spawnConfig))
 	{
-		printfDx("スポーンデータの読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "スポーンデータの読み込みに失敗しました");
 	}
 
 	// モデルを読み込む
