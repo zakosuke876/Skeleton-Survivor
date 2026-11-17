@@ -1,11 +1,11 @@
 ﻿#pragma once
 #include "DxLib.h"
-#include "PlayerStatus.h"
-#include "GameConfig.h"
 #include <vector>
 #include <string>
+#include "PlayerStatus.h"
+#include "GameConfig.h"
 #include "Sword.h"
-
+#include "Effect.h"
 #include "GroundEffect.h"
 
 // アニメーションの種類
@@ -53,12 +53,13 @@ class SoundManager;
 class Ground;
 class Random;
 class InputManager;
+class SpriteManager;
 
 
 class Player {
 public:
 
-	Player(Random& random, const InputManager& inputManager);
+	Player(Random& random, const InputManager& inputManager, const SpriteManager& spriteManager);
 	void Reset(); // ゲームリセット処理
 	void Update(float deltaTime, const Ground& ground);
 
@@ -101,8 +102,10 @@ private:
 	// Gameが所有する本体を参照で借用
 	Random& random;
 	const InputManager& inputManager;
+	const SpriteManager& spriteManager;
 
 	GroundEffect groundEffect;
+	Effect levelUpEffect;
 
 	// ----------------------------------------
 	// 各状態の更新処理
@@ -195,9 +198,6 @@ private:
 	// 死亡後消えるまでの時間(秒)
 	float hideTime = -1.0f;
 
-	// レベルアップテキストの表示時間(秒)
-	float levelUpTextActiveTime = -1.0f;
-
 	// ----------------------------------------
 	// モデル・描画
 	// ----------------------------------------
@@ -254,15 +254,6 @@ private:
 	// ----------------------------------------
 
 	float deathTimer = 0.0f;
-
-	// ----------------------------------------
-	// レベルアップ演出(カウンター)
-	// ----------------------------------------
-
-	// 画面に表示させるかどうか
-	bool isLevelUpTextActive = false;
-	float levelupTextActiveTimer = 0.0f;
-
 
 	// ----------------------------------------
 	// 攻撃判定

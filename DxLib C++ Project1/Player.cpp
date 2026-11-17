@@ -8,6 +8,7 @@
 #include "Random.h"
 #include "InputManager.h"
 #include "Logger.h"
+#include "SpriteManager.h"
 #include "DxLib.h"
 #include <cmath>
 #include <algorithm>
@@ -27,8 +28,8 @@ const PlayerAnimData PLAYER_ANIM_TABLE[] = {
 	{6,  0.3f, false},
 };
 
-Player::Player(Random& random, const InputManager& inputManager)
-	: random(random), inputManager(inputManager), groundEffect(random)
+Player::Player(Random& random, const InputManager& inputManager, const SpriteManager& spriteManager)
+	: random(random), inputManager(inputManager), groundEffect(random), spriteManager(spriteManager)
 {
 
 	if (!PlayerDataLoader::Load((playerDataTable)))
@@ -91,11 +92,7 @@ void Player::Reset() {
 
 	hideTime = playerDataTable.hideTime;
 
-	levelUpTextActiveTime = playerDataTable.levelUpTextActiveTime;
-
 	exp = 0;
-	isLevelUpTextActive = false;
-	levelupTextActiveTimer = 0.0f;
 
 	invincibleTimer = 0.0f;
 	deathTimer = 0.0f;
@@ -203,17 +200,9 @@ void Player::Update(float deltaTime, const Ground& ground) {
 		}
 	}
 
-	// レベルアップ中の場合のみ処理する
-	if (isLevelUpTextActive)
-	{
-		levelupTextActiveTimer += deltaTime;
-
-		if (levelupTextActiveTimer >= levelUpTextActiveTime)
-		{
-			levelupTextActiveTimer = 0.0f;
-			isLevelUpTextActive = false;
-		}
-	}
+	// レベルアップ処理
+	levelUpEffect.SetPosition(VGet(x, y + 40.0f, z));
+	levelUpEffect.Update(deltaTime);
 
 	// 移動範囲を制限
 	ClampPosition();
@@ -298,8 +287,7 @@ void Player::LevelUp(const SoundManager& soundManager) {
 
 	// 次のレベルアップにかかる経験値量を1.3倍にする
 	nextLevelExp = static_cast<int>(nextLevelExp * nextLevelExpMultiplier);
-	isLevelUpTextActive = true;
-	levelupTextActiveTimer = 0.0f;
+	levelUpEffect.Play(VGet(x, y + 40.0f, z), spriteManager.GetClip(EffectType::LevelUp));
 }
 
 void Player::Draw() const {
@@ -322,18 +310,7 @@ void Player::DrawUI(const FontManager& fontManager) const {
 
 	DrawExpGauge(fontManager);
 
-	// レベルアップ中のみテキストを表示する
-	if (!isLevelUpTextActive) return;
-
-	// レベルアップテキストの表示制御
-	VECTOR posTex = VGet(x, y, z);
-	posTex.x -= 30.0f;
-	posTex.y += 40.0f;
-
-	// ワールド座標をスクリーン座標に変換
-	VECTOR screenPosTex = ConvWorldPosToScreenPos(posTex);
-
-	DrawStringToHandle(screenPosTex.x, screenPosTex.y, "LEVEL UP!!", GetColor(255, 0, 0), fontManager.GetPlayerUIFont());
+	levelUpEffect.Draw();
 }
 
 // スポーン状態

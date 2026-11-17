@@ -40,8 +40,6 @@ bool PlayerDataLoader::LoadData(const char* jsonPath, PlayerStatus& outData) {
 
 		outData.hideTime = data.at("hideTime").get<float>();
 
-		outData.levelUpTextActiveTime = data.at("levelUpTextActiveTime").get<float>();
-
 		outData.scale = data.at("scale").get<float>();
 
 		outData.modelPath = data.at("modelPath").get<std::string>();

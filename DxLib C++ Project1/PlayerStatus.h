@@ -16,7 +16,6 @@ struct PlayerStatus {
 	float nextLevelExpMultiplier; // レベルアップに必要な経験値の倍率
 	float invincibleTime;         // 無敵時間
 	float hideTime;               // 死亡後に消えるまでの時間
-	float levelUpTextActiveTime;  // レベルアップ演出(テキスト)の表示時間
 	float scale;                  // モデルの拡大倍率
 	std::string modelPath;        // モデルファイルのパス
 	std::string texturePath;      // テクスチャファイルのパス

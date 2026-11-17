@@ -19,6 +19,7 @@
 #include "CollisionSystem.h"
 #include "MagicEffect.h"
 #include "MagicEffectManager.h"
+#include "SpriteManager.h"
 #include "DxLib.h"
 #include <memory>
 
@@ -44,6 +45,7 @@ private:
 	Random random;
 	InputManager inputManager;
 	CollisionSystem collisionSystem;
+	SpriteManager spriteManager;
 
 	Ground ground;
 	Camera camera;

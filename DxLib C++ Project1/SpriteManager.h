@@ -1,17 +1,18 @@
 ﻿#pragma once
 #include <array>
+#include "AnimationClip.h"
 
 class SpriteManager {
 public:
 
 	SpriteManager();
 	~SpriteManager();
+
+	// コピー禁止
 	SpriteManager(const SpriteManager&) = delete;
 	SpriteManager& operator = (const SpriteManager&) = delete;
 
-	int GetLevelUpTextFrameCount() const { return LEVEL_UP_ALL; }
-	int GetLevelUpTextFrameDuration() const { return LEVEL_UP_TEXT_FRAME_DURATION; }
-	int GetLevelUpTextHandle(int index) const { return levelUpTextHandles[index]; }
+	AnimationClip GetClip(EffectType type) const;
 
 private:
 
@@ -19,7 +20,7 @@ private:
 	static constexpr const char* LEVEL_UP_TEXT_PATH = "Textures/Effect/Text/LevelUp.png";
 
 	// 1コマの表示時間
-	static constexpr int LEVEL_UP_TEXT_FRAME_DURATION = 5;
+	static constexpr float LEVEL_UP_TEXT_FRAME_TIME = 0.03f;
 
 	// スプライトシートの総コマ数
 	static constexpr int LEVEL_UP_ALL = 43;
