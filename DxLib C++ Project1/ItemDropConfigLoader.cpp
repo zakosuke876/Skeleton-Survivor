@@ -1,6 +1,7 @@
 ﻿#include "ItemDropConfigLoader.h"
 #include "ItemDropConfig.h"
-#include "DxLib.h"
+#include "Logger.h"
+#include <string>
 #include "JsonPath.h"
 #include "JsonLoader.h"
 
@@ -36,7 +37,7 @@ bool ItemDropConfigLoader::LoadData(const char* jsonPath, ItemDropConfig& outDat
 		int total = outData.itemTypeRate.smallRate + outData.itemTypeRate.mediumRate + outData.itemTypeRate.largeRate;
 		if (total != 100)
 		{
-			printfDx("itemTypeRateの合計が100%%になっていません(合計:%d)\n", total);
+			WriteLog(LogLevel::Error, "itemTypeRateの合計が100%になっていません(合計: " + std::to_string(total) + ")");
 			return false;
 		}
 

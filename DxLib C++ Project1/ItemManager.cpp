@@ -9,6 +9,7 @@
 #include "ExpItemDataLoader.h"
 #include "Random.h"
 #include "CollisionSystem.h"
+#include "Logger.h"
 
 ItemManager::ItemManager(Random& random, const CollisionSystem& collisionSystem)
 	: random(random), collisionSystem(collisionSystem)
@@ -18,7 +19,7 @@ ItemManager::ItemManager(Random& random, const CollisionSystem& collisionSystem)
 	ItemDropConfig dropConfig;
 	if (!ItemDropConfigLoader::Load(dropConfig))
 	{
-		printfDx("アイテムドロップデータの読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "アイテムドロップデータの読み込みに失敗しました");
 	}
 
 	dropRate = dropConfig.dropRate;
@@ -31,13 +32,13 @@ ItemManager::ItemManager(Random& random, const CollisionSystem& collisionSystem)
 
 	if (!RecoveryItemDataLoader::Load(recoveryItemDataTable))
 	{
-		printfDx("回復アイテムデータの読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "回復アイテムデータの読み込みに失敗しました");
 	}
 
 	// 経験値アイテムデータを読み込む
 	if (!ExpItemDataLoader::Load(expItemDataTable))
 	{
-		printfDx("経験値アイテムデータの読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "経験値アイテムデータの読み込みに失敗しました");
 	}
 
 	// JSONから取得したgraphPathを使ってテクスチャを読み込む

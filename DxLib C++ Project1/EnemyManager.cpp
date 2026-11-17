@@ -250,6 +250,6 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& sound
 
 void EnemyManager::CountEnemyKill(EnemyType type) {
 
-	// 倒した敵の数を種類ごとに加算、保持
-	killCount[type]++;
+	// 倒した敵の数を種類ごとに加算、保持type]+;
+	// ItemDropConfigLoader+;
 }

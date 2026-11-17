@@ -7,6 +7,7 @@
 #include "PlayerDataLoader.h"
 #include "Random.h"
 #include "InputManager.h"
+#include "Logger.h"
 #include "DxLib.h"
 #include <cmath>
 #include <algorithm>
@@ -32,7 +33,7 @@ Player::Player(Random& random, const InputManager& inputManager)
 
 	if (!PlayerDataLoader::Load((playerDataTable)))
 	{
-		printfDx("プレイヤーデータの読み込みに失敗しました\n");
+		WriteLog(LogLevel::Error, "プレイヤーデータの読み込みに失敗しました");
 	}
 
 	// プレイヤーモデルを読み込む
