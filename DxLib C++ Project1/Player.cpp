@@ -201,7 +201,7 @@ void Player::Update(float deltaTime, const Ground& ground) {
 	}
 
 	// レベルアップ処理
-	levelUpEffect.SetPosition(VGet(x, y + 40.0f, z));
+	levelUpEffect.SetPosition(VGet(x, y + LEVELUP_EFFECT_Y_OFFSET, z));
 	levelUpEffect.Update(deltaTime);
 
 	// 移動範囲を制限
@@ -287,7 +287,7 @@ void Player::LevelUp(const SoundManager& soundManager) {
 
 	// 次のレベルアップにかかる経験値量を1.3倍にする
 	nextLevelExp = static_cast<int>(nextLevelExp * nextLevelExpMultiplier);
-	levelUpEffect.Play(VGet(x, y + 40.0f, z), spriteManager.GetClip(EffectType::LevelUp));
+	levelUpEffect.Play(VGet(x, y + LEVELUP_EFFECT_Y_OFFSET, z), spriteManager.GetClip(EffectType::LevelUp));
 }
 
 void Player::Draw() const {
@@ -304,6 +304,7 @@ void Player::Draw() const {
 
 void Player::DrawUI(const FontManager& fontManager) const {
 
+	deathEffect.Draw();
 	if (!isActive) return;
 
 	DrawHpGauge(fontManager);
@@ -446,6 +447,10 @@ void Player::UpdateDamage() {
 }
 
 void Player::UpdateDeath(float deltaTime) {
+
+
+
+	deathEffect.Update(deltaTime);
 
 	// 攻撃判定を無効
 	attackHitBox.isAttackActive = false;
@@ -604,5 +609,6 @@ void Player::Die() {
 	hp = 0;
 	isDead = true;
 	AnimSwitch(PLAYER_ANIM_DEATH);
+	deathEffect.Play(VGet(x, y + DEATH_EFFECT_Y_OFFSET, z), spriteManager.GetClip(EffectType::PlayerDeath));
 	state = PLAYER_DEATH;
 }

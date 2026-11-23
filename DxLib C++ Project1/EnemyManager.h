@@ -12,12 +12,13 @@ class SoundManager;
 class MagicEffectManager;
 class Random;
 class CollisionSystem;
+class EffectManager;
 
 
 class EnemyManager {
 public:
 
-	EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager);
+	EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager, EffectManager& effectManager);
 	~EnemyManager();
 	void Reset(); // ゲームリセット処理
 	void Update(Player& player, float deltaTime);
@@ -41,6 +42,7 @@ private:
 	Random& random;
 	const CollisionSystem& collisionSystem;
 	MagicEffectManager& magicEffectManager;
+	EffectManager& effectManager;
 
 	void Spawn();
 
@@ -105,4 +107,6 @@ private:
 
 	// 杖のテクスチャ
 	int staffTexHandle = -1;
+
+	static constexpr float DEATH_EFFECT_Y_OFFSET = 0.0f;
 };

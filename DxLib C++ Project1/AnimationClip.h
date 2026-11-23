@@ -2,13 +2,13 @@
 
 // エフェクトの種類
 enum class EffectType {
-	Attack,
-	Death,
 	LevelUp,
+	PlayerDeath,
+	EnemyDeath,
 	Count,
 };
 
-// 1アニメ分の再生データ
+// 1エフェクト分の再生データ
 struct AnimationClip {
 	const int* handles = nullptr; //
 	int handleNum = 0;            // 総コマ数

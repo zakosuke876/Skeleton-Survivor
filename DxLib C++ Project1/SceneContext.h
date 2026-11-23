@@ -14,6 +14,7 @@ class RankingManager;
 class Camera;
 class InputManager;
 class MagicEffectManager;
+class EffectManager;
 
 
 // 各シーンの生成に必要な依存をまとめた構造体。Gameで詰めて、SceneManagerが各シーンへ渡す。
@@ -31,4 +32,5 @@ struct SceneContext {
 	RankingManager& rankingManager;
 	Camera& camera;
 	MagicEffectManager& magicEffectManager;
+	EffectManager& effectManager;
 };

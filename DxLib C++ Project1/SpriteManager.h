@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <array>
+#include <vector>
 #include "AnimationClip.h"
 
 class SpriteManager {
@@ -16,27 +17,23 @@ public:
 
 private:
 
-	// 読み込むパス
-	static constexpr const char* LEVEL_UP_TEXT_PATH = "Textures/Effect/Text/LevelUp.png";
+	// 1アニメーション用のデータ構造体
+	struct AnimationData {
+		const char* path; // 読み込むパス
+		int frameCount;   // 分割総数
+		int splitX;       // 横方向の分割数
+		int splitY;       // 縦方向の分割数
+		int width;        // 横幅
+		int height;       // 縦幅
+		float frameTime;    // 1コマの再生時間
+		std::vector<int> handles; // データを格納する配列
+	};
 
-	// 1コマの表示時間
-	static constexpr float LEVEL_UP_TEXT_FRAME_TIME = 0.03f;
-
-	// スプライトシートの総コマ数
-	static constexpr int LEVEL_UP_ALL = 43;
-
-	// 列
-	static constexpr int LEVEL_UP_DIV_X = 6;
-
-	// 行
-	static constexpr int LEVEL_UP_DIV_Y = 8;
-
-	// 横幅
-	static constexpr int LEVEL_UP_WIDTH = 320;
-
-	// 縦幅
-	static constexpr int LEVEL_UP_HEIGHT = 128;
-
-	// 画像ハンドル
-	std::array<int, LEVEL_UP_ALL> levelUpTextHandles{};
+	// 全アニメーション情報をEffectTypeで引くテーブル
+	// EffectTypeの宣言順と行を合わせる
+	std::array<AnimationData, static_cast<int>(EffectType::Count)> animations = { {
+		{"Textures/Effect/Text/LevelUp.png", 43, 6, 8, 320, 128, 0.03f, {}},
+		{"Textures/Effect/Death/PlayerDeath.png",  50, 50, 1, 64, 64, 0.035f, {}},
+		{"Textures/Effect/Death/EnemyDeath.png", 12, 12, 1, 64, 64, 0.1f, {}},
+	} };
 };

@@ -71,6 +71,14 @@ public:
 
 	VECTOR GetPosition() const { return VGet(x, y, z); }
 
+	// 指定したボーンの座標を返す(死亡/復活アニメーションで動いた位置に追従する)
+	VECTOR GetBodyPosition() const;
+
+	// 取得するボーンの名前
+	static constexpr const char* BODY_BONE_NAME = "chest";
+
+
+
 
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す
 	EnemyAttackHitBox GetHitBox() const { return hitBox; }

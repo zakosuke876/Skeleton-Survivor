@@ -12,6 +12,7 @@
 #include "Camera.h"
 #include "InputManager.h"
 #include "MagicEffectManager.h"
+#include "EffectManager.h"
 #include "DxLib.h"
 
 GameScene::GameScene(const SceneContext& context) 
@@ -19,7 +20,7 @@ GameScene::GameScene(const SceneContext& context)
       result(context.result), inputManager(context.inputManager), player(context.player),
       scoreManager(context.scoreManager), itemManager(context.itemManager), pauseScene(context.pauseScene),
       enemyManager(context.enemyManager), rankingManager(context.rankingManager), camera(context.camera),
-      magicEffectManager(context.magicEffectManager)
+      magicEffectManager(context.magicEffectManager), effectManager(context.effectManager)
 {
 
 }
@@ -65,13 +66,12 @@ SceneType GameScene::Update(float deltaTime) {
             }
 
             player.Update(deltaTime, ground);
-
-
             enemyManager.Update(player, deltaTime);
             scoreManager.Update(deltaTime);
             itemManager.Update();
             camera.UpdateCamera(player.GetPosition());
             magicEffectManager.Update(player, deltaTime);
+            effectManager.Update(deltaTime);
 
             // 当たり判定チェック
             enemyManager.CheckPlayerAttackHit(player, scoreManager, itemManager, soundManager);
@@ -174,6 +174,7 @@ void GameScene::Draw() {
         enemyManager.DrawUI();
         scoreManager.Draw(fontManager);
         player.DrawUI(fontManager);
+        effectManager.Draw();
         pauseScene.Draw(fontManager);
 
         break;
@@ -198,7 +199,7 @@ void GameScene::Draw() {
         enemyManager.DrawUI();
         scoreManager.Draw(fontManager);
         player.DrawUI(fontManager);
-
+        effectManager.Draw();
         pauseScene.Draw(fontManager);
 
         break;

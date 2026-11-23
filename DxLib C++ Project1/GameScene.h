@@ -16,6 +16,7 @@ class EnemyManager;
 class RankingManager;
 class MagicEffectManager;
 class InputManager;
+class EffectManager;
 
 
 // ゲーム内の状態
@@ -55,4 +56,5 @@ private:
 	RankingManager& rankingManager;
 	Camera& camera;
 	MagicEffectManager& magicEffectManager;
+	EffectManager& effectManager;
 };

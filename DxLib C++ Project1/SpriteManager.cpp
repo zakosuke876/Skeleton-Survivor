@@ -2,38 +2,35 @@
 #include "Logger.h"
 #include "DxLib.h"
 
+// テーブルの各シートを読み込みハンドルを格納する
 SpriteManager::SpriteManager() {
 
-	// 全要素を-1で初期化
-	levelUpTextHandles.fill(-1);
+	for (auto& data : animations)
+	{
+		data.handles.resize(data.frameCount);
 
-	if (LoadDivGraph(LEVEL_UP_TEXT_PATH, LEVEL_UP_ALL, LEVEL_UP_DIV_X, LEVEL_UP_DIV_Y, LEVEL_UP_WIDTH, LEVEL_UP_HEIGHT, levelUpTextHandles.data()) == -1) WriteLog(LogLevel::Error, "LevelUpスプライトシートの読み込みに失敗しました");
+		if (LoadDivGraph(data.path, data.frameCount, data.splitX, data.splitY, data.width, data.height, data.handles.data()) == -1)
+		{
+			WriteLog(LogLevel::Error, std::string("スプライトシートの読み込み失敗: ") + data.path);
+		}
+	}
 }
 
+// 保持するハンドルを解放する
 SpriteManager::~SpriteManager() {
 
-	for (int i = 0; i < LEVEL_UP_ALL; i++)
+	for (auto& data : animations)
 	{
-		if (levelUpTextHandles[i] != -1) DeleteGraph(levelUpTextHandles[i]);
+		for (auto& handle : data.handles)
+		{
+			if (handle != -1) DeleteGraph(handle);
+		}
 	}
 }
 
+// 指定したエフェクトのデータを返す
 AnimationClip SpriteManager::GetClip(EffectType type) const {
 	
-	switch (type)
-	{
-		case EffectType::LevelUp:
-		{
-			AnimationClip clip = {
-			levelUpTextHandles.data(), // 画像ハンドル
-			LEVEL_UP_ALL,              // 総コマ数
-			LEVEL_UP_TEXT_FRAME_TIME,  // 1コマの再生時間
-			};
-
-			return clip;
-		}
-
-		default:
-			return {};
-	}
+	const AnimationData& animData = animations[static_cast<int>(type)];
+	return { animData.handles.data(), animData.frameCount, animData.frameTime };
 }

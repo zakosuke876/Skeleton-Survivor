@@ -20,6 +20,7 @@
 #include "MagicEffect.h"
 #include "MagicEffectManager.h"
 #include "SpriteManager.h"
+#include "EffectManager.h"
 #include "DxLib.h"
 #include <memory>
 
@@ -46,6 +47,7 @@ private:
 	InputManager inputManager;
 	CollisionSystem collisionSystem;
 	SpriteManager spriteManager;
+	EffectManager effectManager;
 
 	Ground ground;
 	Camera camera;

@@ -4,7 +4,7 @@ Effect::Effect() {
 
 }
 
-void Effect::Play(VECTOR pos, const AnimationClip& animClip) {
+void Effect::Play(VECTOR pos, const AnimationClip& animClip, float delayTime) {
 
 	if (animClip.handles == nullptr || animClip.handleNum == 0) return;
 
@@ -13,11 +13,18 @@ void Effect::Play(VECTOR pos, const AnimationClip& animClip) {
 	isActive = true;
 	currentFrame = 0;
 	frameTimer = 0.0f;
+	delayTimer = delayTime;
 }
 
 void Effect::Update(float deltaTime) {
 
 	if (!isActive) return;
+
+	if (delayTimer > 0.0f)
+	{
+		delayTimer -= deltaTime;
+		return;
+	}
 
 	// タイマーを進める
 	frameTimer += deltaTime;
@@ -42,6 +49,8 @@ void Effect::Update(float deltaTime) {
 void Effect::Draw() const {
 
 	if (!isActive) return;
+
+	if (delayTimer > 0.0f) return;
 
 	// ワールド座標をスクリーン座標に変換
 	VECTOR screenPos = ConvWorldPosToScreenPos(position);

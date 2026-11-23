@@ -6,7 +6,7 @@ class Effect {
 public:
 
 	Effect();
-	void Play(VECTOR pos, const AnimationClip& animClip);
+	void Play(VECTOR pos, const AnimationClip& animClip, float delayTime = 0.0f);
 	void Update(float deltaTime);
 	void Draw() const;
 
@@ -27,4 +27,6 @@ private:
 	float frameTimer = 0.0f;
 
 	bool isActive = false;
+
+	float delayTimer = 0.0f;
 };

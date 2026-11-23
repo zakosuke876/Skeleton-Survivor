@@ -14,10 +14,11 @@
 #include <algorithm>
 #include "DxLib.h"
 #include "MagicEffectManager.h"
+#include "EffectManager.h"
 #include "Logger.h"
 
-EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager)
-	: random(random), collisionSystem(collisionSystem), magicEffectManager(magicEffectManager)
+EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSystem, MagicEffectManager& magicEffectManager, EffectManager& effectManager)
+	: random(random), collisionSystem(collisionSystem), magicEffectManager(magicEffectManager), effectManager(effectManager)
 {
 	// JSONからSkeleton_Normalのデータ読み込みを指示
 	if (!EnemyDataLoader::LoadNormal(normalStatus))
@@ -47,6 +48,15 @@ EnemyManager::EnemyManager(Random& random, const CollisionSystem& collisionSyste
 	skeletonNormalModelHandle  = MV1LoadModel(normalStatus.enemyStatus.modelPath.c_str());
 	skeletonWarriorModelHandle = MV1LoadModel(warriorStatus.enemyStatus.modelPath.c_str());
 	skeletonMageModelHandle = MV1LoadModel(mageStatus.enemyStatus.modelPath.c_str());
+
+
+	int frameNum = MV1GetFrameNum(skeletonWarriorModelHandle);
+	for (int i = 0; i < frameNum; i++)
+	{
+		WriteLog(LogLevel::Info, std::to_string(i) + ": " + MV1GetFrameName(skeletonWarriorModelHandle, i));
+	}
+
+
 
 	// テクスチャを読み込む
 	skeletonNormalTexHandle = LoadGraph(normalStatus.enemyStatus.texturePath.c_str());
@@ -157,6 +167,12 @@ void EnemyManager::Update(Player& player, float deltaTime) {
 	for (auto& e : enemies)
 	{
 		e->Update(player, deltaTime);
+
+		if (!e->IsActive())
+		{
+			// 死亡後、モデル消滅時その場にエフェクトを生成
+			effectManager.Spawn(e->GetBodyPosition(), EffectType::EnemyDeath);
+		}
 	}
 
 	// 非アクティブな敵の削除

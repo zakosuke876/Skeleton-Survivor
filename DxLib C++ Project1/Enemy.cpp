@@ -281,7 +281,6 @@ void Enemy::DrawUI() const {
 	// HPが最大値の場合は描画しない
 	if (hp >= maxHp) return;
 
-
 	VECTOR pos = VGet(x, y, z);
 	pos.y += ENEMY_HPGAUGE_WORLD_OFFSET_Y;
 
@@ -313,6 +312,21 @@ void Enemy::DrawUI() const {
 
 	// 枠線(白)
 	DrawLineBox(gaugeLeft, gaugeTop, gaugeRight, gaugeBottom, GetColor(255, 255, 255));
+
+	DrawFormatString(gaugeLeft, gaugeTop, GetColor(255, 255, 255), "X座標 %f:Z座標 %f", x, z);
+}
+
+VECTOR Enemy::GetBodyPosition() const {
+
+	// 指定したボーンの番号を取得
+	int frame = MV1SearchFrame(modelHandle, BODY_BONE_NAME);
+	// ボーンが無いモデルは論理座標
+	if (frame < 0)
+	{
+		return GetPosition();
+	}
+	// アニメーションを反映した実際の座標
+	return MV1GetFramePosition(modelHandle, frame);
 }
 
 bool Enemy::IsPlayerInChaseRange(const Player& player) const {
