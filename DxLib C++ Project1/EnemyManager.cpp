@@ -235,7 +235,7 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 			if (!e->IsInvincible())
 			{
 				// ヒットエフェクトを生成
-				effectManager.Spawn(e->GetBodyPosition(), EffectType::Attack);
+				effectManager.Spawn(e->GetBodyPosition(), EffectType::PlayerAttackHit);
 			}
 
 			// HPが0以下になった場合
@@ -278,7 +278,7 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& sound
 			// TakeDamageより前に置く
 			if (!player.IsInvincible())
 			{
-				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::Attack);
+				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::PlayerAttackHit);
 			}
 
 			// 攻撃力を取得してその値分のダメージ

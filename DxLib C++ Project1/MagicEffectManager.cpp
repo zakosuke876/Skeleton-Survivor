@@ -51,7 +51,7 @@ void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soun
 			// TakeDamageより前に置く
 			if (!player.IsInvincible())
 			{
-				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::Attack);
+				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::PlayerAttackHit);
 			}
 
 			// 当たった魔法を無効化
