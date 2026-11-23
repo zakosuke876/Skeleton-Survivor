@@ -5,6 +5,7 @@ enum class EffectType {
 	LevelUp,
 	PlayerDeath,
 	EnemyDeath,
+	Revive,
 	Count,
 };
 

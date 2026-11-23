@@ -168,10 +168,18 @@ void EnemyManager::Update(Player& player, float deltaTime) {
 	{
 		e->Update(player, deltaTime);
 
+		// 消滅する敵の位置に死亡エフェクトを出す
 		if (!e->IsActive())
 		{
 			// 死亡後、モデル消滅時その場にエフェクトを生成
 			effectManager.Spawn(e->GetBodyPosition(), EffectType::EnemyDeath);
+		}
+
+		// 倒れて復活する敵の位置に復活エフェクトを
+		// 復活中はactiveのままなので !IsActiveとは別条件で判定する
+		if (e->RequestReviveEffect())
+		{
+			effectManager.Spawn(e->GetBodyPosition(), EffectType::Revive);
 		}
 	}
 

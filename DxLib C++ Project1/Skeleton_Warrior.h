@@ -38,6 +38,7 @@ private:
 	void UpdateDeath(float deltaTime) override;
 	void UpdateRevive();
 	void DrawModel() const override;
+	bool RequestReviveEffect() override;
 
 
 	// JSONから読み込む値
@@ -62,4 +63,7 @@ private:
 
 	// 復活するかどうか
 	bool willRevive = false;
+
+	// エフェクトを生成するかどうか
+	bool reviveEffectRequested = false;
 };

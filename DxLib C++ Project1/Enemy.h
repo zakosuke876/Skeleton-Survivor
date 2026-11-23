@@ -77,7 +77,8 @@ public:
 	// 取得するボーンの名前
 	static constexpr const char* BODY_BONE_NAME = "chest";
 
-
+	// 復活エフェクトを生成するか返す(復活する敵だけオーバーライドする)
+	virtual bool RequestReviveEffect() { return false; }
 
 
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す

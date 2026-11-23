@@ -3,8 +3,6 @@
 #include "GameConfig.h"
 #include "Random.h"
 #include "DxLib.h"
-
-
 #include "MagicEffectManager.h"
 
 const EnemyAnimData SKELETON_WARRIOR_ANIM_TABLE[] = {
@@ -78,6 +76,11 @@ Skeleton_Warrior::Skeleton_Warrior(float startX, float startY, float startZ, int
 	isRevived = false;
 
 	willRevive = false;
+
+
+	reviveEffectRequested = false;
+
+
 
 	// 元モデルから複製
 	modelHandle = MV1DuplicateModel(skeletonWModel);
@@ -248,9 +251,12 @@ void Skeleton_Warrior::UpdateDeath(float deltaTime) {
 	hitBox.isAttackActive = false;
 
 	// 死亡アニメーション後に倒れるアニメーションに遷移
-	if (animTime >= totalTime)
+	if (animTime >= totalTime && currentAnim != ENEMY_ANIM_DEATHPOSE)
 	{
 		SwitchAnimation(ENEMY_ANIM_DEATHPOSE);
+
+		// 復活する敵の場合
+		if (willRevive) reviveEffectRequested = true;
 	}
 
 	deathTimer += deltaTime;
@@ -291,4 +297,13 @@ void Skeleton_Warrior::UpdateDeath(float deltaTime) {
 void Skeleton_Warrior::DrawModel() const {
 
 	MV1DrawModel(modelHandle);
+}
+
+// 復活開始時にフラグを1度だけ返す
+bool Skeleton_Warrior::RequestReviveEffect() {
+
+	if (!reviveEffectRequested) return false;
+
+	reviveEffectRequested = false;
+	return true;
 }

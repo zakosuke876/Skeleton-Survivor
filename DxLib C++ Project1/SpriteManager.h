@@ -35,5 +35,6 @@ private:
 		{"Textures/Effect/Text/LevelUp.png", 43, 6, 8, 320, 128, 0.03f, {}},
 		{"Textures/Effect/Death/PlayerDeath.png",  50, 50, 1, 64, 64, 0.035f, {}},
 		{"Textures/Effect/Death/EnemyDeath.png", 12, 12, 1, 64, 64, 0.1f, {}},
+		{"Textures/Effect/Revive/Revive.png", 29, 29, 1, 128, 128, 0.07f, {}},
 	} };
 };

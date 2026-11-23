@@ -16,7 +16,7 @@
     "modelPath": "Model/Enemy/Skeleton_Warrior.mv1",
     "texturePath": "Model/Enemy/Skeleton_texture.png",
     "reviveChancePercent": 10,
-    "reviveWaitTime": 3.0,
+    "reviveWaitTime": 4.1,
     "reviveHpMultiplier": 1.5,
     "reviveScoreMultiplier": 2
   }
