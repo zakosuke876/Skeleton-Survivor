@@ -612,3 +612,10 @@ void Player::Die() {
 	deathEffect.Play(VGet(x, y + DEATH_EFFECT_Y_OFFSET, z), spriteManager.GetClip(EffectType::PlayerDeath));
 	state = PLAYER_DEATH;
 }
+
+VECTOR Player::GetHitEffectPosition() const {
+
+	VECTOR pos = GetPosition();
+	pos.y += HIT_EFFECT_OFFSET_Y;
+	return pos;
+}

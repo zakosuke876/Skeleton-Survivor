@@ -2,7 +2,7 @@
 #include "GameConfig.h"
 
 Game::Game()
-    : effectManager(spriteManager), ground(random), player(random, inputManager, spriteManager), magicEffectManager(collisionSystem), enemyManager(random, collisionSystem, magicEffectManager, effectManager),
+    : effectManager(spriteManager), ground(random), player(random, inputManager, spriteManager), magicEffectManager(collisionSystem, effectManager), enemyManager(random, collisionSystem, magicEffectManager, effectManager),
       itemManager(random, collisionSystem), pauseScene(inputManager),
       context{soundManager, fontManager, ground, result, inputManager, player, scoreManager, itemManager, pauseScene,
               enemyManager, rankingManager, camera, magicEffectManager, effectManager},

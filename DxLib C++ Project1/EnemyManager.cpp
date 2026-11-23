@@ -238,7 +238,6 @@ void EnemyManager::CheckPlayerAttackHit(const Player& player, ScoreManager& scor
 				effectManager.Spawn(e->GetBodyPosition(), EffectType::Attack);
 			}
 
-
 			// HPが0以下になった場合
 			if (e->TakeDamage(player.GetAttackPower(), soundManager))
 			{
@@ -275,6 +274,13 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& sound
 		if (collisionSystem.IsCircleHit(enemyHitBox.x, enemyHitBox.z, enemyHitBox.radius, // 敵の攻撃判定
 			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius())) // プレイヤーの体
 		{
+			// 無敵時間中でなければヒット
+			// TakeDamageより前に置く
+			if (!player.IsInvincible())
+			{
+				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::Attack);
+			}
+
 			// 攻撃力を取得してその値分のダメージ
 			player.TakeDamage(e->GetAttackPower(), soundManager);
 		}

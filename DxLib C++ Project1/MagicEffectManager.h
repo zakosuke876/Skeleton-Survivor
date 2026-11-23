@@ -6,11 +6,12 @@
 class Player;
 class SoundManager;
 class CollisionSystem;
+class EffectManager;
 
 class MagicEffectManager {
 public:
 
-	MagicEffectManager(const CollisionSystem& collisionSystem);
+	MagicEffectManager(const CollisionSystem& collisionSystem, EffectManager& effectManager);
 	~MagicEffectManager();
 
 	void Reset(); // ゲームリセット処理
@@ -28,6 +29,7 @@ private:
 
 	// Gameが所有する本体を参照で借用
 	const CollisionSystem& collisionSystem;
+	EffectManager& effectManager;
 
 	// 魔法エフェクト管理
 	std::vector<MagicEffect> effects;

@@ -1,11 +1,12 @@
 ﻿#include "MagicEffectManager.h"
 #include "Player.h"
 #include "CollisionSystem.h"
+#include "EffectManager.h"
 #include "DxLib.h"
 #include <algorithm>
 
-MagicEffectManager::MagicEffectManager(const CollisionSystem& collisionSystem)
-	: collisionSystem(collisionSystem)
+MagicEffectManager::MagicEffectManager(const CollisionSystem& collisionSystem, EffectManager& effectManager)
+	: collisionSystem(collisionSystem), effectManager(effectManager)
 {
 	// スプライトシートを分割して読み込む
 	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
@@ -46,6 +47,13 @@ void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soun
 		if (collisionSystem.IsCircleHit(e.GetPosition().x, e.GetPosition().z, e.GetRadius(),
 			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
 		{
+			// 無敵時間中でなければヒット
+			// TakeDamageより前に置く
+			if (!player.IsInvincible())
+			{
+				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::Attack);
+			}
+
 			// 当たった魔法を無効化
 			e.SetActive(false);
 

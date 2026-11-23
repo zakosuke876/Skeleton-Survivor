@@ -80,13 +80,8 @@ public:
 	// 復活エフェクトを生成するか返す(復活する敵だけオーバーライドする)
 	virtual bool RequestReviveEffect() { return false; }
 
-
-
-
+	// 無敵時間中かどうか返す
 	bool IsInvincible() const { return isInvincible; }
-
-
-
 
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す
 	EnemyAttackHitBox GetHitBox() const { return hitBox; }
