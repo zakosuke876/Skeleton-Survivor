@@ -81,6 +81,13 @@ public:
 	virtual bool RequestReviveEffect() { return false; }
 
 
+
+
+	bool IsInvincible() const { return isInvincible; }
+
+
+
+
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す
 	EnemyAttackHitBox GetHitBox() const { return hitBox; }
 
