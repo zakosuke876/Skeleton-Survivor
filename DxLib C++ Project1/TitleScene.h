@@ -19,10 +19,10 @@ enum ButtonIndex {
 };
 
 // タイトル状態の管理
-enum TitleState {
-	TITLE,
-	MANUAL_MENU,
-	RANKING_MENU,
+enum class TitleState {
+	Title,
+	ManualMenu,
+	RankingMenu,
 };
 
 class TitleScene : public Scene {
@@ -98,7 +98,7 @@ private:
 	// どのボタンを選んでいるか保持する
 	int currentButtonIndex = 0;
 
-	TitleState titleState = TITLE;
+	TitleState titleState = TitleState::Title;
 
 	// タイトルロゴのテキスト座標
 	static constexpr int TITLE_LOGO_TEXT_X = 400;

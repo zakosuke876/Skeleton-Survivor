@@ -37,7 +37,7 @@ TitleScene::~TitleScene() {
 void TitleScene::OnEnter() {
 
 	//　タイトルシーンに入った瞬間の処理
-	titleState = TITLE;
+	titleState = TitleState::Title;
 	currentButtonIndex = 0;
 	soundManager.PlayBgm(BgmType::Title);
 }
@@ -52,7 +52,7 @@ SceneType TitleScene::Update(float deltaTime) {
 
 	switch (titleState)
 	{
-		case TITLE:
+		case TitleState::Title:
 
 			ButtonMove();
 
@@ -60,13 +60,13 @@ SceneType TitleScene::Update(float deltaTime) {
 
 			break;
 
-		case MANUAL_MENU:
+		case TitleState::ManualMenu:
 
 			UpdateManual();
 
 			break;
 
-		case RANKING_MENU:
+		case TitleState::RankingMenu:
 
 			UpdateRanking();
 
@@ -107,7 +107,7 @@ void TitleScene::ButtonMove() {
 SceneType TitleScene::ButtonSelect() {
 
 	// タイトル状態でなければボタン操作しない
-	if (titleState != TITLE) return SceneType::None;
+	if (titleState != TitleState::Title) return SceneType::None;
 
 	// スペースキーを押した瞬間だけ以降を処理する
 	if (!inputManager.IsPressed(KEY_INPUT_SPACE)) return SceneType::None;
@@ -123,13 +123,13 @@ SceneType TitleScene::ButtonSelect() {
 
 		case MANUAL:
 
-			titleState = MANUAL_MENU;
+			titleState = TitleState::ManualMenu;
 
 			break;
 
 		case RANKING:
 
-			titleState = RANKING_MENU;
+			titleState = TitleState::RankingMenu;
 
 			break;
 
@@ -151,7 +151,7 @@ SceneType TitleScene::ButtonSelect() {
 void TitleScene::BackToTitle() {
 
 	// タイトル状態に戻す
-	if (inputManager.IsPressed(KEY_INPUT_ESCAPE)) titleState = TITLE;
+	if (inputManager.IsPressed(KEY_INPUT_ESCAPE)) titleState = TitleState::Title;
 }
 
 void TitleScene::TitleUI(const FontManager& fontManager) const {
@@ -215,7 +215,7 @@ void TitleScene::ManualUI() const {
 void TitleScene::UpdateManual() {
 
 	// Manual状態でなければ処理しない
-	if (titleState != MANUAL_MENU) return;
+	if (titleState != TitleState::ManualMenu) return;
 
 	// キーを押した瞬間だけ処理する
 	if (inputManager.IsPressed(KEY_INPUT_LEFT))
@@ -240,7 +240,7 @@ void TitleScene::UpdateManual() {
 void TitleScene::RankingUI(const FontManager& fontManager, const RankingManager& rankingManager) const {
 
 	// Ranking状態でなければ処理しない
-	if (titleState != RANKING_MENU) return;
+	if (titleState != TitleState::RankingMenu) return;
 
 	rankingManager.DrawTitleRanking(fontManager);
 
@@ -254,17 +254,17 @@ void TitleScene::UpdateRanking() {
 
 void TitleScene::Draw() {
 
-	if (titleState == TITLE)
+	if (titleState == TitleState::Title)
 	{
 		TitleUI(fontManager);
 	}
 
-	if (titleState == MANUAL_MENU)
+	if (titleState == TitleState::ManualMenu)
 	{
 		ManualUI();
 	}
 
-	if (titleState == RANKING_MENU)
+	if (titleState == TitleState::RankingMenu)
 	{
 		RankingUI(fontManager, rankingManager);
 	}
