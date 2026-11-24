@@ -9,6 +9,8 @@ enum class EffectType {
 	PlayerAttackHit, // 自機の攻撃が敵に当たった
 	EnemyAttackHit,  // 敵の近接が自機に当たった
 	MagicHit,        // 魔法が自機に当たった
+	Recovery,
+	Exp,
 	Count,
 };
 

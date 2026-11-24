@@ -4,6 +4,7 @@
 // 前方宣言
 class Player;
 class SoundManager;
+class EffectManager;
 
 class Item {
 public:
@@ -25,7 +26,7 @@ public:
 	void SetActive(bool active) { isActive = active; }
 
 	// アイテム固有の処理をさせる
-	virtual void OnPickUp(Player& player, const SoundManager& soundManager) = 0;
+	virtual void OnPickUp(Player& player, const SoundManager& soundManager, EffectManager& effectManager) = 0;
 
 protected:
 

@@ -91,11 +91,17 @@ public:
 	// 当たり判定の計算に使う座標・半径・有効フラグを返す
 	PlayerAttackHitBox GetPlayerAttackHitBox() const { return attackHitBox; }
 
-	// 被弾エフェクトの生成位置を返す
-	VECTOR GetHitEffectPosition() const;
+	// エフェクトの生成位置を返す(体の中心)
+	VECTOR GetBodyEffectPosition() const;
 
-	// 被弾エフェクトの生成位置 Y方向オフセット
-	static constexpr float HIT_EFFECT_OFFSET_Y = 10.0f;
+	// 体の中心に生成するエフェクトの生成位置 Y方向オフセット
+	static constexpr float BODY_EFFECT_OFFSET_Y = 10.0f;
+
+	// エフェクトの生成位置を返す(頭上)
+	VECTOR GetHeadEffectPosition() const;
+
+	// 頭上に生成するエフェクトの生成位置 Y方向オフセット
+	static constexpr float HEAD_EFFECT_OFFSET_Y = 35.0f;
 
 	// 無敵時間中かどうか返す
 	bool IsInvincible() const { return isInvincible; }

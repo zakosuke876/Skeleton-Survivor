@@ -11,6 +11,7 @@ class Player;
 class SoundManager;
 class Random;
 class CollisionSystem;
+class EffectManager;
 
 class ItemManager {
 public:
@@ -24,7 +25,7 @@ public:
 	bool ItemDropCheck();
 	void DropRecoveryItem(float posX, float posY, float posZ);
 	void DropExpItem(float posX, float posY, float posZ);
-	void CheckPlayerCollision(Player& player, const SoundManager& soundManager);
+	void CheckPlayerCollision(Player& player, const SoundManager& soundManager, EffectManager& effectManager);
 	RecoveryItemType GetDropItemType();
 
 private:

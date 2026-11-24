@@ -278,7 +278,7 @@ void EnemyManager::CheckEnemyAttackHit(Player& player, const SoundManager& sound
 			// TakeDamageより前に置く
 			if (!player.IsInvincible())
 			{
-				effectManager.Spawn(player.GetHitEffectPosition(), EffectType::EnemyAttackHit);
+				effectManager.Spawn(player.GetBodyEffectPosition(), EffectType::EnemyAttackHit);
 			}
 
 			// 攻撃力を取得してその値分のダメージ

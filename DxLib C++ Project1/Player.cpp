@@ -613,9 +613,16 @@ void Player::Die() {
 	state = PLAYER_DEATH;
 }
 
-VECTOR Player::GetHitEffectPosition() const {
+VECTOR Player::GetBodyEffectPosition() const {
 
 	VECTOR pos = GetPosition();
-	pos.y += HIT_EFFECT_OFFSET_Y;
+	pos.y += BODY_EFFECT_OFFSET_Y;
+	return pos;
+}
+
+VECTOR Player::GetHeadEffectPosition() const {
+
+	VECTOR pos = GetPosition();
+	pos.y += HEAD_EFFECT_OFFSET_Y;
 	return pos;
 }

@@ -33,7 +33,7 @@ public:
 	RecoveryItem(float posX, float posY, float posZ, int recoveryValue, int itemTexHandle);
 	~RecoveryItem() override = default;
 	void DrawModel() const override;
-	void OnPickUp(Player& player, const SoundManager& soundManager) override;
+	void OnPickUp(Player& player, const SoundManager& soundManager, EffectManager& effectManager) override;
 
 private:
 

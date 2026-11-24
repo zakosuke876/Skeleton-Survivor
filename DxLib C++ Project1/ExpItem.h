@@ -17,7 +17,7 @@ public:
 	ExpItem(float posX, float posY, float posZ, int expValue, int texHandle);
 	~ExpItem() override = default;
 	void DrawModel() const override;
-	void OnPickUp(Player& player, const SoundManager& soundManager) override;
+	void OnPickUp(Player& player, const SoundManager& soundManager, EffectManager& effectManager) override;
 
 private:
 

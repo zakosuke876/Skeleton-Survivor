@@ -77,7 +77,7 @@ SceneType GameScene::Update(float deltaTime) {
             enemyManager.CheckPlayerAttackHit(player, scoreManager, itemManager, soundManager);
             enemyManager.CheckEnemyAttackHit(player, soundManager);
             magicEffectManager.CheckPlayerHit(player, soundManager);
-            itemManager.CheckPlayerCollision(player, soundManager);
+            itemManager.CheckPlayerCollision(player, soundManager, effectManager);
 
 
             // プレイヤーが消えた場合

@@ -128,14 +128,14 @@ void ItemManager::Draw() const {
 	}
 }
 
-void ItemManager::CheckPlayerCollision(Player& player, const SoundManager& soundManager) {
+void ItemManager::CheckPlayerCollision(Player& player, const SoundManager& soundManager, EffectManager& effectManager) {
 
 	for (auto& item : items)
 	{
 		if (collisionSystem.IsCircleHit(item->GetPosition().x, item->GetPosition().z, item->GetRadius(),
 			player.GetPosition().x, player.GetPosition().z, player.GetBodyRadius()))
 		{
-			item->OnPickUp(player, soundManager);
+			item->OnPickUp(player, soundManager, effectManager);
 			item->SetActive(false);
 		}
 	}

@@ -1,6 +1,6 @@
 {
   "ItemDropConfig": {
-    "dropRate": 30,
+    "dropRate": 100,
     "dropOffsetY": 10.0,
     "expItemRandomOffset": 20.0,
     "itemTypeRate": {
