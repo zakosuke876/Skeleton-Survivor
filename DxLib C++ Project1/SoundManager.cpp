@@ -3,26 +3,21 @@
 
 SoundManager::SoundManager() {
 
-	// タイプごとに効果音を読み込む
-	seHandles[static_cast<int>(SoundType::Recovery)]   = LoadSoundMem("Sound/SE/Recovery.mp3");
-	seHandles[static_cast<int>(SoundType::Exp)]        = LoadSoundMem("Sound/SE/Exp.mp3");
-	seHandles[static_cast<int>(SoundType::LevelUp)]    = LoadSoundMem("Sound/SE/LevelUp.mp3");
-	seHandles[static_cast<int>(SoundType::AttackHit)] = LoadSoundMem("Sound/SE/Attack_Hit.mp3");
-
-	// タイプごとにBGMを読み込む
-	bgmHandles[static_cast<int>(BgmType::Title)] = LoadSoundMem("Sound/BGM/Title_BGM.mp3");
-	bgmHandles[static_cast<int>(BgmType::Play)] = LoadSoundMem("Sound/BGM/Play_BGM.mp3");
-	bgmHandles[static_cast<int>(BgmType::GameOver)] = LoadSoundMem("Sound/BGM/GameOver_BGM.mp3");
-
-	// 音量調整
-	for (int i = 0; i < static_cast<int>(BgmType::BgmMax); i++)
-	{
-		ChangeVolumeSoundMem(BGM_VOLUME, bgmHandles[i]);
-	}
-
 	for (int i = 0; i < static_cast<int>(SoundType::SeMax); i++)
 	{
+		// タイプごとに効果音を読み込む
+		seHandles[i] = LoadSoundMem(sePaths[i]);
+
+		// 音量調整
 		ChangeVolumeSoundMem(SE_VOLUME, seHandles[i]);
+	}
+
+	for (int i = 0; i < static_cast<int>(BgmType::BgmMax); i++)
+	{
+		// タイプごとにBGMを読み込む
+		bgmHandles[i] = LoadSoundMem(bgmPaths[i]);
+
+		ChangeVolumeSoundMem(BGM_VOLUME, bgmHandles[i]);
 	}
 }
 
