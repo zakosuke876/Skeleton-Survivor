@@ -101,7 +101,7 @@ public:
 	VECTOR GetHeadEffectPosition() const;
 
 	// 頭上に生成するエフェクトの生成位置 Y方向オフセット
-	static constexpr float HEAD_EFFECT_OFFSET_Y = 35.0f;
+	static constexpr float HEAD_EFFECT_OFFSET_Y = 40.0f;
 
 	// 無敵時間中かどうか返す
 	bool IsInvincible() const { return isInvincible; }
@@ -121,6 +121,8 @@ private:
 	GroundEffect groundEffect;
 	Effect levelUpEffect;
 	Effect deathEffect;
+	Effect recoveryEffect;
+	Effect expEffect;
 
 	// ----------------------------------------
 	// 各状態の更新処理
@@ -298,9 +300,6 @@ private:
 	// 攻撃判定の有効フレーム
 	static constexpr float ATTACK_HIT_START_FRAME = 10.0f;
 	static constexpr float ATTACK_HIT_END_FRAME   = 18.0f;
-
-	// レベルアップ演出（頭上）の上方向オフセット
-	static constexpr float LEVELUP_EFFECT_Y_OFFSET = 40.0f;
 
 	// 死亡演出の上方向オフセット
 	static constexpr float DEATH_EFFECT_Y_OFFSET = 40.0f;

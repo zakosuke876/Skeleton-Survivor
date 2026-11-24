@@ -200,9 +200,27 @@ void Player::Update(float deltaTime, const Ground& ground) {
 		}
 	}
 
-	// レベルアップ処理
-	levelUpEffect.SetPosition(VGet(x, y + LEVELUP_EFFECT_Y_OFFSET, z));
-	levelUpEffect.Update(deltaTime);
+	// アクティブ時のみ処理
+	if (levelUpEffect.IsActive())
+	{
+		// エフェクトの追尾/更新
+		levelUpEffect.SetPosition(GetHeadEffectPosition());
+		levelUpEffect.Update(deltaTime);
+	}
+
+	if (recoveryEffect.IsActive())
+	{
+		recoveryEffect.SetPosition(GetHeadEffectPosition());
+		recoveryEffect.Update(deltaTime);
+	}
+
+	if (expEffect.IsActive())
+	{
+		expEffect.SetPosition(GetBodyEffectPosition());
+		expEffect.Update(deltaTime);
+	}
+
+
 
 	// 移動範囲を制限
 	ClampPosition();
@@ -256,6 +274,8 @@ void Player::TakeDamage(int value, const SoundManager& soundManager) {
 
 void Player::Recovery(int value) {
 
+	recoveryEffect.Play(GetHeadEffectPosition(), spriteManager.GetClip(EffectType::Recovery));
+
 	hp += value;
 
 	// HPを範囲内の値にする(0～maxHp)
@@ -263,6 +283,8 @@ void Player::Recovery(int value) {
 }
 
 void Player::AddExp(int value, const SoundManager& soundManager) {
+
+	expEffect.Play(GetBodyEffectPosition(), spriteManager.GetClip(EffectType::Exp));
 
 	exp += value;
 
@@ -287,7 +309,7 @@ void Player::LevelUp(const SoundManager& soundManager) {
 
 	// 次のレベルアップにかかる経験値量を1.3倍にする
 	nextLevelExp = static_cast<int>(nextLevelExp * nextLevelExpMultiplier);
-	levelUpEffect.Play(VGet(x, y + LEVELUP_EFFECT_Y_OFFSET, z), spriteManager.GetClip(EffectType::LevelUp));
+	levelUpEffect.Play(GetHeadEffectPosition(), spriteManager.GetClip(EffectType::LevelUp));
 }
 
 void Player::Draw() const {
@@ -311,7 +333,21 @@ void Player::DrawUI(const FontManager& fontManager) const {
 
 	DrawExpGauge(fontManager);
 
-	levelUpEffect.Draw();
+	if (levelUpEffect.IsActive())
+	{
+		levelUpEffect.Draw();
+	}
+
+	if (recoveryEffect.IsActive())
+	{
+		recoveryEffect.Draw();
+	}
+
+	if (expEffect.IsActive())
+	{
+		expEffect.Draw();
+	}
+
 }
 
 // スポーン状態
@@ -447,8 +483,6 @@ void Player::UpdateDamage() {
 }
 
 void Player::UpdateDeath(float deltaTime) {
-
-
 
 	deathEffect.Update(deltaTime);
 
