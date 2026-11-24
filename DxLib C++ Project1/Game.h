@@ -24,13 +24,6 @@
 #include "DxLib.h"
 #include <memory>
 
-
-// シーンの種類
-enum AppScene {
-	APP_TITLE, // タイトルシーン
-	APP_GAME,  // ゲームシーン
-};
-
 class Game {
 public:
 

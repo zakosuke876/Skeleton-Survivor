@@ -11,11 +11,12 @@
 class InputManager;
 
 // ボタン選択の管理
-enum ButtonIndex {
-	PLAY,
-	MANUAL,
-	RANKING,
-	QUIT,
+enum class ButtonIndex {
+	Play,
+	Manual,
+	Ranking,
+	Quit,
+	Count,
 };
 
 // タイトル状態の管理
@@ -79,11 +80,8 @@ private:
 	// 各ボタン同士の間隔・隙間
 	static constexpr int TITLE_BUTTON_SPACING_Y = 100;
 
-	// 配置するボタンの数
-	static constexpr int TITLE_BUTTON_MAX = 4;
-
 	// ボタンに表示する文字列
-	static constexpr const char* titleButtonTexts[TITLE_BUTTON_MAX] = { "ゲーム開始", "操作説明", "ランキング", "ゲーム終了" };
+	static constexpr const char* titleButtonTexts[static_cast<int>(ButtonIndex::Count)] = {"ゲーム開始", "操作説明", "ランキング", "ゲーム終了"};
 
 	// マニュアルボタン描画座標
 	static constexpr int MANUAL_BUTTON_START_X = 70;

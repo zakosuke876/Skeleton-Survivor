@@ -87,7 +87,7 @@ void TitleScene::ButtonMove() {
 		if (currentButtonIndex < 0)
 		{
 			// 最後のボタンへ移動する
-			currentButtonIndex = TITLE_BUTTON_MAX - 1;
+			currentButtonIndex = static_cast<int>(ButtonIndex::Count) - 1;
 		}
 	}
 
@@ -96,7 +96,7 @@ void TitleScene::ButtonMove() {
 		currentButtonIndex++;
 
 		// 末尾を超えた場合
-		if (currentButtonIndex >= TITLE_BUTTON_MAX)
+		if (currentButtonIndex >= static_cast<int>(ButtonIndex::Count))
 		{
 			// 最初のボタンへ移動する
 			currentButtonIndex = 0;
@@ -113,27 +113,27 @@ SceneType TitleScene::ButtonSelect() {
 	if (!inputManager.IsPressed(KEY_INPUT_SPACE)) return SceneType::None;
 
 	// スペースを押したときの状態によって処理を分ける
-	switch (currentButtonIndex)
+	switch (static_cast<ButtonIndex>(currentButtonIndex))
 	{
-		case PLAY:
+		case ButtonIndex::Play:
 
 			return SceneType::Game;
 
 			break;
 
-		case MANUAL:
+		case ButtonIndex::Manual:
 
 			titleState = TitleState::ManualMenu;
 
 			break;
 
-		case RANKING:
+		case ButtonIndex::Ranking:
 
 			titleState = TitleState::RankingMenu;
 
 			break;
 
-		case QUIT:
+		case ButtonIndex::Quit:
 
 			return SceneType::Quit;
 
@@ -159,8 +159,8 @@ void TitleScene::TitleUI(const FontManager& fontManager) const {
 	int buttonLeft = TITLE_BUTTON_START_X;
 	int buttonRight = TITLE_BUTTON_START_X + TITLE_BUTTON_START_WIDTH;
 
-	// ボタンをBUTTON_MAX個描画する
-	for (int i = 0; i < TITLE_BUTTON_MAX; i++)
+	// ボタンをCount個描画する
+	for (int i = 0; i < static_cast<int>(ButtonIndex::Count); i++)
 	{
 		// 選択中のボタンの枠線は黄色、それ以外はグレーにする
 		int color = (currentButtonIndex == i) ? GetColor(255, 255, 0) : GetColor(180, 180, 180);
