@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "DxLib.h"
 #include <algorithm>
+#include <iterator>
 
 // 前方宣言
 class InputManager;
@@ -131,14 +132,17 @@ private:
 	static constexpr int RANKING_CLOSE_TEXT_X = 600;
 	static constexpr int RANKING_CLOSE_TEXT_Y = 680;
 
-	// タイトルボタンの選択管理
-	int manualGrHandle = -1;
+	// 各画像のパスをまとめた配列
+	static constexpr const char* manualGrPaths[] = {
+		"Textures/ManualImage/Manual_0.png",
+		"Textures/ManualImage/Manual_1.png",
+	};
 
-	// 操作説明のページ数
-	static constexpr int MANUAL_PAGE_MAX = 2;
+	// 操作説明のページ数(配列サイズから求める)
+	static constexpr int MANUAL_PAGE_MAX = static_cast<int>(std::size(manualGrPaths));
 
-	// 画像を保持する配列
-	int manualGrHandles[MANUAL_PAGE_MAX]{ -1, -1 };
+	// 画像ハンドル配列
+	int manualGrHandles[MANUAL_PAGE_MAX]{};
 
 	// 操作説明パネルのページ管理
 	int manualPanelIndex = -1;

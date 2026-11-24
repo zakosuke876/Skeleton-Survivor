@@ -4,14 +4,16 @@
 #include "RankingManager.h"
 #include "InputManager.h"
 #include "DxLib.h"
-#include <algorithm>
 
 TitleScene::TitleScene(const TitleContext& context)
 	: soundManager(context.soundManager), fontManager(context.fontManager), inputManager(context.inputManager), rankingManager(context.rankingManager) {
 
 	// 画像読み込み
-	manualGrHandles[0] = LoadGraph("Textures/ManualImage/Manual_0.png");
-	manualGrHandles[1] = LoadGraph("Textures/ManualImage/Manual_1.png");
+	for (int i = 0; i < MANUAL_PAGE_MAX; i++)
+	{
+		manualGrHandles[i] = LoadGraph(manualGrPaths[i]);
+	}
+
 	skeletonNGrHandle = LoadGraph("UI/Enemy/Skeleton_N_Image.png");
 	skeletonWGrHandle = LoadGraph("UI/Enemy/Skeleton_W_Image.png");
 
