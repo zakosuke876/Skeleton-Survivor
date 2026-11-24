@@ -101,7 +101,7 @@ void Player::Reset() {
 	isDead = false;
 
 	// 最初はスポーン状態
-	state = PLAYER_SPAWN;
+	state = PlayerState::PLAYER_SPAWN;
 
 	int anim = random.GetRandomInt(0, 1);
 
@@ -125,43 +125,43 @@ void Player::Update(float deltaTime, const Ground& ground) {
 
 	switch (state)
 	{
-	case PLAYER_SPAWN:
+	case PlayerState::PLAYER_SPAWN:
 
 		UpdateSpawn();
 
 		break;
 
-	case PLAYER_IDLE:
+	case PlayerState::PLAYER_IDLE:
 
 		UpdateIdle();
 
 		break;
 
-	case PLAYER_WALK:
+	case PlayerState::PLAYER_WALK:
 
 		UpdateWalk(ground);
 
 		break;
 
-	case PLAYER_DASH:
+	case PlayerState::PLAYER_DASH:
 
 		UpdateDash(ground);
 
 		break;
 
-	case PLAYER_ATTACK:
+	case PlayerState::PLAYER_ATTACK:
 
 		UpdateAttack();
 
 		break;
 
-	case PLAYER_DAMAGE:
+	case  PlayerState::PLAYER_DAMAGE:
 
 		UpdateDamage();
 
 		break;
 
-	case PLAYER_DEATH:
+	case  PlayerState::PLAYER_DEATH:
 
 		UpdateDeath(deltaTime);
 
@@ -258,7 +258,7 @@ void Player::TakeDamage(int value, const SoundManager& soundManager) {
 	// 無敵時間開始
 	isInvincible = true;
 
-	state = PLAYER_DAMAGE;
+	state = PlayerState::PLAYER_DAMAGE;
 
 	hp -= value;
 
@@ -356,7 +356,7 @@ void Player::UpdateSpawn() {
 	// スポーン完了後は待機状態へ遷移
 	if (animTime >= totalTime)
 	{
-		state = PLAYER_IDLE;
+		state = PlayerState::PLAYER_IDLE;
 	}
 }
 
@@ -370,18 +370,18 @@ void Player::UpdateIdle() {
 	// 攻撃入力があれば攻撃状態へ
 	if (IsAttackInput())
 	{
-		state = PLAYER_ATTACK;
+		state = PlayerState::PLAYER_ATTACK;
 	}
 	else if (IsMoveInput()) // 移動入力があった場合
 	{
 		// 移動入力中かつダッシュ入力中ならダッシュ状態へ
 		if (IsDashInput())
 		{
-			state = PLAYER_DASH;
+			state = PlayerState::PLAYER_DASH;
 		}
 		else
 		{
-			state = PLAYER_WALK;
+			state = PlayerState::PLAYER_WALK;
 		}
 	}
 }
@@ -401,19 +401,19 @@ void Player::UpdateWalk(const Ground& ground) {
 	// 移動入力がなくなった場合
 	if (!IsMoveInput())
 	{
-		state = PLAYER_IDLE;
+		state = PlayerState::PLAYER_IDLE;
 	}
 
 	// ダッシュ入力があった場合
 	if (IsDashInput())
 	{
-		state = PLAYER_DASH;
+		state = PlayerState::PLAYER_DASH;
 	}
 
 	// 攻撃入力があった場合
 	if (IsAttackInput())
 	{
-		state = PLAYER_ATTACK;
+		state = PlayerState::PLAYER_ATTACK;
 	}
 }
 
@@ -426,17 +426,17 @@ void Player::UpdateDash(const Ground& ground) {
 
 	if (!IsMoveInput())
 	{
-		state = PLAYER_IDLE;
+		state = PlayerState::PLAYER_IDLE;
 	}
 
 	if (!IsDashInput())
 	{
-		state = PLAYER_WALK;
+		state = PlayerState::PLAYER_WALK;
 	}
 
 	if (IsAttackInput())
 	{
-		state = PLAYER_ATTACK;
+		state = PlayerState::PLAYER_ATTACK;
 	}
 }
 
@@ -464,7 +464,7 @@ void Player::UpdateAttack() {
 	{
 		// 攻撃判定を無効
 		attackHitBox.isAttackActive = false;
-		state = PLAYER_IDLE;
+		state = PlayerState::PLAYER_IDLE;
 	}
 }
 
@@ -478,7 +478,7 @@ void Player::UpdateDamage() {
 	// ダメージアニメーション終了後は待機状態へ遷移
 	if (animTime >= totalTime)
 	{
-		state = PLAYER_IDLE;
+		state = PlayerState::PLAYER_IDLE;
 	}
 }
 
@@ -644,7 +644,7 @@ void Player::Die() {
 	isDead = true;
 	AnimSwitch(PLAYER_ANIM_DEATH);
 	deathEffect.Play(VGet(x, y + DEATH_EFFECT_Y_OFFSET, z), spriteManager.GetClip(EffectType::PlayerDeath));
-	state = PLAYER_DEATH;
+	state = PlayerState::PLAYER_DEATH;
 }
 
 VECTOR Player::GetBodyEffectPosition() const {

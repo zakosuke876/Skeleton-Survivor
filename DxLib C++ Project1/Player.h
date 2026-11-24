@@ -24,7 +24,7 @@ enum PlayerAnimation {
 };
 
 // 状態の種類
-enum PlayerState {
+enum class PlayerState {
 	PLAYER_SPAWN,       // スポーン状態
 	PLAYER_IDLE,        // 待機状態
 	PLAYER_WALK,        // 歩き状態
@@ -256,7 +256,7 @@ private:
 	bool isAttack = false;
 
 	// 現在の状態
-	PlayerState state = PLAYER_SPAWN;
+	PlayerState state = PlayerState::PLAYER_SPAWN;
 
 	// ----------------------------------------
 	// 無敵時間(カウンター)
