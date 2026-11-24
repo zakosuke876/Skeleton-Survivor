@@ -37,5 +37,7 @@ private:
 		{"Textures/Effect/Death/EnemyDeath.png", 12, 12, 1, 64, 64, 0.1f, {}},
 		{"Textures/Effect/Revive/Revive.png", 29, 29, 1, 128, 128, 0.07f, {}},
 		{"Textures/Effect/Hit/PlayerAttackHit.png", 7, 7, 1, 96, 96, 0.1f, {}},
+		{"Textures/Effect/Hit/EnemyAttackHit.png", 10, 10, 1, 64, 64, 0.1f, {}},
+		{"Textures/Effect/Hit/MagicHit.png", 8, 8, 1, 64, 64, 0.08f, {}},
 	} };
 };

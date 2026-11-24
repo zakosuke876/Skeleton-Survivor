@@ -7,8 +7,8 @@ enum class EffectType {
 	EnemyDeath,
 	Revive,
 	PlayerAttackHit, // 自機の攻撃が敵に当たった
-	//EnemyAttackHit,  // 敵の近接が自機に当たった
-	//MagicHit,        // 魔法が自機に当たった
+	EnemyAttackHit,  // 敵の近接が自機に当たった
+	MagicHit,        // 魔法が自機に当たった
 	Count,
 };
 
