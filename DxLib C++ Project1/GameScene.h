@@ -20,10 +20,10 @@ class EffectManager;
 
 
 // ゲーム内の状態
-enum GameState {
-	GAME_PLAYING,
-	GAME_PAUSE,
-	GAME_OVER,
+enum class GameState {
+	Playing,
+	Pause,
+	GameOver,
 };
 
 class GameScene : public Scene {
@@ -41,7 +41,7 @@ public:
 private:
 
 	// 現在のゲーム状態
-	GameState state = GAME_PLAYING;
+	GameState state = GameState::Playing;
 
 	const SoundManager& soundManager;
 	const FontManager& fontManager;

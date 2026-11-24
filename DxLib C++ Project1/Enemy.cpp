@@ -312,8 +312,6 @@ void Enemy::DrawUI() const {
 
 	// 枠線(白)
 	DrawLineBox(gaugeLeft, gaugeTop, gaugeRight, gaugeBottom, GetColor(255, 255, 255));
-
-	DrawFormatString(gaugeLeft, gaugeTop, GetColor(255, 255, 255), "X座標 %f:Z座標 %f", x, z);
 }
 
 VECTOR Enemy::GetBodyPosition() const {

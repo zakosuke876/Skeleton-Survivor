@@ -5,7 +5,7 @@
 class Effect {
 public:
 
-	Effect();
+	Effect() = default;
 	void Play(VECTOR pos, const AnimationClip& animClip, float delayTime = 0.0f);
 	void Update(float deltaTime);
 	void Draw() const;

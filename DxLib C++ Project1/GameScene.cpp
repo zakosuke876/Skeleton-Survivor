@@ -28,7 +28,7 @@ GameScene::GameScene(const SceneContext& context)
 void GameScene::OnEnter() {
 
     // ゲームシーンに入った瞬間の処理
-    state = GAME_PLAYING;
+    state = GameState::Playing;
 	soundManager.PlayBgm(BgmType::Play);
     magicEffectManager.Reset();
 
@@ -53,7 +53,7 @@ SceneType GameScene::Update(float deltaTime) {
     switch (state)
     {
         // ゲームプレイ中
-        case GAME_PLAYING:
+        case GameState::Playing:
 
             pauseScene.Update();
 
@@ -61,7 +61,7 @@ SceneType GameScene::Update(float deltaTime) {
             if (pauseScene.GetIsPause())
             {
                 // ポーズ状態へ遷移
-                state = GAME_PAUSE;
+                state = GameState::Pause;
                 break;
             }
 
@@ -91,13 +91,13 @@ SceneType GameScene::Update(float deltaTime) {
                 soundManager.PlayBgm(BgmType::GameOver);
 
                 // ゲームオーバー状態へ遷移
-                state = GAME_OVER;
+                state = GameState::GameOver;
             }
 
             break;
 
             // ポーズ中
-        case GAME_PAUSE:
+        case GameState::Pause:
 
             pauseScene.Update();
 
@@ -105,7 +105,7 @@ SceneType GameScene::Update(float deltaTime) {
             if (!pauseScene.GetIsPause())
             {
                 // ゲームプレイ状態へ遷移
-                state = GAME_PLAYING;
+                state = GameState::Playing;
             }
 
             // Rキーが押された場合
@@ -121,7 +121,7 @@ SceneType GameScene::Update(float deltaTime) {
             break;
 
             // ゲームオーバー
-        case GAME_OVER:
+        case GameState::GameOver:
 
             player.Update(deltaTime, ground);
 
@@ -150,7 +150,7 @@ void GameScene::Draw() {
 
     switch (state)
     {
-    case GAME_PLAYING:
+    case GameState::Playing:
 
         // Zバッファ切り替え
         SetUseZBuffer3D(TRUE);
@@ -179,7 +179,7 @@ void GameScene::Draw() {
 
         break;
 
-    case GAME_PAUSE:
+    case GameState::Pause:
 
         // Zバッファ切り替え
         SetUseZBuffer3D(TRUE);
@@ -204,7 +204,7 @@ void GameScene::Draw() {
 
         break;
 
-    case GAME_OVER:
+    case GameState::GameOver:
 
         // Zバッファ切り替え
         SetUseZBuffer3D(TRUE);

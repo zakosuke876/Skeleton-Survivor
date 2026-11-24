@@ -1,9 +1,5 @@
 ﻿#include "Effect.h"
 
-Effect::Effect() {
-
-}
-
 void Effect::Play(VECTOR pos, const AnimationClip& animClip, float delayTime) {
 
 	if (animClip.handles == nullptr || animClip.handleNum == 0) return;
