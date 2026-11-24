@@ -1,21 +1,20 @@
 ﻿#pragma once
-#include "Item.h"
 
 // 効果音の種類
-enum SoundType {
-	RECOVERY,    // 回復
-	EXP,         // 経験値取得
-	LEVELUP,     // レベルアップ
-	ATTACK_HIT,  // ヒットオン
-	SE_MAX,      // 配列サイズ用
+enum class SoundType {
+	Recovery,  // 回復
+	Exp,       // 経験値取得
+	LevelUp,   // レベルアップ
+	AttackHit, // ヒット音
+	SeMax,     // 配列サイズ用
 };
 
 // BGMの種類
-enum BgmType {
-	BGM_TITLE,    // タイトル
-	BGM_PLAY,     // ゲームプレイ中
-	BGM_GAMEOVER, // ゲームオーバー
-	BGM_MAX,      // 配列サイズ用
+enum class BgmType {
+	Title,    // タイトル
+	Play,     // ゲームプレイ中
+	GameOver, // ゲームオーバー
+	BgmMax,      // 配列サイズ用
 };
 
 class SoundManager {
@@ -36,10 +35,10 @@ public:
 private:
 
 	// 効果音ハンドルを保持する配列
-	int seHandles[SE_MAX];
+	int seHandles[static_cast<int>(SoundType::SeMax)];
 
 	// BGMハンドルを保持する配列
-	int bgmHandles[BGM_MAX];
+	int bgmHandles[static_cast<int>(BgmType::BgmMax)];
 
 	// SE音量
 	static constexpr int SE_VOLUME = 180;

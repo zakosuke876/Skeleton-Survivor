@@ -27,5 +27,5 @@ void ExpItem::OnPickUp(Player& player, const SoundManager& soundManager) {
 	player.AddExp(addExpValue, soundManager);
 
 	// 効果音再生を依頼(引数でタイプを渡す)
-	soundManager.PlaySe(EXP);
+	soundManager.PlaySe(SoundType::Exp);
 }

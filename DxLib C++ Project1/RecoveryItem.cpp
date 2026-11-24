@@ -26,5 +26,5 @@ void RecoveryItem::OnPickUp(Player& player, const SoundManager& soundManager) {
 	player.Recovery(recoveryPower);
 
 	// 効果音再生を依頼(引数でタイプを渡す)
-	soundManager.PlaySe(RECOVERY);
+	soundManager.PlaySe(SoundType::Recovery);
 }

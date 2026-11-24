@@ -1,28 +1,26 @@
 ﻿#include "SoundManager.h"
 #include "DxLib.h"
 
-
-
 SoundManager::SoundManager() {
 
 	// タイプごとに効果音を読み込む
-	seHandles[RECOVERY]   = LoadSoundMem("Sound/SE/Recovery.mp3");
-	seHandles[EXP]        = LoadSoundMem("Sound/SE/Exp.mp3");
-	seHandles[LEVELUP]    = LoadSoundMem("Sound/SE/LevelUp.mp3");
-	seHandles[ATTACK_HIT] = LoadSoundMem("Sound/SE/Attack_Hit.mp3");
+	seHandles[static_cast<int>(SoundType::Recovery)]   = LoadSoundMem("Sound/SE/Recovery.mp3");
+	seHandles[static_cast<int>(SoundType::Exp)]        = LoadSoundMem("Sound/SE/Exp.mp3");
+	seHandles[static_cast<int>(SoundType::LevelUp)]    = LoadSoundMem("Sound/SE/LevelUp.mp3");
+	seHandles[static_cast<int>(SoundType::AttackHit)] = LoadSoundMem("Sound/SE/Attack_Hit.mp3");
 
 	// タイプごとにBGMを読み込む
-	bgmHandles[BGM_TITLE] = LoadSoundMem("Sound/BGM/Title_BGM.mp3");
-	bgmHandles[BGM_PLAY] = LoadSoundMem("Sound/BGM/Play_BGM.mp3");
-	bgmHandles[BGM_GAMEOVER] = LoadSoundMem("Sound/BGM/GameOver_BGM.mp3");
+	bgmHandles[static_cast<int>(BgmType::Title)] = LoadSoundMem("Sound/BGM/Title_BGM.mp3");
+	bgmHandles[static_cast<int>(BgmType::Play)] = LoadSoundMem("Sound/BGM/Play_BGM.mp3");
+	bgmHandles[static_cast<int>(BgmType::GameOver)] = LoadSoundMem("Sound/BGM/GameOver_BGM.mp3");
 
 	// 音量調整
-	for (int i = 0; i < BGM_MAX; i++)
+	for (int i = 0; i < static_cast<int>(BgmType::BgmMax); i++)
 	{
 		ChangeVolumeSoundMem(BGM_VOLUME, bgmHandles[i]);
 	}
 
-	for (int i = 0; i < SE_MAX; i++)
+	for (int i = 0; i < static_cast<int>(SoundType::SeMax); i++)
 	{
 		ChangeVolumeSoundMem(SE_VOLUME, seHandles[i]);
 	}
@@ -31,12 +29,12 @@ SoundManager::SoundManager() {
 SoundManager::~SoundManager() {
 
 	// リソース開放
-	for (int i = 0; i < SE_MAX; i++)
+	for (int i = 0; i < static_cast<int>(SoundType::SeMax); i++)
 	{
 		DeleteSoundMem(seHandles[i]);
 	}
 
-	for (int i = 0; i < BGM_MAX; i++)
+	for (int i = 0; i < static_cast<int>(BgmType::BgmMax); i++)
 	{
 		DeleteSoundMem(bgmHandles[i]);
 	}
@@ -45,28 +43,28 @@ SoundManager::~SoundManager() {
 void SoundManager::PlaySe(SoundType type) const {
 
 	// タイプに応じた効果音を再生
-	PlaySoundMem(seHandles[type], DX_PLAYTYPE_BACK);
+	PlaySoundMem(seHandles[static_cast<int>(type)], DX_PLAYTYPE_BACK);
 }
 
 void SoundManager::PlayBgm(BgmType type) const {
 
 	// すでに再生されていれば処理しない
-	if (CheckSoundMem(bgmHandles[type]) == 1) return;
+	if (CheckSoundMem(bgmHandles[static_cast<int>(type)]) == 1) return;
 
 	// BGMTypeがゲームオーバーの場合ループ再生しない
-	if (type == BGM_GAMEOVER)
+	if (type == BgmType::GameOver)
 	{
 		// ループ再生しない
-		PlaySoundMem(bgmHandles[type], DX_PLAYTYPE_BACK);
+		PlaySoundMem(bgmHandles[static_cast<int>(type)], DX_PLAYTYPE_BACK);
 	}
 	else
 	{
 		// ループ再生する
-		PlaySoundMem(bgmHandles[type], DX_PLAYTYPE_LOOP);
+		PlaySoundMem(bgmHandles[static_cast<int>(type)], DX_PLAYTYPE_LOOP);
 	}
 }
 
 void SoundManager::StopBgm(BgmType type) const {
 
-	StopSoundMem(bgmHandles[type]);
+	StopSoundMem(bgmHandles[static_cast<int>(type)]);
 }

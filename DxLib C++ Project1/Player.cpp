@@ -250,7 +250,7 @@ void Player::TakeDamage(int value, const SoundManager& soundManager) {
 	if (isDead) return;
 
 	// 効果音再生を依頼(引数でタイプを渡す)
-	soundManager.PlaySe(ATTACK_HIT);
+	soundManager.PlaySe(SoundType::AttackHit);
 
 	// 被弾アニメーション設定
 	AnimSwitch(PLAYER_ANIM_DAMAGE);
@@ -300,7 +300,7 @@ void Player::AddExp(int value, const SoundManager& soundManager) {
 void Player::LevelUp(const SoundManager& soundManager) {
 
 	// 効果音再生を依頼(引数でタイプを渡す)
-	soundManager.PlaySe(LEVELUP);
+	soundManager.PlaySe(SoundType::LevelUp);
 
 	level += 1;
 

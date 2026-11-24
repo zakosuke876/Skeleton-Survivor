@@ -29,7 +29,7 @@ void GameScene::OnEnter() {
 
     // ゲームシーンに入った瞬間の処理
     state = GAME_PLAYING;
-	soundManager.PlayBgm(BGM_PLAY);
+	soundManager.PlayBgm(BgmType::Play);
     magicEffectManager.Reset();
 
     // ゲーム開始時に各オブジェクトを初期状態へ戻す
@@ -44,7 +44,7 @@ void GameScene::OnEnter() {
 void GameScene::OnExit() {
 
     // ゲームシーンを出る瞬間の処理
-    soundManager.StopBgm(BGM_PLAY);
+    soundManager.StopBgm(BgmType::Play);
 }
 
 
@@ -86,9 +86,9 @@ SceneType GameScene::Update(float deltaTime) {
                 // スコアをランキングに追加
                 rankingManager.AddScore(scoreManager);
 
-                soundManager.StopBgm(BGM_PLAY);
+                soundManager.StopBgm(BgmType::Play);
 
-                soundManager.PlayBgm(BGM_GAMEOVER);
+                soundManager.PlayBgm(BgmType::GameOver);
 
                 // ゲームオーバー状態へ遷移
                 state = GAME_OVER;
@@ -111,9 +111,9 @@ SceneType GameScene::Update(float deltaTime) {
             // Rキーが押された場合
             if (inputManager.IsPressed(KEY_INPUT_R))
             {
-                soundManager.StopBgm(BGM_PLAY);
+                soundManager.StopBgm(BgmType::Play);
 
-                soundManager.PlayBgm(BGM_TITLE);
+                soundManager.PlayBgm(BgmType::Title);
 
                 return SceneType::Title;
             }
@@ -133,9 +133,9 @@ SceneType GameScene::Update(float deltaTime) {
             // Rキーが押された場合タイトル画面に戻る
             if (inputManager.IsPressed(KEY_INPUT_R))
             {
-                soundManager.StopBgm(BGM_GAMEOVER);
+                soundManager.StopBgm(BgmType::GameOver);
 
-                soundManager.PlayBgm(BGM_TITLE);
+                soundManager.PlayBgm(BgmType::Title);
 
                 return SceneType::Title;
             }

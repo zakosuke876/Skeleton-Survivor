@@ -236,7 +236,7 @@ bool Enemy::TakeDamage(int value, const SoundManager& soundManager) {
 	if (state == ENEMY_SPAWN) return false;
 
 	// 効果音再生を依頼(引数でタイプを渡す)
-	soundManager.PlaySe(ATTACK_HIT);
+	soundManager.PlaySe(SoundType::AttackHit);
 
 	SwitchAnimation(ENEMY_ANIM_DAMAGE);
 

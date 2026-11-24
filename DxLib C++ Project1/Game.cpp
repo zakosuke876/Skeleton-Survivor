@@ -19,7 +19,7 @@ Game::Game()
     prevTime = GetNowCount();
 
     // 起動時にタイトルBGMを再生
-    soundManager.PlayBgm(BGM_TITLE);
+    soundManager.PlayBgm(BgmType::Title);
 }
 
 void Game::Run() {

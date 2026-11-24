@@ -39,13 +39,13 @@ void TitleScene::OnEnter() {
 	//　タイトルシーンに入った瞬間の処理
 	titleState = TITLE;
 	currentButtonIndex = 0;
-	soundManager.PlayBgm(BGM_TITLE);
+	soundManager.PlayBgm(BgmType::Title);
 }
 
 void TitleScene::OnExit() {
 
 	// タイトルシーンを出る瞬間の処理
-	soundManager.StopBgm(BGM_TITLE);
+	soundManager.StopBgm(BgmType::Title);
 }
 
 SceneType TitleScene::Update(float deltaTime) {
