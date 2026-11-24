@@ -9,18 +9,17 @@
 #include "GroundEffect.h"
 
 // アニメーションの種類
-enum PlayerAnimation {
-	PLAYER_ANIM_SPAWN_AIR,      // スポーンアニメーション(パターン1)
-	PLAYER_ANIM_SPAWN_GROUND,   // スポーンアニメーション(パターン2)
-	PLAYER_ANIM_IDLE,           // 待機アニメーション
-	PLAYER_ANIM_WALK,           // 歩きアニメーション
-	PLAYER_ANIM_DASH,           // ダッシュアニメーション
-	PLAYER_ANIM_DAMAGE,         // 被弾アニメーション
-	PLAYER_ANIM_ATTACK,         // 攻撃アニメーション
-	PLAYER_ANIM_DEATH,          // 死亡アニメーション(倒れる)
-	PLAYER_ANIM_DEATHPOSE,      // 死亡アニメーション(待機)
-
-	PLAYER_ANIM_MAX,
+enum class PlayerAnimation {
+	SpawnAir,      // スポーンアニメーション(パターン1)
+	SpawnGround,   // スポーンアニメーション(パターン2)
+	Idle,           // 待機アニメーション
+	Walk,           // 歩きアニメーション
+	Dash,           // ダッシュアニメーション
+	Damage,         // 被弾アニメーション
+	Attack,         // 攻撃アニメーション
+	Death,          // 死亡アニメーション(倒れる)
+	DeathPose,      // 死亡アニメーション(待機)
+	Max,
 };
 
 // 状態の種類
@@ -170,7 +169,7 @@ private:
 	// アニメーション設定
 	// ----------------------------------------
 
-	void AnimSwitch(int animNum);
+	void AnimSwitch(PlayerAnimation animNum);
 
 	// JSONから読み込む値(PlayerStatusに対応)
 	// ----------------------------------------

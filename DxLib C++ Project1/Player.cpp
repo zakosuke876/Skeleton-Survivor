@@ -108,11 +108,11 @@ void Player::Reset() {
 	// 2種類のアニメーションからランダムに選ぶ
 	if (anim == 0)
 	{
-		AnimSwitch(PLAYER_ANIM_SPAWN_AIR);
+		AnimSwitch(PlayerAnimation::SpawnAir);
 	}
 	else
 	{
-		AnimSwitch(PLAYER_ANIM_SPAWN_GROUND);
+		AnimSwitch(PlayerAnimation::SpawnGround);
 	}
 }
 
@@ -253,7 +253,7 @@ void Player::TakeDamage(int value, const SoundManager& soundManager) {
 	soundManager.PlaySe(SoundType::AttackHit);
 
 	// 被弾アニメーション設定
-	AnimSwitch(PLAYER_ANIM_DAMAGE);
+	AnimSwitch(PlayerAnimation::Damage);
 
 	// 無敵時間開始
 	isInvincible = true;
@@ -364,7 +364,7 @@ void Player::UpdateSpawn() {
 void Player::UpdateIdle() {
 
 	// 入力が無い場合待機アニメーション再生
-	AnimSwitch(PLAYER_ANIM_IDLE);
+	AnimSwitch(PlayerAnimation::Idle);
 
 	// 攻撃が最優先
 	// 攻撃入力があれば攻撃状態へ
@@ -388,7 +388,7 @@ void Player::UpdateIdle() {
 
 void Player::UpdateWalk(const Ground& ground) {
 
-	AnimSwitch(PLAYER_ANIM_WALK);
+	AnimSwitch(PlayerAnimation::Walk);
 
 	unsigned int color = ground.GetGroundEffectColor(x, z);
 
@@ -419,7 +419,7 @@ void Player::UpdateWalk(const Ground& ground) {
 
 void Player::UpdateDash(const Ground& ground) {
 
-	AnimSwitch(PLAYER_ANIM_DASH);
+	AnimSwitch(PlayerAnimation::Dash);
 
 	// 現在のマスのタイプごとに移動速度を変化させる
 	Move(speed * dashMultiplier * ground.GetSpeedMultiplierAtWorldPos(x, z));
@@ -445,9 +445,9 @@ void Player::UpdateAttack() {
 	// 攻撃判定を無効
 	attackHitBox.isAttackActive = false;
 
-	AnimSwitch(PLAYER_ANIM_ATTACK);
+	AnimSwitch(PlayerAnimation::Attack);
 
-	if (currentAnim == PLAYER_ANIM_ATTACK)
+	if (currentAnim == static_cast<int>(PlayerAnimation::Attack))
 	{
 		// 当たり判定が発生するのは10fから18fまで
 		bool isAttackHitActive = (animTime >= ATTACK_HIT_START_FRAME && animTime <= ATTACK_HIT_END_FRAME);
@@ -473,7 +473,7 @@ void Player::UpdateDamage() {
 	// 攻撃判定を無効
 	attackHitBox.isAttackActive = false;
 
-	AnimSwitch(PLAYER_ANIM_DAMAGE);
+	AnimSwitch(PlayerAnimation::Damage);
 
 	// ダメージアニメーション終了後は待機状態へ遷移
 	if (animTime >= totalTime)
@@ -491,7 +491,7 @@ void Player::UpdateDeath(float deltaTime) {
 
 	if (animTime >= totalTime)
 	{
-		AnimSwitch(PLAYER_ANIM_DEATHPOSE);
+		AnimSwitch(PlayerAnimation::DeathPose);
 	}
 
 	deathTimer += deltaTime;
@@ -616,22 +616,24 @@ void Player::DrawExpGauge(const FontManager& fontManager) const {
 }
 
 
-void Player::AnimSwitch(int animNum) {
+void Player::AnimSwitch(PlayerAnimation animNum) {
+
+	const int nextAnim = static_cast<int>(animNum);
 
 	// 違うアニメーションなら切り替える
-	if (currentAnim != animNum)
+	if (currentAnim != nextAnim)
 	{
 		// 現在のアニメーションを削除
 		MV1DetachAnim(modelHandle, attachIndex);
 
 		// アニメーションをアタッチ
-		attachIndex = MV1AttachAnim(modelHandle, PLAYER_ANIM_TABLE[animNum].animIndex);
+		attachIndex = MV1AttachAnim(modelHandle, PLAYER_ANIM_TABLE[nextAnim].animIndex);
 
 		// 総再生時間を取得
 		totalTime = MV1GetAttachAnimTotalTime(modelHandle, attachIndex);
 
 		// 現在のアニメーション番号を保持
-		currentAnim = animNum;
+		currentAnim = nextAnim;
 
 		// 再生タイマーリセット
 		animTime = 0.0f;
@@ -642,7 +644,7 @@ void Player::Die() {
 
 	hp = 0;
 	isDead = true;
-	AnimSwitch(PLAYER_ANIM_DEATH);
+	AnimSwitch(PlayerAnimation::Death);
 	deathEffect.Play(VGet(x, y + DEATH_EFFECT_Y_OFFSET, z), spriteManager.GetClip(EffectType::PlayerDeath));
 	state = PlayerState::Death;
 }
