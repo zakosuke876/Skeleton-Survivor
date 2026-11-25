@@ -141,6 +141,9 @@ private:
 
 	void Move(float moveSpeed);
 
+	// 現在地形に応じた足元エフェクトを出す
+	void SpawnGroundEffect(const Ground& ground);
+
 	// 移動範囲を制限
 	void ClampPosition();
 

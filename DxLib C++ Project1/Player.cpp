@@ -319,6 +319,13 @@ void Player::Draw() const {
 	// モデルを描画
 	MV1DrawModel(modelHandle);
 
+	// 生きている間のみ処理する
+	if (hp > 0)
+	{
+		// 影を描画
+		DrawSphere3D(VGet(x, y - 5.5f, z), 8.0f, 10, GetColor(0, 0, 0), GetColor(0, 0, 0), TRUE);
+	}
+
 	sword.Draw();
 
 	groundEffect.Draw();
@@ -390,10 +397,7 @@ void Player::UpdateWalk(const Ground& ground) {
 
 	AnimSwitch(PlayerAnimation::Walk);
 
-	unsigned int color = ground.GetGroundEffectColor(x, z);
-
-	// 通常タイプのマスの場合は0が返るため処理しない(特殊マスのみ実行)
-	if (color != 0) groundEffect.Spawn(x, z, color);
+	SpawnGroundEffect(ground);
 
 	// 現在のマスのタイプごとに移動速度を変化させる
 	Move(speed * ground.GetSpeedMultiplierAtWorldPos(x, z));
@@ -420,6 +424,8 @@ void Player::UpdateWalk(const Ground& ground) {
 void Player::UpdateDash(const Ground& ground) {
 
 	AnimSwitch(PlayerAnimation::Dash);
+
+	SpawnGroundEffect(ground);
 
 	// 現在のマスのタイプごとに移動速度を変化させる
 	Move(speed * dashMultiplier * ground.GetSpeedMultiplierAtWorldPos(x, z));
@@ -532,6 +538,16 @@ void Player::Move(float moveSpeed) {
 
 		angleY = angle;
 	}
+}
+
+// 歩いているマスタイプに応じてエフェクトを生成
+void Player::SpawnGroundEffect(const Ground& ground) {
+
+	// 生成するエフェクトの色を取得
+	unsigned int color = ground.GetGroundEffectColor(x, z);
+
+	// 通常マス(0)は出さず、特殊マスのみ生成
+	if (color != 0) groundEffect.Spawn(x, z, color);
 }
 
 void Player::ClampPosition() {

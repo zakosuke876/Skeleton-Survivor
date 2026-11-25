@@ -272,6 +272,13 @@ void Enemy::Draw() const {
 	if (!isActive) return;
 
 	DrawModel();
+
+	// 生きている間のみ処理する
+	if (hp > 0)
+	{
+		// 影を描画
+		DrawSphere3D(VGet(x, y - 5.5f, z), 8.0f, 10, GetColor(0, 0, 0), GetColor(0, 0, 0), TRUE);
+	}
 }
 
 void Enemy::DrawUI() const {
