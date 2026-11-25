@@ -22,7 +22,13 @@ GameScene::GameScene(const SceneContext& context)
       enemyManager(context.enemyManager), rankingManager(context.rankingManager), camera(context.camera),
       magicEffectManager(context.magicEffectManager), effectManager(context.effectManager)
 {
+    bgHandle = LoadGraph("Textures/BackGround/BackGround.png");
+    moonHandle = LoadGraph("Textures/BackGround/Moon.png");
+}
 
+GameScene::~GameScene() {
+
+    DeleteGraph(bgHandle);
 }
 
 void GameScene::OnEnter() {
@@ -147,6 +153,15 @@ SceneType GameScene::Update(float deltaTime) {
 }
 
 void GameScene::Draw() {
+
+    // Zバッファ切り替え
+    SetUseZBuffer3D(FALSE);
+    SetWriteZBuffer3D(FALSE);
+
+    DrawExtendGraph(0, 0, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT, bgHandle, TRUE);
+
+    DrawExtendGraph(MOON_X, MOON_Y, MOON_X + MOON_SIZE, MOON_Y + MOON_SIZE, moonHandle, TRUE);
+
 
     switch (state)
     {

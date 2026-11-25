@@ -30,6 +30,7 @@ class GameScene : public Scene {
 public:
 
 	GameScene(const SceneContext& context);
+	~GameScene();
 
 	void OnEnter() override;
 	void OnExit() override;
@@ -42,6 +43,14 @@ private:
 
 	// 現在のゲーム状態
 	GameState state = GameState::Playing;
+
+	int bgHandle = -1;
+	int moonHandle = -1;
+
+	// 月の表示位置とサイズ
+	static constexpr int MOON_X    = 1100; // 月の左上X
+	static constexpr int MOON_Y    = 30;   // 月の左上Y
+	static constexpr int MOON_SIZE = 50;   // 月の表示サイズ(正方形)
 
 	const SoundManager& soundManager;
 	const FontManager& fontManager;
