@@ -29,6 +29,7 @@ GameScene::GameScene(const SceneContext& context)
 GameScene::~GameScene() {
 
     DeleteGraph(bgHandle);
+    DeleteGraph(moonHandle);
 }
 
 void GameScene::OnEnter() {
@@ -158,10 +159,11 @@ void GameScene::Draw() {
     SetUseZBuffer3D(FALSE);
     SetWriteZBuffer3D(FALSE);
 
+    // 背景描画
     DrawExtendGraph(0, 0, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT, bgHandle, TRUE);
 
+    // 月描画
     DrawExtendGraph(MOON_X, MOON_Y, MOON_X + MOON_SIZE, MOON_Y + MOON_SIZE, moonHandle, TRUE);
-
 
     switch (state)
     {

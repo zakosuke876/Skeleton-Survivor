@@ -44,8 +44,9 @@ private:
 	// 現在のゲーム状態
 	GameState state = GameState::Playing;
 
-	int bgHandle = -1;
-	int moonHandle = -1;
+	// 画像ハンドル
+	int bgHandle    = -1;
+	int moonHandle  = -1;
 
 	// 月の表示位置とサイズ
 	static constexpr int MOON_X    = 1100; // 月の左上X
