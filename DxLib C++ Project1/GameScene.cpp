@@ -46,6 +46,7 @@ void GameScene::OnEnter() {
     scoreManager.Reset();
     rankingManager.Reset();
     pauseScene.Reset();
+    effectManager.Reset();
 }
 
 void GameScene::OnExit() {

@@ -41,3 +41,9 @@ void EffectManager::Draw() const {
 		e.Draw();
 	}
 }
+
+void EffectManager::Reset() {
+
+	// 全スロットをデフォルトに戻す
+	effects.fill(Effect{});
+}

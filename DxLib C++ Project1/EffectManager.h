@@ -11,6 +11,7 @@ class EffectManager {
 public:
 
 	EffectManager(const SpriteManager& spriteManager);
+	void Reset();
 	void Spawn(VECTOR pos, EffectType type, float delayTime = 0.0f);
 	void Update(float deltaTime);
 	void Draw() const;
