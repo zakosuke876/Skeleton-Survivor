@@ -319,8 +319,8 @@ void Player::Draw() const {
 	// モデルを描画
 	MV1DrawModel(modelHandle);
 
-	// 生きている間のみ処理する
-	if (hp > 0)
+	// 生存中かつスポーン演出後のみ影を描画する
+	if (hp > 0 && state != PlayerState::Spawn)
 	{
 		// 影を描画
 		DrawSphere3D(VGet(x, y - 5.5f, z), 8.0f, 10, GetColor(0, 0, 0), GetColor(0, 0, 0), TRUE);
