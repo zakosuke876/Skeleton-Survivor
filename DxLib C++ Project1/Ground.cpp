@@ -3,7 +3,7 @@
 #include "Random.h"
 #include "DxLib.h"
 
-Ground::Ground(Random& random) 
+Ground::Ground(Random& random)
     : random(random)
 {
 
@@ -18,7 +18,7 @@ Ground::Ground(Random& random)
 
     // 各地形タイプのテクスチャを取得
     groundGrassHandle = LoadGraph("Stage/GrassTexture.jpg");
-    groundWaterHandle = LoadGraph("Stage/IceTexture.jpg");
+    groundWaterHandle = LoadGraph("Stage/WaterTexture.jpg");
     groundSandHandle = LoadGraph("Stage/SandTexture.jpg");
 
     // 地形タイプをランダムに設定
