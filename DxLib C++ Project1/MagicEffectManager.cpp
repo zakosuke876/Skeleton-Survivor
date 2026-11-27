@@ -9,7 +9,8 @@ MagicEffectManager::MagicEffectManager(const CollisionSystem& collisionSystem, E
 	: collisionSystem(collisionSystem), effectManager(effectManager)
 {
 	// スプライトシートを分割して読み込む
-	LoadDivGraph("Textures/Effect/Magic/Firebolt SpriteSheet.png", MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandles);
+	LoadDivGraph(MAGIC_LEFT_PATH, MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandlesLeft);
+	LoadDivGraph(MAGIC_RIGHT_PATH, MagicEffect::EFFECT_ALL, MagicEffect::EFFECT_DIV_X, MagicEffect::EFFECT_DIV_Y, MagicEffect::EFFECT_WIDTH, MagicEffect::EFFECT_HEIGHT, grHandlesRight);
 }
 
 MagicEffectManager::~MagicEffectManager() {
@@ -17,7 +18,8 @@ MagicEffectManager::~MagicEffectManager() {
 	// リソース開放
 	for (int i = 0; i < MagicEffect::EFFECT_ALL; i++)
 	{
-		DeleteGraph(grHandles[i]);
+		DeleteGraph(grHandlesRight[i]);
+		DeleteGraph(grHandlesLeft[i]);
 	}
 
 	effects.clear();
@@ -34,7 +36,7 @@ void MagicEffectManager::PlayMagic(float startX, float startY, float startZ, int
 	if (effects.size() >= MAX_EFFECT) return;
 
 	// 指定座標に魔法を生成
-	effects.emplace_back(startX, startY, startZ, grHandles, damage);
+	effects.emplace_back(startX, startY, startZ, grHandlesRight, grHandlesLeft, damage);
 }
 
 void MagicEffectManager::CheckPlayerHit(Player& player, const SoundManager& soundManager) {

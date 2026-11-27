@@ -6,7 +6,7 @@ class Player;
 class MagicEffect {
 public:
 
-	MagicEffect(float startX, float startY, float startZ, const int* handles, int damage);
+	MagicEffect(float startX, float startY, float startZ, const int* handlesRight, const int* handlesLeft, int damage);
 
 	void Update(const Player& player, float deltaTime);
 
@@ -48,6 +48,7 @@ public:
 
 private:
 
+
 	// ----------------------------------------
 	// 座標
 	// ----------------------------------------
@@ -83,12 +84,16 @@ private:
 
 	bool isActive = false;
 
+	// 進行方向が右向きかどうか
+	bool isRight = true;
+
 	// ----------------------------------------
 	// アニメーション
 	// ----------------------------------------
 
-	// 画像ハンドル配列
-	const int* grHandles = nullptr;
+	// 画像ハンドル配列(右向き・左向き)
+	const int* grHandlesRight = nullptr;
+	const int* grHandlesLeft = nullptr;
 
 	// アニメーションの開始・終了コマ
 	static constexpr int BOLT_START = 0;

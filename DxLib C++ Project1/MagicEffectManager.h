@@ -34,8 +34,13 @@ private:
 	// 魔法エフェクト管理
 	std::vector<MagicEffect> effects;
 
-	// 分割読み込みした画像ハンドルを保持する配列
-	int grHandles[MagicEffect::EFFECT_ALL] = {};
+	// 右向き/左向き魔法エフェクトのパス
+	static constexpr const char* MAGIC_LEFT_PATH = "Textures/Effect/Magic/FireboltSpriteSheetLeft.png";
+	static constexpr const char* MAGIC_RIGHT_PATH = "Textures/Effect/Magic/FireboltSpriteSheetRight.png";
+
+	// 分割読み込みした画像ハンドル(右向き・左向き)
+	int grHandlesRight[MagicEffect::EFFECT_ALL] = {};
+	int grHandlesLeft [MagicEffect::EFFECT_ALL] = {};
 
 	// 魔法の最大同時出現数
 	static constexpr int MAX_EFFECT = 10;

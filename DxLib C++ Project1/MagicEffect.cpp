@@ -3,14 +3,16 @@
 #include "Player.h"
 
 
-MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* handles, int damage) {
+MagicEffect::MagicEffect(float startX, float startY, float startZ, const int* handlesRight, const int* handlesLeft, int damage) {
 
 	isActive = true;
 
 	lifeTimer = 0.0f;
 
 	// 画像ハンドル配列を設定
-	grHandles = handles;
+	grHandlesRight = handlesRight;
+
+	grHandlesLeft = handlesLeft;
 
 	x = startX;
 	y = startY;
@@ -69,6 +71,9 @@ void MagicEffect::Update(const Player& player, float deltaTime) {
 		float dirX = dx / distance;
 		float dirZ = dz / distance;
 
+		// 進行方向の符号で左右の向きを決定する
+		isRight = dirX > 0.0f;
+
 		// プレイヤー方向へ移動
 		x += dirX * speed;
 		z += dirZ * speed;
@@ -87,7 +92,10 @@ void MagicEffect::Draw() const {
 	// 無効化状態なら処理しない
 	if (!isActive) return;
 
+	// 向きに応じて使うスプライト配列を選ぶ
+	const int* handles = isRight ? grHandlesRight : grHandlesLeft;
+
 	// ビルボードで魔法エフェクトを描画
 	DrawBillboard3D(VGet(x, y, z), 0.5f, 0.5f, EFFECT_SCALE, 0.0f,
-		grHandles[currentFrame], TRUE);
+		handles[currentFrame], TRUE);
 }
